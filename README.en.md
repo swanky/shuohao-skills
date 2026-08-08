@@ -7,6 +7,14 @@
 
 **Agent skills for AI short-drama production** — from a novel to shoot-ready material: character bibles, adaptation outlines, scene & prop bibles. Built for AI coding agents, **runs in both Claude Code and codex**.
 
+> **This is a fork** of [eternityspring/shuohao-skills](https://github.com/eternityspring/shuohao-skills).
+> What differs here:
+>
+> - **Defaults to Taiwanese Traditional Chinese** (`zh-TW`) — Taiwanese word choices, not just converted glyphs. Use `--lang zh` for Simplified
+> - Adds a **`photoreal`** style preset: live-action wardrobe camera test
+>
+> See the [CHANGELOG](CHANGELOG.md).
+
 | Skill | What it does |
 | --- | --- |
 | [**novel-characters**](skills/novel-characters/README.en.md) | Turns a novel into a character bible: profiles, design prompts, voice prompts, model sheets. Report language and image style are both configurable |
@@ -58,7 +66,7 @@ ln -s "$PWD/skills/novel-characters" ~/.codex/skills/novel-characters
 | **Model quota** | Yes | Uses your current session's quota. **No API key needed** |
 | **codex CLI** | Optional | Only for image generation (via its built-in `$imagegen`). Without it, image steps are skipped and everything else still runs |
 
-> **Note on output language.** These skills are Chinese-first. `novel-characters` produces Chinese character profiles even for an English source novel, and its validator actively rejects English in those fields. See that skill's README for what it would take to change.
+> **Note on output language.** These skills are Chinese-first, and this fork defaults to Taiwanese Traditional Chinese (`zh-TW`). `novel-characters` produces Chinese character profiles even for an English source novel, and its validator actively rejects English in those fields. Pass `--lang en` for an English report; see that skill's README.
 
 ## Repository conventions
 

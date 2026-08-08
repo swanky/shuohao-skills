@@ -13,6 +13,14 @@
 
 **AI 短剧制作的 skill 集合**：从一本小说到能开拍的制作素材——拆角色、排大纲、出场景与道具设定。给 AI 编码 agent 用，**Claude Code 和 codex 都能跑**。
 
+> **这是 fork。** 上游是 [eternityspring/shuohao-skills](https://github.com/eternityspring/shuohao-skills)，
+> 原作者微信群等资讯见上方。本 fork 的差异：
+>
+> - **默认输出台湾正体中文**（`zh-TW`），用词照台湾习惯而不只是换字形。要简体用 `--lang zh`
+> - 新增 **`photoreal`** 画风预设：拟真实拍，剧组试装定妆照的质感
+>
+> 详见 [CHANGELOG](CHANGELOG.md)。
+
 | Skill | 做什么 |
 | --- | --- |
 | [**novel-characters**](skills/novel-characters) | 把一篇小说拆成角色设定集：人物画像、形象提示词、音色提示词、角色设定图。报告语言与出图风格可选 |
