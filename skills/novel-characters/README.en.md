@@ -22,7 +22,7 @@ Outputs `cast.json`, a Markdown report, and a self-contained `report.html` you c
 
 Traditional Chinese, Simplified Chinese, English and Japanese UI strings ship built in. **Other languages work too** — the skill translates the UI labels on the fly into the target language and stores them in `cast.json` under `ui`, so French, Korean or Spanish reports come out fully localized rather than half-English.
 
-![report.html](assets/report.webp)
+![report.html](assets/report.png)
 
 A character model sheet (Shen Zhiwei, from the bundled sample story):
 
@@ -155,7 +155,7 @@ node scripts/novel-characters.mjs slug "胡二爺"                  # filesystem
 SKILL.md                 the workflow the agent reads
 scripts/
   novel-characters.mjs   chunk / merge / validate / render / slug
-  selftest.mjs           274 assertions, never calls a model
+  selftest.mjs           318 assertions, never calls a model
 references/
   roster-pass.md         pass 1: scanning for characters
   profile-pass.md        pass 2: building a character sheet (8 hard rules)
@@ -177,6 +177,6 @@ In `examples/渡口.txt` the peddler is only ever referred to by a nickname and 
 node scripts/selftest.mjs
 ```
 
-274 assertions across chunking, alias merging, localization, validation, and rendering. No model calls, no quota, runs in about a second. Run it before anything else after touching the scripts.
+318 assertions across chunking, alias merging, localization, validation, and rendering. No model calls, no quota, runs in about a second. Run it before anything else after touching the scripts.
 
 **Only tested on macOS with Node 24.** There is no platform-specific code, so Linux and older Node releases should be fine, but that is **unverified**.

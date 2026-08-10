@@ -8,84 +8,84 @@ import { basename, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /* ------------------------------------------------------------------ */
-/* 常量与阈值                                                           */
+/* 常量與閾值                                                           */
 /* ------------------------------------------------------------------ */
 /*
- * 阈值参数化：「爽点间隔 ≤ 3 集」在不同平台不是一个数。
- * outline.json 的 params.thresholds 可以逐项覆盖，不改代码。
+ * 閾值參數化：「爽點間隔 ≤ 3 集」在不同平臺不是一個數。
+ * outline.json 的 params.thresholds 可以逐項覆蓋，不改程式碼。
  */
 
-export const ADAPT_MODES = ['忠实', '抽核', '借壳'];
+export const ADAPT_MODES = ['忠實', '抽核', '借殼'];
 export const BEAT_WEIGHTS = ['major', 'minor'];
 
 /*
- * 角色分档。一刀切的「有名字角色 ≤ 6」混淆了两件事：观众要记住谁、
- * 制作要维护多少张脸。分档把它拆开——每一档的一致性投入完全不同。
- * 无名背景人不进表、不追踪、不限量。
+ * 角色分檔。一刀切的「有名字角色 ≤ 6」混淆了兩件事：觀眾要記住誰、
+ * 製作要維護多少張臉。分檔把它拆開——每一檔的一致性投入完全不同。
+ * 無名背景人不進表、不追蹤、不限量。
  *
- * 从 novel-characters 的 cast.json 喂进来时按 importance 映射：
+ * 從 novel-characters 的 cast.json 提供進來時按 importance 對映：
  * protagonist/major → lead，supporting → support，minor → functional。
  */
 export const CHARACTER_TIERS = ['lead', 'support', 'functional'];
-export const TIER_LABELS = { lead: '主角组', support: '重要配角', functional: '功能性角色' };
-/** AI 短剧的角色资产量折算——资产清单按这个自动汇总，不让模型写。 */
+export const TIER_LABELS = { lead: '主角組', support: '重要配角', functional: '功能性角色' };
+/** AI 短劇的角色資產量折算——資產清單按這個自動彙總，不讓模型寫。 */
 export const TIER_ASSET_SPEC = {
-  lead: '全套角色设定图 + 逐镜一致性核对',
-  support: '半身参考图，关键戏核对',
-  functional: '提示词直出，松散一致即可',
+  lead: '全套角色設定圖 + 逐鏡一致性核對',
+  support: '半身參考圖，關鍵戲核對',
+  functional: '提示詞直出，鬆散一致即可',
 };
 
 export const DEFAULT_THRESHOLDS = {
-  maxLeads: 5,          // 主角组上限（男女主 + 主反派）
+  maxLeads: 5,          // 主角組上限（男女主 + 主反派）
   maxSupport: 10,       // 有名字的重要配角上限
-  maxFunctional: 10,    // 功能性角色上限（占脸不占名，name 用称呼标签）
-  maxBeatGap: 3,        // 相邻爽点最大间隔（集）
-  // maxPrimaryScenes 不在这里——它随集数动态，见 primarySceneCap()
+  maxFunctional: 10,    // 功能性角色上限（佔臉不佔名，name 用稱呼標籤）
+  maxBeatGap: 3,        // 相鄰爽點最大間隔（集）
+  // maxPrimaryScenes 不在這裡——它隨集數動態，見 primarySceneCap()
 };
 
 /**
- * 主场景上限随集数走。
+ * 主場景上限隨集數走。
  *
- * 这是给 **AI 短剧**定的数，不是实景剧组的数——场景是生成的，没有搭景钱，
- * 「≤ 5」那种实景经济学在这里不成立。上限守的只剩两件事：每个主场景的
- * **跨集一致性资产**（环境参考图、光照基调），以及观众的空间认知负担。
- * 所以放得宽：观赏性直接吃场景多样性，别为省不存在的钱把戏憋在一个屋里。
+ * 這是給 **AI 短劇**定的數，不是實景劇組的數——場景是生成的，沒有搭景錢，
+ * 「≤ 5」那種實景經濟學在這裡不成立。上限守的只剩兩件事：每個主場景的
+ * **跨集一致性資產**（環境參考圖、光照基調），以及觀眾的空間認知負擔。
+ * 所以放得寬：觀賞性直接吃場景多樣性，別為省不存在的錢把戲憋在一個屋裡。
  *
- *   上限 = clamp(4 + ⌈集数 / 10⌉, 5, 15)
+ *   上限 = clamp(4 + ⌈集數 / 10⌉, 5, 15)
  *
- * 锚点：6 集微型剧 5 个；60 集 10 个；110 集以上封顶 15。
- * `params.thresholds.maxPrimaryScenes` 显式给了就用给的，动态值只是缺省。
+ * 錨點：6 集微型劇 5 個；60 集 10 個；110 集以上封頂 15。
+ * `params.thresholds.maxPrimaryScenes` 顯式給了就用給的，動態值只是預設。
  */
 export function primarySceneCap(episodes) {
-  if (!Number.isInteger(episodes) || episodes < 1) return 8; // 没有集数信息给个居中值
+  if (!Number.isInteger(episodes) || episodes < 1) return 8; // 沒有集數資訊給個居中值
   return Math.max(5, Math.min(15, 4 + Math.ceil(episodes / 10)));
 }
 
 /**
- * 生成难点关键词表：梗概里扫到就必须进该集的 warnings。
- * 宁可多报不可漏报——预警清单的意义就是拍摄前有人看过一眼。
+ * 生成難點關鍵詞表：梗概裡掃到就必須進該集的 warnings。
+ * 寧可多報不可漏報——預警清單的意義就是拍攝前有人看過一眼。
  */
 export const RISK_PATTERNS = {
-  雨戏: /雨/,
-  肢体接触: /吻|拥抱|相拥|牵手|贴身|扭打|搂/,
-  人群: /人群|围观|众人|满堂|满座|集市|人山/,
-  手部特写: /手部|指尖|十指|特写.{0,4}手/,
+  雨戲: /雨/,
+  肢體接觸: /吻|擁抱|相擁|牽手|貼身|扭打|摟/,
+  人群: /人群|圍觀|眾人|滿堂|滿座|集市|人山/,
+  手部特寫: /手部|指尖|十指|特寫.{0,4}手/,
 };
 
-/** 梗概必须是叙述体——出现引号对白就是在写剧本，越界。 */
+/** 梗概必須是敘述體——出現引號對白就是在寫劇本，越界。 */
 const DIALOGUE_RE = /「|」|『|』|“|”/;
 
 /* ------------------------------------------------------------------ */
-/* chunk — 按章节分卷                                                   */
+/* chunk — 按章節分卷                                                   */
 /* ------------------------------------------------------------------ */
 /*
- * 长篇（80 万字级）塞不进上下文，两层 map-reduce：
- * 章 → 卷（每卷 N 章出一份中间摘要）→ 全书。
- * 识别不出章节标题就退回按字数切。
+ * 長篇（80 萬字級）塞不進上下文，兩層 map-reduce：
+ * 章 → 卷（每卷 N 章出一份中間摘要）→ 全書。
+ * 辨識不出章節標題就退回按字數切。
  */
 
 export const CHAPTER_RE =
-  /^[ \t　]*(第[0-9零一二三四五六七八九十百千两]+[章回节卷部][^\n]*|楔子[^\n]*|序章[^\n]*|尾声[^\n]*|番外[^\n]*|Chapter\s+\d+[^\n]*)$/gm;
+  /^[ \t　]*(第[0-9零一二三四五六七八九十百千兩]+[章回節卷部][^\n]*|楔子[^\n]*|序章[^\n]*|尾聲[^\n]*|番外[^\n]*|Chapter\s+\d+[^\n]*)$/gm;
 
 export const DEFAULT_PER_VOLUME = 15;
 export const MAX_VOLUMES = 60;
@@ -109,7 +109,7 @@ export function chunkVolumes(text, perVolume = DEFAULT_PER_VOLUME) {
 
   const chapters = detectChapters(clean);
 
-  // 章节太少：按字数切（带重叠，让卡在切口上的情节两边都看得见）
+  // 章節太少：按字數切（帶重疊，讓卡在切口上的情節兩邊都看得見）
   if (chapters.length < 2) {
     const volumes = [];
     let cursor = 0;
@@ -123,7 +123,7 @@ export function chunkVolumes(text, perVolume = DEFAULT_PER_VOLUME) {
     return { volumes, chapters: 0, truncated, mode: 'size' };
   }
 
-  // 章前的引子归进第一卷
+  // 章前的引子歸進第一卷
   const starts = chapters.map((c) => c.start);
   if (starts[0] > 0) starts.unshift(0);
 
@@ -151,14 +151,14 @@ export function slug(name) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 质量门                                                               */
+/* 品質門                                                               */
 /* ------------------------------------------------------------------ */
 /*
- * checklist 的每一项都是代码，不是给模型读的文字——
- * 交给模型自觉的清单，输出质量全看它当天心情。
+ * checklist 的每一項都是程式碼，不是給模型讀的文字——
+ * 交給模型自覺的清單，輸出品質全看它當天心情。
  *
- * gateReport 产出带 ✓/✗ 的结构化结果（渲染进报告的「质量门」面板），
- * validateOutline 把失败项合并进违规列表（CLI 用，exit 1）。
+ * gateReport 產出帶 ✓/✗ 的結構化結果（渲染進報告的「品質門」面板），
+ * validateOutline 把失敗項合併進違規列表（CLI 用，exit 1）。
  */
 
 const thText = (s) => typeof s === 'string' && s.trim();
@@ -170,7 +170,7 @@ function thresholdsOf(outline) {
   return th;
 }
 
-/** 每集的正文字段，关键词扫描和对白检查都扫这三栏。 */
+/** 每集的正文欄位，關鍵詞掃描和對白檢查都掃這三欄。 */
 const EP_TEXT_FIELDS = ['synopsis', 'hook', 'suspense'];
 
 export function gateReport(outline) {
@@ -184,7 +184,7 @@ export function gateReport(outline) {
   const eps = Array.isArray(outline?.episodes) ? outline.episodes : [];
   const total = outline?.params?.episodes ?? eps.length;
 
-  // G1a–G1c 角色分档上限。主角组还要求至少 1 人——没有主角的剧不成立
+  // G1a–G1c 角色分檔上限。主角組還要求至少 1 人——沒有主角的劇不成立
   const tierCap = { lead: th.maxLeads, support: th.maxSupport, functional: th.maxFunctional };
   for (const tier of CHARACTER_TIERS) {
     const n = chars.filter((c) => c?.tier === tier).length;
@@ -197,12 +197,12 @@ export function gateReport(outline) {
     );
   }
 
-  // G2 主场景上限
+  // G2 主場景上限
   const primary = scenes.filter((s) => s?.primary);
-  add('scene-cap', `主场景 ≤ ${th.maxPrimaryScenes}`, scenes.length > 0 && primary.length <= th.maxPrimaryScenes, `${primary.length} 个`);
+  add('scene-cap', `主場景 ≤ ${th.maxPrimaryScenes}`, scenes.length > 0 && primary.length <= th.maxPrimaryScenes, `${primary.length} 個`);
 
-  // 场景/角色使用统计（G3、G10 共用）。
-  // 只给已登记的 id 计数——未知 id 塞进索引会让「引用不存在」那道门形同虚设。
+  // 場景/角色使用統計（G3、G10 共用）。
+  // 只給已登記的 id 計數——未知 id 塞進索引會讓「引用不存在」那道門形同虛設。
   const sceneUse = new Map(scenes.map((s) => [s?.id, 0]));
   const charUse = new Map(chars.map((c) => [c?.id, 0]));
   for (const e of eps) {
@@ -210,68 +210,68 @@ export function gateReport(outline) {
     for (const id of e?.characterIds ?? []) if (charUse.has(id)) charUse.set(id, charUse.get(id) + 1);
   }
 
-  // G3 一次性场景要有规避方案
+  // G3 一次性場景要有規避方案
   const onceNoPlan = scenes.filter((s) => sceneUse.get(s?.id) === 1 && !thText(s?.reusePlan));
   add(
     'once-scene',
-    '一次性场景已标注规避方案',
+    '一次性場景已標註規避方案',
     eps.length > 0 && onceNoPlan.length === 0,
     onceNoPlan.length ? `缺：${onceNoPlan.map((s) => s.name ?? s.id).join('、')}` : '',
   );
 
-  // G4 爽点间隔 ≤ N，首尾无真空
+  // G4 爽點間隔 ≤ N，首尾無真空
   const beatEps = [...new Set(beats.map((b) => b?.episode).filter((n) => Number.isInteger(n)))].sort((a, b) => a - b);
   let gapOk = beatEps.length > 0 && total > 0;
   let gapDetail = '';
   if (gapOk) {
     if (beatEps[0] > th.maxBeatGap) {
       gapOk = false;
-      gapDetail = `开头 ${beatEps[0] - 1} 集真空`;
+      gapDetail = `開頭 ${beatEps[0] - 1} 集真空`;
     }
     for (let i = 1; i < beatEps.length && gapOk; i++) {
       if (beatEps[i] - beatEps[i - 1] > th.maxBeatGap) {
         gapOk = false;
-        gapDetail = `第 ${beatEps[i - 1]}–${beatEps[i]} 集之间断档`;
+        gapDetail = `第 ${beatEps[i - 1]}–${beatEps[i]} 集之間斷檔`;
       }
     }
     if (gapOk && total - beatEps[beatEps.length - 1] >= th.maxBeatGap) {
       gapOk = false;
-      gapDetail = `结尾 ${total - beatEps[beatEps.length - 1]} 集真空`;
+      gapDetail = `結尾 ${total - beatEps[beatEps.length - 1]} 集真空`;
     }
   }
-  add('beat-gap', `爽点间隔 ≤ ${th.maxBeatGap} 集，无真空区`, gapOk, gapDetail);
+  add('beat-gap', `爽點間隔 ≤ ${th.maxBeatGap} 集，無真空區`, gapOk, gapDetail);
 
-  // G5 第 1 集有钩子
-  add('ep1-hook', '第 1 集有钩子', eps.length > 0 && thText(eps[0]?.hook), '');
+  // G5 第 1 集有鉤子
+  add('ep1-hook', '第 1 集有鉤子', eps.length > 0 && thText(eps[0]?.hook), '');
 
-  // G6 大爆点不能到最后一集才第一次出现
+  // G6 大爆點不能到最後一集才第一次出現
   const majors = beats.filter((b) => (b?.weight ?? 'minor') === 'major').map((b) => b.episode);
   add(
     'major-early',
-    '大爆点不在最后一集才首次出现',
+    '大爆點不在最後一集才首次出現',
     majors.length > 0 && Math.min(...majors) < total,
-    majors.length ? `最早在第 ${Math.min(...majors)} 集` : '没有 major 爽点',
+    majors.length ? `最早在第 ${Math.min(...majors)} 集` : '沒有 major 爽點',
   );
 
-  // G7 每集三栏齐全（钩子/悬念必填）
+  // G7 每集三欄齊全（鉤子/懸念必填）
   const incomplete = eps.filter((e) => !EP_TEXT_FIELDS.every((f) => thText(e?.[f])));
   add(
     'ep-fields',
-    '每集梗概三栏齐全（含【钩子】【悬念】）',
+    '每集梗概三欄齊全（含【鉤子】【懸念】）',
     eps.length > 0 && incomplete.length === 0,
-    incomplete.length ? `缺栏：第 ${incomplete.map((e) => e.ep).join('、')} 集` : '',
+    incomplete.length ? `缺欄：第 ${incomplete.map((e) => e.ep).join('、')} 集` : '',
   );
 
   // G8 三人以上同框要有拆解方案
   const crowdBad = eps.filter((e) => (e?.characterIds?.length ?? 0) >= 3 && !thText(e?.crowdPlan));
   add(
     'crowd-plan',
-    '三人以上同框已标注拆解方案',
+    '三人以上同框已標註拆解方案',
     crowdBad.length === 0,
     crowdBad.length ? `缺：第 ${crowdBad.map((e) => e.ep).join('、')} 集` : '',
   );
 
-  // G9 生成难点进预警清单（关键词扫描，宁可多报）
+  // G9 生成難點進預警清單（關鍵詞掃描，寧可多報）
   const riskBad = [];
   for (const e of eps) {
     const text = EP_TEXT_FIELDS.map((f) => e?.[f] ?? '').join(' ');
@@ -279,30 +279,30 @@ export function gateReport(outline) {
       if (re.test(text) && !(e?.warnings ?? []).includes(risk)) riskBad.push(`第 ${e.ep} 集缺「${risk}」`);
     }
   }
-  add('risk-flag', '生成难点已进预警清单', eps.length > 0 && riskBad.length === 0, riskBad.join('；'));
+  add('risk-flag', '生成難點已進預警清單', eps.length > 0 && riskBad.length === 0, riskBad.join('；'));
 
-  // G10 引用完整：ID 都存在、没有失业角色、没有空转场景
+  // G10 引用完整：ID 都存在、沒有失業角色、沒有空轉場景
   const refBad = [];
   for (const e of eps) {
-    for (const id of e?.sceneIds ?? []) if (!sceneUse.has(id)) refBad.push(`第 ${e.ep} 集引用了不存在的场景 ${id}`);
+    for (const id of e?.sceneIds ?? []) if (!sceneUse.has(id)) refBad.push(`第 ${e.ep} 集引用了不存在的場景 ${id}`);
     for (const id of e?.characterIds ?? []) if (!charUse.has(id)) refBad.push(`第 ${e.ep} 集引用了不存在的角色 ${id}`);
   }
   for (const b of beats) {
     if (Number.isInteger(b?.episode) && (b.episode < 1 || b.episode > total)) {
-      refBad.push(`爽点 ${b.id} 落在不存在的第 ${b.episode} 集`);
+      refBad.push(`爽點 ${b.id} 落在不存在的第 ${b.episode} 集`);
     }
   }
-  for (const [id, n] of charUse) if (n === 0) refBad.push(`角色 ${id} 从未在任何一集出现`);
-  for (const [id, n] of sceneUse) if (n === 0) refBad.push(`场景 ${id} 从未被用到`);
-  add('refs', '场景/角色引用完整，无失业角色、无空转场景', eps.length > 0 && refBad.length === 0, refBad.join('；'));
+  for (const [id, n] of charUse) if (n === 0) refBad.push(`角色 ${id} 從未在任何一集出現`);
+  for (const [id, n] of sceneUse) if (n === 0) refBad.push(`場景 ${id} 從未被用到`);
+  add('refs', '場景/角色引用完整，無失業角色、無空轉場景', eps.length > 0 && refBad.length === 0, refBad.join('；'));
 
-  // G11 梗概是叙述体
+  // G11 梗概是敘述體
   const dlgBad = eps.filter((e) => EP_TEXT_FIELDS.some((f) => DIALOGUE_RE.test(e?.[f] ?? '')));
   add(
     'no-dialogue',
-    '梗概是叙述体，无引号对白',
+    '梗概是敘述體，無引號對白',
     dlgBad.length === 0,
-    dlgBad.length ? `第 ${dlgBad.map((e) => e.ep).join('、')} 集出现引号` : '',
+    dlgBad.length ? `第 ${dlgBad.map((e) => e.ep).join('、')} 集出現引號` : '',
   );
 
   return gates;
@@ -312,11 +312,11 @@ export function gateReport(outline) {
 /* validate                                                            */
 /* ------------------------------------------------------------------ */
 /*
- * 三档 stage 就是流程门：
- *   skeleton — 改编说明 + 人物 + 场景（快版拍板前）
- *   beats    — skeleton + 爽点表（写分集之前必须过这档）
- *   full     — 全部（默认）
- * 「步骤 4 完成前不允许写分集梗概」靠这个变成可执行的，而不是一句话。
+ * 三檔 stage 就是流程門：
+ *   skeleton — 改編說明 + 人物 + 場景（快版拍板前）
+ *   beats    — skeleton + 爽點表（寫分集之前必須過這檔）
+ *   full     — 全部（預設）
+ * 「步驟 4 完成前不允許寫分集梗概」靠這個變成可執行的，而不是一句話。
  */
 
 export const STAGES = ['skeleton', 'beats', 'full'];
@@ -324,71 +324,71 @@ export const STAGES = ['skeleton', 'beats', 'full'];
 export function validateOutline(outline, stage = 'full') {
   const problems = [];
   const p = (msg) => problems.push(msg);
-  if (!outline || typeof outline !== 'object') return ['outline 不是对象'];
+  if (!outline || typeof outline !== 'object') return ['outline 不是物件'];
   const th = thresholdsOf(outline);
 
   // --- params ---
   const params = outline.params;
   if (!params || typeof params !== 'object') {
-    p('缺少 params（总集数/单集时长/题材/改编幅度）');
+    p('缺少 params（總集數/單集時長/題材/改編幅度）');
   } else {
-    if (!Number.isInteger(params.episodes) || params.episodes < 1) p('params.episodes 必须是正整数');
-    if (!(params.minutesPerEpisode > 0)) p('params.minutesPerEpisode 必须大于 0');
-    if (!thText(params.genre)) p('params.genre 缺失——题材决定爽点类型，不能缺');
+    if (!Number.isInteger(params.episodes) || params.episodes < 1) p('params.episodes 必須是正整數');
+    if (!(params.minutesPerEpisode > 0)) p('params.minutesPerEpisode 必須大於 0');
+    if (!thText(params.genre)) p('params.genre 缺失——題材決定爽點型別，不能缺');
     if (!ADAPT_MODES.includes(params.adaptMode)) {
-      p(`params.adaptMode 必须是 ${ADAPT_MODES.join('/')}，实际是 ${JSON.stringify(params.adaptMode)}`);
+      p(`params.adaptMode 必須是 ${ADAPT_MODES.join('/')}，實際是 ${JSON.stringify(params.adaptMode)}`);
     }
   }
 
-  // --- adaptation 改编说明 ---
+  // --- adaptation 改編說明 ---
   const ad = outline.adaptation;
   if (!ad || typeof ad !== 'object') {
-    p('缺少 adaptation（改编说明）');
+    p('缺少 adaptation（改編說明）');
   } else {
-    if (!thText(ad.core)) p('adaptation.core 缺失——一句话核心是整份大纲的锚');
+    if (!thText(ad.core)) p('adaptation.core 缺失——一句話核心是整份大綱的錨');
     for (const key of ['keep', 'cut', 'merge', 'risks']) {
-      if (!Array.isArray(ad[key])) p(`adaptation.${key} 必须是数组`);
+      if (!Array.isArray(ad[key])) p(`adaptation.${key} 必須是陣列`);
     }
-    if (Array.isArray(ad.keep) && ad.keep.length === 0) p('adaptation.keep 至少要有一条——什么都不保还改编什么');
-    if (params?.adaptMode && params.adaptMode !== '忠实' && Array.isArray(ad.cut) && ad.cut.length === 0) {
-      p(`adaptMode=${params.adaptMode} 却一条线都没砍，说不过去`);
+    if (Array.isArray(ad.keep) && ad.keep.length === 0) p('adaptation.keep 至少要有一條——什麼都不保還改編什麼');
+    if (params?.adaptMode && params.adaptMode !== '忠實' && Array.isArray(ad.cut) && ad.cut.length === 0) {
+      p(`adaptMode=${params.adaptMode} 卻一條線都沒砍，說不過去`);
     }
     for (const [key, fields] of [['keep', ['what', 'why']], ['cut', ['what', 'why']], ['merge', ['what', 'why']], ['risks', ['what', 'plan']]]) {
       for (const item of ad[key] ?? []) {
-        for (const f of fields) if (!thText(item?.[f])) p(`adaptation.${key} 里有条目缺 ${f}`);
+        for (const f of fields) if (!thText(item?.[f])) p(`adaptation.${key} 裡有條目缺 ${f}`);
       }
     }
-    // 决策补注（可选）：给了就不能是空壳
+    // 決策補註（可選）：給了就不能是空殼
     for (const f of ['cutNote', 'mergeNote']) {
-      if (ad[f] !== undefined && !thText(ad[f])) p(`adaptation.${f} 给了但是空的——要么写结论，要么删掉这个键`);
+      if (ad[f] !== undefined && !thText(ad[f])) p(`adaptation.${f} 給了但是空的——要麼寫結論，要麼刪掉這個鍵`);
     }
   }
 
   // --- characters 人物表 ---
   const chars = outline.characters;
   if (!Array.isArray(chars) || chars.length === 0) {
-    p('characters 为空');
+    p('characters 為空');
   } else {
     const tierCap = { lead: th.maxLeads, support: th.maxSupport, functional: th.maxFunctional };
     for (const tier of CHARACTER_TIERS) {
       const n = chars.filter((c) => c?.tier === tier).length;
-      if (n > tierCap[tier]) p(`${TIER_LABELS[tier]} ${n} 位，超过上限 ${tierCap[tier]}`);
+      if (n > tierCap[tier]) p(`${TIER_LABELS[tier]} ${n} 位，超過上限 ${tierCap[tier]}`);
     }
-    if (!chars.some((c) => c?.tier === 'lead')) p('没有主角组（tier=lead）角色');
+    if (!chars.some((c) => c?.tier === 'lead')) p('沒有主角組（tier=lead）角色');
     const seen = new Set();
     for (const c of chars) {
-      const label = c?.name ?? c?.id ?? '(无名)';
-      if (!/^C\d{2,}$/.test(c?.id ?? '')) p(`[${label}] 角色 id 必须是 C01 这种格式`);
-      if (seen.has(c?.id)) p(`角色 id ${c.id} 重复`);
+      const label = c?.name ?? c?.id ?? '(無名)';
+      if (!/^C\d{2,}$/.test(c?.id ?? '')) p(`[${label}] 角色 id 必須是 C01 這種格式`);
+      if (seen.has(c?.id)) p(`角色 id ${c.id} 重複`);
       seen.add(c?.id);
       if (!CHARACTER_TIERS.includes(c?.tier)) {
-        p(`[${label}] tier 必须是 ${CHARACTER_TIERS.join('/')}（主角组/重要配角/功能性角色）`);
+        p(`[${label}] tier 必須是 ${CHARACTER_TIERS.join('/')}（主角組/重要配角/功能性角色）`);
       }
       for (const f of ['name', 'role']) if (!thText(c?.[f])) p(`[${label}] 缺 ${f}`);
-      // 功能性角色没有弧光是正常的——医生就是来缝针的
-      if (c?.tier !== 'functional' && !thText(c?.arc)) p(`[${label}] 缺 arc（主角组和重要配角必须有人物弧）`);
+      // 功能性角色沒有弧光是正常的——醫生就是來縫針的
+      if (c?.tier !== 'functional' && !thText(c?.arc)) p(`[${label}] 缺 arc（主角組和重要配角必須有人物弧）`);
       if (!Array.isArray(c?.from) || c.from.length === 0 || !c.from.every(thText)) {
-        p(`[${label}] 缺 from（← 改动记录：原著对应谁、合并了谁）`);
+        p(`[${label}] 缺 from（← 改動記錄：原著對應誰、合併了誰）`);
       }
     }
   }
@@ -396,43 +396,43 @@ export function validateOutline(outline, stage = 'full') {
   // --- scenes ---
   const scenes = outline.scenes;
   if (!Array.isArray(scenes) || scenes.length === 0) {
-    p('scenes 为空');
+    p('scenes 為空');
   } else {
     const primaryN = scenes.filter((s) => s?.primary).length;
-    if (primaryN > th.maxPrimaryScenes) p(`主场景 ${primaryN} 个，超过上限 ${th.maxPrimaryScenes}`);
+    if (primaryN > th.maxPrimaryScenes) p(`主場景 ${primaryN} 個，超過上限 ${th.maxPrimaryScenes}`);
     const seen = new Set();
     for (const s of scenes) {
-      const label = s?.name ?? s?.id ?? '(无名)';
-      if (!/^S\d{2,}$/.test(s?.id ?? '')) p(`[${label}] 场景 id 必须是 S01 这种格式`);
-      if (seen.has(s?.id)) p(`场景 id ${s.id} 重复`);
+      const label = s?.name ?? s?.id ?? '(無名)';
+      if (!/^S\d{2,}$/.test(s?.id ?? '')) p(`[${label}] 場景 id 必須是 S01 這種格式`);
+      if (seen.has(s?.id)) p(`場景 id ${s.id} 重複`);
       seen.add(s?.id);
-      if (!thText(s?.name)) p(`[${s?.id}] 场景缺 name`);
-      if (typeof s?.primary !== 'boolean') p(`[${label}] 场景缺 primary（是不是主场景）`);
+      if (!thText(s?.name)) p(`[${s?.id}] 場景缺 name`);
+      if (typeof s?.primary !== 'boolean') p(`[${label}] 場景缺 primary（是不是主場景）`);
     }
   }
 
   if (stage === 'skeleton') return problems;
 
-  // --- beats 爽点表 ---
+  // --- beats 爽點表 ---
   const beats = outline.beats;
   if (!Array.isArray(beats) || beats.length === 0) {
-    p('beats 为空——爽点表是排片的骨架');
+    p('beats 為空——爽點表是排片的骨架');
   } else {
     const seen = new Set();
     for (const b of beats) {
-      const label = b?.id ?? '(无 id)';
-      if (!/^B\d{2,}$/.test(b?.id ?? '')) p(`[${label}] 爽点 id 必须是 B01 这种格式`);
-      if (seen.has(b?.id)) p(`爽点 id ${b.id} 重复`);
+      const label = b?.id ?? '(無 id)';
+      if (!/^B\d{2,}$/.test(b?.id ?? '')) p(`[${label}] 爽點 id 必須是 B01 這種格式`);
+      if (seen.has(b?.id)) p(`爽點 id ${b.id} 重複`);
       seen.add(b?.id);
-      if (!thText(b?.type)) p(`[${label}] 缺 type（打脸/揭破/反转……）`);
+      if (!thText(b?.type)) p(`[${label}] 缺 type（打臉/揭破/反轉……）`);
       if (b?.weight !== undefined && !BEAT_WEIGHTS.includes(b.weight)) p(`[${label}] weight 只能是 ${BEAT_WEIGHTS.join('/')}`);
-      if (!Number.isInteger(b?.episode) || b.episode < 1) p(`[${label}] episode 必须是正整数`);
+      if (!Number.isInteger(b?.episode) || b.episode < 1) p(`[${label}] episode 必須是正整數`);
       for (const f of ['setup', 'payoff']) if (!thText(b?.[f])) p(`[${label}] 缺 ${f}`);
     }
-    // 间隔与 major 时机在 beats 档就要卡住——这两条错了，分集写完全废
+    // 間隔與 major 時機在 beats 檔就要卡住——這兩條錯了，分集寫完全廢
     for (const g of gateReport(outline)) {
       if ((g.id === 'beat-gap' || g.id === 'major-early') && !g.ok) {
-        p(`质量门未过：${g.label}${g.detail ? `（${g.detail}）` : ''}`);
+        p(`品質門未過：${g.label}${g.detail ? `（${g.detail}）` : ''}`);
       }
     }
   }
@@ -442,21 +442,21 @@ export function validateOutline(outline, stage = 'full') {
   // --- episodes 分集梗概 ---
   const eps = outline.episodes;
   if (!Array.isArray(eps) || eps.length === 0) {
-    p('episodes 为空');
+    p('episodes 為空');
   } else {
     if (params?.episodes && eps.length !== params.episodes) {
-      p(`分集写了 ${eps.length} 集，params.episodes 说好 ${params.episodes} 集`);
+      p(`分集寫了 ${eps.length} 集，params.episodes 說好 ${params.episodes} 集`);
     }
     eps.forEach((e, i) => {
-      if (e?.ep !== i + 1) p(`第 ${i + 1} 个条目的 ep 是 ${e?.ep}，编号必须从 1 连续`);
+      if (e?.ep !== i + 1) p(`第 ${i + 1} 個條目的 ep 是 ${e?.ep}，編號必須從 1 連續`);
       if (!Array.isArray(e?.sceneIds) || e.sceneIds.length === 0) p(`第 ${e?.ep} 集缺 sceneIds`);
       if (!Array.isArray(e?.characterIds) || e.characterIds.length === 0) p(`第 ${e?.ep} 集缺 characterIds`);
-      if (e?.warnings !== undefined && !Array.isArray(e.warnings)) p(`第 ${e?.ep} 集 warnings 必须是数组`);
+      if (e?.warnings !== undefined && !Array.isArray(e.warnings)) p(`第 ${e?.ep} 集 warnings 必須是陣列`);
     });
-    // 其余全部质量门（beats 档已报过的两条不再重复）
+    // 其餘全部品質門（beats 檔已報過的兩條不再重複）
     for (const g of gateReport(outline)) {
       if (g.id === 'beat-gap' || g.id === 'major-early') continue;
-      if (!g.ok) p(`质量门未过：${g.label}${g.detail ? `（${g.detail}）` : ''}`);
+      if (!g.ok) p(`品質門未過：${g.label}${g.detail ? `（${g.detail}）` : ''}`);
     }
   }
 
@@ -464,11 +464,11 @@ export function validateOutline(outline, stage = 'full') {
 }
 
 /* ------------------------------------------------------------------ */
-/* 资产清单 — 算出来的，不让模型写                                        */
+/* 資產清單 — 算出來的，不讓模型寫                                        */
 /* ------------------------------------------------------------------ */
 /*
- * 五件套的第五件。分集既然带了场景 ID + 角色 ID，
- * 资产清单就是纯汇总——让模型手写它一定会漏。
+ * 五件套的第五件。分集既然帶了場景 ID + 角色 ID，
+ * 資產清單就是純彙總——讓模型手寫它一定會漏。
  */
 
 export function computeAssets(outline) {
@@ -484,7 +484,7 @@ export function computeAssets(outline) {
     return { id: c.id, name: c.name, role: c.role, tier: c.tier, uses: episodes.length, episodes };
   });
 
-  // 角色资产量折算：每档要备多少张脸、备到什么程度
+  // 角色資產量折算：每檔要備多少張臉、備到什麼程度
   const castPlan = CHARACTER_TIERS.map((tier) => {
     const members = (outline?.characters ?? []).filter((c) => c?.tier === tier);
     return { tier, label: TIER_LABELS[tier], count: members.length, names: members.map((c) => c.name), spec: TIER_ASSET_SPEC[tier] };
@@ -506,95 +506,95 @@ export function computeAssets(outline) {
 }
 
 /* ------------------------------------------------------------------ */
-/* render — 界面文案                                                    */
+/* render — 介面文案                                                    */
 /* ------------------------------------------------------------------ */
 /*
- * v1 只有中文。全部文案收在这张表里，别把字符串散进模板——
- * 以后要加语言，加一个键就行（novel-characters 就是这么长出来的）。
+ * v1 只有中文。全部文案收在這張表裡，別把字串散進模板——
+ * 以後要加語言，加一個鍵就行（novel-characters 就是這麼長出來的）。
  */
 
 const T = {
-  kicker: '短剧改编大纲',
-  docTitle: (s) => `${s} · 短剧改编大纲`,
+  kicker: '短劇改編大綱',
+  docTitle: (s) => `${s} · 短劇改編大綱`,
   paramsLine: (p) =>
-    `${p.episodes} 集 × ${p.minutesPerEpisode} 分钟 · ${p.genre} · ${p.adaptMode}改编`,
-  exportJson: '导出 JSON',
-  gates: '质量门',
-  gatesPass: '全部通过',
-  gatesFail: (n) => `${n} 项未过`,
-  gatePill: (okN, total) => `质量门 ${okN} / ${total}`,
+    `${p.episodes} 集 × ${p.minutesPerEpisode} 分鐘 · ${p.genre} · ${p.adaptMode}改編`,
+  exportJson: '匯出 JSON',
+  gates: '品質門',
+  gatesPass: '全部通過',
+  gatesFail: (n) => `${n} 項未過`,
+  gatePill: (okN, total) => `品質門 ${okN} / ${total}`,
   sections: {
-    decisions: '关键决策', rhythm: '爽点节奏', episodes: '分集梗概',
-    episodesOverview: '分集概览', matrix: '每集调度矩阵',
-    sceneOverview: '场景概览', plan: '资产量折算', gates: '质量门',
-    adaptation: '改编说明', characters: '人物表', beats: '爽点表', assets: '资产清单',
+    decisions: '關鍵決策', rhythm: '爽點節奏', episodes: '分集梗概',
+    episodesOverview: '分集概覽', matrix: '每集排程矩陣',
+    sceneOverview: '場景概覽', plan: '資產量折算', gates: '品質門',
+    adaptation: '改編說明', characters: '人物表', beats: '爽點表', assets: '資產清單',
   },
   dec: {
-    cut: '砍了哪条线', merge: '合了哪些人', majors: '大爆点落在第几集',
-    castSlots: (n, l, s, f) => `${n} 个角色位（主角组 ${l} · 重要配角 ${s} · 功能性 ${f}）`,
-    leads: '主角组', noCut: '未砍线（忠实改编）', noMajor: '没有 major 爽点',
-    first: '首个', final: '终局',
+    cut: '砍了哪條線', merge: '合了哪些人', majors: '大爆點落在第幾集',
+    castSlots: (n, l, s, f) => `${n} 個角色位（主角組 ${l} · 重要配角 ${s} · 功能性 ${f}）`,
+    leads: '主角組', noCut: '未砍線（忠實改編）', noMajor: '沒有 major 爽點',
+    first: '首個', final: '終局',
   },
   secNotes: {
-    decisions: '拍板过的三件事，落进纸面',
-    rhythm: (gap) => `间隔 ≤ ${gap} 集 · 无真空区`,
-    episodes: '核心交付 · 每集三栏齐全',
-    matrix: '一列 = 这一集要谁、在哪拍',
-    sceneOverview: '右上 = 出现集',
-    plan: '按档自动折算 · 不让模型写',
-    adaptation: '为什么这么改 · 附原文依据',
+    decisions: '拍板過的三件事，落進紙面',
+    rhythm: (gap) => `間隔 ≤ ${gap} 集 · 無真空區`,
+    episodes: '核心交付 · 每集三欄齊全',
+    matrix: '一列 = 這一集要誰、在哪拍',
+    sceneOverview: '右上 = 出現集',
+    plan: '按檔自動折算 · 不讓模型寫',
+    adaptation: '為什麼這麼改 · 附原文依據',
   },
   kpi: {
-    episodes: '总集数', runtime: (m) => `正片约 ${m} 分钟`,
-    beats: '爽点', beatsSub: (major, gap) => `${major} 大爆点${gap ? ` · 最大间隔 ${gap} 集` : ''}`,
+    episodes: '總集數', runtime: (m) => `正片約 ${m} 分鐘`,
+    beats: '爽點', beatsSub: (major, gap) => `${major} 大爆點${gap ? ` · 最大間隔 ${gap} 集` : ''}`,
     cast: '角色', castSub: (l, s, f) => `主角 ${l} · 配角 ${s} · 功能 ${f}`,
-    scenes: '主场景', scenesOnce: (n) => (n ? `一次性场景 ${n}，需复用方案` : '无一次性场景'),
-    risks: '生成难点', risksNone: '预警清单为空',
-    mode: '改编幅度', modeSub: (cut, merge) => `砍 ${cut} 线 · 合 ${merge} 组`,
+    scenes: '主場景', scenesOnce: (n) => (n ? `一次性場景 ${n}，需複用方案` : '無一次性場景'),
+    risks: '生成難點', risksNone: '預警清單為空',
+    mode: '改編幅度', modeSub: (cut, merge) => `砍 ${cut} 線 · 合 ${merge} 組`,
   },
-  legendMajor: '大爆点', legendMinor: '常规爽点',
-  gapNote: (n) => `— ${n} 集空档 —`,
-  tabTimeline: '时间轴', tabTable: '明细表',
-  showAllEps: (n) => `展开全部 ${n} 集`,
-  assetsAuto: '（由分集数据自动汇总）',
-  core: '一句话核心',
-  keep: '保留', cut: '砍掉', merge: '合并', risks: '风险与对策',
-  what: '内容', why: '理由', plan: '对策', evidence: '原文依据',
-  charCols: ['ID', '角色', '层级', '定位', '人物弧', '← 改动记录'],
+  legendMajor: '大爆點', legendMinor: '常規爽點',
+  gapNote: (n) => `— ${n} 集空檔 —`,
+  tabTimeline: '時間軸', tabTable: '明細表',
+  showAllEps: (n) => `展開全部 ${n} 集`,
+  assetsAuto: '（由分集資料自動彙總）',
+  core: '一句話核心',
+  keep: '保留', cut: '砍掉', merge: '合併', risks: '風險與對策',
+  what: '內容', why: '理由', plan: '對策', evidence: '原文依據',
+  charCols: ['ID', '角色', '層級', '定位', '人物弧', '← 改動記錄'],
   tier: TIER_LABELS,
-  castPlanTitle: '角色资产量折算',
-  castPlanCols: ['层级', '人数', '角色', '资产量'],
-  planSceneRow: '场景环境',
-  planSceneSpec: '主场景各一套环境参考 + 光照基调',
-  planRiskRow: '生成难点',
-  planRiskSpec: '拍摄前逐条过预警清单',
-  beatCols: ['ID', '类型', '量级', '集', '铺垫', '兑现'],
-  weight: { major: '大爆点', minor: '常规' },
-  rhythm: '爽点节奏',
-  rhythmLegend: '■ 大爆点　□ 常规　· 无爽点',
-  matrixHead: '角色 / 场景',
-  matrixTier: '层级',
-  matrixTotal: '合计',
-  matrixScenes: '场　景',
+  castPlanTitle: '角色資產量折算',
+  castPlanCols: ['層級', '人數', '角色', '資產量'],
+  planSceneRow: '場景環境',
+  planSceneSpec: '主場景各一套環境參考 + 光照基調',
+  planRiskRow: '生成難點',
+  planRiskSpec: '拍攝前逐條過預警清單',
+  beatCols: ['ID', '型別', '量級', '集', '鋪墊', '兌現'],
+  weight: { major: '大爆點', minor: '常規' },
+  rhythm: '爽點節奏',
+  rhythmLegend: '■ 大爆點　□ 常規　· 無爽點',
+  matrixHead: '角色 / 場景',
+  matrixTier: '層級',
+  matrixTotal: '合計',
+  matrixScenes: '場　景',
   onceScene: '一次性',
-  primaryScene: '主场景',
-  reusePlanLabel: '复用方案',
-  beatsCarried: '承载爽点',
-  castSeen: '出场角色',
+  primaryScene: '主場景',
+  reusePlanLabel: '複用方案',
+  beatsCarried: '承載爽點',
+  castSeen: '出場角色',
   crowdOk: '同框拆解 ✓',
-  epHook: '钩子',
-  epSuspense: '悬念',
-  epScenes: '场景',
+  epHook: '鉤子',
+  epSuspense: '懸念',
+  epScenes: '場景',
   epCast: '人物',
   epCrowd: '同框拆解',
-  epWarnings: '预警',
-  sceneCols: ['ID', '场景', '主场景', '出现集', '次数', '复用方案'],
-  castCols: ['ID', '角色', '定位', '出现集', '次数'],
-  warnCols: ['难点', '涉及集'],
-  beatTypeCols: ['爽点类型', '落点（集）'],
+  epWarnings: '預警',
+  sceneCols: ['ID', '場景', '主場景', '出現集', '次數', '複用方案'],
+  castCols: ['ID', '角色', '定位', '出現集', '次數'],
+  warnCols: ['難點', '涉及集'],
+  beatTypeCols: ['爽點型別', '落點（集）'],
   yes: '是', no: '否',
   none: '—',
-  colophon: '大纲由模型依据原文生成，质量门由脚本确定性检查。',
+  colophon: '大綱由模型依據原文生成，品質門由程式確定性檢查。',
 };
 
 /* ------------------------------------------------------------------ */
@@ -611,7 +611,7 @@ const esc = (s) =>
 const mdRow = (cells) => `| ${cells.map((c) => String(c ?? '').replace(/\|/g, '\\|')).join(' | ')} |`;
 const mdHead = (cols) => [mdRow(cols), mdRow(cols.map(() => '---'))].join('\n');
 
-/** 人物表按档排：主角组在前，功能性角色垫底。 */
+/** 人物表按檔排：主角組在前，功能性角色墊底。 */
 const byTier = (characters) =>
   [...characters].sort((a, b) => CHARACTER_TIERS.indexOf(a.tier) - CHARACTER_TIERS.indexOf(b.tier));
 
@@ -623,7 +623,7 @@ export function renderMarkdown(outline) {
 
   out.push(`# ${T.docTitle(source)}`, '', `> ${T.paramsLine(params)}`, '');
 
-  // 质量门放最前面——先看有没有病，再看内容
+  // 品質門放最前面——先看有沒有病，再看內容
   out.push(`## ${T.gates}`, '');
   for (const g of gates) out.push(`- ${g.ok ? '✅' : '❌'} ${g.label}${!g.ok && g.detail ? ` — ${g.detail}` : ''}`);
   out.push('');
@@ -690,31 +690,31 @@ export function renderMarkdown(outline) {
 /* render — html                                                       */
 /* ------------------------------------------------------------------ */
 /*
- * 业内评审用的单页报告：1600 宽，全部平铺可 Cmd+F。设计约定见
- * references/report-style.md。区块顺序按「先交付后存档」排：
- *   KPI 带 → 爽点节奏（时间轴）→ 分集梗概 → 调度矩阵 + 场景概览
- *   → 资产量折算 → 人物表 → 改编说明 → 质量门
- * 所有图形都是内联 SVG/CSS —— 不引任何库，报告离线双击能开。
- * 配色跑过 dataviz 验证器：大爆点 #8a3324 / 常规 #c56a4e，六项全过。
+ * 業內評審用的單頁報告：1600 寬，全部平鋪可 Cmd+F。設計約定見
+ * references/report-style.md。區塊順序按「先交付後存檔」排：
+ *   KPI 帶 → 爽點節奏（時間軸）→ 分集梗概 → 排程矩陣 + 場景概覽
+ *   → 資產量折算 → 人物表 → 改編說明 → 品質門
+ * 所有圖形都是內聯 SVG/CSS —— 不引任何庫，報告離線雙擊能開。
+ * 配色跑過 dataviz 驗證器：大爆點 #8a3324 / 常規 #c56a4e，六項全過。
  */
 
-/** 报告里内嵌的数据就是 outline.json 原样——编辑完能直接喂回 render。 */
+/** 報告裡內嵌的資料就是 outline.json 原樣——編輯完能直接重新匯入 render。 */
 function embedOutline(outline) {
   return JSON.stringify(outline).replace(/</g, '\\u003c');
 }
 
-/** SVG 坐标保留一位小数，别把浮点尾巴写进产物。 */
+/** SVG 座標保留一位小數，別把浮點尾巴寫進產物。 */
 const r1 = (n) => Math.round(n * 10) / 10;
 
-/** 截断到 n 个字，超出加省略号。按码点数，中英混排不劈字。 */
+/** 截斷到 n 個字，超出加省略號。按碼點數，中英混排不劈字。 */
 const snip = (s, n) => {
   const a = [...String(s ?? '')];
   return a.length > n ? `${a.slice(0, n).join('')}…` : String(s ?? '');
 };
 
 /**
- * 出现集列表 → 幽灵编号：连续区间合写（1,2,3 → 1–3），
- * 离散且不超过 4 个用间隔点（1 · 6），再多只报数量。
+ * 出現集列表 → 幽靈編號：連續區間合寫（1,2,3 → 1–3），
+ * 離散且不超過 4 個用間隔點（1 · 6），再多隻報數量。
  */
 export function fmtEps(eps) {
   if (!eps?.length) return '—';
@@ -726,11 +726,11 @@ export function fmtEps(eps) {
   return `${a.length} 集`;
 }
 
-/* ---------- 爽点节奏：剧情时间轴 ---------- */
+/* ---------- 爽點節奏：劇情時間軸 ---------- */
 /*
- * 一条地平线贯穿全剧，爽点是轴上的节点，标签上下交替防撞。
- * 60 集以上按每行 20 集折行，同一条轴的延续。
- * 空档直接标在轴上；超过 maxBeatGap 的空档标成铁锈红——违规在图上自己喊。
+ * 一條地平線貫穿全劇，爽點是軸上的節點，標籤上下交替防撞。
+ * 60 集以上按每行 20 集折行，同一條軸的延續。
+ * 空檔直接標在軸上；超過 maxBeatGap 的空檔標成鐵鏽紅——違規在圖上自己喊。
  */
 
 const RH = { W: 1520, PADX: 30, ROWH: 176, AXIS: 92, PER_ROW: 20 };
@@ -746,9 +746,9 @@ function renderRhythm(outline, t) {
   const x = (ep) => r1(RH.PADX + (((ep - 1) % cols) + 0.5) * colW);
   const axisY = (ep) => rowOf(ep) * RH.ROWH + RH.AXIS;
   const parts = [];
-  const tickParts = []; // 刻度最后画——自带底衬，压在节点竖线上仍可读；反过来会被竖线盖住
+  const tickParts = []; // 刻度最後畫——自帶底襯，壓在節點豎線上仍可讀；反過來會被豎線蓋住
 
-  // 每行一条轴线 + 集刻度
+  // 每行一條軸線 + 集刻度
   for (let r = 0; r < rows; r++) {
     const epsInRow = Math.min(total - r * cols, cols);
     const y = r * RH.ROWH + RH.AXIS;
@@ -762,7 +762,7 @@ function renderRhythm(outline, t) {
     }
   }
 
-  // 空档标注：同一行内、间距够宽才画；超阈值的标成铁锈红
+  // 空檔標註：同一行內、間距夠寬才畫；超閾值的標成鐵鏽紅
   const beatEps = [...new Set(beats.map((b) => b.episode))].sort((a, b) => a - b);
   for (let i = 1; i < beatEps.length; i++) {
     const [e1, e2] = [beatEps[i - 1], beatEps[i]];
@@ -773,7 +773,7 @@ function renderRhythm(outline, t) {
     parts.push(`<text class="gapnote${bad ? ' bad' : ''}" x="${mx}" y="${axisY(e1) - 12}" text-anchor="middle">${esc(t.gapNote(gap))}</text>`);
   }
 
-  // 节点：标签上下交替；同一集多个爽点时后来的翻到对面
+  // 節點：標籤上下交替；同一集多個爽點時後來的翻到對面
   const sideUsed = new Map(); // `${ep}:up` / `${ep}:down`
   beats.forEach((b, i) => {
     let side = i % 2 === 0 ? 'up' : 'down';
@@ -823,7 +823,7 @@ export function renderHtml(outline) {
   const total = params.episodes;
   const beatsOf = (ep) => beats.filter((b) => b.episode === ep);
 
-  // ---- KPI 带 ----
+  // ---- KPI 帶 ----
   const beatEps = [...new Set(beats.map((b) => b.episode))].sort((a, b) => a - b);
   let maxGap = 0;
   for (let i = 1; i < beatEps.length; i++) maxGap = Math.max(maxGap, beatEps[i] - beatEps[i - 1]);
@@ -837,7 +837,7 @@ export function renderHtml(outline) {
   const majors = beats.filter((b) => (b.weight ?? 'minor') === 'major').length;
 
   const kpis = `<div class="kpis">
-  <div class="kpi accent"><div class="l">${esc(t.kpi.episodes)}</div><div class="v">${total} <small>× ${esc(String(params.minutesPerEpisode))} 分钟</small></div><div class="d">${esc(t.kpi.runtime(total * params.minutesPerEpisode))}</div></div>
+  <div class="kpi accent"><div class="l">${esc(t.kpi.episodes)}</div><div class="v">${total} <small>× ${esc(String(params.minutesPerEpisode))} 分鐘</small></div><div class="d">${esc(t.kpi.runtime(total * params.minutesPerEpisode))}</div></div>
   <div class="kpi"><div class="l">${esc(t.kpi.beats)}</div><div class="v">${beats.length}</div><div class="d">${esc(t.kpi.beatsSub(majors, maxGap))}</div></div>
   <div class="kpi"><div class="l">${esc(t.kpi.cast)}</div><div class="v">${characters.length}</div><div class="d">${esc(t.kpi.castSub(tierN.lead ?? 0, tierN.support ?? 0, tierN.functional ?? 0))}</div></div>
   <div class="kpi"><div class="l">${esc(t.kpi.scenes)}</div><div class="v">${primaryScenes.length}${assets.scenes.length > primaryScenes.length ? ` <small>+${assets.scenes.length - primaryScenes.length}</small>` : ''}</div><div class="d">${esc(t.kpi.scenesOnce(onceScenes.length))}</div></div>
@@ -860,8 +860,8 @@ export function renderHtml(outline) {
     })
     .join('\n');
 
-  // ---- 每集调度矩阵 ----
-  // 格宽随集数收：整行铺开的前提下尽量占满 1600 宽
+  // ---- 每集排程矩陣 ----
+  // 格寬隨集數收：整行鋪開的前提下儘量佔滿 1600 寬
   const cw = total <= 20 ? 26 : total <= 40 ? 20 : total <= 60 ? 16 : 12;
   const mxRow = (name, tierLabel, epsIn, cls, tail) => {
     const set = new Set(epsIn);
@@ -888,12 +888,12 @@ export function renderHtml(outline) {
   ${onceNotes ? `<p class="mnote">${onceNotes}</p>` : ''}
 </div>`;
 
-  // ---- 场景概览卡 ----
+  // ---- 場景概覽卡 ----
   const scards = assets.scenes
     .map((s) => {
       const set = new Set(s.episodes);
       const strip = Array.from({ length: total }, (_, i) => `<i class="${set.has(i + 1) ? `on${s.primary ? '' : ' lt'}` : ''}"></i>`).join('');
-      // 承载爽点按类型去重计数——「小打脸 ×5」比重复列五遍可读
+      // 承載爽點按型別去重計數——「小打臉 ×5」比重複列五遍可讀
       const carried = beats.filter((b) => set.has(b.episode));
       const carriedByType = {};
       for (const b of carried) carriedByType[b.type] = (carriedByType[b.type] ?? 0) + 1;
@@ -913,20 +913,20 @@ export function renderHtml(outline) {
     })
     .join('\n');
 
-  // ---- 资产量折算（含场景环境与生成难点，全部算出来）----
+  // ---- 資產量折算（含場景環境與生成難點，全部算出來）----
   const onceNames = onceScenes.map((s) => s.name);
   const planRows = [
     ...assets.castPlan.map((p) => [esc(p.label), String(p.count), esc(p.names.join('、') || t.none), esc(p.spec)]),
     [
       esc(t.planSceneRow),
       `${primaryScenes.length}${onceScenes.length ? `+${onceScenes.length}` : ''}`,
-      esc(primaryScenes.map((s) => s.name).join('、') + (onceNames.length ? `（+${onceNames.join('、')}复用）` : '')),
+      esc(primaryScenes.map((s) => s.name).join('、') + (onceNames.length ? `（+${onceNames.join('、')}複用）` : '')),
       esc(t.planSceneSpec),
     ],
     [esc(t.planRiskRow), String(riskTotal), esc(riskTotal ? riskSub : t.none), esc(t.planRiskSpec)],
   ];
 
-  // ---- 关键决策：拍板三件事，砍线/合人来自改编说明，大爆点与角色位算出来 ----
+  // ---- 關鍵決策：拍板三件事，砍線/合人來自改編說明，大爆點與角色位算出來 ----
   const majorBeats = beats.filter((b) => (b.weight ?? 'minor') === 'major').sort((a, b) => a.episode - b.episode);
   const leadNames = characters.filter((c) => c.tier === 'lead').map((c) => c.name);
   const decisions = `<div class="dec3">
@@ -956,7 +956,7 @@ export function renderHtml(outline) {
   </div>
 </div>`;
 
-  // ---- 质量门 ----
+  // ---- 品質門 ----
   const gateList = `<ul class="gate">
   ${gates
     .map(
@@ -1019,7 +1019,7 @@ section{margin-top:34px}
 .sec-h h2{font:400 20px/1.2 var(--serif);letter-spacing:.05em}
 .sec-h .note{margin-left:auto;font-size:12px;color:var(--ink-3)}
 
-/* 爽点节奏的图/表 tab */
+/* 爽點節奏的圖/表 tab */
 .tabs{display:flex;width:max-content;margin-bottom:12px;border:1px solid var(--rule-2);
   border-radius:2px;overflow:hidden}
 .tab{font:500 12px/1 var(--sans);letter-spacing:.06em;padding:7px 16px;background:var(--panel);
@@ -1030,7 +1030,7 @@ section{margin-top:34px}
 .tabpane{display:none}
 .tabpane.on{display:block}
 
-/* 分集概览：默认前三张卡，底部渐隐 + 展开 */
+/* 分集概覽：預設前三張卡，底部漸隱 + 展開 */
 .epswrap{position:relative}
 .eps{position:relative}
 .epswrap.clip .eps .ep:nth-child(n+4){display:none}
@@ -1042,7 +1042,7 @@ section{margin-top:34px}
 .epsmore:hover{border-color:var(--seal);color:var(--seal)}
 .epsmore:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
 
-/* 关键决策：拍板三件事 */
+/* 關鍵決策：拍板三件事 */
 .dec3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:start}
 @media(max-width:1080px){.dec3{grid-template-columns:1fr}}
 .dcol{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:4px 18px 14px}
@@ -1063,7 +1063,7 @@ section{margin-top:34px}
 .dmaj em{flex:none;margin-left:auto;font:500 10px/1 var(--sans);letter-spacing:.1em;font-style:normal;
   color:var(--seal);border:1px solid var(--seal);border-radius:99px;padding:2px 7px}
 
-/* 爽点节奏时间轴 */
+/* 爽點節奏時間軸 */
 .chart{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 20px 10px}
 .chart .legend{display:flex;gap:18px;font-size:12px;color:var(--ink-2);margin-bottom:2px}
 .chart .legend i{font-style:normal;display:inline-flex;align-items:center;gap:6px}
@@ -1081,7 +1081,7 @@ section{margin-top:34px}
 .rhythm .gapnote{font:400 10.5px var(--sans);fill:var(--ink-3)}
 .rhythm .gapnote.bad{fill:var(--seal);font-weight:500}
 
-/* 爽点明细表 + 通用表格 */
+/* 爽點明細表 + 通用表格 */
 table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--rule);font-size:13px}
 th,td{padding:8px 12px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
 th{font:500 11px/1 var(--sans);letter-spacing:.1em;color:var(--ink-3);background:var(--side)}
@@ -1105,7 +1105,7 @@ q{quotes:"「" "」";font-family:var(--serif);border-left:2px solid var(--seal);
   border-radius:2px;padding:0 5px;background:var(--paper);color:var(--ink-2)}
 .ep .meta .warn{border-color:var(--seal);color:var(--seal);background:var(--seal-soft)}
 
-/* 每集调度矩阵 */
+/* 每集排程矩陣 */
 .matrix{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 18px;overflow-x:auto}
 .matrix table{border-collapse:separate;border-spacing:3px;font-size:12px;background:none;border:0;width:auto}
 .matrix th,.matrix td{border:0;padding:0}
@@ -1122,7 +1122,7 @@ q{quotes:"「" "」";font-family:var(--serif);border-left:2px solid var(--seal);
 .matrix tr.div td{padding:8px 0 3px;font:500 10px/1 var(--sans);letter-spacing:.18em;color:var(--ink-3)}
 .matrix .mnote{font-size:11px;color:var(--ink-3);margin:10px 0 0}
 
-/* 场景概览卡：整行多列网格——场景多的时候塞半栏怎么排都难看 */
+/* 場景概覽卡：整行多列網格——場景多的時候塞半欄怎麼排都難看 */
 .scenes{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:13px;align-items:start}
 .scard{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:14px 16px}
 .snum{position:absolute;top:10px;right:16px;font:400 26px/1 var(--serif);color:var(--rule-2);letter-spacing:.04em}
@@ -1141,7 +1141,7 @@ q{quotes:"「" "」";font-family:var(--serif);border-left:2px solid var(--seal);
   border-radius:2px;padding:0 5px;background:var(--paper)}
 .srow .reuse{color:var(--seal)}
 
-/* 资产量折算 */
+/* 資產量折算 */
 .plan{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 18px}
 .plan table{background:none;border:0}
 .plan th{background:none;padding-left:0}
@@ -1149,11 +1149,11 @@ q{quotes:"「" "」";font-family:var(--serif);border-left:2px solid var(--seal);
 .plan tr:first-child td{border-top:0}
 .plan td:first-child{font-family:var(--serif);font-size:13px;color:var(--ink)}
 
-/* 改编说明 */
+/* 改編說明 */
 .core{font:400 17px/1.9 var(--serif);margin:0 0 6px}
 h3.sub{font:500 12px/1 var(--sans);letter-spacing:.18em;color:var(--seal);margin:20px 0 8px}
 
-/* 质量门 */
+/* 品質門 */
 .gate{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 28px}
 @media(max-width:900px){.gate{grid-template-columns:1fr}}
 .gate li{display:flex;gap:8px;padding:5px 0;font-size:12.5px;line-height:1.55}
@@ -1167,7 +1167,7 @@ h3.sub{font:500 12px/1 var(--sans);letter-spacing:.18em;color:var(--seal);margin
 
 .foot{margin-top:40px;font-size:11px;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:14px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-/* 屏幕上收，纸上全展开：tab 两个面板都打印、分集全部展开 */
+/* 螢幕上收，紙上全展開：tab 兩個面板都輸出、分集全部展開 */
 @media print{
   .expo,.tabs,.epsmore{display:none!important}
   .tabpane{display:block!important;margin-bottom:14px}
@@ -1263,7 +1263,7 @@ ${scards}
 
 <script type="application/json" id="outline-data">${embedOutline(outline)}</script>
 <script>
-// 爽点节奏：图 / 表切换
+// 爽點節奏：圖 / 表切換
 document.querySelectorAll('.tab').forEach((btn) => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.tab').forEach((b) => b.classList.toggle('on', b === btn));
@@ -1271,7 +1271,7 @@ document.querySelectorAll('.tab').forEach((btn) => {
   });
 });
 
-// 分集概览：默认前三集，点一下全展开（不再收起）
+// 分集概覽：預設前三集，點一下全展開（不再收起）
 const epsMore = document.querySelector('.epsmore');
 if (epsMore) {
   epsMore.addEventListener('click', () => {
@@ -1280,7 +1280,7 @@ if (epsMore) {
   });
 }
 
-// 导出：报告自己带着完整的 outline.json，下载的是它原样
+// 匯出：報告自己帶著完整的 outline.json，下載的是它原樣
 document.querySelector('.expo').addEventListener('click', (e) => {
   const btn = e.currentTarget;
   const url = URL.createObjectURL(
@@ -1288,7 +1288,7 @@ document.querySelector('.expo').addEventListener('click', (e) => {
   );
   const a = Object.assign(document.createElement('a'), { href: url, download: btn.dataset.name });
   a.click();
-  // 别立刻回收——Safari 会抢在下载读完之前撤掉 blob
+  // 別立刻回收——Safari 會搶在下載讀完之前撤掉 blob
   setTimeout(() => URL.revokeObjectURL(url), 10000);
 });
 </script>
@@ -1299,18 +1299,18 @@ document.querySelector('.expo').addEventListener('click', (e) => {
 /* CLI                                                                 */
 /* ------------------------------------------------------------------ */
 
-const USAGE = `novel-outline.mjs — novel-outline skill 的确定性工具
+const USAGE = `novel-outline.mjs — novel-outline skill 的確定性工具
 
-  chunk <book.txt> <workdir>          按章节分卷（识别不出章节就按字数切），写 vol-NN.txt
-  validate <outline.json> [--stage s] 校验；有违规逐条打印并 exit 1
-                                      stage: skeleton / beats / full（默认 full）
-  checkup <outline.json>              体检模式：只打印质量门 ✓/✗，有未过项 exit 1
-  render <outline.json> [--html|--md] 渲染大纲报告到 stdout（默认 --md）
-  assets <outline.json>               打印自动汇总的资产清单 JSON
-  slug <name>                         书名转安全文件名
+  chunk <book.txt> <workdir>          按章節分卷（辨識不出章節就按字數切），寫 vol-NN.txt
+  validate <outline.json> [--stage s] 校驗；有違規逐條輸出並 exit 1
+                                      stage: skeleton / beats / full（預設 full）
+  checkup <outline.json>              體檢模式：只輸出品質門 ✓/✗，有未過項 exit 1
+  render <outline.json> [--html|--md] 渲染大綱報告到 stdout（預設 --md）
+  assets <outline.json>               輸出自動彙總的資產清單 JSON
+  slug <name>                         書名轉安全檔名
 
-chunk 选项：
-  --per-volume <n>   每卷章数，默认 ${DEFAULT_PER_VOLUME}`;
+chunk 選項：
+  --per-volume <n>   每卷章數，預設 ${DEFAULT_PER_VOLUME}`;
 
 function readJson(path) {
   return JSON.parse(readFileSync(resolve(path), 'utf8'));
@@ -1342,7 +1342,7 @@ function main(argv) {
     console.log(
       JSON.stringify({ volumes: volumes.length, chapters, chars: text.length, mode, workdir: resolve(workdir), truncated }, null, 2),
     );
-    if (truncated) console.error(`⚠️ 超过 ${MAX_VOLUMES} 卷上限，尾部未收进来`);
+    if (truncated) console.error(`⚠️ 超過 ${MAX_VOLUMES} 捲上限，尾部未收進來`);
     return;
   }
 
@@ -1353,11 +1353,11 @@ function main(argv) {
     if (!STAGES.includes(stage)) throw new Error(`--stage 只能是 ${STAGES.join('/')}`);
     const problems = validateOutline(readJson(path), stage);
     if (problems.length) {
-      console.error(`✗ ${problems.length} 处违规（stage=${stage}）：\n`);
+      console.error(`✗ ${problems.length} 處違規（stage=${stage}）：\n`);
       for (const x of problems) console.error('  ' + x);
       process.exit(1);
     }
-    console.log(`✓ 通过校验（stage=${stage}）`);
+    console.log(`✓ 通過校驗（stage=${stage}）`);
     return;
   }
 
@@ -1367,7 +1367,7 @@ function main(argv) {
     const gates = gateReport(readJson(path));
     for (const g of gates) console.log(`${g.ok ? '✓' : '✗'} ${g.label}${!g.ok && g.detail ? ` — ${g.detail}` : ''}`);
     const failed = gates.filter((g) => !g.ok).length;
-    console.log(failed ? `\n✗ ${failed} 项未过` : '\n✓ 全部通过');
+    console.log(failed ? `\n✗ ${failed} 項未過` : '\n✓ 全部通過');
     if (failed) process.exit(1);
     return;
   }
@@ -1396,7 +1396,7 @@ function main(argv) {
   throw new Error(`未知命令 ${cmd}\n\n${USAGE}`);
 }
 
-// 软链安装时 argv[1] 是链接路径，两边都取 realpath 才能比得上
+// 軟鏈安裝時 argv[1] 是連結路徑，兩邊都取 realpath 才能比得上
 function isMainModule() {
   if (!process.argv[1]) return false;
   try {
@@ -1407,7 +1407,7 @@ function isMainModule() {
 }
 
 if (isMainModule()) {
-  // `render ... | head` 这类管道提前关闭时安静退出，别甩 EPIPE 堆栈
+  // `render ... | head` 這類管道提前關閉時安靜退出，別甩 EPIPE 堆疊
   process.stdout.on('error', (e) => {
     if (e.code === 'EPIPE') process.exit(0);
     throw e;

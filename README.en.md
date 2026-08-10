@@ -97,6 +97,10 @@ for f in skills/*/scripts/selftest.mjs; do node "$f"; done
 
 There is no CI — the self-tests run in about a second, so running them locally beats waiting on a pipeline. **Only tested on macOS with Node 24**; there is no platform-specific code, so Linux and older Node releases should be fine, but that is unverified.
 
+## Test corpus
+
+[`testdata/classic-chinese-novels/`](testdata/classic-chinese-novels/) contains normalized plain-text editions of *Romance of the Three Kingdoms*, *Water Margin*, *Journey to the West*, *The Plum in the Golden Vase*, and *Dream of the Red Chamber* for local integration and stress testing. See the directory README for sources, checksums, and licensing notes.
+
 
 ## License
 

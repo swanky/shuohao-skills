@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// 自测：覆盖 novel-outline.mjs 里所有确定性逻辑。
-// 不调用任何模型，不花额度，跑一次 < 1 秒。
+// 自測：覆蓋 novel-outline.mjs 裡所有確定性邏輯。
+// 不呼叫任何模型，不花額度，跑一次 < 1 秒。
 //   node scripts/selftest.mjs
 
 import assert from 'node:assert/strict';
@@ -35,7 +35,7 @@ function ok(cond, msg) {
   passed++;
 }
 function eq(actual, expected, msg) {
-  assert.strictEqual(actual, expected, `${msg} — 期望 ${expected}，实际 ${actual}`);
+  assert.strictEqual(actual, expected, `${msg} — 期望 ${expected}，實際 ${actual}`);
   passed++;
 }
 const clone = () => JSON.parse(JSON.stringify(FIXTURE));
@@ -43,527 +43,527 @@ const gate = (o, id) => gateReport(o).find((g) => g.id === id);
 
 /* ---------------- chunk ---------------- */
 
-const book = Array.from({ length: 30 }, (_, i) => `第${i + 1}章 标题\n\n正文${'内容'.repeat(50)}`).join('\n\n');
-eq(detectChapters(book).length, 30, '识别出 30 个章节标题');
-ok(detectChapters('楔子 雾\n\n正文\n\n第一章 渡口\n\n正文').length === 2, '楔子也算章节标题');
-ok(detectChapters('Chapter 12 The Ferry\n\ntext').length === 1, '英文 Chapter 也认');
+const book = Array.from({ length: 30 }, (_, i) => `第${i + 1}章 標題\n\n正文${'內容'.repeat(50)}`).join('\n\n');
+eq(detectChapters(book).length, 30, '辨識出 30 個章節標題');
+ok(detectChapters('楔子 霧\n\n正文\n\n第一章 渡口\n\n正文').length === 2, '楔子也算章節標題');
+ok(detectChapters('Chapter 12 The Ferry\n\ntext').length === 1, '英文 Chapter 也認');
 
 const byChapter = chunkVolumes(book, 10);
-eq(byChapter.mode, 'chapter', '有章节就按章分卷');
+eq(byChapter.mode, 'chapter', '有章節就按章分卷');
 eq(byChapter.volumes.length, 3, '30 章 ÷ 每卷 10 章 = 3 卷');
-eq(byChapter.chapters, 30, '章数报对');
-eq(byChapter.truncated, false, '没超限不报截断');
-ok(byChapter.volumes[0].includes('第1章') && byChapter.volumes[0].includes('第10章'), '第一卷装前 10 章');
-ok(byChapter.volumes[2].includes('第30章'), '最后一卷装到尾');
+eq(byChapter.chapters, 30, '章數報對');
+eq(byChapter.truncated, false, '沒超限不報截斷');
+ok(byChapter.volumes[0].includes('第1章') && byChapter.volumes[0].includes('第10章'), '第一卷裝前 10 章');
+ok(byChapter.volumes[2].includes('第30章'), '最後一卷裝到尾');
 
-const intro = '开篇引子没有章节号\n\n第一章 渡口\n\n正文\n\n第二章 雾\n\n正文';
-ok(chunkVolumes(intro, 10).volumes[0].startsWith('开篇引子'), '章前引子归进第一卷');
+const intro = '開篇引子沒有章節號\n\n第一章 渡口\n\n正文\n\n第二章 霧\n\n正文';
+ok(chunkVolumes(intro, 10).volumes[0].startsWith('開篇引子'), '章前引子歸進第一卷');
 
 const plain = 'X'.repeat(45_000);
 const bySize = chunkVolumes(plain, 10);
-eq(bySize.mode, 'size', '识别不出章节就按字数切');
-ok(bySize.volumes.length >= 2, '长文本切成多块');
-eq(chunkVolumes('', 10).volumes.length, 0, '空文本零卷');
+eq(bySize.mode, 'size', '辨識不出章節就按字數切');
+ok(bySize.volumes.length >= 2, '長文字切成多塊');
+eq(chunkVolumes('', 10).volumes.length, 0, '空文字零卷');
 
 const huge = Array.from({ length: MAX_VOLUMES + 5 }, (_, i) => `第${i + 1}章 x\n\n正文`).join('\n\n');
 const capped = chunkVolumes(huge, 1);
 eq(capped.volumes.length, MAX_VOLUMES, `超限截到 ${MAX_VOLUMES} 卷`);
-eq(capped.truncated, true, '超限必须明确报 truncated');
+eq(capped.truncated, true, '超限必須明確報 truncated');
 
 /* ---------------- slug ---------------- */
 
-eq(slug('渡口'), '渡口', '中文书名保留');
-eq(slug('a/b:c'), 'a-b-c', '危险字符替换');
+eq(slug('渡口'), '渡口', '中文書名保留');
+eq(slug('a/b:c'), 'a-b-c', '危險字元替換');
 
-/* ---------------- 夹具本身 ---------------- */
+/* ---------------- 夾具本身 ---------------- */
 
-eq(validateOutline(FIXTURE).length, 0, '自带样例通过 full 校验');
-eq(validateOutline(FIXTURE, 'skeleton').length, 0, '样例通过 skeleton 校验');
-eq(validateOutline(FIXTURE, 'beats').length, 0, '样例通过 beats 校验');
-ok(gateReport(FIXTURE).every((g) => g.ok), '样例全部质量门通过');
-eq(gateReport(FIXTURE).length, 13, '质量门共 13 项');
-eq(STAGES.join(','), 'skeleton,beats,full', '三档 stage');
-ok(ADAPT_MODES.includes('抽核'), '改编幅度枚举');
+eq(validateOutline(FIXTURE).length, 0, '自帶樣例通過 full 校驗');
+eq(validateOutline(FIXTURE, 'skeleton').length, 0, '樣例通過 skeleton 校驗');
+eq(validateOutline(FIXTURE, 'beats').length, 0, '樣例通過 beats 校驗');
+ok(gateReport(FIXTURE).every((g) => g.ok), '樣例全部品質門通過');
+eq(gateReport(FIXTURE).length, 13, '品質門共 13 項');
+eq(STAGES.join(','), 'skeleton,beats,full', '三檔 stage');
+ok(ADAPT_MODES.includes('抽核'), '改編幅度列舉');
 
-/* ---------------- 质量门逐项击穿 ---------------- */
-// 每一道门都要证明它真的会拦——不然就是永远为真的假测试
+/* ---------------- 品質門逐項擊穿 ---------------- */
+// 每一道門都要證明它真的會攔——不然就是永遠為真的假測試
 
-// G1a–G1c 角色分档上限
+// G1a–G1c 角色分檔上限
 {
   const o = clone();
   for (let i = 6; i <= 9; i++) {
-    o.characters.push({ id: `C0${i}`, name: `主角${i}`, tier: 'lead', role: '主', arc: '有弧', from: ['原创'] });
+    o.characters.push({ id: `C0${i}`, name: `主角${i}`, tier: 'lead', role: '主', arc: '有弧', from: ['原創'] });
     o.episodes[0].characterIds.push(`C0${i}`);
   }
-  ok(!gate(o, 'lead-cap').ok, '6 个主角被拦（上限 5）');
-  ok(gate(o, 'support-cap').ok, '配角档不受主角档超限影响');
-  ok(validateOutline(o).some((x) => x.includes('主角组') && x.includes('超过上限')), 'validate 报主角组超限');
+  ok(!gate(o, 'lead-cap').ok, '6 個主角被攔（上限 5）');
+  ok(gate(o, 'support-cap').ok, '配角檔不受主角檔超限影響');
+  ok(validateOutline(o).some((x) => x.includes('主角組') && x.includes('超過上限')), 'validate 報主角組超限');
 }
 {
   const o = clone();
   for (let i = 6; i <= 16; i++) {
-    o.characters.push({ id: `C${String(i).padStart(2, '0')}`, name: `伙计${i}`, tier: 'functional', role: '功能', from: ['原创'] });
+    o.characters.push({ id: `C${String(i).padStart(2, '0')}`, name: `夥計${i}`, tier: 'functional', role: '功能', from: ['原創'] });
     o.episodes[0].characterIds.push(`C${String(i).padStart(2, '0')}`);
   }
-  ok(!gate(o, 'functional-cap').ok, '11 个功能性角色被拦（上限 10）');
+  ok(!gate(o, 'functional-cap').ok, '11 個功能性角色被攔（上限 10）');
 }
 {
   const o = clone();
   o.characters.forEach((c) => { if (c.tier === 'lead') c.tier = 'support'; });
-  ok(!gate(o, 'lead-cap').ok, '一个主角都没有也被拦——没有主角的剧不成立');
-  ok(validateOutline(o, 'skeleton').some((x) => x.includes('没有主角组')), 'skeleton 档就报缺主角');
+  ok(!gate(o, 'lead-cap').ok, '一個主角都沒有也被攔——沒有主角的劇不成立');
+  ok(validateOutline(o, 'skeleton').some((x) => x.includes('沒有主角組')), 'skeleton 檔就報缺主角');
 }
 
-// 阈值可覆盖
+// 閾值可覆蓋
 {
   const o = clone();
   o.params.thresholds = { maxLeads: 1 };
-  ok(!gate(o, 'lead-cap').ok, '阈值收紧到 1，2 个主角就超');
-  eq(DEFAULT_THRESHOLDS.maxLeads, 5, '主角组默认上限 5');
-  eq(DEFAULT_THRESHOLDS.maxSupport, 10, '重要配角默认上限 10');
-  eq(DEFAULT_THRESHOLDS.maxFunctional, 10, '功能性角色默认上限 10');
+  ok(!gate(o, 'lead-cap').ok, '閾值收緊到 1，2 個主角就超');
+  eq(DEFAULT_THRESHOLDS.maxLeads, 5, '主角組預設上限 5');
+  eq(DEFAULT_THRESHOLDS.maxSupport, 10, '重要配角預設上限 10');
+  eq(DEFAULT_THRESHOLDS.maxFunctional, 10, '功能性角色預設上限 10');
 }
 
-// 分档的结构规则
+// 分檔的結構規則
 {
   const o = clone();
   o.characters[0].tier = 'boss';
-  ok(validateOutline(o, 'skeleton').some((x) => x.includes('tier')), '未知 tier 被拦');
+  ok(validateOutline(o, 'skeleton').some((x) => x.includes('tier')), '未知 tier 被攔');
 }
 {
   const o = clone();
   delete o.characters[0].arc; // 沈知微是 lead
-  ok(validateOutline(o, 'skeleton').some((x) => x.includes('arc')), '主角缺人物弧被拦');
+  ok(validateOutline(o, 'skeleton').some((x) => x.includes('arc')), '主角缺人物弧被攔');
 }
 {
   const o = clone();
-  delete o.characters[4].arc; // 更夫是 functional，本来就没有 arc 字段
-  eq(validateOutline(o, 'skeleton').length, 0, '功能性角色不要求人物弧——医生就是来缝针的');
+  delete o.characters[4].arc; // 更夫是 functional，本來就沒有 arc 欄位
+  eq(validateOutline(o, 'skeleton').length, 0, '功能性角色不要求人物弧——醫生就是來縫針的');
 }
 
-// G2 主场景上限——随集数动态：clamp(4 + ⌈集数/10⌉, 5, 15)
-// 这是 AI 短剧的数：场景是生成的没有搭景钱，上限守的是一致性资产和空间认知
-eq(primarySceneCap(6), 5, '6 集微型剧给 5 个主场景');
-eq(primarySceneCap(20), 6, '20 集给 6');
-eq(primarySceneCap(30), 7, '30 集给 7');
-eq(primarySceneCap(60), 10, '60 集给 10');
-eq(primarySceneCap(100), 14, '100 集给 14');
-eq(primarySceneCap(200), 15, '再长也封顶 15');
-eq(primarySceneCap(undefined), 8, '没有集数信息给居中值 8');
+// G2 主場景上限——隨集數動態：clamp(4 + ⌈集數/10⌉, 5, 15)
+// 這是 AI 短劇的數：場景是生成的沒有搭景錢，上限守的是一致性資產和空間認知
+eq(primarySceneCap(6), 5, '6 集微型劇給 5 個主場景');
+eq(primarySceneCap(20), 6, '20 集給 6');
+eq(primarySceneCap(30), 7, '30 集給 7');
+eq(primarySceneCap(60), 10, '60 集給 10');
+eq(primarySceneCap(100), 14, '100 集給 14');
+eq(primarySceneCap(200), 15, '再長也封頂 15');
+eq(primarySceneCap(undefined), 8, '沒有集數資訊給居中值 8');
 {
-  const o = clone(); // 夹具 6 集 → 上限 5
+  const o = clone(); // 夾具 6 集 → 上限 5
   for (let i = 4; i <= 9; i++) o.scenes.push({ id: `S0${i}`, name: `景${i}`, primary: true });
   o.episodes[0].sceneIds.push('S04', 'S05', 'S06', 'S07', 'S08', 'S09');
-  ok(!gate(o, 'scene-cap').ok, '6 集的剧开 8 个主场景被拦');
-  ok(gate(o, 'scene-cap').label.includes('≤ 5'), '门的标签显示动态算出的上限');
-  o.params.episodes = 60; // 只为验证上限跟着集数走——集数变了其他门会另行报错
-  ok(gate(o, 'scene-cap').ok, '同样 8 个主场景，60 集就放行');
+  ok(!gate(o, 'scene-cap').ok, '6 集的劇開 8 個主場景被攔');
+  ok(gate(o, 'scene-cap').label.includes('≤ 5'), '門的標籤顯示動態算出的上限');
+  o.params.episodes = 60; // 只為驗證上限跟著集數走——集數變了其他門會另行報錯
+  ok(gate(o, 'scene-cap').ok, '同樣 8 個主場景，60 集就放行');
   o.params.episodes = 6;
   o.params.thresholds = { maxPrimaryScenes: 9 };
-  ok(gate(o, 'scene-cap').ok, '显式覆盖优先于动态值——放宽');
+  ok(gate(o, 'scene-cap').ok, '顯式覆蓋優先於動態值——放寬');
   o.params.thresholds = { maxPrimaryScenes: 3 };
   o.params.episodes = 60;
-  ok(!gate(o, 'scene-cap').ok, '显式覆盖优先于动态值——收紧也一样');
+  ok(!gate(o, 'scene-cap').ok, '顯式覆蓋優先於動態值——收緊也一樣');
 }
 
-// G3 一次性场景没有规避方案
+// G3 一次性場景沒有規避方案
 {
   const o = clone();
   delete o.scenes[2].reusePlan; // S03 只用了一次
-  ok(!gate(o, 'once-scene').ok, '一次性场景缺规避方案被拦');
-  ok(gate(o, 'once-scene').detail.includes('芦苇'), '报错点名是哪个场景');
+  ok(!gate(o, 'once-scene').ok, '一次性場景缺規避方案被攔');
+  ok(gate(o, 'once-scene').detail.includes('蘆葦'), '報錯點名是哪個場景');
 }
 
-// G4 爽点间隔
+// G4 爽點間隔
 {
   const o = clone();
-  o.beats = o.beats.filter((b) => b.id !== 'B02'); // 1 → 5 之间断档
-  ok(!gate(o, 'beat-gap').ok, '第 1–5 集断档被拦');
-  ok(gate(o, 'beat-gap').detail.includes('断档'), '报的是断档');
+  o.beats = o.beats.filter((b) => b.id !== 'B02'); // 1 → 5 之間斷檔
+  ok(!gate(o, 'beat-gap').ok, '第 1–5 集斷檔被攔');
+  ok(gate(o, 'beat-gap').detail.includes('斷檔'), '報的是斷檔');
 }
 {
   const o = clone();
   o.beats.forEach((b) => (b.episode = Math.min(b.episode + 3, 6)));
-  o.beats[0].episode = 4; // 开头真空
-  ok(!gate(o, 'beat-gap').ok, '开头 3 集真空被拦');
+  o.beats[0].episode = 4; // 開頭真空
+  ok(!gate(o, 'beat-gap').ok, '開頭 3 集真空被攔');
 }
 {
   const o = clone();
   o.beats = o.beats.filter((b) => b.episode <= 3);
-  ok(!gate(o, 'beat-gap').ok, '结尾真空被拦');
-  // beats 档就要拦住间隔问题，不能等写完分集才发现
-  ok(validateOutline(o, 'beats').some((x) => x.includes('爽点间隔')), 'beats 档就报间隔');
+  ok(!gate(o, 'beat-gap').ok, '結尾真空被攔');
+  // beats 檔就要攔住間隔問題，不能等寫完分集才發現
+  ok(validateOutline(o, 'beats').some((x) => x.includes('爽點間隔')), 'beats 檔就報間隔');
 }
 
-// G5 第 1 集钩子
+// G5 第 1 集鉤子
 {
   const o = clone();
   o.episodes[0].hook = ' ';
-  ok(!gate(o, 'ep1-hook').ok, '第 1 集没钩子被拦');
+  ok(!gate(o, 'ep1-hook').ok, '第 1 集沒鉤子被攔');
 }
 
-// G6 大爆点时机
+// G6 大爆點時機
 {
   const o = clone();
   o.beats.forEach((b) => (b.weight = 'minor'));
-  o.beats[3].weight = 'major'; // 唯一 major 在第 6 集（最后一集）
-  ok(!gate(o, 'major-early').ok, 'major 只在最后一集被拦');
-  ok(validateOutline(o, 'beats').some((x) => x.includes('大爆点')), 'beats 档就报大爆点');
+  o.beats[3].weight = 'major'; // 唯一 major 在第 6 集（最後一集）
+  ok(!gate(o, 'major-early').ok, 'major 只在最後一集被攔');
+  ok(validateOutline(o, 'beats').some((x) => x.includes('大爆點')), 'beats 檔就報大爆點');
 }
 {
   const o = clone();
   o.beats.forEach((b) => (b.weight = 'minor'));
-  ok(!gate(o, 'major-early').ok, '一个 major 都没有也被拦');
+  ok(!gate(o, 'major-early').ok, '一個 major 都沒有也被攔');
 }
 
-// G7 三栏齐全
+// G7 三欄齊全
 {
   const o = clone();
   o.episodes[3].suspense = '';
-  ok(!gate(o, 'ep-fields').ok, '缺悬念栏被拦');
-  ok(gate(o, 'ep-fields').detail.includes('4'), '报错点名第 4 集');
+  ok(!gate(o, 'ep-fields').ok, '缺懸念欄被攔');
+  ok(gate(o, 'ep-fields').detail.includes('4'), '報錯點名第 4 集');
 }
 
 // G8 同框拆解
 {
   const o = clone();
   delete o.episodes[0].crowdPlan; // 第 1 集 4 人同框
-  ok(!gate(o, 'crowd-plan').ok, '三人以上没有拆解方案被拦');
+  ok(!gate(o, 'crowd-plan').ok, '三人以上沒有拆解方案被攔');
 }
 {
   const o = clone();
-  o.episodes[1].characterIds = ['C01', 'C04']; // 两个人不需要
+  o.episodes[1].characterIds = ['C01', 'C04']; // 兩個人不需要
   delete o.episodes[1].crowdPlan;
-  ok(gate(o, 'crowd-plan').ok, '两人同框不强制拆解方案');
+  ok(gate(o, 'crowd-plan').ok, '兩人同框不強制拆解方案');
 }
 
-// G9 生成难点预警
+// G9 生成難點預警
 {
   const o = clone();
-  o.episodes[2].synopsis += '雨点砸在船篷上。';
-  ok(!gate(o, 'risk-flag').ok, '梗概出现雨戏没进预警被拦');
-  o.episodes[2].warnings = ['雨戏'];
-  ok(gate(o, 'risk-flag').ok, '标了预警就放行');
+  o.episodes[2].synopsis += '雨點砸在船篷上。';
+  ok(!gate(o, 'risk-flag').ok, '梗概出現雨戲沒進預警被攔');
+  o.episodes[2].warnings = ['雨戲'];
+  ok(gate(o, 'risk-flag').ok, '標了預警就放行');
 }
-ok(Object.keys(RISK_PATTERNS).length === 4, '四类生成难点');
-ok(RISK_PATTERNS['肢体接触'].test('两人拥抱'), '拥抱触发肢体接触');
-ok(RISK_PATTERNS['人群'].test('集市上'), '集市触发人群');
+ok(Object.keys(RISK_PATTERNS).length === 4, '四類生成難點');
+ok(RISK_PATTERNS['肢體接觸'].test('兩人擁抱'), '擁抱觸發肢體接觸');
+ok(RISK_PATTERNS['人群'].test('集市上'), '集市觸發人群');
 
 // G10 引用完整
 {
   const o = clone();
   o.episodes[0].sceneIds.push('S99');
-  ok(!gate(o, 'refs').ok, '引用不存在的场景被拦');
+  ok(!gate(o, 'refs').ok, '引用不存在的場景被攔');
 }
 {
   const o = clone();
   o.episodes.forEach((e) => (e.characterIds = e.characterIds.filter((id) => id !== 'C04')));
   o.episodes[0].characterIds = ['C01', 'C02', 'C03'];
-  ok(!gate(o, 'refs').ok, '失业角色被拦');
-  ok(gate(o, 'refs').detail.includes('C04'), '报错点名失业的是谁');
+  ok(!gate(o, 'refs').ok, '失業角色被攔');
+  ok(gate(o, 'refs').detail.includes('C04'), '報錯點名失業的是誰');
 }
 {
   const o = clone();
   o.episodes.forEach((e) => (e.sceneIds = e.sceneIds.filter((id) => id !== 'S03')));
-  ok(!gate(o, 'refs').ok, '空转场景被拦');
+  ok(!gate(o, 'refs').ok, '空轉場景被攔');
 }
 {
   const o = clone();
   o.beats[0].episode = 99;
-  ok(!gate(o, 'refs').ok, '爽点落在不存在的集被拦');
+  ok(!gate(o, 'refs').ok, '爽點落在不存在的集被攔');
 }
 
-// G11 叙述体
+// G11 敘述體
 {
   const o = clone();
-  o.episodes[1].synopsis = '胡二爷说：「你这箱子里是金条吧。」';
-  ok(!gate(o, 'no-dialogue').ok, '梗概里写对白被拦');
+  o.episodes[1].synopsis = '胡二爺說：「你這箱子裡是金條吧。」';
+  ok(!gate(o, 'no-dialogue').ok, '梗概裡寫對白被攔');
 }
 {
   const o = clone();
-  o.episodes[1].hook = '他说“跟我走”算不算威胁';
-  ok(!gate(o, 'no-dialogue').ok, '弯引号也被拦');
+  o.episodes[1].hook = '他說“跟我走”算不算威脅';
+  ok(!gate(o, 'no-dialogue').ok, '彎引號也被攔');
 }
 
-/* ---------------- validate 结构检查 ---------------- */
+/* ---------------- validate 結構檢查 ---------------- */
 
-ok(validateOutline(null).length === 1, 'null 直接报');
+ok(validateOutline(null).length === 1, 'null 直接報');
 {
   const o = clone();
   o.params.adaptMode = '魔改';
-  ok(validateOutline(o, 'skeleton').some((x) => x.includes('adaptMode')), '未知改编幅度被拦');
+  ok(validateOutline(o, 'skeleton').some((x) => x.includes('adaptMode')), '未知改編幅度被攔');
 }
 {
   const o = clone();
   o.params.genre = '';
-  ok(validateOutline(o, 'skeleton').some((x) => x.includes('genre')), '题材缺失被拦——它决定爽点类型');
+  ok(validateOutline(o, 'skeleton').some((x) => x.includes('genre')), '題材缺失被攔——它決定爽點型別');
 }
 {
   const o = clone();
   o.adaptation.cut = [];
-  ok(validateOutline(o, 'skeleton').some((x) => x.includes('没砍')), '抽核却一条没砍被拦');
-  o.params.adaptMode = '忠实';
-  ok(!validateOutline(o, 'skeleton').some((x) => x.includes('没砍')), '忠实改编允许不砍');
+  ok(validateOutline(o, 'skeleton').some((x) => x.includes('沒砍')), '抽核卻一條沒砍被攔');
+  o.params.adaptMode = '忠實';
+  ok(!validateOutline(o, 'skeleton').some((x) => x.includes('沒砍')), '忠實改編允許不砍');
 }
 {
   const o = clone();
   o.characters[0].id = 'X1';
-  ok(validateOutline(o, 'skeleton').some((x) => x.includes('C01 这种格式')), '角色 id 格式被拦');
+  ok(validateOutline(o, 'skeleton').some((x) => x.includes('C01 這種格式')), '角色 id 格式被攔');
 }
 {
   const o = clone();
   o.characters[1].id = 'C01';
-  ok(validateOutline(o, 'skeleton').some((x) => x.includes('重复')), '角色 id 重复被拦');
+  ok(validateOutline(o, 'skeleton').some((x) => x.includes('重複')), '角色 id 重複被攔');
 }
 {
   const o = clone();
   o.characters[0].from = [];
-  ok(validateOutline(o, 'skeleton').some((x) => x.includes('改动记录')), '缺 ← 改动记录被拦');
+  ok(validateOutline(o, 'skeleton').some((x) => x.includes('改動記錄')), '缺 ← 改動記錄被攔');
 }
 {
   const o = clone();
   delete o.scenes[0].primary;
-  ok(validateOutline(o, 'skeleton').some((x) => x.includes('primary')), '场景缺 primary 被拦');
+  ok(validateOutline(o, 'skeleton').some((x) => x.includes('primary')), '場景缺 primary 被攔');
 }
 {
   const o = clone();
   o.beats[0].weight = 'huge';
-  ok(validateOutline(o, 'beats').some((x) => x.includes('weight')), '未知 weight 被拦');
+  ok(validateOutline(o, 'beats').some((x) => x.includes('weight')), '未知 weight 被攔');
 }
 {
   const o = clone();
   o.beats[0].setup = '';
-  ok(validateOutline(o, 'beats').some((x) => x.includes('setup')), '爽点缺铺垫被拦');
+  ok(validateOutline(o, 'beats').some((x) => x.includes('setup')), '爽點缺鋪墊被攔');
 }
 {
   const o = clone();
   o.episodes.pop();
-  ok(validateOutline(o).some((x) => x.includes('说好 6 集')), '集数对不上被拦');
+  ok(validateOutline(o).some((x) => x.includes('說好 6 集')), '集數對不上被攔');
 }
 {
   const o = clone();
   o.episodes[2].ep = 9;
-  ok(validateOutline(o).some((x) => x.includes('编号必须从 1 连续')), '集号断裂被拦');
+  ok(validateOutline(o).some((x) => x.includes('編號必須從 1 連續')), '集號斷裂被攔');
 }
 
-// stage 分档：skeleton 不看 beats/episodes
+// stage 分檔：skeleton 不看 beats/episodes
 {
   const o = clone();
   delete o.beats;
   delete o.episodes;
-  eq(validateOutline(o, 'skeleton').length, 0, 'skeleton 档不要求 beats/episodes');
-  ok(validateOutline(o, 'beats').some((x) => x.includes('beats 为空')), 'beats 档要求爽点表');
-  ok(validateOutline(o, 'full').length > 0, 'full 档要求全部');
+  eq(validateOutline(o, 'skeleton').length, 0, 'skeleton 檔不要求 beats/episodes');
+  ok(validateOutline(o, 'beats').some((x) => x.includes('beats 為空')), 'beats 檔要求爽點表');
+  ok(validateOutline(o, 'full').length > 0, 'full 檔要求全部');
 }
 
-/* ---------------- 资产清单 ---------------- */
+/* ---------------- 資產清單 ---------------- */
 
 const assets = computeAssets(FIXTURE);
-eq(assets.scenes.length, 3, '资产清单收全部场景');
+eq(assets.scenes.length, 3, '資產清單收全部場景');
 {
   const s01 = assets.scenes.find((s) => s.id === 'S01');
   eq(s01.uses, 6, 'S01 每集都用');
-  eq(s01.episodes.join(','), '1,2,3,4,5,6', 'S01 出现集列表');
+  eq(s01.episodes.join(','), '1,2,3,4,5,6', 'S01 出現集列表');
   const s03 = assets.scenes.find((s) => s.id === 'S03');
   eq(s03.uses, 1, 'S03 只用一次');
-  ok(s03.reusePlan, '一次性场景带着复用方案');
+  ok(s03.reusePlan, '一次性場景帶著複用方案');
 }
 {
   const c04 = assets.characters.find((c) => c.id === 'C04');
-  eq(c04.uses, 6, '胡二爷每集都在');
+  eq(c04.uses, 6, '胡二爺每集都在');
   const c02 = assets.characters.find((c) => c.id === 'C02');
-  eq(c02.episodes.join(','), '1,2,3,4,6', '陆行远第 5 集缺席');
+  eq(c02.episodes.join(','), '1,2,3,4,6', '陸行遠第 5 集缺席');
 }
-// 角色资产量折算：按档算出来的，不让模型写
+// 角色資產量折算：按檔算出來的，不讓模型寫
 {
   const plan = Object.fromEntries(assets.castPlan.map((t) => [t.tier, t]));
-  eq(plan.lead.count, 2, '主角组 2 人');
+  eq(plan.lead.count, 2, '主角組 2 人');
   eq(plan.support.count, 2, '重要配角 2 人');
   eq(plan.functional.count, 1, '功能性角色 1 人');
-  ok(plan.lead.spec.includes('设定图'), '主角组折算成全套设定图');
-  ok(plan.functional.spec.includes('提示词'), '功能性角色折算成提示词直出');
-  ok(plan.functional.names.includes('岸上挑灯的更夫'), '折算表带名单');
+  ok(plan.lead.spec.includes('設定圖'), '主角組折算成全套設定圖');
+  ok(plan.functional.spec.includes('提示詞'), '功能性角色折算成提示詞直出');
+  ok(plan.functional.names.includes('岸上挑燈的更夫'), '折算錶帶名單');
 }
-eq(assets.warnings['人群'].join(','), '2', '预警清单按类型汇总');
-eq(assets.beatsByType['身份揭破'].join(','), '3', '爽点按类型汇总落点');
+eq(assets.warnings['人群'].join(','), '2', '預警清單按型別彙總');
+eq(assets.beatsByType['身份揭破'].join(','), '3', '爽點按型別彙總落點');
 
 /* ---------------- render markdown ---------------- */
 
 const md = renderMarkdown(FIXTURE);
-ok(md.startsWith('# 渡口 · 短剧改编大纲'), 'MD 标题');
-ok(md.includes('6 集 × 2 分钟'), 'MD 带参数行');
-for (const sec of ['一、改编说明', '二、人物表', '三、爽点表', '四、分集梗概', '五、资产清单']) {
+ok(md.startsWith('# 渡口 · 短劇改編大綱'), 'MD 標題');
+ok(md.includes('6 集 × 2 分鐘'), 'MD 帶參數行');
+for (const sec of ['一、改編說明', '二、人物表', '三、爽點表', '四、分集梗概', '五、資產清單']) {
   ok(md.includes(sec), `MD 有${sec}`);
 }
-ok(md.includes('（由分集数据自动汇总）'), 'MD 标明资产清单是算出来的');
-ok(md.includes('【钩子】'), 'MD 钩子栏');
-ok(md.includes('【悬念】'), 'MD 悬念栏');
-ok(md.includes('✅'), 'MD 带质量门结果');
-ok(md.includes('合并：岸边问路的路人甲乙'), 'MD 人物表带 ← 改动记录');
-ok(md.includes('主角组'), 'MD 人物表带层级');
-ok(md.includes('角色资产量折算'), 'MD 资产清单带按档折算');
-// 人物表按档排序：主角组在前
+ok(md.includes('（由分集資料自動彙總）'), 'MD 標明資產清單是算出來的');
+ok(md.includes('【鉤子】'), 'MD 鉤子欄');
+ok(md.includes('【懸念】'), 'MD 懸念欄');
+ok(md.includes('✅'), 'MD 帶品質門結果');
+ok(md.includes('合併：岸邊問路的路人甲乙'), 'MD 人物錶帶 ← 改動記錄');
+ok(md.includes('主角組'), 'MD 人物錶帶層級');
+ok(md.includes('角色資產量折算'), 'MD 資產清單帶按檔折算');
+// 人物表按檔排序：主角組在前
 ok(md.indexOf('| C01 |') < md.indexOf('| C05 |'), '主角排在功能性角色前面');
 
 /* ---------------- render html ---------------- */
 
 const html = renderHtml(FIXTURE);
-ok(html.startsWith('<!doctype html>'), 'HTML 完整文档');
-ok(!/<script\s+src=/.test(html), '不引外部脚本');
-ok(!/<link\s/.test(html), '不引外部样式');
-ok(!/@import|url\(https?:/.test(html), 'CSS 不拉外部资源');
-// 反向验证：检测正则本身要抓得到东西
-ok(/<script\s+src=/.test('<script src="x.js">'), '外部脚本检测正则有效');
+ok(html.startsWith('<!doctype html>'), 'HTML 完整檔案');
+ok(!/<script\s+src=/.test(html), '不引外部程式');
+ok(!/<link\s/.test(html), '不引外部樣式');
+ok(!/@import|url\(https?:/.test(html), 'CSS 不拉外部資源');
+// 反向驗證：檢測正則本身要抓得到東西
+ok(/<script\s+src=/.test('<script src="x.js">'), '外部程式檢測正則有效');
 
-eq((html.match(/class="ep" /g) || []).length, 6, '6 张分集卡');
+eq((html.match(/class="ep" /g) || []).length, 6, '6 張分集卡');
 
-// KPI 带：六张统计卡
-eq((html.match(/class="kpi[ "]/g) || []).length, 6, 'KPI 带 6 张卡');
-ok(html.includes('总集数') && html.includes('生成难点'), 'KPI 卡有标签');
-ok(html.includes('主角 2 · 配角 2 · 功能 1'), '角色卡按档报数');
+// KPI 帶：六張統計卡
+eq((html.match(/class="kpi[ "]/g) || []).length, 6, 'KPI 帶 6 張卡');
+ok(html.includes('總集數') && html.includes('生成難點'), 'KPI 卡有標籤');
+ok(html.includes('主角 2 · 配角 2 · 功能 1'), '角色卡按檔報數');
 
-// 关键决策：拍板三件事落进纸面
-ok(html.includes('关键决策'), '有关键决策区块');
-ok(html.includes('砍了哪条线') && html.includes('合了哪些人') && html.includes('大爆点落在第几集'), '决策三栏齐全');
-ok(html.includes('5 个角色位（主角组 2 · 重要配角 2 · 功能性 1）'), '角色位统计是算出来的');
-ok(html.includes('主角组：沈知微、陆行远'), '主角组名单是算出来的');
-ok(html.includes('这意味着：全剧困在渡口一夜之内'), 'cutNote 结论句渲染出来');
-ok(/<i>ep3<\/i>/.test(html) && /<i>ep5<\/i>/.test(html), '大爆点列表带集号');
-ok(html.includes('首个') && html.includes('终局'), '首末大爆点有标记');
+// 關鍵決策：拍板三件事落進紙面
+ok(html.includes('關鍵決策'), '有關鍵決策區塊');
+ok(html.includes('砍了哪條線') && html.includes('合了哪些人') && html.includes('大爆點落在第幾集'), '決策三欄齊全');
+ok(html.includes('5 個角色位（主角組 2 · 重要配角 2 · 功能性 1）'), '角色位統計是算出來的');
+ok(html.includes('主角組：沈知微、陸行遠'), '主角組名單是算出來的');
+ok(html.includes('這意味著：全劇困在渡口一夜之內'), 'cutNote 結論句渲染出來');
+ok(/<i>ep3<\/i>/.test(html) && /<i>ep5<\/i>/.test(html), '大爆點列表帶集號');
+ok(html.includes('首個') && html.includes('終局'), '首末大爆點有標記');
 
-// 爽点节奏：时间轴（不是格子条也不是柱状图）
-eq((html.match(/class="bdot/g) || []).length, 4, '时间轴 4 个爽点节点');
-eq((html.match(/class="bdot major"/g) || []).length, 2, '2 个大爆点实心节点');
-eq((html.match(/class="tick"/g) || []).length, 6, '6 个集刻度');
-ok(html.includes('class="gapnote"'), '空档标在轴上');
-ok(html.includes('1 集空档'), '空档标注带集数');
-// 空档超阈值要变铁锈红
+// 爽點節奏：時間軸（不是格子條也不是柱狀圖）
+eq((html.match(/class="bdot/g) || []).length, 4, '時間軸 4 個爽點節點');
+eq((html.match(/class="bdot major"/g) || []).length, 2, '2 個大爆點實心節點');
+eq((html.match(/class="tick"/g) || []).length, 6, '6 個集刻度');
+ok(html.includes('class="gapnote"'), '空檔標在軸上');
+ok(html.includes('1 集空檔'), '空檔標註帶集數');
+// 空檔超閾值要變鐵鏽紅
 {
   const o = clone();
   o.params.episodes = 9;
   o.beats.find((b) => b.id === 'B04').episode = 9;
   o.episodes.push(
-    { ep: 7, synopsis: '过渡。', hook: 'x', suspense: 'y', sceneIds: ['S01'], characterIds: ['C01'] },
-    { ep: 8, synopsis: '过渡。', hook: 'x', suspense: 'y', sceneIds: ['S01'], characterIds: ['C01'] },
+    { ep: 7, synopsis: '過渡。', hook: 'x', suspense: 'y', sceneIds: ['S01'], characterIds: ['C01'] },
+    { ep: 8, synopsis: '過渡。', hook: 'x', suspense: 'y', sceneIds: ['S01'], characterIds: ['C01'] },
     { ep: 9, synopsis: '收束。', hook: 'x', suspense: 'y', sceneIds: ['S01'], characterIds: ['C01'] },
   );
-  o.episodes[5].synopsis = '雾还没散。';
-  ok(renderHtml(o).includes('class="gapnote bad"'), '超阈值空档标成铁锈红');
+  o.episodes[5].synopsis = '霧還沒散。';
+  ok(renderHtml(o).includes('class="gapnote bad"'), '超閾值空檔標成鐵鏽紅');
 }
-// 长剧折行：60 集两行以上的轴
+// 長劇折行：60 集兩行以上的軸
 {
   const o = clone();
   o.params.episodes = 40;
-  ok(/viewBox="0 0 1520 352"/.test(renderHtml(o)), '40 集折成两行轴（每行 20 集）');
+  ok(/viewBox="0 0 1520 352"/.test(renderHtml(o)), '40 集折成兩行軸（每行 20 集）');
 }
 
-// 爽点节奏：图 / 表 tab，默认时间轴
-eq((html.match(/class="tab[ "]/g) || []).length, 2, '两个 tab');
-ok(html.includes('class="tab on" data-pane="pane-timeline"'), '默认选中时间轴');
-ok(html.includes('class="tabpane on" id="pane-timeline"'), '时间轴面板默认显示');
-ok(html.includes('class="tabpane" id="pane-table"'), '明细表面板默认隐藏');
-ok(html.includes("p.id === btn.dataset.pane"), 'tab 切换脚本在');
-ok(/@media print\{[\s\S]*\.tabpane\{display:block!important/.test(html), '打印时两个面板都出');
+// 爽點節奏：圖 / 表 tab，預設時間軸
+eq((html.match(/class="tab[ "]/g) || []).length, 2, '兩個 tab');
+ok(html.includes('class="tab on" data-pane="pane-timeline"'), '預設選中時間軸');
+ok(html.includes('class="tabpane on" id="pane-timeline"'), '時間軸面板預設顯示');
+ok(html.includes('class="tabpane" id="pane-table"'), '明細表面板預設隱藏');
+ok(html.includes("p.id === btn.dataset.pane"), 'tab 切換程式在');
+ok(/@media print\{[\s\S]*\.tabpane\{display:block!important/.test(html), '輸出時兩個面板都出');
 
-// 分集概览：默认前三集 + 渐隐 + 展开
-ok(html.includes('>分集概览<'), '区块改名分集概览');
-ok(html.includes('class="epswrap clip"'), '超过 3 集默认收起');
-ok(html.includes('.epswrap.clip .eps .ep:nth-child(n+4){display:none}'), '收起态只显示前三张卡');
-ok(html.includes('class="epsmore"'), '有展开按钮');
-ok(html.includes('▾ 展开全部 6 集'), '按钮标明总集数');
-ok(/linear-gradient\(180deg,transparent,var\(--paper\)\)/.test(html), '收起态底部渐隐');
-ok(/epsMore\.remove\(\)/.test(html), '点一下展开且按钮消失');
-ok(/@media print\{[\s\S]*\.epswrap\.clip \.eps \.ep\{display:block!important/.test(html), '打印时分集全展开');
+// 分集概覽：預設前三集 + 漸隱 + 展開
+ok(html.includes('>分集概覽<'), '區塊改名分集概覽');
+ok(html.includes('class="epswrap clip"'), '超過 3 集預設收起');
+ok(html.includes('.epswrap.clip .eps .ep:nth-child(n+4){display:none}'), '收起態只顯示前三張卡');
+ok(html.includes('class="epsmore"'), '有展開按鈕');
+ok(html.includes('▾ 展開全部 6 集'), '按鈕標明總集數');
+ok(/linear-gradient\(180deg,transparent,var\(--paper\)\)/.test(html), '收起態底部漸隱');
+ok(/epsMore\.remove\(\)/.test(html), '點一下展開且按鈕消失');
+ok(/@media print\{[\s\S]*\.epswrap\.clip \.eps \.ep\{display:block!important/.test(html), '輸出時分集全展開');
 {
   const o = clone();
   o.params.episodes = 3;
   o.episodes = o.episodes.slice(0, 3);
   o.beats = o.beats.filter((b) => b.episode <= 3);
   const short = renderHtml(o);
-  ok(!short.includes('class="epswrap clip"'), '3 集以内不收起');
-  ok(!short.includes('class="epsmore"'), '3 集以内没有展开按钮');
+  ok(!short.includes('class="epswrap clip"'), '3 集以內不收起');
+  ok(!short.includes('class="epsmore"'), '3 集以內沒有展開按鈕');
 }
 
-// 每集调度矩阵：角色 + 场景同一张网格
-ok(html.includes('每集调度矩阵'), '有调度矩阵');
-eq((html.match(/class="mc[ "]/g) || []).length, (5 + 3) * 6, '矩阵格数 =（角色+场景）× 集数');
-ok(html.includes('场　景'), '矩阵里有场景分带');
-ok(html.includes('1 ⚠'), '一次性场景在合计列带警示');
+// 每集排程矩陣：角色 + 場景同一張網格
+ok(html.includes('每集排程矩陣'), '有排程矩陣');
+eq((html.match(/class="mc[ "]/g) || []).length, (5 + 3) * 6, '矩陣格數 =（角色+場景）× 集數');
+ok(html.includes('場　景'), '矩陣裡有場景分帶');
+ok(html.includes('1 ⚠'), '一次性場景在合計列帶警示');
 
-// 场景概览卡
-eq((html.match(/class="scard"/g) || []).length, 3, '每个场景一张卡');
-ok(html.includes('>1–6<'), '连续出现集合写成区间');
-ok(html.includes('>1 · 6<'), '离散出现集用间隔点');
-ok(html.includes('承载爽点'), '场景卡带承载爽点');
-ok(html.includes('出场角色'), '主场景卡带出场角色');
-eq(fmtEps([1, 2, 3]), '1–3', 'fmtEps 连续区间');
-eq(fmtEps([1, 6]), '1 · 6', 'fmtEps 离散间隔点');
-eq(fmtEps([5]), '5', 'fmtEps 单集');
+// 場景概覽卡
+eq((html.match(/class="scard"/g) || []).length, 3, '每個場景一張卡');
+ok(html.includes('>1–6<'), '連續出現集合寫成區間');
+ok(html.includes('>1 · 6<'), '離散出現集用間隔點');
+ok(html.includes('承載爽點'), '場景卡帶承載爽點');
+ok(html.includes('出場角色'), '主場景卡帶出場角色');
+eq(fmtEps([1, 2, 3]), '1–3', 'fmtEps 連續區間');
+eq(fmtEps([1, 6]), '1 · 6', 'fmtEps 離散間隔點');
+eq(fmtEps([5]), '5', 'fmtEps 單集');
 eq(fmtEps([]), '—', 'fmtEps 空');
-eq(fmtEps([1, 3, 5, 7, 9]), '5 集', 'fmtEps 太散只报数量');
+eq(fmtEps([1, 3, 5, 7, 9]), '5 集', 'fmtEps 太散只報數量');
 
-// 资产量折算：场景环境和生成难点也折进去
-ok(html.includes('场景环境'), '折算表带场景环境行');
-ok(html.includes('人群 ×1（第 2 集）'), '折算表带生成难点明细');
+// 資產量折算：場景環境和生成難點也摺進去
+ok(html.includes('場景環境'), '折算錶帶場景環境行');
+ok(html.includes('人群 ×1（第 2 集）'), '折算錶帶生成難點明細');
 
-// 区块顺序：节奏 → 分集概览 → 场景概览 → 决策 → 调度矩阵 → 折算 → 人物 → 改编说明 → 质量门
+// 區塊順序：節奏 → 分集概覽 → 場景概覽 → 決策 → 排程矩陣 → 折算 → 人物 → 改編說明 → 品質門
 {
-  const order = ['>爽点节奏<', '>分集概览<', '>场景概览<', '>关键决策<', '>每集调度矩阵<', '>资产量折算<', '>人物表<', '>改编说明<', '>质量门<'];
+  const order = ['>爽點節奏<', '>分集概覽<', '>場景概覽<', '>關鍵決策<', '>每集排程矩陣<', '>資產量折算<', '>人物表<', '>改編說明<', '>品質門<'];
   const idx = order.map((s) => html.indexOf(s));
-  ok(idx.every((v) => v >= 0) && idx.every((v, i) => i === 0 || v > idx[i - 1]), '区块顺序正确');
+  ok(idx.every((v) => v >= 0) && idx.every((v, i) => i === 0 || v > idx[i - 1]), '區塊順序正確');
 }
 
-ok((html.match(/class="gate"/g) || []).length === 1, '质量门清单');
-eq((html.match(/<li class="ok">/g) || []).length, 13, '13 项质量门全 ✓');
-ok(html.includes('全部通过'), '通过时有总结行');
-ok(html.includes('gatepill pass'), '页眉徽章是通过态');
+ok((html.match(/class="gate"/g) || []).length === 1, '品質門清單');
+eq((html.match(/<li class="ok">/g) || []).length, 13, '13 項品質門全 ✓');
+ok(html.includes('全部通過'), '通過時有總結行');
+ok(html.includes('gatepill pass'), '頁首徽章是通過態');
 
-// 质量门失败也要渲染出来——体检模式靠这个给诊断
+// 品質門失敗也要渲染出來——體檢模式靠這個給診斷
 {
   const o = clone();
   o.episodes[0].hook = '';
   const bad = renderHtml(o);
-  ok(bad.includes('<li class="bad">'), '未过的门标 ✗');
-  // 抹掉第 1 集钩子会连坐两道门：ep1-hook + 三栏齐全
-  ok(bad.includes('2 项未过'), '总结行报未过数');
-  ok(bad.includes('gatepill fail'), '页眉徽章变失败态');
-  ok(bad.includes('class="galert"'), 'KPI 带下面弹出病灶横幅');
+  ok(bad.includes('<li class="bad">'), '未過的門標 ✗');
+  // 抹掉第 1 集鉤子會連坐兩道門：ep1-hook + 三欄齊全
+  ok(bad.includes('2 項未過'), '總結行報未過數');
+  ok(bad.includes('gatepill fail'), '頁首徽章變失敗態');
+  ok(bad.includes('class="galert"'), 'KPI 帶下面彈出病灶橫幅');
 }
 
-// 导出：内嵌的就是 outline.json 原样
-ok(html.includes('<script type="application/json" id="outline-data">'), '数据内嵌');
-ok(html.includes('data-name="渡口-outline.json"'), '下载文件名跟书名');
+// 匯出：內嵌的就是 outline.json 原樣
+ok(html.includes('<script type="application/json" id="outline-data">'), '資料內嵌');
+ok(html.includes('data-name="渡口-outline.json"'), '下載檔名跟書名');
 {
   const embedded = html.match(/<script type="application\/json" id="outline-data">([\s\S]*?)<\/script>/)[1];
   const round = JSON.parse(embedded.replace(/\\u003c/g, '<'));
-  eq(JSON.stringify(round), JSON.stringify(FIXTURE), '导出数据与 outline.json 逐字节一致');
-  eq(validateOutline(round).length, 0, '导出数据能直接喂回 validate');
+  eq(JSON.stringify(round), JSON.stringify(FIXTURE), '匯出資料與 outline.json 逐位元組一致');
+  eq(validateOutline(round).length, 0, '匯出資料能直接重新匯入 validate');
 }
-ok(html.includes('revokeObjectURL(url), 10000'), 'blob 延后回收——Safari 抢跑会存出空文件');
+ok(html.includes('revokeObjectURL(url), 10000'), 'blob 延後回收——Safari 搶跑會存出空檔案');
 
-// XSS：大纲是模型生成的，一律转义
+// XSS：大綱是模型生成的，一律轉義
 {
   const o = clone();
   o.episodes[0].synopsis = '<img src=x onerror=alert(1)>';
   o.characters[0].name = '<b>沈</b>';
   const evil = renderHtml(o);
-  ok(!evil.includes('<img src=x'), '梗概里的 HTML 被转义');
-  ok(!evil.includes('<b>沈</b>'), '人名里的 HTML 被转义');
+  ok(!evil.includes('<img src=x'), '梗概裡的 HTML 被轉義');
+  ok(!evil.includes('<b>沈</b>'), '人名裡的 HTML 被轉義');
 }
-// </script 会截断内嵌数据块
+// </script 會截斷內嵌資料塊
 {
   const o = clone();
-  o.adaptation.core = '他说</script><script>alert(1)</script>了吗';
+  o.adaptation.core = '他說</script><script>alert(1)</script>了嗎';
   const x = renderHtml(o).match(/id="outline-data">([\s\S]*?)<\/script>/)[1];
-  ok(!x.includes('</script'), '数据块里的 </script 被转义');
-  eq(JSON.parse(x.replace(/\\u003c/g, '<')).adaptation.core, o.adaptation.core, '转义了但内容没丢');
+  ok(!x.includes('</script'), '資料塊裡的 </script 被轉義');
+  eq(JSON.parse(x.replace(/\\u003c/g, '<')).adaptation.core, o.adaptation.core, '轉義了但內容沒丟');
 }
 
-ok(html.includes('@media print'), '可打印');
-ok(html.includes('prefers-reduced-motion'), '尊重减少动效');
-ok(html.includes('原文依据'), '改编说明的证据列渲染出来');
-ok(html.includes('雾一厚，连自己的手都看不清。'), '逐字证据进了报告');
+ok(html.includes('@media print'), '可輸出');
+ok(html.includes('prefers-reduced-motion'), '尊重減少動效');
+ok(html.includes('原文依據'), '改編說明的證據列渲染出來');
+ok(html.includes('霧一厚，連自己的手都看不清。'), '逐字證據進了報告');
 
-eq(DEFAULT_PER_VOLUME, 15, '默认每卷 15 章');
+eq(DEFAULT_PER_VOLUME, 15, '預設每卷 15 章');
 
-console.log(`✓ ${passed} 项自测全部通过`);
+console.log(`✓ ${passed} 項自測全部通過`);
