@@ -92,9 +92,9 @@ for f in skills/*/scripts/selftest.mjs; do node "$f"; done
 
 沒有配 CI——自測足夠快（1 秒），本地跑一次比等 CI 更省事。**只在 macOS + Node 24 上驗過**；程式碼沒有平台相關呼叫，Linux 和更低版本 Node 理論上沒問題，但沒驗。
 
-## 測試語料
+## 測試資料與品質基準
 
-[`testdata/classic-chinese-novels/`](testdata/classic-chinese-novels/) 收錄《三國演義》、《水滸傳》、《西遊記》、《金瓶梅》與《紅樓夢》的正規化純文字，供本機整合與壓力測試使用。來源、雜湊及授權提醒請見目錄內說明。
+[`testdata/`](testdata/) 將測試輸入與版本化品質基準分開管理：[`corpora/classic-chinese-novels/`](testdata/corpora/classic-chinese-novels/) 收錄五部中國古典小說的正規化純文字，[`benchmarks/novel-characters/`](testdata/benchmarks/novel-characters/classic-chinese-novels/) 則保存經校驗與人工檢查的角色資料、報告與角色圖。尚未執行的製作規劃位於 [`docs/plans/`](docs/plans/classic-chinese-novels/)。
 
 
 ## License

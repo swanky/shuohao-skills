@@ -1,0 +1,1545 @@
+{
+  "source": "金瓶梅・主要角色",
+  "lang": "zh-TW",
+  "style": "photoreal",
+  "summary": "晚明商業城市清河縣中，西門慶以財富、官場關係與婚姻網路擴張勢力，妻妾、僕役、幫閒與地方人物因而被捲入同一座宅院及其外部交易。潘金蓮、李瓶兒、吳月娘、龐春梅等女性在內宅權力、情感需求與生存策略之間各自行動，武松、陳經濟、應伯爵等男性則從復仇、依附與欲望的不同位置介入。這十九人共同呈現財富如何轉化為親密控制與社會權力，也讓日常宴飲、帳務和往來成為人物命運交錯的場域。",
+  "characters": [
+    {
+      "name": "潘金蓮",
+      "aliases": [
+        "金蓮",
+        "五娘",
+        "潘五姐",
+        "潘氏"
+      ],
+      "importance": "protagonist",
+      "oneLiner": "姿容豔媚、機變伶俐且妒悍尖利的第五房妾室，以爭寵、窺探與操控步步捲入慾望和報復。",
+      "persona": {
+        "gender": "女",
+        "ageRange": "本真人系列採二十多歲的成年生命階段（製作裁決）",
+        "identity": "潘裁之女；幼年被賣學彈唱，後為西門慶第五房妾室",
+        "appearance": "姿容豔媚，濃髮斜視；善於妝飾，舉止明豔而富挑釁意味（推斷）。衣著講究、輪廓利落（推斷）。",
+        "personality": [
+          "機變伶俐",
+          "善妒爭寵",
+          "尖利潑悍",
+          "狠決善控",
+          "情慾熾烈"
+        ],
+        "temperament": "反應極快，對冷落、偏寵與私情高度敏感；常以偷聽、盤問、冷嘲和指桑罵槐奪回主動，受激時敢當面頂撞、打滾自傷，也能以掌握的祕密勒索或操控他人。",
+        "motivation": "維持自己在西門慶身邊的寵愛與影響力，排斥任何分走情愛、財物或地位的人；同時追逐情慾與被注視的滿足。",
+        "arc": "從不滿婚姻、通姦並合謀毒殺武植，到改嫁西門慶後在妻妾間反覆爭寵、挑撥與報復；西門慶死後與陳經濟、春梅私通，被逐後寄居王婆家，終被武松殺死祭兄。",
+        "relationships": [
+          {
+            "name": "西門慶",
+            "relation": "所嫁之夫與主要爭寵對象；既極力邀寵，也以盤問、譏刺和縱慾牽制他"
+          },
+          {
+            "name": "吳月娘",
+            "relation": "正室與權力上的對手；她向其挑唆，也曾闖入爭辯、互揭私事"
+          },
+          {
+            "name": "李瓶兒",
+            "relation": "最強烈的爭寵對手；因其得寵生子而嫉恨，屢加譏刺並以雪獅子驚嚇官哥"
+          },
+          {
+            "name": "陳經濟",
+            "relation": "女婿與私情對象；兩人多次調戲、傳情及偷會"
+          },
+          {
+            "name": "孟玉樓",
+            "relation": "同為妻妾，時而共同譏諷他人，也是她傾訴內宅私情的對象"
+          },
+          {
+            "name": "春梅",
+            "relation": "貼身使喚的丫鬟與私情同伴；常替她傳遞物件、消息與情意"
+          },
+          {
+            "name": "孫雪娥",
+            "relation": "妻妾間的對手；她挑撥其與宋惠蓮相鬥，亦攻訐其自稱四娘"
+          }
+        ],
+        "evidence": [
+          "本性機變伶俐",
+          "不如一狠二狠，把奴才結果了",
+          "常懷嫉妒之心",
+          "懊恨薄情輕棄"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Full-body live-action wardrobe camera test of a beautiful adult East Asian woman in her mid-to-late twenties, with a distinctive long oval face, watchful sidelong eyes, dense black hair in a restrained late-Ming-inspired bun, and a poised provocative expression. She wears a deep blue-grey wide-sleeved jacket, a warm russet long skirt, a structured waist belt with a small fragrance sachet, and white high platform shoes. Exactly one actor, head-to-toe, natural skin texture, realistic woven fabric, warm-grey studio backdrop, even soft light. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人全身定裝測試：二十多歲後段的成年東亞美女，長橢圓臉、帶警覺的斜睨眼神，濃黑頭髮梳成克制的晚明風髮髻，神情從容而帶挑釁。穿深藍灰大袖衫、暖紅褐長裙，束結構清楚的腰帶並繫小香袋，腳穿白色高底鞋。單一演員、頭到腳完整、自然皮膚與真實織物質感、暖灰棚拍背景、均勻柔光。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, illustration, anime, cartoon, comic, synthetic CGI render, CGI, fantasy armor, wuxia costume, Qing-dynasty costume, modern clothing, child, teenager, duplicate face, extra person, cropped head, cropped feet, extra limbs, malformed hands, weapon, text, label, watermark",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "live action",
+          "historical costume"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Strict professional live-action character turnaround sheet of the same actor and costume described here: Full-body live-action wardrobe camera test of a beautiful adult East Asian woman in her mid-to-late twenties, with a distinctive long oval face, watchful sidelong eyes, dense black hair in a restrained late-Ming-inspired bun, and a poised provocative expression. She wears a deep blue-grey wide-sleeved jacket, a warm russet long skirt, a structured waist belt with a small fragrance sachet, and white high platform shoes. Exactly three equal-scale full-body views arranged left to right: true straight-on front, strict 90-degree left profile, and true back with no face visible. Identical adult actor identity, age, body proportions, hairstyle, clothing construction, ornaments, colors, and shoes in all three views. Neutral standing pose, arms relaxed, head and shoes fully visible, shared baseline, warm-grey seamless studio backdrop, even diffuse light, natural skin and fabric detail. No text, labels, fourth person, close-up, props, weapons, fantasy styling, CGI, illustration, cropped feet, or malformed anatomy. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "清亮偏冷的成年女中音，字頭俐落，帶一絲細薄而鋒利的金屬感（推斷）",
+        "pitch": "中高音域；情緒升起時迅速上挑，低聲試探時仍保持緊實（推斷）",
+        "pace": "平時偏快而節拍精準，嘲諷時故意拉長關鍵字，發怒時連珠逼迫（推斷）",
+        "accent": "帶北方市井韻味的明代漢語戲劇化口音（推斷）",
+        "emotion": "預設是含笑警覺、機敏而咄咄逼人；柔媚與妒怒能在一句話內迅速切換（推斷）",
+        "referenceHint": "像一位受過彈唱訓練、總能含笑聽出弦外之音，下一刻便以一句冷語奪回主導的內宅女子（推斷）",
+        "prompt": "An adult female mezzo voice, approximately late twenties to mid-thirties (inferred). Clear, cool, and agile timbre with crisp consonant attacks and a faint metallic edge (inferred). Mid-high pitch range, tight forward resonance, very light breathiness, and controlled projection (inferred). Brisk, exact pacing with deliberate elongation on barbed words; rhythm can accelerate into relentless volleys when angry (inferred). A theatrical late-Ming northern vernacular flavor without modern slang (inferred). Medium-high energy. Default emotion is smiling vigilance and calculating confidence, able to pivot instantly into seductive warmth, cutting mockery, or jealous fury (inferred). The instrument should remain articulate, literate, and musically phrased, reflecting a trained singer and pipa player (inferred).",
+        "promptLocal": "成年女中音，聽感約二十餘歲後段至三十餘歲中段（推斷）。音色清亮偏冷、靈活，子音起音俐落，略帶金屬鋒芒（推斷）。音高位於中高區，使用緊實靠前的共鳴，氣聲極少，投射受控（推斷）。語速偏快而節拍準確，會刻意拖長帶刺的字詞；發怒時節奏加速成連珠逼迫（推斷）。帶戲劇化的明末北方市井語感，不含現代俚語（推斷）。能量中高。預設情緒為含笑警覺與精於算計的自信，可瞬間轉為柔媚、尖刻嘲諷或妒怒（推斷）。整體聲音須咬字清楚、帶識字者的分寸與音樂性，呈現受過彈唱訓練的節奏感（推斷）。"
+      }
+    },
+    {
+      "name": "李瓶兒",
+      "aliases": [
+        "瓶兒",
+        "六娘",
+        "花二孃"
+      ],
+      "importance": "major",
+      "oneLiner": "原為梁中書妾、花子虛妻，攜財嫁入西門家成為第六房，因得寵與育有官哥兒而捲入後宅妒爭，最終失子後崩漏而亡。",
+      "persona": {
+        "gender": "女",
+        "ageRange": "二十七歲",
+        "identity": "西門慶第六妾、花子虛前妻、官哥兒之母",
+        "appearance": "白淨，五短身材，肌膚香細；富室婦人的端整妝束與低調精緻的首飾（推斷）。",
+        "personality": [
+          "溫克",
+          "柔順",
+          "和氣",
+          "慷慨",
+          "護子情深"
+        ],
+        "temperament": "待人柔和，常以贈物、說情替旁人周全；受委屈時多忍讓落淚，遇官哥兒病危則焦灼悲慟、晝夜抱守。",
+        "motivation": "照料官哥兒、求福治病，並以財物與人情維繫自己在多舌而善妒的內宅中的安穩（推斷）。",
+        "arc": "從攜財改嫁、成為受寵的第六房，到生下官哥兒而招致妒意；孩子夭折後，她悲傷自傷、舊病轉劇，最終崩漏而亡，死後仍以影像、遺物與夢中亡魂牽動西門家的關係。",
+        "relationships": [
+          {
+            "name": "西門慶",
+            "relation": "丈夫；她是其深受寵愛的第六妾，臨終仍勸他持家，死後也屢被他追念。"
+          },
+          {
+            "name": "官哥兒",
+            "relation": "親生兒子；她將求福、照料與希望盡數寄託於他，孩子夭折使她的身心迅速崩潰。"
+          },
+          {
+            "name": "潘金蓮",
+            "relation": "同處內宅的妻妾；她因受寵與得子成為對方主要的嫉妒、挑撥與譏刺對象。"
+          },
+          {
+            "name": "吳月娘",
+            "relation": "內宅主母（推斷）；她曾向其求教兒病對策，也曾遭誣指在背後辱罵對方。"
+          },
+          {
+            "name": "花子虛",
+            "relation": "前夫；她在其死後改嫁，失子病重時又夢見他前來索財。"
+          }
+        ],
+        "evidence": [
+          "好個溫克性兒",
+          "奴身中已懷臨月孕",
+          "分娩了一位哥兒",
+          "一頭撞在地下，哭的昏過去"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Full-body live-action wardrobe camera test of a beautiful adult East Asian woman in her late twenties, with a fair clear complexion, compact graceful build, gentle oval face, fine curved brows, restrained silver hair ornaments, and amethyst drop earrings. She wears a pale lotus-pink front-opening jacket, a white gauze skirt with subtle embroidery, and red phoenix-beak high platform shoes. Exactly one actor, head-to-toe, natural skin and textile detail, warm-grey studio backdrop, soft even light, quiet affluent-household dignity. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人全身定裝測試：二十多歲後段的成年東亞美女，膚色白淨、身形小巧端雅、柔和瓜子臉、細彎眉，配克制的銀絲髮飾與紫瑛耳墜。穿藕色對襟衫、帶細緻挑線的白紗裙，腳穿紅色鴛鳳嘴高底鞋。單一演員、頭到腳完整、自然皮膚與真實布料質感、暖灰棚拍背景、均勻柔光，呈現富戶妻妾的安靜端莊。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, illustration, anime, cartoon, comic, synthetic CGI render, CGI, fantasy armor, wuxia costume, Qing-dynasty costume, modern clothing, child, teenager, duplicate face, extra person, cropped head, cropped feet, extra limbs, malformed hands, weapon, text, label, watermark",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "live action",
+          "historical costume"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Strict professional live-action character turnaround sheet of the same actor and costume described here: Full-body live-action wardrobe camera test of a beautiful adult East Asian woman in her late twenties, with a fair clear complexion, compact graceful build, gentle oval face, fine curved brows, restrained silver hair ornaments, and amethyst drop earrings. She wears a pale lotus-pink front-opening jacket, a white gauze skirt with subtle embroidery, and red phoenix-beak high platform shoes. Exactly three equal-scale full-body views arranged left to right: true straight-on front, strict 90-degree left profile, and true back with no face visible. Identical adult actor identity, age, body proportions, hairstyle, clothing construction, ornaments, colors, and shoes in all three views. Neutral standing pose, arms relaxed, head and shoes fully visible, shared baseline, warm-grey seamless studio backdrop, even diffuse light, natural skin and fabric detail. No text, labels, fourth person, close-up, props, weapons, fantasy styling, CGI, illustration, cropped feet, or malformed anatomy. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "柔暖細潤的成年女中音，氣聲很輕，共鳴偏前而不尖銳（推斷）",
+        "pitch": "中高音域，音高起伏含蓄（推斷）",
+        "pace": "偏慢，語句柔順連貫，停頓略帶遲疑（推斷）",
+        "accent": "較淡的北方漢語口音，咬字端整（推斷）",
+        "emotion": "溫和體貼，底色帶著忍讓與隱憂（推斷）",
+        "referenceHint": "像一位總先替旁人周全、獨處時才顯出憂懼的富室少婦（推斷）",
+        "prompt": "An adult female voice in her late twenties (inferred). Use a soft, warm light mezzo-soprano timbre with gentle forward resonance, minimal breathiness, and no sharp edge (inferred). Keep the pitch in a restrained middle-to-upper range, the pace slightly slow, and the rhythm smooth with small hesitant pauses (inferred). Give her a light northern Mandarin accent with careful articulation, low-to-moderate energy, and a default emotional color of kindness, deference, and quiet worry (inferred). The sound should remain intimate and composed, becoming fragile rather than loud under grief (inferred).",
+        "promptLocal": "二十七歲左右的成年女聲（推斷）。採用柔軟溫暖的輕女中音，前置共鳴柔和，僅帶少量氣聲，不顯尖銳（推斷）。音高維持在克制的中高區，語速稍慢，節奏順暢並帶細微遲疑停頓（推斷）。使用較淡的北方漢語口音，咬字仔細，能量偏低至中等，預設情緒是和善、謙讓與安靜的憂慮（推斷）。聲音親近而自持，悲傷時轉為脆弱，而非提高音量（推斷）。"
+      }
+    },
+    {
+      "name": "吳月娘",
+      "aliases": [
+        "月娘",
+        "大娘",
+        "吳氏",
+        "西門吳氏"
+      ],
+      "importance": "major",
+      "oneLiner": "西門慶的正妻，溫柔持重而治家嚴整，在紛亂內宅中掌理人情、銀錢與家務。",
+      "persona": {
+        "gender": "女",
+        "ageRange": "本真人系列採二十七至三十歲的成年生命階段（製作裁決）",
+        "identity": "吳千戶之女、西門慶正妻、內宅主母",
+        "appearance": "面若銀盆，眼如杏子；舉止溫柔而莊重。服飾端整素雅、儀容成熟穩健（推斷）。",
+        "personality": [
+          "溫柔持重",
+          "寡言",
+          "善於持家",
+          "心慈",
+          "嚴正"
+        ],
+        "temperament": "平日沉靜克制，擅長在妻妾、僕役與親眷之間調停；遇到越權、失禮或內宅失序時，則會嚴詞斥責。",
+        "motivation": "維持內宅秩序、護持家產與家人，並盼夫妻回心和睦、得子延嗣。",
+        "arc": "她長期以正室身分主持宴客、婚喪、生育與銀錢事務，也在丈夫偏寵、妾室爭端與喪子失胎中承受壓力；丈夫死後持家護產、撫養孝哥，晚年因善信得普靜指點，終能避禍善終。",
+        "relationships": [
+          {
+            "name": "西門慶",
+            "relation": "丈夫；她勸其守密、行善並少貪財好色，也曾因反對急娶李瓶兒而受冷落。"
+          },
+          {
+            "name": "李瓶兒",
+            "relation": "妾室；她曾助藏其財物，後照料其生產、病重與治喪。"
+          },
+          {
+            "name": "潘金蓮",
+            "relation": "妾室；她屢次調停其與丈夫的衝突，也因專寵、失禮與挑釁而多次爭執。"
+          },
+          {
+            "name": "孟玉樓",
+            "relation": "妾室；她接納並照應對方，亦曾與其共同隱瞞小產。"
+          },
+          {
+            "name": "孫雪娥",
+            "relation": "妾室；曾共同辦理酒席，她也曾替其隱瞞與宋惠蓮的爭吵。"
+          },
+          {
+            "name": "陳經濟",
+            "relation": "家中晚輩；丈夫不在時，她嚴鎖內門，防範其與潘金蓮往來。"
+          }
+        ],
+        "evidence": [
+          "舉止溫柔，持重寡言",
+          "乾薑之手，女人必善持家",
+          "你便有口無心許下，神明都記著",
+          "孩子且不消教他往墳上去罷"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Full-body live-action wardrobe camera test of a beautiful adult East Asian principal wife, age twenty-seven to thirty, with a rounded face, almond-shaped eyes, calm mature bearing, and a neat late-Ming-inspired bun with restrained pearl ornaments. She wears a deep red floral jacket with subtle fur trim, a tender-green long skirt, a small jade pendant, and high platform shoes. Exactly one actor, head-to-toe, realistic skin, fur and textile detail, warm-grey studio backdrop, even soft light, dignified merchant-household authority without royal or fantasy styling. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人全身定裝測試：二十七至三十歲的成年東亞商戶正室，圓臉杏眼、神情溫柔持重，梳整潔的晚明風髮髻並配節制珠飾。穿深紅妝花襖與低調皮毛滾邊、嬌綠長裙，佩小玉墜並穿高底鞋。單一演員、頭到腳完整、自然皮膚與真實皮毛布料質感、暖灰棚拍背景、均勻柔光；不得出現王室、奇幻或盔甲造型。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, illustration, anime, cartoon, comic, synthetic CGI render, CGI, fantasy armor, wuxia costume, Qing-dynasty costume, modern clothing, child, teenager, duplicate face, extra person, cropped head, cropped feet, extra limbs, malformed hands, weapon, text, label, watermark",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "live action",
+          "historical costume"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Strict professional live-action character turnaround sheet of the same actor and costume described here: Full-body live-action wardrobe camera test of a beautiful adult East Asian principal wife, age twenty-seven to thirty, with a rounded face, almond-shaped eyes, calm mature bearing, and a neat late-Ming-inspired bun with restrained pearl ornaments. She wears a deep red floral jacket with subtle fur trim, a tender-green long skirt, a small jade pendant, and high platform shoes. Exactly three equal-scale full-body views arranged left to right: true straight-on front, strict 90-degree left profile, and true back with no face visible. Identical adult actor identity, age, body proportions, hairstyle, clothing construction, ornaments, colors, and shoes in all three views. Neutral standing pose, arms relaxed, head and shoes fully visible, shared baseline, warm-grey seamless studio backdrop, even diffuse light, natural skin and fabric detail. No text, labels, fourth person, close-up, props, weapons, fantasy styling, CGI, illustration, cropped feet, or malformed anatomy. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "溫厚而收斂的成年女中音，胸腔共鳴穩定，氣聲極少（推斷）",
+        "pitch": "中低音域，音高起伏克制（推斷）",
+        "pace": "中緩速，停連清楚；訓誡時節奏略緊而不尖促（推斷）",
+        "accent": "以清晰穩重的北方官話為基礎，帶輕微地方口音（推斷）",
+        "emotion": "平靜、持重、關切；必要時顯出不容越矩的嚴厲（推斷）",
+        "referenceHint": "像一位長年掌理大家庭內務、平時少言而一句話便能鎮住場面的成年主母（推斷）",
+        "prompt": "An adult female mezzo voice (inferred), warm, contained, and quietly authoritative. Mid-low pitch range with steady chest resonance, very little breathiness, clear articulation, and a measured medium-slow pace (inferred). Restrained melodic movement and controlled energy; pauses feel deliberate. A clear northern Mandarin foundation with a faint regional coloring (inferred). The default emotional register is composed, practical, and caring, able to harden into stern admonition without becoming shrill or theatrical (inferred).",
+        "promptLocal": "成年女中音（推斷），溫厚、收斂，帶有安靜而明確的權威感。音域偏中低，胸腔共鳴穩定，氣聲極少，咬字清楚，語速中緩（推斷）。旋律起伏克制、能量受控，停頓帶有審慎感。以清晰的北方官話為基礎，略帶地方色彩（推斷）。預設情緒沉著、務實而關切；需要訓誡時可轉為嚴厲，卻不尖銳或戲劇化（推斷）。"
+      }
+    },
+    {
+      "name": "龐春梅",
+      "aliases": [
+        "春梅",
+        "春梅姐",
+        "龐氏"
+      ],
+      "importance": "major",
+      "oneLiner": "聰慧剛烈、深受潘金蓮倚重的貼身丫鬟，遭賣後升為周守備正夫人，卻因私情走向早逝。",
+      "persona": {
+        "gender": "女",
+        "ageRange": "本真人系列採二十至二十三歲的成年早期丫鬟生命階段；原著初登場未滿十八歲，二十九歲病逝",
+        "identity": "早期為潘金蓮貼身丫鬟，後成為周守備正夫人；本真人母版採早期成年丫鬟階段",
+        "appearance": "本真人系列採成年早期丫鬟造型：漂亮銳利的年輕臉孔、簡單紅帶髮髻、暖紅襖與深藍裙（製作裁決）。原著記載她未滿十八歲時五官端正，得寵後曾穿白綾襖與大紅遍地金比甲。",
+        "personality": [
+          "聰慧伶俐",
+          "善於應對",
+          "剛烈自尊",
+          "忠於金蓮",
+          "強急潑辣"
+        ],
+        "temperament": "反應敏捷，敢當面斥責越界之人，也會因衣著與體面受損而拒絕侍酒；受抬舉時自信親暱，發怒時言辭凌厲。",
+        "motivation": "早期重在維護潘金蓮、守住自身體面與受寵位置；身分改變後轉而追求情愛與自主（推斷）。",
+        "arc": "由後宅中受寵且敢言的貼身丫鬟，經被賣入周守備府而升為正夫人；其後暗養陳經濟與周義，二十九歲因色癆而死。",
+        "relationships": [
+          {
+            "name": "潘金蓮",
+            "relation": "忠心服侍、代為傳話探聽並受其抬舉的主人"
+          },
+          {
+            "name": "西門慶",
+            "relation": "收用她並與她言語親暱的男主人"
+          },
+          {
+            "name": "吳月娘",
+            "relation": "最初的主人，後將她撥給潘金蓮"
+          },
+          {
+            "name": "陳經濟",
+            "relation": "先替潘金蓮與之傳信，後與之私通並暗中收養"
+          },
+          {
+            "name": "秋菊",
+            "relation": "常奉潘金蓮之命監打、捆綁的丫鬟"
+          }
+        ],
+        "evidence": [
+          "性聰慧，喜謔浪，善應對",
+          "你怎的捻我的手，調戲我",
+          "三九定然封贈",
+          "我是不出去",
+          "春梅方纔喜歡了",
+          "周統制妻龐氏春梅"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Full-body live-action wardrobe camera test of a beautiful adult East Asian household maid, age twenty to twenty-three, with a sharp intelligent face, alert eyes, proud self-possessed posture, and a simple late-Ming-inspired bun tied with a red ribbon. She wears a warm red short jacket, a deep navy long skirt, a modest woven sash, and small high platform shoes. Exactly one actor, head-to-toe, realistic skin and humble woven textile detail, warm-grey studio backdrop, even soft light. She is a clever household maid, never a warrior, assassin, or armored figure. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人全身定裝測試：二十至二十三歲的成年東亞內宅丫鬟，臉孔漂亮銳利、眼神機敏，姿態自持而有主見，梳簡單晚明風髮髻並繫紅帶。穿暖紅短襖、深藍長裙、樸素織帶與小巧高底鞋。單一演員、頭到腳完整、自然皮膚與較低階的真實織物質感、暖灰棚拍背景、均勻柔光；她是聰慧丫鬟，絕非武將、刺客或鎧甲角色。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, illustration, anime, cartoon, comic, synthetic CGI render, CGI, fantasy armor, wuxia costume, Qing-dynasty costume, modern clothing, child, teenager, duplicate face, extra person, cropped head, cropped feet, extra limbs, malformed hands, weapon, text, label, watermark",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "live action",
+          "historical costume"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Strict professional live-action character turnaround sheet of the same actor and costume described here: Full-body live-action wardrobe camera test of a beautiful adult East Asian household maid, age twenty to twenty-three, with a sharp intelligent face, alert eyes, proud self-possessed posture, and a simple late-Ming-inspired bun tied with a red ribbon. She wears a warm red short jacket, a deep navy long skirt, a modest woven sash, and small high platform shoes. Exactly three equal-scale full-body views arranged left to right: true straight-on front, strict 90-degree left profile, and true back with no face visible. Identical adult actor identity, age, body proportions, hairstyle, clothing construction, ornaments, colors, and shoes in all three views. Neutral standing pose, arms relaxed, head and shoes fully visible, shared baseline, warm-grey seamless studio backdrop, even diffuse light, natural skin and fabric detail. No text, labels, fourth person, close-up, props, weapons, fantasy styling, CGI, illustration, cropped feet, or malformed anatomy. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "清亮偏硬的年輕女聲，胸腔共鳴適中，字頭俐落，少量氣聲（推斷）",
+        "pitch": "中高音域，受激時略向上揚但不尖細（推斷）",
+        "pace": "平時中速而乾脆，斥責時加快並強調句首與關鍵字（推斷）",
+        "accent": "帶輕微北方市井口音，吐字清楚（推斷）",
+        "emotion": "預設自信警醒，帶強烈自尊與不肯示弱的鋒芒（推斷）",
+        "referenceHint": "像一名在內宅中深受倚重、反應極快，遇到冒犯便立即冷聲喝止的年輕侍女（推斷）",
+        "prompt": "A young adult female voice in her twenties with a clear, firm timbre and moderate chest resonance (inferred). Medium-high pitch, minimal breathiness, crisp consonant attacks, and a controlled medium pace that accelerates when offended (inferred). A light northern vernacular flavor with precise articulation, medium-high energy, and a default emotional color of alert confidence, fierce dignity, quick wit, and restrained defiance (inferred). Design the vocal instrument for agile household banter, intimate speech, decisive reporting, and sudden public rebuke without becoming shrill (inferred).",
+        "promptLocal": "二十多歲的年輕成年女聲，音色清亮堅實，胸腔共鳴適中（推斷）。音高居中偏高，氣聲極少，子音起音俐落；節奏受控而維持中速，受冒犯時會加快（推斷）。帶輕微北方市井語感，咬字準確，能量中高；預設情緒為警醒自信、強烈自尊、機敏與克制的反抗性（推斷）。此聲音應能靈活應付內宅戲謔、親暱交談、果斷回報與突發的公開斥責，同時避免尖銳刺耳（推斷）。"
+      }
+    },
+    {
+      "name": "宋惠蓮",
+      "aliases": [
+        "惠蓮",
+        "蕙蓮",
+        "宋氏",
+        "來旺兒媳婦",
+        "旺官娘子",
+        "宋大姐"
+      ],
+      "importance": "major",
+      "oneLiner": "來旺之妻，二十四歲，聰敏善變、善於妝飾與應對，因捲入西門宅私情與權力角力而走向悲劇。",
+      "persona": {
+        "gender": "女",
+        "ageRange": "二十四歲；身亡時二十五歲",
+        "identity": "西門家僕人來旺之妻、宋仁之女，曾在蔡通判家使喚",
+        "appearance": "善於妝飾、針線與烹調，腳比潘金蓮更小；本真人系列採黃白淨面、高而虛籠髮髻與長水鬢的家人媳婦造型（製作裁決）。",
+        "personality": [
+          "聰敏",
+          "善機變",
+          "善於逢迎",
+          "敢於抗辯"
+        ],
+        "temperament": "處境有利時善於奉承與應變；丈夫遭支走、遞解後，則敢於質問西門慶並拒絕改事主人。",
+        "motivation": "早期希望藉由私情與財物改善處境，也勸西門慶長期支走丈夫；後期轉為替丈夫抗辯並守住自身選擇。",
+        "arc": "從接受西門慶財物、捲入私情與內宅爭鬥，到丈夫遭陷害遞解後拒絕屈從；最終與孫雪娥衝突，羞憤自縊而亡。",
+        "relationships": [
+          {
+            "name": "來旺",
+            "relation": "丈夫；她曾勸其戒酒，後為其受陷與遭遞解向西門慶抗辯。"
+          },
+          {
+            "name": "西門慶",
+            "relation": "與她私通並給予財物的主人；後又試圖要她改事自己。"
+          },
+          {
+            "name": "潘金蓮",
+            "relation": "撞破她與西門慶私情後形成牽制；她轉而奉承依附。"
+          },
+          {
+            "name": "孫雪娥",
+            "relation": "兩人互揭私情並扭打，衝突成為她走向自縊的直接壓力。"
+          },
+          {
+            "name": "陳經濟",
+            "relation": "曾有曖昧往來。"
+          }
+        ],
+        "evidence": [
+          "性明敏，善機變，會妝飾",
+          "自縊身死，亡年二十五歲"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Full-body live-action wardrobe camera test of a beautiful adult East Asian household retainer's wife, age twenty-four, with a fair yellow-white complexion, quick intelligent eyes, a subtle almost-smiling expression, a high airy late-Ming-inspired bun, and long side locks. She wears a red front-opening jacket, a teal-blue long skirt with restrained four-season floral roundels, a woven waist sash, and small high platform shoes. Exactly one actor, head-to-toe, realistic skin and woven textile detail, warm-grey studio backdrop, even soft light, clearly below principal-wife rank. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人全身定裝測試：二十四歲的成年東亞家人媳婦，黃白淨面、眼神明敏，帶未言先笑的機變神情；梳高而虛籠的晚明風髮髻並留長水鬢。穿紅色對襟襖、翠藍四季團花長裙、樸素織帶與小巧高底鞋。單一演員、頭到腳完整、自然皮膚與真實織物質感、暖灰棚拍背景、均勻柔光，階級必須明確低於正室與妻妾。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, illustration, anime, cartoon, comic, synthetic CGI render, CGI, fantasy armor, wuxia costume, Qing-dynasty costume, modern clothing, child, teenager, duplicate face, extra person, cropped head, cropped feet, extra limbs, malformed hands, weapon, text, label, watermark",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "live action",
+          "historical costume"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Strict professional live-action character turnaround sheet of the same actor and costume described here: Full-body live-action wardrobe camera test of a beautiful adult East Asian household retainer's wife, age twenty-four, with a fair yellow-white complexion, quick intelligent eyes, a subtle almost-smiling expression, a high airy late-Ming-inspired bun, and long side locks. She wears a red front-opening jacket, a teal-blue long skirt with restrained four-season floral roundels, a woven waist sash, and small high platform shoes. Exactly three equal-scale full-body views arranged left to right: true straight-on front, strict 90-degree left profile, and true back with no face visible. Identical adult actor identity, age, body proportions, hairstyle, clothing construction, ornaments, colors, and shoes in all three views. Neutral standing pose, arms relaxed, head and shoes fully visible, shared baseline, warm-grey seamless studio backdrop, even diffuse light, natural skin and fabric detail. No text, labels, fourth person, close-up, props, weapons, fantasy styling, CGI, illustration, cropped feet, or malformed anatomy. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "明亮俐落的年輕女中音，聲線靈活，字頭清楚（推斷）",
+        "pitch": "中高音域，情緒緊繃時快速上揚（推斷）",
+        "pace": "平時中速偏快，奉承時輕巧流暢，抗辯時短促有力（推斷）",
+        "accent": "帶輕微北方市井語感，咬字清楚（推斷）",
+        "emotion": "預設機敏、帶笑而有所盤算；受逼迫時轉為憤怒與決絕（推斷）",
+        "referenceHint": "像一名善於察言觀色、能含笑周旋，也會在底線被逼破時立即抗辯的年輕家人媳婦（推斷）",
+        "prompt": "A young adult female mezzo voice, around twenty-four, bright and agile with crisp consonants, light forward resonance, and controlled breathiness (inferred). Mid-high pitch, medium-fast pace, quick adaptive phrasing, and a light northern vernacular flavor (inferred). Default emotion is intelligent, socially alert, and almost smiling; under coercion it turns forceful, wounded, and decisive without becoming childish or shrill (inferred).",
+        "promptLocal": "約二十四歲的年輕成年女中音，音色明亮靈活、子音俐落，共鳴靠前，氣聲受控（推斷）。音高位於中高區，語速中等偏快，語句能迅速因應情境，帶輕微北方市井語感（推斷）。預設情緒機敏、善察言觀色，像是未言先笑；受逼迫時轉為有力、受傷而決絕，但不得幼態或尖叫（推斷）。"
+      }
+    },
+    {
+      "name": "西門慶",
+      "aliases": [
+        "西門大官人"
+      ],
+      "importance": "protagonist",
+      "oneLiner": "清河豪富兼提刑千戶，以金錢與權勢縱慾營私，終因貪慾無度而早逝。",
+      "persona": {
+        "gender": "男",
+        "ageRange": "二十七至三十三歲（依故事回次推進）",
+        "identity": "清河縣富商、西門宅家主，後任金吾衛副千戶及山東提刑所理刑、提刑千戶",
+        "appearance": "體態厚實、面容保養良好，眉眼銳利而帶著富家主人的自信；在家穿質料華貴的深青長袍，辦公時加黑色官帽、玉帶與暗紅內襟，腰間佩精緻荷包與扇墜，以顯示財勢和官身。（推斷）",
+        "personality": [
+          "好色任性",
+          "精於算計",
+          "慷慨好客",
+          "徇私狠辣",
+          "重情善變"
+        ],
+        "temperament": "平日以豪爽從容的主人姿態周旋商賈、官紳與幫閒，遇到慾望或利益便轉為強勢急切；失控時暴烈，面對所愛者的死亡又會痛哭失態。（推斷）",
+        "motivation": "不斷以財富、官勢與人情擴張家業和地位，同時即刻滿足色慾、享樂與報復心；對李瓶兒及官哥兒又顯出維護家庭與挽留親情的迫切。",
+        "arc": "由清河富商藉賄賂與權門交結升為掌刑名的千戶，財勢、家業與私慾同步膨脹；在官哥兒與李瓶兒相繼死亡後仍未能節制，最終三十三歲血崩而死，末後經普靜薦拔轉生。",
+        "relationships": [
+          {
+            "name": "吳月娘",
+            "relation": "正妻與內宅主母；他向她交代家務，也曾行房求子並在妻妾爭執後加以安撫。"
+          },
+          {
+            "name": "李瓶兒",
+            "relation": "寵妾；他設計取得其財物後迎娶，為她與官哥兒延醫祈福，並在她死後大辦喪儀、長久追念。"
+          },
+          {
+            "name": "潘金蓮",
+            "relation": "由通姦與合謀毒殺武植而納入家中的妾；兩人長期縱慾，也因偏寵、財物與妒意反覆爭吵。"
+          },
+          {
+            "name": "應伯爵",
+            "relation": "經常陪宴、說項與牽線的幫閒好友；他接受其勸解和薦舉，也以錢財周濟對方。"
+          },
+          {
+            "name": "孟玉樓",
+            "relation": "妾；他為她慶壽、探病並與她同寢，但對她的寵愛不及李瓶兒與潘金蓮。"
+          },
+          {
+            "name": "春梅",
+            "relation": "潘金蓮房中的婢女；他曾在金蓮房中與她親暱。"
+          }
+        ],
+        "evidence": [
+          "受苗青夜賂之金，曲為掩飾",
+          "清河縣富戶西門慶",
+          "我和你明日生死難開",
+          "三十三歲而去"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Create one final live-action studio costume-master candidate for another adult character at the clearly apparent age of 29–30, in the prosperous merchant / early social-climbing phase of the late Ming dynasty. PRIMARY SOURCE ROLE: the source image is the sole FACE IDENTITY AUTHORITY and the desired 1024×1536 canvas. Preserve the same actor and distinctive facial direction: lean oval face, narrow almond-shaped intelligent eyes with slightly lifted outer corners, strong long brows, straight medium-width nose, controlled thin-to-medium lips, pointed chin, neatly trimmed narrow moustache and short tapered goatee, black hairline and tied-up hair. Do not replace him with a different actor. Make him unmistakably 29–30 rather than 32–35: subtly smoother forehead and under-eyes, softer nasolabial lines, slightly fuller youthful cheeks and firmer jaw/neck, while remaining an adult, confident, calculating and sexually self-assured wealthy merchant—not boyish and not baby-faced.\n\nADDITIONAL REFERENCE ROLE 1: the rejected full-body pilot is COMPOSITION DIRECTION ONLY. Keep its dignified single-person full-body standing wardrobe-test layout and margins, but do not inherit its older apparent age or wrong stored canvas dimensions. ADDITIONAL REFERENCE ROLE 2: use only the deep teal, charcoal-black, restrained muted-gold late-Ming wealthy-merchant palette and layered robe concept; do not copy that reference face, official rank, oversized hat, or excessive ornament.\n\nWardrobe: historically credible late-Ming affluent merchant who is only beginning to enter official networks, not yet a senior official. Deep teal inner robe with believable woven silk, charcoal outer robe with restrained narrow muted-gold edging and sparse subtle patterning. A simple low black merchant/scholar cap without rank insignia. Modest quality belt fitting a wealthy merchant. NO official rank badge, NO imperial/court regalia, NO crown-like ornament, NO tall official hat, NO heavy winter fur, NO fantasy armor, NO wuxia styling, NO excessive all-over gold embroidery, NO royal or emperor impression.\n\nComposition: exactly one unambiguously adult Chinese male actor, head-to-toe full body, front-facing with a very slight three-quarter turn, calm confident posture, both entire hands visible with natural fingers, both entire feet and shoes visible, comfortable margins above the cap and below the shoes. No fan and no handheld prop. Neutral warm-gray studio seamless background. Real wardrobe-test photography with natural skin pores and fine facial hair, individual hair strands, physically credible silk weight and folds, realistic lens perspective, soft cinematic studio key and fill, subtle depth, natural exposure. No glamor smoothing, no waxy or plastic skin.\n\nOutput must be a real PNG stored at EXACTLY 1024×1536 pixels, no crop, no padding, no stretching. No text, Chinese characters, labels, logo, watermark, signature, border, collage, inset, extra person, furniture or prop pile. Explicitly exclude anime, manga, illustration, painting, cel shading, ink outline, line art, game concept art, 3D render, CGI character, doll-like skin, digital avatar. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝定裝照：二十九至三十歲的成年中國富商，長橢圓瘦臉、狹長杏眼、長眉、直鼻、尖下巴、窄鬚與短山羊鬍；神情自信、精於算計。穿深青內袍、炭黑外袍、低調暗金滾邊與簡單黑色商儒帽，尚未具有高階官員威勢。全身棚拍、暖灰無縫背景、自然皮膚與真實織物，禁止官階補子、帝王冠飾、奇幻盔甲與過量金繡。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, illustration, anime, cartoon, comic, synthetic CGI render, CGI, child, teenager, modern clothing, fantasy armor, plastic skin, beauty filter, cropped head, cropped feet, malformed hands, extra fingers, extra limbs, text, label, logo, watermark",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "live action",
+          "late-Ming costume"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Create a standardized LANDSCAPE live-action wardrobe turnaround sheet from the approved source master. Preserve the exact same owner-approved adult Chinese male actor, apparent age 29–30, face structure, narrow almond eyes, brows, nose, lips, pointed chin, moustache and tapered goatee, hairline, black low merchant cap, deep teal inner robe, charcoal outer robe, restrained muted-gold edging, belt, shoes, fabric materials, and photographic realism.\n\nCANVAS CONTRACT: one real PNG at EXACTLY 1536×1024 pixels, landscape. Divide the composition into exactly three equal 512-pixel-wide conceptual columns. Keep at least 64 pixels of clear background from every figure to the outer left/right canvas edge, at least 32 pixels of clear background from every figure to each conceptual column boundary, and at least 40 pixels above every cap and below every shoe. No person, cap, sleeve, hand, robe hem or shoe may touch or cross the canvas edge or a neighboring column. Use a slightly smaller full-body subject scale if needed; preservation of complete silhouettes and safe margins is more important than filling the frame.\n\nThe sheet contains EXACTLY THREE separate head-to-toe full-body views of this one actor, no more and no less, aligned to one baseline with matching head scale and body height:\n1) LEFT column: strict straight FRONT orthographic wardrobe-test view, shoulders and hips square to camera, both hands relaxed and fully visible.\n2) CENTER column: strict 90-degree LEFT SIDE PROFILE, nose and toes pointing toward the viewer's left, shoulders exactly perpendicular to camera; NOT three-quarter and NOT front-biased. Offset the arms slightly so the near hand silhouette remains readable without changing the strict body profile.\n3) RIGHT column: strict BACK orthographic view, actor completely facing away, no face looking over shoulder. Let both hands hang naturally where their silhouettes remain visible beside the sleeves.\n\nKeep garment hem length, sleeve volume, trim placement, belt height, cap, shoes, lighting and color grade physically consistent across all views. Neutral warm-gray seamless studio background. Real live-action wardrobe photography with natural skin pores, fine facial hair, individual hair strands, credible silk weight and folds, realistic lens perspective, soft studio key/fill and natural exposure.\n\nNo title, labels, Chinese characters, arrows, measurement lines, logo, watermark, signature, decorative border, inset, extra person, duplicate limb, handheld prop, furniture or scenery. No official rank badge, crown, imperial regalia, heavy fur, fantasy armor or wuxia cues. Explicitly exclude portrait/vertical canvas, cropped silhouettes, edge-touching sleeves, anime, manga, illustration, painting, concept art, 3D render, CGI, plastic skin and doll-like avatar. Do not crop, pad or stretch the approved source image; generate the new three-view composition natively on the 1536×1024 landscape canvas. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "厚潤而略帶喉音的成年男中音，表面親切，底層有壓迫感。（推斷）",
+        "pitch": "中低音域，放鬆時穩厚，動怒時略向上收緊。（推斷）",
+        "pace": "平時從容適中，交際時節奏圓滑；命令或追問時突然加快並咬緊字頭。（推斷）",
+        "accent": "帶清河地方色彩的北方官話，與官紳交際時刻意收斂土音。（推斷）",
+        "emotion": "預設為自信、享受掌控且善於逢迎；深層藏著急躁的佔有慾與偶發的真切悲慟。（推斷）",
+        "referenceHint": "像一位慣於在酒席上笑著籠絡眾人、轉身便以官勢下令的三十三歲豪商官員。（推斷）",
+        "prompt": "An adult male voice in the early-thirties range, a rich low baritone with mild throat resonance and very little breathiness. Smooth, socially polished articulation carries a friendly sheen over latent authority. Medium pace with rounded, persuasive phrasing; commands become faster, tighter, and more percussive. Northern Mandarin colored by a subtle Qinghe regional accent, moderated in official company. Medium-high energy, defaulting to confident appetite and control, with enough dynamic range for sudden rage or unguarded grief. Design the stable vocal instrument, not a performance of any specific line. (inferred)",
+        "promptLocal": "三十歲出頭的成年男聲，厚潤的中低音男中音，帶輕微喉腔共鳴，氣聲很少。咬字流暢而善於交際，親切表層之下保有隱約權威；語速中等，措辭圓滑而有說服力，發號施令時會突然加快、收緊並強化字頭。北方官話帶淡淡清河地方色彩，在官場場合會刻意收斂。能量中高，預設情緒是自信、貪求享受與掌控，同時保留突發暴怒或卸下防備後悲慟的動態幅度。設計穩定的聲音樂器本體，而非演繹任何特定臺詞。（推斷）"
+      }
+    },
+    {
+      "name": "孟玉樓",
+      "aliases": [
+        "孟三兒",
+        "孟三姐",
+        "玉樓"
+      ],
+      "importance": "major",
+      "oneLiner": "精於持家且溫厚機敏的富孀，攜財嫁入西門家為第三房，總在後宅風波中勸解周旋。",
+      "persona": {
+        "gender": "女",
+        "ageRange": "三十至三十七歲（依故事回次推進）",
+        "identity": "布商遺孀，後為西門慶第三房妾室，再守寡後改嫁李拱璧",
+        "appearance": "身材修長，妝容精緻，面上略有麻點；曾穿鴉青緞子襖兒。",
+        "personality": [
+          "溫厚",
+          "穩健",
+          "機敏",
+          "善解人意",
+          "有主見"
+        ],
+        "temperament": "待人和緩而不失分寸，遇爭執多先勸解或以笑語化開；關鍵處心細眼快，既能扶住滑倒的小產者，也能冷眼看破隱情。",
+        "motivation": "珍惜自身財產與選擇，並盡力維持後宅體面、照應身邊人的安穩（推斷）。",
+        "arc": "由能自主擇婚的富孀攜財進入西門家，在妻妾糾葛與接連喪事中始終充當穩健的調停者；再度守寡後改嫁李拱璧，並設局挫敗陳經濟。",
+        "relationships": [
+          {
+            "name": "西門慶",
+            "relation": "丈夫；她攜財嫁入其家為第三房，日常替他備行裝、迎送與設宴。"
+          },
+          {
+            "name": "潘金蓮",
+            "relation": "親近的妻妾同伴；常同行談笑，也屢次勸她收斂嫉妒與怒氣。"
+          },
+          {
+            "name": "吳月娘",
+            "relation": "同住後宅的家眷；曾及時扶住她滑倒，勸其調理小產並協助保密。"
+          },
+          {
+            "name": "李瓶兒",
+            "relation": "同住後宅的家眷；生前照應其母子，死後協助穿衣裝殮。"
+          },
+          {
+            "name": "陳經濟",
+            "relation": "曾冷眼撞破他與潘金蓮相抱；再守寡後設局挫敗他。"
+          },
+          {
+            "name": "孟銳",
+            "relation": "弟弟；久別後在西門家相見，並由她帶來辭行。"
+          },
+          {
+            "name": "李拱璧",
+            "relation": "西門慶死後改嫁的夫主。"
+          }
+        ],
+        "evidence": [
+          "溫厚堪同掌上珠",
+          "小產比大產還難調理",
+          "孟玉樓愛嫁李衙內",
+          "女命三十七歲，十一月二十七日子時生"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Create one late-Ming-dynasty live-action wardrobe-test photograph of a real Chinese female actor, exactly one person, portraying the requested character as a mature thirty-year-old at the life stage when she enters a wealthy merchant household with her own property and agency. The primary image is the sole FACE IDENTITY AUTHORITY: preserve the same recognizable adult actor, including her poised oval face, almond-shaped eyes and natural spacing, softly arched brows, straight proportionate nose, defined medium lips, tapered jaw, rounded chin, warm natural complexion, tall slender proportions, and composed self-possession. Keep her recognizably the same actor. Do not copy the primary image's room, decor, heavy plain brown robe, old lighting, or synthetic finish. Canon appearance: mature beauty, tall and slender, carefully refined period makeup, and a few extremely subtle shallow pockmarks visible beneath natural skin texture; do not turn them into scars, acne, disease, or glamour retouching. Her expression and posture must communicate a prosperous widow and third consort who owns property, makes her own choices, manages a household capably, observes people clearly, and mediates with warm firmness: calm direct gaze, restrained knowing half-smile, upright balanced stance, quiet authority. She must not resemble a coquettish, predatory, flamboyantly sensual rival-wife stereotype. Use the LEFT FIGURE in the two-woman wardrobe reference for WARDROBE LAYERING AND PALETTE ONLY; ignore both faces, both bodies, the room, and the two-person composition. Dress her in historically credible late-Ming affluent household attire with lighter, elegant layers: a warm-ivory crossed-collar under-robe, a fitted sleeveless bijia in muted dark jade silk with restrained woven gold botanical patterning, a flowing crow-blue long skirt with subtle woven texture, narrow tasteful edging, and physically believable silk weight and folds. Add restrained but unmistakably prosperous ornaments: one or two refined gold-and-jade hairpins and delicate pearl or jade drop earrings, no oversized display. Her married-woman updo is neat, elegant, and historically plausible. The second additional reference is a SERIES ART LOCK for photographic treatment only: match its neutral warm-gray seamless studio, soft directional key light with gentle fill, controlled contrast, eye-level full-body lens behavior, natural depth, fine skin pores, individual hair strands, realistic silk weave, fabric weight, and production wardrobe-test finish. Do not borrow that reference's male face, body, gender, facial hair, hat, clothing silhouette, dark palette, or accessories. Compose a single centered full-length actor, front-facing with only a slight three-quarter turn, both arms relaxed and separated enough for both complete hands and all fingers to read clearly, both complete feet and period shoes visible, with comfortable margin above the hair and below the soles. Exact output canvas: 1024 by 1536 pixels, vertical 2:3. Neutral warm-gray studio only; no room, furniture, scenery, props, collage, split view, turnaround, inset portrait, or extra person. The result must be a real live-action casting photograph with natural skin microtexture, fine facial hair, real hair, physically credible cloth, photographic exposure, lens behavior, and studio lighting. No text, labels, captions, borders, logos, signatures, or watermarks. Exclude anime, manga, illustration, painting, line art, ink outline, cel shading, game concept art, 3D render, CGI character, digital avatar, doll-like skin, plastic skin, waxy retouching, modern influencer makeup, modern fashion, Qing-dynasty costume, imperial robes, crown, rank badge, fantasy or wuxia styling, excessive jewelry, exposed cleavage, transparent fabric, erotic styling, seductive pose, cropped hands, cropped feet, hidden fingers, extra fingers, fused fingers, extra limbs, distorted anatomy, harsh spotlight, and dramatic cast shadow. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝定裝照：三十歲的成年中國富孀，身材修長、端正橢圓臉、杏眼、柔和眉弧與自然淡麻點；沉穩溫厚、有主見而善於持家。穿暗玉綠、鴉青、暖象牙與低調金線的晚明富戶內眷衣裝，精緻但不宮廷化、不妖豔。全身棚拍、暖灰無縫背景、自然膚質與真實布料。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, illustration, anime, cartoon, comic, synthetic CGI render, CGI, child, teenager, modern clothing, fantasy armor, plastic skin, beauty filter, cropped head, cropped feet, malformed hands, extra fingers, extra limbs, text, label, logo, watermark",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "live action",
+          "late-Ming costume"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Create one native LANDSCAPE live-action wardrobe turnaround sheet from this another adult character interim master. Preserve the exact same adult Chinese actress identity, apparent age 30, oval face, almond eyes, nose, lips, jaw, tall slender proportions, composed warm-firm expression, married-woman hairstyle and ornaments, warm-ivory crossed collar, dark-jade gold-patterned sleeveless bijia, crow-blue skirt, shoes, realistic skin, hair, and fabric.\n\nOUTPUT CONTRACT: one real PNG exactly 1536×1024 pixels. Exactly three separate head-to-toe full-body views in equal 512px conceptual columns: LEFT strict straight front; CENTER strict 90-degree LEFT side profile, nose and toes toward viewer's left, not three-quarter; RIGHT strict back, fully facing away with no over-shoulder face. Same actor, scale, costume and baseline across all views. Keep at least 64px clear background at outer canvas edges, 32px from figures to column boundaries, 40px above hair ornaments and below shoes. No hairpin, sleeve, hand, skirt or shoe may touch/cross an edge or neighboring column. Offset profile arms slightly so hand silhouettes remain readable while body stays strict profile.\n\nNeutral continuous warm-gray studio background, natural live-action wardrobe photography, realistic pores, hair strands, silk weave, folds, contact shadows and lens perspective. No text, labels, lines, logo, watermark, border, prop, furniture, extra person, crop, padding, blurred/mirrored extension, anime, illustration, CGI, plastic skin, extra or missing fingers/limbs. Generate natively on the 1536×1024 landscape canvas; do not crop or stretch the portrait source. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "溫潤沉著的成年女中音，聲線圓融而帶少許清亮（推斷）",
+        "pitch": "中音區，句尾略低以顯穩重（推斷）",
+        "pace": "中等偏緩，勸解時從容，笑語時節奏稍活（推斷）",
+        "accent": "地域口音無明載；採清晰中性的漢語口音（推斷）",
+        "emotion": "溫和、清醒而善於周旋，偶帶看破情勢的輕笑（推斷）",
+        "referenceHint": "像一位總能先看清局勢、再用緩聲與笑語把後宅爭執接住的成年婦人（推斷）",
+        "prompt": "An adult female voice, approximately thirty to thirty-four years old. Warm, composed mezzo-soprano timbre with a lightly bright edge (inferred), medium pitch with grounded sentence endings (inferred), balanced chest-and-mouth resonance and minimal breathiness (inferred). Medium-slow pace, measured rhythm, clear neutral Chinese pronunciation, moderate energy, and a default mood of patient tact with an occasional knowing smile (inferred). The instrument should remain steady during mediation and gain a touch of playful agility in teasing conversation (inferred).",
+        "promptLocal": "約三十至三十四歲的成年女聲。溫潤沉著、略帶清亮邊緣的女中音（推斷），音高居中，句尾下沉而穩定（推斷）；胸腔與口腔共鳴均衡，氣聲極少（推斷）。語速中等偏緩，節奏從容，採清晰中性的漢語發音，能量適中，預設情緒耐心圓融，偶爾含一絲會意笑意（推斷）。調停時聲線保持安定，戲謔談笑時略添靈活跳動感（推斷）。"
+      }
+    },
+    {
+      "name": "李嬌兒",
+      "aliases": [
+        "嬌兒",
+        "第二李嬌兒"
+      ],
+      "importance": "major",
+      "oneLiner": "由院中名妓成為西門慶第二房、掌管家中出入銀錢，臨喪卻盜財歸院並另嫁的豐肥女子。",
+      "persona": {
+        "gender": "女",
+        "ageRange": "三十四歲（第八十回明載）",
+        "identity": "西門慶第二房，原為院中名妓，亦是李桂姐的親姑",
+        "appearance": "肌膚豐肥，肉重身肥，平日多咳嗽；額尖、鼻小。",
+        "personality": [
+          "精於理財（推斷）",
+          "務實自保（推斷）",
+          "重視親緣（推斷）",
+          "謹慎守序（推斷）"
+        ],
+        "temperament": "在內宅往來中多半隨眾而行，遇事先顧自身立場；說話直接，帶有市井生活磨出的圓熟與戒心（推斷）。",
+        "motivation": "維持自己在西門家的生活與財務位置，照應李家親眷；局勢轉壞時優先另尋退路（推斷）。",
+        "arc": "由院中名妓成為西門慶第二房並掌管銀錢，長期參與內宅宴飲、往來與治喪；西門慶死後盜取元寶返回李家，後嫁新任提刑張二官。",
+        "relationships": [
+          {
+            "name": "西門慶",
+            "relation": "其第二房；受命掌管家中出入銀錢，後在其喪期盜財離去"
+          },
+          {
+            "name": "李桂姐",
+            "relation": "親姑；支持西門慶梳籠她，並多次與她同席或留她房中"
+          },
+          {
+            "name": "潘金蓮",
+            "relation": "因李家受辱及琴童私通之事與她結怨，亦曾同席猜枚"
+          },
+          {
+            "name": "孫雪娥",
+            "relation": "曾共同告發潘金蓮，亦在席間替忙於廚下的她頂缺"
+          },
+          {
+            "name": "吳月娘",
+            "relation": "同為西門家內眷，常一同宴飲、探病、治喪及接待女客"
+          },
+          {
+            "name": "李瓶兒",
+            "relation": "同為西門家內眷；曾探視其病情、參與其臨產與身後裝殮"
+          }
+        ],
+        "evidence": [
+          "肉重身肥，廣有衣食",
+          "早知不上樓也罷了",
+          "李嬌兒三十四歲"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "NEW CASTING FROM TEXT for another adult character. Create one late-Ming live-action studio wardrobe-test photograph of exactly one real adult Chinese actress, age 34, a naturally beautiful mature former celebrated courtesan who is now the prosperous second consort and household money keeper. She must be convincingly attractive and well groomed at first glance: harmonious mature features, expressive slightly narrow almond eyes, a subtly pointed forehead, a small refined nose, soft ample cheeks, elegant lips, clear healthy skin with natural pores, and poised self-possession. Her beauty is polished, worldly and feminine, not plain, severe, dowdy, servant-like or elderly. She is less overtly seductive and flamboyant than Pan Jinlian: composed confidence and former-courtesan refinement rather than provocative glamour.\n\nPreserve the primary-text anchors: visibly 34 rather than a teenager or woman in her twenties; full, heavy, prosperous body with believable weight through cheeks, upper arms, waist and hips; substantial but proportionate, not slim and not exaggerated obesity. Her expression is intelligent, worldly, practical and guarded, with a faint controlled warmth. Late-Ming married-woman updo, refined but restrained gold hair ornaments and drop earrings. Prosperous second-consort clothing: warm ivory crossed inner collar and sleeves; a tailored brown-gold sleeveless patterned bijia with clear deep wine-red accents and fine woven floral motifs; dark indigo full skirt with restrained pattern; tasteful bracelet; period cloth shoes. Rich and feminine but below court or official rank, no imperial symbols.\n\nFull-body head-to-shoes portrait, standing straight in a neutral wardrobe-test pose, arms relaxed with all fingers visible, entire hair ornaments, sleeves, skirt hem and shoes inside frame with generous safe margins. Native 1024×1536 portrait composition. Continuous warm-gray seamless studio background, soft warm key light and gentle fill matching the approved series photography. Real lens perspective, realistic skin texture, individual hair strands, woven silk and cloth fibers, natural folds and contact shadow.\n\nDo not copy any face, body, beard, male clothing or social rank from the style reference. No old dowdy matron casting, no harsh square face, no tired blank expression, no servant coding, no youthification, no slimming, no influencer face, no cosmetic-surgery look, no excessive whitening, no cleavage, no transparent fabric, no sexualized pose, no prop, no account book, no furniture, no text, no labels, no logo, no watermark, no extra person, no crop, no anime, no illustration, no CGI, no plastic skin, no malformed hands, no extra or missing fingers or limbs. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝定裝照：三十四歲的成年中國女性，曾是名妓、現為富戶第二房並掌管銀錢；五官成熟和諧、略窄杏眼、面頰豐潤，體態豐滿厚實而比例自然。穿暖象牙交領內衣、棕金酒紅紋樣比甲、深靛長裙、克制金飾與耳墜；世故端莊、實際而有防備，不少女化、不老僕化、不情色化。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, illustration, anime, cartoon, comic, synthetic CGI render, CGI, child, teenager, modern clothing, fantasy armor, plastic skin, beauty filter, cropped head, cropped feet, malformed hands, extra fingers, extra limbs, text, label, logo, watermark",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "live action",
+          "late-Ming costume"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Create one native LANDSCAPE live-action wardrobe turnaround sheet from this Owner-approved another adult character v002 master. Preserve the exact same adult Chinese actress identity and casting: visibly age 34, naturally beautiful mature former celebrated courtesan, subtly pointed forehead, small refined nose, expressive slightly narrow almond eyes, soft ample cheeks, elegant lips, poised worldly warmth, and the same full, heavy, prosperous yet proportionate body. Do not revert to the revoked plain v001 face, do not recast, do not beautify into a younger influencer, do not slim her, and do not make her more overtly seductive than Pan Jinlian.\n\nThe final image must be native 1536×1024 landscape, divided conceptually into three equal 512-pixel columns. Show exactly three full-body views of this one actor at identical scale and on one ground line: LEFT column strict straight FRONT view, CENTER column strict anatomical LEFT 90-degree PROFILE with face, nose, torso and both feet pointing to image-left, RIGHT column strict BACK view with face fully hidden and no head turn. These are orthographic wardrobe-reference views, not three-quarter poses.\n\nPreserve identical physical construction across all three views: the exact same late-Ming married-woman updo, gold floral hair ornaments and drop earrings; warm ivory crossed inner collar and wide sleeves; tailored brown-gold floral sleeveless bijia with clear deep wine-red borders and crossing front band; wine-red waist tie; dark indigo full skirt with restrained woven pattern; tasteful bracelet and period cloth shoes. Maintain the same garment lengths, seam placement, motif density, colors, body volume, shoulder width, waist and hip proportions. Back view must show a physically plausible rear construction of the same updo, bijia, belt and skirt, not an invented costume.\n\nWarm-gray seamless studio background and soft diffuse series lighting. Real photographic skin, hair strands, woven silk and cloth texture, natural folds and anatomically correct hands. Neutral expression and neutral arms slightly separated from the torso so sleeves and hands remain readable. Keep every hair ornament, sleeve, hand, finger, skirt hem and shoe fully inside frame. Minimum safe margins: at least 64 pixels at outer left and right, at least 32 pixels from each internal 512-pixel column boundary, and at least 40 pixels at top and bottom. No touching borders or overlap between figures.\n\nNo text, labels, arrows, dividers, watermark, logo, furniture, prop, fourth person, duplicate fragment, crop, mirror shortcut, profile facing right, three-quarter middle view, head turn in back view, inconsistent face, inconsistent body size, inconsistent hairstyle or jewelry, costume drift, court or official symbols, servant coding, teenage face, elderly face, slim body, exaggerated obesity, sexualized pose, cleavage, transparent fabric, anime, illustration, CGI, plastic skin, malformed hands, extra or missing fingers or limbs. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "豐厚微啞的成年女中音，胸腔共鳴較實，氣息偶有輕微收束感（推斷）",
+        "pitch": "中低音域（推斷）",
+        "pace": "中速偏緩，語句俐落，停頓帶審慎感（推斷）",
+        "accent": "地域口音不詳；帶圓熟的市井語氣（推斷）",
+        "emotion": "沉著、自持，底色務實而警醒（推斷）",
+        "referenceHint": "像一位長年經手家中銀錢、說話先替自己留有餘地的成年婦人（推斷）",
+        "prompt": "An adult female voice in a warm, full mezzo-alto range, slightly husky but not elderly. Solid chest resonance, modest breath compression that can hint at a recurring cough without sounding ill, medium-slow pace, deliberate phrasing, crisp practical rhythm, and moderate energy. The regional accent is unspecified; use a polished but streetwise conversational quality. Default emotion is composed, self-protective, pragmatic, and watchful, with little ornament or flirtation. (inferred)",
+        "promptLocal": "成年女聲，溫厚飽滿的女中低音域，略帶微啞但不顯老。胸腔共鳴紮實，氣息略有收束，可含蓄暗示經常咳嗽而不呈病弱；語速中等偏緩，措辭審慎，節奏俐落務實，能量適中。地域口音不詳，採圓熟而帶市井歷練的日常說話質感。預設情緒沉著、自保、務實且警醒，少用華麗轉音或媚態。（推斷）"
+      }
+    },
+    {
+      "name": "陳經濟",
+      "aliases": [],
+      "importance": "major",
+      "oneLiner": "西門慶倚重的年輕女婿，能辦文書與帳務，卻因乖滑好色而在內宅私情與家敗流離中走向被殺。",
+      "persona": {
+        "gender": "男",
+        "ageRange": "二十餘歲（推斷）",
+        "identity": "陳洪之子、西門大姐之夫、西門慶的女婿，兼管鋪面、文書、銀錢與差事",
+        "appearance": "身形修長靈活，面容年輕清俊，眉眼機警，常帶討巧的半笑；衣著較普通夥計體面，腰間便於掛鑰匙，手邊常有帳冊或筆札（推斷）。",
+        "personality": [
+          "乖滑",
+          "機靈",
+          "好色",
+          "善於應酬",
+          "貪玩"
+        ],
+        "temperament": "在人前能磕頭應諾、迎送賓客，也能俐落承辦文書與銀錢；私下口舌活泛，愛調笑、行令與趁隙偷情，酒後尤其放浪。",
+        "motivation": "一面靠辦事與管帳維持岳家的信任和自己的位置，一面不斷追逐酒色、私情與眼前快意（推斷）。",
+        "arc": "從攜妻與家財投奔岳家、受倚重掌管工程與鋪面，逐步陷入與潘金蓮、春梅的私情；家敗後流落、出家，又獲春梅提拔，娶葛翠屏並戀韓愛姐，最終被張勝斬殺。",
+        "relationships": [
+          {
+            "name": "西門慶",
+            "relation": "岳父與倚重他的家主，交付鋪面、帳務、文書及銀錢差事"
+          },
+          {
+            "name": "西門大姐",
+            "relation": "妻子，曾因失而復得的三錢銀與他爭吵"
+          },
+          {
+            "name": "潘金蓮",
+            "relation": "在內宅多次調情、私會的對象"
+          },
+          {
+            "name": "春梅",
+            "relation": "先與他私通，家敗後又曾提拔他"
+          },
+          {
+            "name": "李瓶兒",
+            "relation": "曾被他輕薄；她死後他以孝子身分參與治喪"
+          }
+        ],
+        "evidence": [
+          "見了佳人是命",
+          "我幾次戲他，他口兒且是活",
+          "已帶半酣兒",
+          "還有幾個眼生字不認的"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Create one final late-Ming live-action studio costume-master portrait of exactly one clearly adult Chinese male actor in his twenties, a trusted household son-in-law and young clerk who handles ledgers, correspondence, keys, and silver. PRIMARY REFERENCE ROLE: Reference Image 1 is the sole FACE IDENTITY AUTHORITY. Translate that illustrated design into a believable real human actor while preserving its identity direction: a slim youthful oval-to-slightly-long face, alert narrow almond-shaped dark eyes, tidy long brows with a slight upward lift, a straight refined medium-narrow nose, thin-to-medium controlled lips, a clean jaw, smooth adult cheeks, black hair, no moustache and no beard, and a lean agile build. Keep him unmistakably in his twenties: handsome and adult, not teenage or boyish, but also not weathered, middle-aged, paternal, bureaucratic, or stately. His expression should be outwardly courteous and capable, with a very restrained quick knowing half-smile and restless self-confidence in the eyes, suggesting cleverness and unreliable impulse rather than solemn authority. Do not copy anime proportions, line art, cel shading, flat illustrated skin, or the reference garment as an immutable costume.\n\nREFERENCE IMAGE 2 ROLE: WARDROBE AND SOCIAL-TIER DIRECTION ONLY. Use only the right-hand brown-robed figure as guidance for credible late-Ming cross-collar layering, ankle-length robe proportions, practical cloth weight, and the relative status of a respectable dependent below a wealthy master. Do not copy either reference face, body, age, pose, outdoor setting, ornate brocade, metal plaques, tassels, or affluent host-level luxury.\n\nREFERENCE IMAGE 3 ROLE: SERIES ART LOCK FOR PHOTOGRAPHY AND MATERIAL ONLY. Match its neutral warm-gray seamless studio, soft directional key and fill, realistic lens perspective, natural skin pores, individual hair strands, credible fabric weight, and restrained live-action color finish. Do not copy that man's face, moustache, goatee, hair, body, pose, costume, deep-teal palette, ornament, wealth, or social authority.\n\nWardrobe: historically credible late-Ming indoor business attire for a well-kept young son-in-law who writes documents and checks accounts, clearly below another adult character in wealth and rank. Give him a muted celadon-to-soft gray-green cross-collar outer robe of good but not sumptuous woven silk-linen, a warm umber inner collar and underlayer, narrow dark charcoal edging, practical moderately narrow sleeves, a simple dark woven belt, a small functional brass key ring hanging unobtrusively at the waist, dark cloth trousers barely visible above plain black cloth shoes, and a low simple black gauze or cloth cap with no official wings or insignia. The garment should be tidy and cared for, with restrained color, minimal or no pattern, believable seams, gravity, folds, and slight natural wear. No handheld ledger or brush; keep both hands unobstructed. NO official robe, NO rank badge, NO tall official hat, NO crown, NO court or imperial ornament, NO all-over gold embroidery, NO jade-plaque display, NO fur, NO armor, NO wuxia or fantasy styling, and NO visual suggestion of a mature government official.\n\nComposition: exactly one unambiguously adult actor, head-to-toe full body, front-facing with a very slight three-quarter turn, weight subtly active rather than rigid, shoulders courteous but not military, both entire hands visible with five natural fingers on each hand, both entire feet and shoes visible, and comfortable margins above the cap and below the shoes. Neutral warm-gray seamless studio background. Real live-action wardrobe-test photography with natural East Asian skin pores, faint under-eye texture appropriate to a young adult, individual hair strands, physically credible fabric fibers and weight, realistic lens perspective, soft cinematic studio key and fill, subtle depth, natural exposure, and restrained color grading. No beauty-filter smoothing, no waxy or plastic skin.\n\nOutput exactly 1024x1536 pixels in a single portrait image, no crop, no padding, no stretching. No text, Chinese characters, labels, logo, watermark, signature, border, collage, inset, extra person, furniture, scenery, or prop pile. Explicitly exclude anime, manga, illustration, painting, ink outline, cel shading, game concept art, 3D render, CGI, digital avatar, doll-like skin, deformed hands, extra fingers, missing fingers, cropped hands, or cropped feet. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝定裝照：二十多歲的成年中國男子，清俊修長、偏長橢圓臉、警醒狹長眼、整齊長眉、直鼻、薄唇、乾淨無鬚；表面恭謹能辦事，眉眼帶機靈與躁動。穿晚明富戶女婿兼文書管事的體面常服，層級明顯低於西門慶，沒有官服與奢華金繡。全身暖灰棚拍、自然膚質與真實織物。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, illustration, anime, cartoon, comic, synthetic CGI render, CGI, child, teenager, modern clothing, fantasy armor, plastic skin, beauty filter, cropped head, cropped feet, malformed hands, extra fingers, extra limbs, text, label, logo, watermark",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "live action",
+          "late-Ming costume"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Create one native LANDSCAPE live-action wardrobe turnaround sheet from this another adult character interim master. Preserve the exact same clearly adult Chinese male actor in his twenties, youthful long-oval clean-shaven face, alert narrow eyes, refined nose, controlled half-smile, lean agile proportions, black low cap, celadon-gray-green cross-collar robe, warm umber collar, charcoal edging, simple dark belt, small brass key ring, trousers, shoes, realistic skin, hair, and cloth. Do not add facial hair, age him, make him official, or redesign the outfit.\n\nOUTPUT CONTRACT: one real PNG exactly 1536×1024 pixels. Exactly three separate head-to-toe full-body views in equal 512px conceptual columns: LEFT strict straight front; CENTER strict 90-degree LEFT side profile, nose and toes toward viewer's left, not three-quarter; RIGHT strict back, fully facing away with no over-shoulder face. Same actor, scale, cap, key ring, costume and baseline across all views. Keep at least 64px clear background at outer canvas edges, 32px from figures to column boundaries, 40px above cap and below shoes. No cap, sleeve, hand, robe, key or shoe may touch/cross an edge or neighboring column. Offset profile arms slightly so hand silhouettes remain readable while body stays strict profile.\n\nNeutral continuous warm-gray studio background, natural live-action wardrobe photography, realistic pores, hair strands, cloth fibers, folds, contact shadows and lens perspective. No text, labels, lines, logo, watermark, border, handheld prop, furniture, extra person, crop, padding, blurred/mirrored extension, official rank badge, anime, illustration, CGI, plastic skin, extra or missing fingers/limbs. Generate natively on the 1536×1024 landscape canvas; do not crop or stretch the portrait source. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "清亮而略帶滑潤感的青年男中音，口腔共鳴靠前，氣息不重（推斷）",
+        "pitch": "中高音域，情緒活躍時略上揚（推斷）",
+        "pace": "中快，辦事時俐落，調笑時節奏輕巧並刻意拖尾（推斷）",
+        "accent": "帶歷史市井感但地域特徵不鮮明的口音，咬字靈便但偶爾遇生字遲疑（推斷）",
+        "emotion": "預設機敏討巧、略帶自得與玩心，受窘時迅速轉為敷衍（推斷）",
+        "referenceHint": "像一個一面報帳寫帖、一面隨時準備用笑話脫身的年輕女婿（推斷）",
+        "prompt": "A young adult male voice in his mid-to-late twenties, light baritone with a bright, smooth edge and forward oral resonance. Medium-high pitch range, minimal breathiness, quick articulate delivery, nimble conversational rhythm, and slightly lengthened phrase endings when teasing. A lightly historical market-town flavor without a strongly localized regional accent, energetic but not forceful. Default mood is clever, ingratiating, playful, and faintly self-satisfied, with a brief hesitation around unfamiliar written words. Design a stable reusable speaking instrument rather than a single performed line. (inferred)",
+        "promptLocal": "二十餘歲成年男子聲線，清亮滑潤的輕男中音，口腔共鳴靠前。音高居中偏高，氣聲很少，吐字迅速清楚，談話節奏靈巧，調笑時句尾略微拖長。略帶歷史市鎮氣息而沒有鮮明地域特徵，能量活躍而不強硬。預設情緒機敏討巧、貪玩而微微自得，遇到陌生書面字詞時會短暫遲疑。設計為可重複使用的穩定聲音本體，而非單句臺詞表演。（推斷）"
+      }
+    },
+    {
+      "name": "應伯爵",
+      "aliases": [
+        "應二",
+        "應二花子",
+        "應花子"
+      ],
+      "importance": "major",
+      "oneLiner": "敗盡家產後依附富家子弟的首要幫閒，憑一張巧嘴穿梭於宴席、借貸與人情請託之間。",
+      "persona": {
+        "gender": "男",
+        "ageRange": "約三十五至四十五歲（推斷）",
+        "identity": "應員外之子；敗光紬絹鋪家產後，專陪富家子弟嫖飲的幫閒、中介與宴席陪客",
+        "appearance": "中等身量而略顯清瘦，眉眼靈活，嘴角常掛著伺機接話的笑；衣著力求體面卻帶些浮華與磨舊痕跡，紫絨襖子是其醒目裝束之一（推斷）。",
+        "personality": [
+          "油滑機敏",
+          "善於逢迎",
+          "詼諧聒噪",
+          "逐利取巧",
+          "熟諳人情"
+        ],
+        "temperament": "在人前幾乎從不冷場，擅長插科打諢、催酒勸歌、察言觀色；遇到有利可圖的請託便熱絡周旋，面對落難者則可能推託閃避。",
+        "motivation": "依靠富家朋友圈維持體面生活，藉宴飲陪伴、說情牽線、作保與居中交易獲取酬謝及好處。",
+        "arc": "長期依附西門慶，由宴席上的核心幫閒逐漸顯出兩頭收錢、暗取利益的中介本色；西門慶死後仍以友朋身分參與祭奠，依附性的生存方式並未根本改變。",
+        "relationships": [
+          {
+            "name": "西門慶",
+            "relation": "最熟稔的富商密友與主要依附對象；替他陪宴、說情、薦人並經手各種人情與生意"
+          },
+          {
+            "name": "常時節",
+            "relation": "友人；陪同求助並極力促成周濟，又奉命替其買房"
+          },
+          {
+            "name": "李智",
+            "relation": "多次替二人向西門慶周旋借貸、追催銀款並索取酬謝"
+          },
+          {
+            "name": "黃四",
+            "relation": "多次替二人向西門慶周旋借貸、追催銀款並索取酬謝"
+          },
+          {
+            "name": "李桂姐",
+            "relation": "在席間撮合、嘲罵與調笑的妓女，亦曾受託在衝突後巧言勸和"
+          }
+        ],
+        "evidence": [
+          "若不是我那等取巧說著",
+          "我若不起身，別人也只顧坐著",
+          "管情就替你說成了"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Create one final late-Ming live-action studio costume-master portrait of exactly one clearly adult Chinese male actor between thirty-five and forty-five, visually centered around forty, a lean social hanger-on and quick-tongued intermediary who survives by entertaining, flattering, reading the room, and making introductions for richer men. PRIMARY REFERENCE ROLE: Reference Image 1 is the sole FACE IDENTITY AUTHORITY. Translate that illustrated design into a believable real human actor while preserving its identity direction: a narrow slightly long face, lean cheeks with gently pronounced cheekbones, nimble slightly squinting dark eyes, mobile medium-thin brows, a long narrow straight nose, thin expressive lips, a narrow tidy moustache, a short tapered pointed goatee, black hair gathered beneath a soft black wrapped cloth headpiece, and a dry lean medium-height build. Keep him healthy and energetic at approximately forty, not elderly, gaunt from illness, destitute, grotesque, or caricatured. His face should carry an ingratiating asymmetrical half-smile, alert audience-reading eyes, and the readiness to jump into conversation with a clever persuasive remark. He is slippery and opportunistic but socially practiced; do not turn him into a comic villain, clown, heroic warrior, dignified scholar-official, or wealthy patriarch. Do not copy anime proportions, line art, cel shading, flat illustrated skin, or the reference garment as an immutable costume.\n\nREFERENCE IMAGE 2 ROLE: WARDROBE AND SOCIAL-TIER DIRECTION ONLY. Use only the right-hand brown-robed figure as guidance for credible late-Ming cross-collar layering, ankle-length robe proportions, soft wrapped headwear, practical fabric weight, and the relative status of a respectable companion clearly below the wealthy man beside him. Do not copy either reference face, body, pose, outdoor setting, ornate jacquard, metal belt plaques, tassels, or affluent host-level luxury.\n\nREFERENCE IMAGE 3 ROLE: SERIES ART LOCK FOR PHOTOGRAPHY AND MATERIAL ONLY. Match its neutral warm-gray seamless studio, soft directional key and fill, realistic lens perspective, natural skin pores, individual hair strands, credible fabric weight, and restrained live-action color finish. Do not copy that man's face, moustache, goatee, hair, body, pose, costume, deep-teal palette, ornament, wealth, or social authority.\n\nWardrobe: historically credible late-Ming respectable but financially strained social attire, maintained carefully to look better than its true cost. Use a slightly showy yet subtly worn short plum-purple padded outer jacket with a restrained hand-loomed velvet or napped-silk surface, simple dark cloth knot closures, and modest padding over a muted deep teal cross-collar ankle-length robe, a narrow dull-ochre inner-collar accent, a plain black cloth sash without metal plaques, dark trousers, and practical black cloth shoes with slight natural wear. The plum-purple should be faded and low-saturation rather than imperial or jewel-toned. Keep patterns sparse and nearly invisible; show softened cuffs, faint nap variation, repaired or polished edges, believable seams, fabric fibers, weight, and folds. The ensemble is tidy and socially presentable but not new, luxurious, official, or aristocratic. No handheld prop; keep both hands unobstructed. NO official robe, NO rank badge, NO tall official hat, NO crown, NO court or imperial ornament, NO gold brocade, NO jewelry display, NO jade or metal plaque belt, NO long ornamental tassels, NO fur, NO armor, NO wuxia or fantasy styling, and NO visual parity with a rich merchant such as another adult character.\n\nComposition: exactly one unambiguously adult actor, head-to-toe full body, front-facing with a very slight three-quarter turn, a subtly forward attentive posture as though ready to agree or interject, shoulders relaxed, one hand allowed a small open conversational inclination while still fully visible and the other relaxed beside the body, both entire hands visible with five natural fingers on each hand, both entire feet and shoes visible, and comfortable margins above the headpiece and below the shoes. Neutral warm-gray seamless studio background. Real live-action wardrobe-test photography with natural East Asian skin pores, age-appropriate fine lines around the eyes and mouth, individual moustache and goatee hairs, individual head hair strands, physically credible fabric fibers and weight, realistic lens perspective, soft cinematic studio key and fill, subtle depth, natural exposure, and restrained color grading. No beauty-filter smoothing, no waxy or plastic skin.\n\nOutput exactly 1024x1536 pixels in a single portrait image, no crop, no padding, no stretching. No text, Chinese characters, labels, logo, watermark, signature, border, collage, inset, extra person, furniture, scenery, food, fan, cup, or prop pile. Explicitly exclude anime, manga, illustration, painting, ink outline, cel shading, game concept art, 3D render, CGI, digital avatar, doll-like skin, exaggerated ugliness, slapstick distortion, deformed hands, extra fingers, missing fingers, cropped hands, or cropped feet. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝定裝照：約四十歲的成年中國男子，乾瘦健康、窄長臉、高顴骨、靈活微瞇眼、薄唇、窄髭與短尖山羊鬍；神情油滑機敏、善於察言觀色。衣著體面略浮華並帶使用痕跡，財力與威勢明顯低於西門慶，禁止官服、官補與重金繡。單人全身暖灰棚拍，保留自然皮膚、毛髮與布料質感。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, illustration, anime, cartoon, comic, synthetic CGI render, CGI, child, teenager, modern clothing, fantasy armor, plastic skin, beauty filter, cropped head, cropped feet, malformed hands, extra fingers, extra limbs, text, label, logo, watermark",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "live action",
+          "late-Ming costume"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Create one native LANDSCAPE live-action wardrobe turnaround sheet from this another adult character interim master. Preserve the exact same adult Chinese male actor around age 40, narrow lean face, nimble squinting eyes, long nose, expressive thin lips, tidy narrow moustache, short pointed goatee, black wrapped headpiece, dry lean healthy body, ingratiating half-smile, faded plum-purple short padded jacket, muted deep-teal long robe, dull ochre collar, plain black sash, trousers, worn black shoes, realistic skin, facial hair, and cloth. Do not beautify him into a rich merchant, age him into an elder, caricature him, or redesign the outfit.\n\nOUTPUT CONTRACT: one real PNG exactly 1536×1024 pixels. Exactly three separate head-to-toe full-body views in equal 512px conceptual columns: LEFT strict straight front; CENTER strict 90-degree LEFT side profile, nose and toes toward viewer's left, not three-quarter; RIGHT strict back, fully facing away with no over-shoulder face. Same actor, scale, facial hair, headpiece, costume and baseline across all views. Keep at least 64px clear background at outer canvas edges, 32px from figures to column boundaries, 40px above headpiece and below shoes. No headpiece, sleeve, hand, robe or shoe may touch/cross an edge or neighboring column. Hands relaxed; profile arms slightly offset while body remains strict profile.\n\nNeutral continuous warm-gray studio background, natural live-action wardrobe photography, realistic pores, individual beard hair, cloth nap, wear, folds, contact shadows and lens perspective. No text, labels, lines, logo, watermark, border, prop, furniture, extra person, crop, padding, blurred/mirrored extension, official regalia, anime, illustration, CGI, plastic skin, extra or missing fingers/limbs. Generate natively on the 1536×1024 landscape canvas; do not crop or stretch the portrait source. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "略帶鼻腔共鳴的明亮男中音，聲底不厚，口齒靈活，笑意常浮在音色表面（推斷）",
+        "pitch": "中等偏高，逢迎或起鬨時容易上揚（推斷）",
+        "pace": "偏快，短句連發，善在話縫中搶接；遊說時會刻意放慢重點（推斷）",
+        "accent": "帶明代山東市井語感的北方口音，咬字俐落而不文雅（推斷）",
+        "emotion": "預設熱絡、機靈而帶討好笑意，底層藏著算計與試探（推斷）",
+        "referenceHint": "像一位總能在酒席冷場前搶先接話、又能把求人辦事說成彼此方便的市井幫閒（推斷）",
+        "prompt": "An adult Chinese male voice around forty (inferred), a bright light baritone with mild nasal resonance, agile articulation, little chest weight, and a smile audible at the edges. Medium-to-slightly-high pitch, brisk conversational speed, quick rhythmic interjections, and flexible pauses for persuasion (inferred). A late-imperial northern Shandong marketplace flavor, energetic but not booming, socially ingratiating and comic by default, with an undertone of calculation and constant audience-reading (inferred). Keep the voice natural, non-heroic, non-elderly, and suitable for sustained dialogue.",
+        "promptLocal": "約四十歲的成年中國男聲（推斷），明亮而偏輕的男中音，略帶鼻腔共鳴，咬字靈活，胸腔厚度不重，聲音邊緣常含笑意。音高居中略偏高，交談速度明快，善用快速插話的節奏，遊說時則靈活停頓（推斷）。帶帝制晚期山東北方市井語感，能量充足但不洪亮，預設親熱討好而富喜劇感，底層帶算計與持續察看聽眾反應的意味（推斷）。聲線保持自然、非英雄式、非老年感，適合長篇對話。"
+      }
+    },
+    {
+      "name": "孫雪娥",
+      "aliases": [
+        "第四孫雪娥",
+        "雪娥"
+      ],
+      "importance": "major",
+      "oneLiner": "西門慶的第四房妾室，善理湯水並主管廚房，長期捲在妻妾、僕婦與來旺的衝突之中。",
+      "persona": {
+        "gender": "女",
+        "ageRange": "中年（推斷）",
+        "identity": "西門慶第四房妾室，原為房裡人，主管廚房與僕婦",
+        "appearance": "身量偏矮，體態結實，帶有常年料理廚務的俐落感；衣著較家中其他妻妾樸實，袖口收束便於做事（推斷）。",
+        "personality": [
+          "強硬（推斷）",
+          "直率（推斷）",
+          "記仇（推斷）",
+          "畏禍（推斷）"
+        ],
+        "temperament": "平日務實幹練，受刺激時嗓門高、反應急，敢當面掌摑扭打；事到追責關頭又會迅速轉為驚惶求情（推斷）。",
+        "motivation": "守住自己在內宅與廚房中的位置，並在長期受挑撥、羞辱與責打後尋求報復與自保（推斷）。",
+        "arc": "由掌理廚務、參與內宅日常的妾室，逐步陷入與潘金蓮、宋惠蓮及來旺的衝突；後與來旺私逃，輾轉被賣，終因懼怕案發而自縊。",
+        "relationships": [
+          {
+            "name": "西門慶",
+            "relation": "其第四房妾室，多次因內宅衝突遭他踢打與降罰"
+          },
+          {
+            "name": "潘金蓮",
+            "relation": "長期互相衝突並受其挑撥、譏罵的同宅妻妾"
+          },
+          {
+            "name": "吳月娘",
+            "relation": "內宅主母；宋惠蓮自縊後曾向她跪求隱瞞衝突"
+          },
+          {
+            "name": "李嬌兒",
+            "relation": "曾與她一同告發潘金蓮私通琴童的同宅妻妾"
+          },
+          {
+            "name": "宋惠蓮",
+            "relation": "積怨甚深並曾掌摑扭打的僕婦"
+          },
+          {
+            "name": "來旺",
+            "relation": "被她告知西門慶與宋惠蓮私通始末，後與她私逃的僕人"
+          }
+        ],
+        "evidence": [
+          "能造五鮮湯水，善舞翠盤之妙",
+          "把孫雪娥打了一頓",
+          "好賊奴才，養漢淫婦！",
+          "孫雪娥，不幸自縊身死"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Create a late-Ming live-action wardrobe-test photograph of another adult character as one real adult Chinese actor, visibly a mature woman around forty to forty-five. This is a new casting from text: no face identity image is authorized. Give her a unique face that does not resemble any other woman in the reference set. She must be attractive in a grounded, mature, practical way—not youthful glamour, not aristocratic polish, and not an elderly servant. She has a compact, sturdy build, slightly shorter stature, stable shoulders, capable arms and hands, and the physical credibility of a woman who has long supervised a large household kitchen and its women servants. Her face is round-square and naturally beautiful, with alert slightly narrow eyes, level practical brows, a firm mouth, and subtle age-appropriate lines. Her expression combines guarded competence, compressed resentment, pressure, and worry without becoming grotesque, theatrical, or defeated.\n\nHer social role must read clearly: she is the fourth concubine of a wealthy late-Ming merchant household and also the practical manager of kitchen and servant-women affairs. Preserve modest household-mistress dignity, but keep her visibly below the primary wife and richer concubines. Dress her in historically plausible late-Ming everyday working clothes: a muted russet cross-collar jacket in substantial plain-woven silk-cotton or ramie, sleeves neatly secured at the wrists for work, a deep desaturated teal long skirt with believable weight and folds, a clean charcoal waist apron tied simply over the skirt, and plain black cloth shoes. Her hair is arranged in a neat, secure married-woman period bun with one modest dark-jade hairpin. Use restrained period makeup only. No luxurious brocade, no gold-heavy embroidery, no phoenix crown, no elaborate jewelry, no servant uniform, no rags, and no modern fashion.\n\nShow exactly one person in a single coherent full-body portrait, standing front-facing with a slight three-quarter turn and a broad, grounded practical stance. Both hands must hang naturally and remain completely visible; both feet and shoes must be fully visible on the studio floor. No tray, cookware, food, furniture, set dressing, or other prop. Frame head to toe with comfortable margin above the hair and below the shoes; the figure should occupy about eighty to eighty-five percent of the image height. Use an eye-level, distortion-controlled full-frame 70–85 mm portrait-lens look, natural perspective, and no wide-angle elongation.\n\nUse the approved another adult character image only as a photographic Art Lock: match its disciplined live-action wardrobe-test finish, neutral warm-gray seamless studio, softly modeled large-source key light, restrained fill, gentle separation, grounded contact shadow, realistic exposure, and natural skin, hair, and cloth behavior. Do not copy or blend his face, eyebrows, eyes, nose, mouth, facial hair, hairstyle, hat, body, pose, garments, dark teal-black palette, masculine traits, rank, or personality into this woman. Render real skin microtexture, pores, fine facial hair, individual hair strands, age-appropriate under-eye and hand detail, natural tonal transitions, and physically credible textile weave, seams, creases, thickness, and gravity. Keep the result photographic and believable rather than digitally perfected.\n\nDeliver a 1024x1536 vertical 2:3 live-action character costume master on a neutral warm-gray studio background. No text, captions, labels, collage, border, logo, watermark, signature, extra people, duplicated body parts, cropped hands, cropped feet, missing fingers, extra fingers, anatomy errors, floating garments, or harsh cast shadows. Exclude anime, manga, illustration, painting, ink outline, line art, cel shading, game concept art, 3D render, CGI character, digital avatar, doll-like skin, plastic skin, beauty-filter skin, over-sharpening, fantasy, wuxia, xianxia, Qing-dynasty styling, imperial styling, royal-primary-wife styling, glamorous courtesan styling, modern influencer makeup, sexualized pose, revealing clothing, exaggerated hourglass body, frailty, hunching, gray-haired elderly coding, and old-servant coding. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝定裝照：四十至四十五歲的成年中國女性，成熟漂亮、身量偏矮、體態結實、方圓臉、警醒略狹長眼、平直眉與堅定嘴角；神情能幹、受壓而帶戒備。穿暗赭交領短襖、深青長裙、炭灰圍腰與黑布鞋，髮髻牢固、只配一支樸素深色玉簪；有妾室基本體面但不是富貴正室或老僕。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, illustration, anime, cartoon, comic, synthetic CGI render, CGI, child, teenager, modern clothing, fantasy armor, plastic skin, beauty filter, cropped head, cropped feet, malformed hands, extra fingers, extra limbs, text, label, logo, watermark",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "live action",
+          "late-Ming costume"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Create one native LANDSCAPE live-action wardrobe turnaround sheet from this another adult character interim master. Preserve the exact same unique adult Chinese actress identity, apparent age about 40–45, round-square face, alert narrow eyes, level brows, firm mouth, compact sturdy build, capable shoulders and arms, guarded competent expression, secure married-woman bun with one dark-jade hairpin, muted russet cross-collar work jacket, beige inner cuffs, deep desaturated teal skirt, charcoal waist apron, plain black shoes, realistic skin, hair, and work-cloth. Do not youthify, age into an elderly servant, slim, glamourize, or redesign her.\n\nOUTPUT CONTRACT: one real PNG exactly 1536×1024 pixels. Exactly three separate head-to-toe full-body views in equal 512px conceptual columns: LEFT strict straight front; CENTER strict 90-degree LEFT side profile, nose and toes toward viewer's left, not three-quarter; RIGHT strict back, fully facing away with no over-shoulder face. Same actor, scale, hairpin, apron, costume and baseline across all views. Keep at least 64px clear background at outer canvas edges, 32px from figures to column boundaries, 40px above hairpin and below shoes. No hairpin, sleeve, hand, apron, skirt or shoe may touch/cross an edge or neighboring column. Hands relaxed and readable; profile arms slightly offset while body remains strict profile.\n\nNeutral continuous warm-gray studio background, natural live-action wardrobe photography, realistic pores, age-appropriate lines, hair strands, plain textile weave, folds, contact shadows and lens perspective. No text, labels, lines, logo, watermark, border, kitchen prop, furniture, extra person, crop, padding, blurred/mirrored extension, rich jewelry, anime, illustration, CGI, plastic skin, extra or missing fingers/limbs. Generate natively on the 1536×1024 landscape canvas; do not crop or stretch the portrait source. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "略粗而乾實的中年女中音，胸腔共鳴明顯，氣聲很少（推斷）",
+        "pitch": "中低音域，激動時迅速抬高（推斷）",
+        "pace": "平時中速俐落，爭執時加快並帶短促重音（推斷）",
+        "accent": "帶北方市井色彩的口音，咬字直接清楚（推斷）",
+        "emotion": "預設為戒備而務實，底層壓著不平與焦慮（推斷）",
+        "referenceHint": "像一位長年管著大宅廚務、受了委屈便會立刻高聲回擊的中年婦人（推斷）",
+        "prompt": "An adult middle-aged female contralto voice (inferred), dry, sturdy, and slightly coarse, with clear chest resonance and very little breathiness (inferred). Medium-low pitch that rises sharply under pressure, brisk practical tempo, clipped rhythmic stresses, and a northern urban vernacular flavor with direct articulation (inferred). Moderate energy at rest, forceful projection during conflict, and a default emotional color of guarded competence with suppressed resentment and anxiety (inferred). Design a consistent speaking instrument, not a performance of any specific line.",
+        "promptLocal": "成年中年女性的女中低音（推斷），音色乾實、穩厚且略粗，胸腔共鳴清楚，幾乎沒有氣聲（推斷）。音高位於中低區，受壓時會猛然升高；語速俐落務實，節奏帶短促重音，具有北方市井口音色彩，咬字直接（推斷）。平時能量中等，衝突時投射有力，預設情緒是戒備能幹，底層壓著怨氣與焦慮（推斷）。請設計穩定一致的說話音色，而非演繹任何特定臺詞。"
+      }
+    },
+    {
+      "name": "王婆",
+      "aliases": [],
+      "importance": "major",
+      "oneLiner": "她是武大家隔壁開茶坊的老寡婦，也以媒合、接生與牽頭營利。",
+      "persona": {
+        "gender": "女",
+        "ageRange": "成年（原典未明載）",
+        "identity": "武大家隔壁茶坊的老寡婦、王潮之母，兼做媒、接生與牽頭等營生。",
+        "appearance": "年長婦人，常在街坊茶坊中活動；衣著應便於招呼客人與往來說合，面容帶著久經世故的審視感。（推斷）",
+        "personality": [
+          "貪財",
+          "老練",
+          "善於察言觀色",
+          "擅長設局",
+          "狠決"
+        ],
+        "temperament": "語氣熟稔直接，善用街坊口吻、婚姻俗語與連環說辭卸下他人戒心；談到利益或滅口時則迅速轉為冷硬果決。",
+        "motivation": "把街坊消息、人情關係與男女私情轉成可收取的財物，並在事發後盡力保住自身利益。",
+        "arc": "由鄰里茶坊主人轉為私情媒合者，再成為毒殺與滅跡的共謀；其後仍試圖藉潘金蓮獲利，終因舊案遭到清算。",
+        "relationships": [
+          {
+            "name": "潘金蓮",
+            "relation": "鄰婦、受她撮合與操控的女子；她後來收留並待價出售對方。"
+          },
+          {
+            "name": "西門慶",
+            "relation": "付給她銀物、由她設計撮合私情並共同遮掩命案的人。"
+          },
+          {
+            "name": "武植",
+            "relation": "鄰居與陰謀受害者；她主張結果其性命並協助後續處理。"
+          },
+          {
+            "name": "武松",
+            "relation": "受害者之弟；她攔截其家書，最終因舊案遭其報復。"
+          }
+        ],
+        "evidence": [
+          "間壁住的賣茶王婆子"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Photorealistic live-action character portrait of an adult elderly Chinese woman who runs a small late-imperial tea stall and works as a streetwise matchmaker, weathered intelligent face, narrowed appraising eyes, tightly arranged gray-streaked hair, practical dark brown layered robes, a faded indigo apron, discreet coin pouch, one hand resting beside a tea tray, calculating half-smile, modest urban lane and wooden tea counter, natural window light, cinematic historical drama photography, realistic skin and fabric, non-glamorous, non-sexualized, no CGI, no illustration, no text. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝定裝照：武大家隔壁茶坊的老寡婦、王潮之母，兼做媒、接生與牽頭等營生。年長婦人，常在街坊茶坊中活動；衣著應便於招呼客人與往來說合，面容帶著久經世故的審視感。（推斷）",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, child, teenager, minor, sexualized pose, nudity, CGI, synthetic CGI render, illustration, anime, painting, fantasy costume, modern clothing, plastic skin, beauty filter, text, watermark, logo, distorted anatomy, extra limbs, extra fingers",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "adult live-action",
+          "historical photography"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Orthographic live-action costume reference photography of the same adult character described here: Photorealistic live-action character portrait of an adult elderly Chinese woman who runs a small late-imperial tea stall and works as a streetwise matchmaker, weathered intelligent face, narrowed appraising eyes, tightly arranged gray-streaked hair, practical dark brown layered robes, a faded indigo apron, discreet coin pouch, one hand resting beside a tea tray, calculating half-smile, modest urban lane and wooden tea counter, natural window light, cinematic historical drama photography, realistic skin and fabric, non-glamorous, non-sexualized, no CGI, no illustration, no text. Show front, strict side, and back full-body views with identical identity, body proportions, costume, hairstyle, and color placement. Neutral upright pose, shared ground line, plain background, even diffuse light, no text. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "成年老婦聲線，音色乾澀厚實，音高中低，胸腔與喉腔共鳴明顯，氣聲少；語速平常偏快，說合時節奏圓滑綿密，談利益時字頭俐落，威嚇時忽然放慢並加重尾音。帶北方市井口音，能量中高，預設情緒是熟稔、試探與盤算，笑意表面下藏著冷硬。",
+        "pitch": "依角色年齡、身分與原典語境作保守設計。（推斷）",
+        "pace": "依角色性格與原典行動作保守設計。（推斷）",
+        "accent": "帶清河與北方官話語境，不模仿任何現代真人。（推斷）",
+        "emotion": "語氣熟稔直接，善用街坊口吻、婚姻俗語與連環說辭卸下他人戒心；談到利益或滅口時則迅速轉為冷硬果決。",
+        "referenceHint": "只鎖定穩定音色與說話習慣，不演繹特定臺詞。（推斷）",
+        "prompt": "An older adult female voice, perceived to be in her late fifties or sixties. The timbre is dry, substantial, and slightly coarse, with a mid-low pitch, pronounced chest and throat resonance, and very little breathiness. Her usual pace is slightly brisk. The rhythm becomes smooth and tightly woven when coaxing or matchmaking, with crisp word onsets when discussing profit; when threatening someone, she suddenly slows down and gives extra weight to phrase endings. She has a northern Chinese street-market accent and medium-high energy. Her default emotion blends practiced familiarity, probing calculation, and hidden hardness beneath a surface smile. Design this as a stable speaking voice, not as an imitation of a real person or a performance of a specific line.",
+        "promptLocal": "成年老婦聲線，音色乾澀厚實，音高中低，胸腔與喉腔共鳴明顯，氣聲少；語速平常偏快，說合時節奏圓滑綿密，談利益時字頭俐落，威嚇時忽然放慢並加重尾音。帶北方市井口音，能量中高，預設情緒是熟稔、試探與盤算，笑意表面下藏著冷硬。"
+      }
+    },
+    {
+      "name": "武植",
+      "aliases": [
+        "三寸丁谷樹皮",
+        "武大",
+        "武大郎",
+        "賣炊餅武大郎"
+      ],
+      "importance": "major",
+      "oneLiner": "他是武松的同胞兄長，排行大郎，身材矮小、面貌粗陋，以沿街賣炊餅維生。",
+      "persona": {
+        "gender": "男",
+        "ageRange": "成年（原典未明載）",
+        "identity": "排行大郎的炊餅小販、武松同胞兄長、迎兒之父與潘金蓮前夫。",
+        "appearance": "身材矮小、面貌粗陋，長年挑擔沿街賣炊餅，衣著樸素耐磨；體態不具威勢，與高大的弟弟形成明顯對照。（部分推斷）",
+        "personality": [
+          "本分",
+          "勤勞",
+          "懦弱",
+          "忍耐",
+          "受辱後敢於對質"
+        ],
+        "temperament": "平日語氣樸實退讓，缺少強勢辭令；遭背叛後說話轉為急迫而直接，反覆抓住自己親眼捉姦的事實。",
+        "motivation": "靠賣炊餅維持家計並守住婚姻與家庭；發現私情後，希望親手捉住證據、討回作為丈夫的尊嚴。",
+        "arc": "由安分度日的小販，在婚姻背叛與鄰里羞辱中被迫面對衝突；捉姦受傷後遭妻與共謀者毒殺，其被壓下的冤情跨越全書，成為弟弟復仇與末回薦拔的因果中心。",
+        "relationships": [
+          {
+            "name": "武松",
+            "relation": "同胞弟弟；他的死亡促使弟弟返鄉查案並誓言報冤。"
+          },
+          {
+            "name": "潘金蓮",
+            "relation": "後娶妻子；她與人私通，並在他臥病時將其毒死。"
+          },
+          {
+            "name": "迎兒",
+            "relation": "前妻所生女兒，與他共同生活。"
+          },
+          {
+            "name": "西門慶",
+            "relation": "妻子私通的對象；他捉姦時遭其踢傷。"
+          }
+        ],
+        "evidence": [
+          "三寸丁谷樹皮",
+          "腸胃迸斷，嗚呼哀哉"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Photorealistic live-action environmental portrait of an adult Chinese street food seller in a late-imperial county town, notably short stature, compact build, coarse weathered facial features, tired but earnest eyes, plain patched brown cotton robe, faded headcloth, cloth shoes, carrying a wooden shoulder pole with covered baskets of flat cakes, humble domestic alley setting, overcast natural daylight, grounded historical drama photography, realistic skin, fabric, and proportions, dignified rather than caricatured, non-sexualized, no CGI, no illustration, no text. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝定裝照：排行大郎的炊餅小販、武松同胞兄長、迎兒之父與潘金蓮前夫。身材矮小、面貌粗陋，長年挑擔沿街賣炊餅，衣著樸素耐磨；體態不具威勢，與高大的弟弟形成明顯對照。（部分推斷）",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, child, teenager, minor, sexualized pose, nudity, CGI, synthetic CGI render, illustration, anime, painting, fantasy costume, modern clothing, plastic skin, beauty filter, text, watermark, logo, distorted anatomy, extra limbs, extra fingers",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "adult live-action",
+          "historical photography"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Orthographic live-action costume reference photography of the same adult character described here: Photorealistic live-action environmental portrait of an adult Chinese street food seller in a late-imperial county town, notably short stature, compact build, coarse weathered facial features, tired but earnest eyes, plain patched brown cotton robe, faded headcloth, cloth shoes, carrying a wooden shoulder pole with covered baskets of flat cakes, humble domestic alley setting, overcast natural daylight, grounded historical drama photography, realistic skin, fabric, and proportions, dignified rather than caricatured, non-sexualized, no CGI, no illustration, no text. Show front, strict side, and back full-body views with identical identity, body proportions, costume, hairstyle, and color placement. Neutral upright pose, shared ground line, plain background, even diffuse light, no text. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "成年男性聲線，音色樸厚略乾，音高中等偏高，胸腔共鳴不強，帶些勞動後的喘息感；語速平常偏慢而拘謹，遇到羞辱或疼痛時會加快、破音並重複關鍵字。帶北方市井口音，能量偏低，預設情緒是忍讓與疲憊，對質時才短暫顯出急切和倔強。",
+        "pitch": "依角色年齡、身分與原典語境作保守設計。（推斷）",
+        "pace": "依角色性格與原典行動作保守設計。（推斷）",
+        "accent": "帶清河與北方官話語境，不模仿任何現代真人。（推斷）",
+        "emotion": "平日語氣樸實退讓，缺少強勢辭令；遭背叛後說話轉為急迫而直接，反覆抓住自己親眼捉姦的事實。",
+        "referenceHint": "只鎖定穩定音色與說話習慣，不演繹特定臺詞。（推斷）",
+        "prompt": "An adult male voice with the perceived age of a mature working-age man, without strongly youthful or elderly coloring. The timbre is plain, substantial, and slightly dry, with a medium-high pitch, limited chest resonance, and mild breathiness resembling shortness of breath after physical labor. He normally speaks slowly and hesitantly, with a restrained rhythm. Under humiliation or physical pain, his pace accelerates, the rhythm becomes broken and strained, his voice may crack, and he tends to repeat key words. He has a northern Chinese street accent and generally low energy. His default emotion is accommodating and fatigued, with brief flashes of urgency and stubbornness during confrontation. Design this as a stable speaking voice, not as an imitation of a real person or a performance of a specific line.",
+        "promptLocal": "成年男性聲線，音色樸厚略乾，音高中等偏高，胸腔共鳴不強，帶些勞動後的喘息感；語速平常偏慢而拘謹，遇到羞辱或疼痛時會加快、破音並重複關鍵字。帶北方市井口音，能量偏低，預設情緒是忍讓與疲憊，對質時才短暫顯出急切和倔強。"
+      }
+    },
+    {
+      "name": "花子虛",
+      "aliases": [
+        "花二",
+        "花二哥"
+      ],
+      "importance": "major",
+      "oneLiner": "他是花太監的侄兒、李瓶兒的丈夫，承接叔父財產後貪酒戀妓，往往數夜不歸。",
+      "persona": {
+        "gender": "男",
+        "ageRange": "二十四歲",
+        "identity": "花太監侄兒、承產的富家子弟與李瓶兒丈夫，死後成為反覆入夢的舊冤人物。",
+        "appearance": "二十四歲的富家成年男子；生前衣著講究卻帶縱酒失序之態，病中迅速衰頹；夢中則常以白衣亡者形象出現。（部分推斷）",
+        "personality": [
+          "貪酒",
+          "戀妓",
+          "疏於持家",
+          "易受幫閒牽制",
+          "死後執念深重"
+        ],
+        "temperament": "生前說話帶富家子弟的隨性與被動，缺少精密應對；死後夢境中的表達轉為責問、索討與威逼，語勢陰冷而執著。（推斷）",
+        "motivation": "生前追逐酒色享樂並試圖保住承繼財產；死後則以亡夫立場追問被轉走的財物與婚姻背叛。",
+        "arc": "從承接巨產的年輕富家子弟，逐步因享樂、族產官司、妻子轉移財物與病勢失治而敗亡；死亡並未結束其作用，他以夢魘與舊冤形態回返，持續壓迫李瓶兒及西門家的因果線。",
+        "relationships": [
+          {
+            "name": "李瓶兒",
+            "relation": "妻子；她在他生前轉移財物並與西門慶私通，他死後多次入夢追索。"
+          },
+          {
+            "name": "西門慶",
+            "relation": "表面結交的朋友、實際上的情敵；對方利用幫閒牽制他並與其妻私通。"
+          },
+          {
+            "name": "官哥兒",
+            "relation": "李瓶兒之子；他在夢中曾抱著孩子出現。"
+          }
+        ],
+        "evidence": [
+          "花子虛因氣喪身",
+          "亡年二十四歲",
+          "夢見花子虛從前門外來"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Photorealistic live-action portrait of an adult twenty-four-year-old Chinese heir from a wealthy late-imperial household, slender refined build beginning to look unhealthy from drink and sleepless nights, pale tired face, unfocused resentful eyes, slightly disordered hair beneath a costly soft cap, expensive ivory robe with muted plum and gold woven details worn carelessly, one hand loosely holding an empty wine cup, dark elegant residence behind him, moody dawn light, cinematic historical ghost-drama atmosphere while remaining fully human and realistic, non-sexualized, no CGI, no illustration, no text. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝定裝照：花太監侄兒、承產的富家子弟與李瓶兒丈夫，死後成為反覆入夢的舊冤人物。二十四歲的富家成年男子；生前衣著講究卻帶縱酒失序之態，病中迅速衰頹；夢中則常以白衣亡者形象出現。（部分推斷）",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, child, teenager, minor, sexualized pose, nudity, CGI, synthetic CGI render, illustration, anime, painting, fantasy costume, modern clothing, plastic skin, beauty filter, text, watermark, logo, distorted anatomy, extra limbs, extra fingers",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "adult live-action",
+          "historical photography"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Orthographic live-action costume reference photography of the same adult character described here: Photorealistic live-action portrait of an adult twenty-four-year-old Chinese heir from a wealthy late-imperial household, slender refined build beginning to look unhealthy from drink and sleepless nights, pale tired face, unfocused resentful eyes, slightly disordered hair beneath a costly soft cap, expensive ivory robe with muted plum and gold woven details worn carelessly, one hand loosely holding an empty wine cup, dark elegant residence behind him, moody dawn light, cinematic historical ghost-drama atmosphere while remaining fully human and realistic, non-sexualized, no CGI, no illustration, no text. Show front, strict side, and back full-body views with identical identity, body proportions, costume, hairstyle, and color placement. Neutral upright pose, shared ground line, plain background, even diffuse light, no text. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "二十四歲成年男性聲線，偏薄的中音，鼻腔共鳴略重，氣息因縱酒與病弱而不穩；生前語速散漫，句尾容易拖長，遭逼迫時急促而虛浮。夢境般的責問則放慢語速、壓低音高並拉長停頓。帶富家子弟的北方口音，能量中低，預設情緒是倦怠、怨懟與不甘。",
+        "pitch": "依角色年齡、身分與原典語境作保守設計。（推斷）",
+        "pace": "依角色性格與原典行動作保守設計。（推斷）",
+        "accent": "帶清河與北方官話語境，不模仿任何現代真人。（推斷）",
+        "emotion": "生前說話帶富家子弟的隨性與被動，缺少精密應對；死後夢境中的表達轉為責問、索討與威逼，語勢陰冷而執著。（推斷）",
+        "referenceHint": "只鎖定穩定音色與說話習慣，不演繹特定臺詞。（推斷）",
+        "prompt": "A 24-year-old adult male voice with a relatively thin midrange timbre, slightly pronounced nasal resonance, and uneven breath support caused by heavy drinking and physical frailty. The pitch is medium, with light, unstable breathiness. His ordinary pace is languid, and his rhythm is loose, with phrase endings that tend to trail out. When pressured, he becomes rapid, breathless, and insubstantial. In a dreamlike accusatory mode, he slows down, lowers his pitch, and lengthens the pauses. He has the northern Chinese accent of a privileged young man and medium-low energy. His default emotion is weariness, resentment, and an unwillingness to let go. Design this as a stable speaking voice, not as an imitation of a real person or a performance of a specific line.",
+        "promptLocal": "二十四歲成年男性聲線，偏薄的中音，鼻腔共鳴略重，氣息因縱酒與病弱而不穩；生前語速散漫，句尾容易拖長，遭逼迫時急促而虛浮。夢境般的責問則放慢語速、壓低音高並拉長停頓。帶富家子弟的北方口音，能量中低，預設情緒是倦怠、怨懟與不甘。"
+      }
+    },
+    {
+      "name": "韓愛姐",
+      "aliases": [
+        "愛姐",
+        "韓五姐"
+      ],
+      "importance": "major",
+      "oneLiner": "少年被送入權門，歷經愛情、喪亂與離散後仍尋親守志的堅忍女子。",
+      "persona": {
+        "gender": "女",
+        "ageRange": "十五歲起（第37回明載；後期年齡未明載）",
+        "identity": "韓道國與王六兒之女，曾為翟謙二房，後與陳經濟相戀並在離亂中尋父",
+        "appearance": "十五歲時身材直細、腳小、面施濃妝而伶俐；成年後的衣著與神態未有完整明載，可延續纖細體態，轉為樸素端整、歷經離亂而堅定的外觀。（成年形象推斷）",
+        "personality": [
+          "伶俐敏慧",
+          "重情守信",
+          "慷慨念親",
+          "堅忍決絕",
+          "孝親執著"
+        ],
+        "temperament": "早期在權門生活中懂禮而機敏，能周到款待舅父；後期面對戀人身亡、戰亂與尋親困境，情緒轉為沉靜克制，決心一旦形成便不回頭。（推斷）",
+        "motivation": "早期在被安排的婚配中安身，仍維繫與母家親人的聯絡；後來為愛情守節，並在戰亂流離中尋找父母、守住自己的選擇。",
+        "arc": "十五歲被父母與西門家安排送給翟謙做二房，在蔡府學得詩曲；後與陳經濟相戀，經濟死後入周府守節。戰亂中她離開安穩處境尋找父母，最終以削髮毀目的方式拒絕再嫁，將被動婚配的人生轉為自主守志。",
+        "relationships": [
+          {
+            "name": "韓道國",
+            "relation": "父親；十五歲時由他護送入京，後來她在戰亂中遠赴湖州尋父。"
+          },
+          {
+            "name": "王六兒",
+            "relation": "母親；她與母家保持聯絡，母親曾託來保捎送簪鞋。"
+          },
+          {
+            "name": "翟謙",
+            "relation": "早期被安排侍奉的權門管家；入其府後獲三間房與兩名丫鬟。"
+          },
+          {
+            "name": "陳經濟",
+            "relation": "後期戀人；她在蔡府習得詩曲後與他相戀，並在他死後守節。"
+          },
+          {
+            "name": "王經",
+            "relation": "舅父；他奉母親之意探望她，她以酒飯、貂鼠氅衣和銀子相待。"
+          }
+        ],
+        "evidence": [
+          "小名叫做愛姐",
+          "女命，年十五歲",
+          "就與了三間房，兩個丫鬟伏侍",
+          "與了一件天青紵絲貂鼠氅衣兒"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Adult live-action full-body historical portrait of a Chinese woman in her mid-twenties representing a later-life stage, slender and fine-boned, with an intelligent composed face, steady dark eyes, and quiet resolve after years of displacement. She wears a modest weathered blue-gray cross-collar jacket over a muted brown long skirt, a simple cloth head covering, plain black shoes, and carries a small wrapped travel bundle and a folded letter. Styling is austere and non-glamorous, with no erotic framing. Natural adult skin texture, period-authentic fabric wear, overcast soft daylight, realistic cinematic photography, clean subdued background suggesting a long road without identifiable landmarks, no celebrity resemblance. (inferred adult visualization) Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "成年真人古裝敘事攝影：以二十多歲中期的後期生命階段呈現，一名纖細、骨架秀氣的中國成年女性，面容聰慧沉著，深色眼神安定，歷經流離後帶著安靜決心。她穿略有磨損的藍灰交領上衣、暗褐長裙、簡單布包頭與素黑鞋，攜小布包和摺好的書信。造型樸素、不華麗、不情色化。自然成年皮膚、真實古代布料磨耗、陰天柔光、電影寫實攝影，背景僅暗示長路而無可辨地標，不仿照任何名人。（成年視覺化推斷）",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, child, teenager, youthful minor, sexualized pose, nudity, exposed underwear, glamour fetish styling, CGI, synthetic CGI render, illustration, anime, cartoon, painting, digital art, fantasy costume, modern clothing, modern objects, plastic skin, beauty filter, excessive makeup, neon colors, theatrical fog, cluttered background, text, watermark, logo, distorted anatomy, extra limbs, extra fingers",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "adult live action",
+          "historical narrative"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Orthographic live-action costume reference photography of the same adult traveling woman described above (inferred adult visualization): front, strict side, and back full-body views side by side, identical slender adult proportions, facial structure, simple cloth head covering, weathered blue-gray cross-collar jacket, muted brown long skirt, wrapped travel bundle, folded letter, and plain black shoes in every view. Neutral standing pose, arms relaxed, figures aligned on one shared ground line, natural skin and worn-fabric detail, plain pure white seamless background, even diffuse studio lighting, no cast shadow, no text, no illustration, no CGI. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "清澈而收斂的年輕成年女中音，音色纖細但不脆弱，帶穩定胸腔支撐。（推斷）",
+        "pitch": "中音偏高，情緒激動時仍保持集中。（推斷）",
+        "pace": "平穩偏慢，句間留有思考與克制的停頓。（推斷）",
+        "accent": "北方官話帶輕微清河底色，曾居權門後咬字較端整。（推斷）",
+        "emotion": "預設為沉靜、警醒與堅定，親情話題下有溫柔熱度。（推斷）",
+        "referenceHint": "像一名走過長途離亂，說話仍守禮，卻不再把人生決定交給別人的成年女子。（推斷）",
+        "prompt": "An adult female voice perceived as a young adult. A clear, restrained mezzo-soprano with a medium-high pitch, a fine but resilient timbre, stable chest resonance, light breathiness, and neat articulation. Keep the pace measured and slightly slow, with a thoughtful, controlled rhythm and deliberate pauses between phrases. When emotion rises, do not let the voice become shrill; instead, tighten the tone and give key words more weight. Use Northern Mandarin with a light Qinghe coloring, shaped by the more polished diction of someone who has lived in a powerful household. Maintain medium energy. The default emotion is quiet, alert, and resolute, with gentle warmth when family is involved. Design a consistent voice rather than performing a specific line.",
+        "promptLocal": "年輕成年女聲，清澈收斂的女中音，音色纖細卻有穩定胸腔支撐，氣聲輕微，咬字端整。語速平穩偏慢，句間保留思考與克制的停頓；情緒升高時不尖叫，而是收緊聲線、加重關鍵字。北方官話帶輕微清河底色，能量中等，預設情緒是沉靜、警醒與堅定，提及親情時流露柔和熱度。只設計穩定聲線，不演繹特定臺詞。（推斷）"
+      }
+    },
+    {
+      "name": "周秀",
+      "aliases": [
+        "周南軒",
+        "周守備"
+      ],
+      "importance": "major",
+      "oneLiner": "由清河守備升至都統制的武官，以權勢承接春梅與陳經濟的後半生，最終戰死。",
+      "persona": {
+        "gender": "男",
+        "ageRange": "成年男性，確切年齡未載",
+        "identity": "清河帥府守備、地方總兵官，後升都統制",
+        "appearance": "原典未明載其五官、身材與年齡。其守備、總兵與統制身分，足以作為成熟武官儀態與服裝設定的依據；鬍鬚、體格、傷疤等細節皆須標作推斷。",
+        "personality": [
+          "重視官場禮序",
+          "好客豪飲",
+          "行事有威勢",
+          "能提拔部屬",
+          "具武職責任感"
+        ],
+        "temperament": "公開場合沉著有禮，能主持官宴並判斷席間分寸；需要留客、整肅或出兵時轉為不容推辭的軍令式語氣。（推斷）",
+        "motivation": "維持地方武職權威與官場人脈，經營帥府、莊田和香火院；後期也透過婚姻、收留與提拔重組自己的家內與部屬秩序。",
+        "arc": "早期以守備身分置產、設宴並與西門慶往來，中後期娶春梅、收留陳經濟並逐步升任都統制；靖康戰事中與番將對敵，中箭陣亡，末回經薦拔轉生。",
+        "relationships": [
+          {
+            "name": "春梅",
+            "relation": "後期妻子；婚姻使她進入守備府並取得權力，也把西門家餘波帶入其家。"
+          },
+          {
+            "name": "陳經濟",
+            "relation": "收留並提拔的部屬與家內親近者，其後在守備府用事。"
+          },
+          {
+            "name": "西門慶",
+            "relation": "地方官紳網絡中的宴飲與公務往來對象，彼此送禮、借兵馬並互相赴宴。"
+          },
+          {
+            "name": "吳奭",
+            "relation": "受邀替老夫人看目疾的道士，後由其關係轉往西門宅觀相。"
+          },
+          {
+            "name": "周老夫人",
+            "relation": "其母；他曾為母親目疾請吳奭診看。"
+          },
+          {
+            "name": "普靜",
+            "relation": "末回薦拔其戰死之魂，使其解除舊業、另行託生。"
+          }
+        ],
+        "evidence": [
+          "賣與守備周秀為業",
+          "帥府周守備生日",
+          "守備府周爺差人",
+          "周老總兵相約",
+          "原是周秀老爹蓋造",
+          "帥府周爺來拜",
+          "統制周秀，因與番將對敵"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Full-body casting portrait of a clearly adult Chinese military official portrayed between forty-five and fifty-five, with a disciplined broad-shouldered build, an upright command posture, a mature weathered face, and steady assessing eyes. He wears an authentic late-imperial dark crimson military-official robe over muted black and deep navy layers, a structured black official cap, a plain leather belt with restrained metal fittings, cloth boots, and a sheathed ceremonial sword kept secondary to the silhouette. His expression combines formal courtesy with unquestioned authority. Real human actor, live-action historical costume, natural skin pores, realistic woven fabric and leather, soft overcast courtyard light, sober cinematic photography, non-sexualized adult, no fantasy armor, absolutely not illustration, not anime, not CGI, not a 3D render. Age, build, facial hair, and facial structure are casting inferences. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝選角攝影：明確成年的成熟武官，約四十五至五十五歲的選角推斷，肩背挺直、目光沉穩。穿暗朱武職公服、深色內層、黑色官帽與克制皮帶金屬件，佩劍不遮輪廓。自然皮膚與真實布皮材質，陰天庭院柔光，非幻想盔甲；年齡、體格與五官為推斷。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, child, teenager, minor, youthful childlike face, sexualized pose, nudity, fetish styling, illustration, anime, manga, painting, concept art, CGI, synthetic CGI render, game asset, doll-like skin, fantasy costume, modern clothing, modern objects, neon color, glamour retouching, text, watermark, logo, extra limbs, extra fingers, distorted hands, duplicate person, inconsistent wardrobe",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "adult live-action",
+          "historical photography"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Three-view live-action costume reference of the same clearly adult Chinese military official portrayed between forty-five and fifty-five: front, strict side, and back full-body views with identical mature face, broad disciplined proportions, structured black official cap, dark crimson official robe, navy-black underlayers, leather belt, cloth boots, and sheathed ceremonial sword. Neutral upright command pose, all views aligned on one ground line. Real human actor, authentic historical tailoring, realistic skin, fabric, leather, and metal texture, even soft studio daylight, plain light-gray background, no text, no fantasy armor, no illustration, no anime, no CGI, no 3D render. Age and appearance are inferred. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "厚實、乾燥而有胸腔共鳴的成年男低音，帶長期發令形成的穩定穿透力。（推斷）",
+        "pitch": "中低音域，正式交談平穩，軍令與斷語時再下沉。（推斷）",
+        "pace": "語速中慢，句尾收得乾淨；宴飲勸酒時稍放寬，命令時短促明確。（推斷）",
+        "accent": "北方官話帶軍職與地方官場的端整語氣。（推斷）",
+        "emotion": "預設沉著、有禮而自信；底層是不需提高音量便能施壓的權威。（推斷）",
+        "referenceHint": "像一位能在官宴上守禮談笑、下一刻以短句調動軍士的成熟武官。（推斷）",
+        "prompt": "An adult male voice perceived as mature. A solid, slightly dry bass with a low-to-mid pitch, clear chest resonance, minimal breathiness, and the steady projection of someone long accustomed to issuing commands. Keep the pace medium-slow and the rhythm disciplined, with clean phrase endings. In formal banquets, the cadence should be proper and hospitable; it may broaden slightly when urging a toast, then turn short, precise, and lower in pitch for military business, disciplinary decisions, or refusals. Use Northern Mandarin with the orderly formality and weight of a regional military official. Keep the energy controlled but substantial, at a medium-high level. The default emotion is composed, courteous, and self-assured, with authority that applies pressure without raising the volume. Do not shout, and design a consistent voice rather than performing a specific line.",
+        "promptLocal": "成熟的成年男低音，聲音厚實偏乾，胸腔共鳴清楚，具有長期發號施令形成的穿透力。語速中慢，句尾收束乾淨；官宴中措辭端正而好客，勸酒時略為放寬，涉及軍務、處置或拒絕時改用短句並下沉音高。口音以北方官話為底，帶地方武職官員的禮序與威勢。不要吼叫，權威應來自穩定、節制與不容推辭。（推斷）"
+      }
+    },
+    {
+      "name": "武松",
+      "aliases": [
+        "武二",
+        "武二哥",
+        "武都頭"
+      ],
+      "importance": "protagonist",
+      "oneLiner": "他是武植之弟，憑過人膂力與槍棒本領在景陽岡徒手打虎，後任清河縣巡捕都頭。",
+      "persona": {
+        "gender": "男",
+        "ageRange": "二十八歲",
+        "identity": "武植同胞弟弟、景陽岡打虎者與清河縣巡捕都頭。",
+        "appearance": "膂力過人、精於槍棒的二十八歲壯年男子；體格結實、動作沉穩有力，任都頭時宜作俐落公差裝束。（推斷）",
+        "personality": [
+          "剛正",
+          "勇猛",
+          "克制",
+          "重視手足",
+          "執著復仇"
+        ],
+        "temperament": "說話簡短、直截而有公門人物的分寸；立誓與陳情時反覆抓住報冤、證據與責任，情緒升高仍帶強烈的是非判斷。",
+        "motivation": "守住兄弟倫理與自身名節，在制度無法伸冤時查明兄長死因並報冤雪恨。",
+        "arc": "從打虎成名、任職都頭的公門人物，轉為追查兄案的復仇者；第一次行動受阻並遭刺配後，遇赦歸來完成祭兄復仇，最終離開清河秩序投向梁山。",
+        "relationships": [
+          {
+            "name": "武植",
+            "relation": "同胞兄長；其冤死成為他追查與復仇的核心動力。"
+          },
+          {
+            "name": "潘金蓮",
+            "relation": "嫂嫂；他拒絕其勾引，後查明她參與毒殺兄長並向她報仇。"
+          },
+          {
+            "name": "西門慶",
+            "relation": "兄案主謀之一與尋仇目標；第一次尋人廝打時意外造成旁人死亡。"
+          },
+          {
+            "name": "王婆",
+            "relation": "兄案的策劃與共謀者；他歸來後將她與潘金蓮一併清算。"
+          }
+        ],
+        "evidence": [
+          "兄弟替你報冤雪恨",
+          "小的本為哥哥報仇，因尋西門慶廝打",
+          "武都頭殺嫂祭兄"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Photorealistic live-action full-length portrait of an adult twenty-eight-year-old Chinese constable and martial fighter from the late-imperial era, powerfully athletic build, broad shoulders, disciplined posture, sun-browned realistic skin, intense steady eyes, hair secured under a practical dark headwrap, fitted charcoal and muted blue patrol robes, leather belt, cloth boots, a sheathed staff weapon at his side, restrained heroic presence, mountain road fading into a county street, cool natural daylight, cinematic historical drama photography, realistic fabric and anatomy, non-sexualized, no CGI, no illustration, no text. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝定裝照：武植同胞弟弟、景陽岡打虎者與清河縣巡捕都頭。膂力過人、精於槍棒的二十八歲壯年男子；體格結實、動作沉穩有力，任都頭時宜作俐落公差裝束。（推斷）",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, child, teenager, minor, sexualized pose, nudity, CGI, synthetic CGI render, illustration, anime, painting, fantasy costume, modern clothing, plastic skin, beauty filter, text, watermark, logo, distorted anatomy, extra limbs, extra fingers",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "adult live-action",
+          "historical photography"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Orthographic live-action costume reference photography of the same adult character described here: Photorealistic live-action full-length portrait of an adult twenty-eight-year-old Chinese constable and martial fighter from the late-imperial era, powerfully athletic build, broad shoulders, disciplined posture, sun-browned realistic skin, intense steady eyes, hair secured under a practical dark headwrap, fitted charcoal and muted blue patrol robes, leather belt, cloth boots, a sheathed staff weapon at his side, restrained heroic presence, mountain road fading into a county street, cool natural daylight, cinematic historical drama photography, realistic fabric and anatomy, non-sexualized, no CGI, no illustration, no text. Show front, strict side, and back full-body views with identical identity, body proportions, costume, hairstyle, and color placement. Neutral upright pose, shared ground line, plain background, even diffuse light, no text. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "二十八歲成年男性聲線，低沉結實的男中音，胸腔共鳴強，氣聲極少；語速中等偏慢，停頓清楚，字頭乾淨有力，陳情時沉著，立誓時能量迅速提高但不浮躁。帶北方地方口音而咬字端正，預設情緒是警覺、克制與堅決，盛怒時仍保有清晰的是非感。",
+        "pitch": "依角色年齡、身分與原典語境作保守設計。（推斷）",
+        "pace": "依角色性格與原典行動作保守設計。（推斷）",
+        "accent": "帶清河與北方官話語境，不模仿任何現代真人。（推斷）",
+        "emotion": "說話簡短、直截而有公門人物的分寸；立誓與陳情時反覆抓住報冤、證據與責任，情緒升高仍帶強烈的是非判斷。",
+        "referenceHint": "只鎖定穩定音色與說話習慣，不演繹特定臺詞。（推斷）",
+        "prompt": "A 28-year-old adult male voice with a low, solid baritone timbre, strong chest resonance, and almost no breathiness. His pitch stays in the low register. He speaks at a moderately slow pace with a controlled, measured rhythm, clearly defined pauses, and clean, forceful word onsets. His delivery remains composed when explaining events; when making a solemn declaration, his energy rises sharply without becoming frantic. He has a regional northern Chinese accent with precise articulation. His baseline energy is firm and restrained. His default emotion is alert, controlled, and resolute, retaining a clear sense of right and wrong even in intense anger. Design this as a stable speaking voice, not as an imitation of a real person or a performance of a specific line.",
+        "promptLocal": "二十八歲成年男性聲線，低沉結實的男中音，胸腔共鳴強，氣聲極少；語速中等偏慢，停頓清楚，字頭乾淨有力，陳情時沉著，立誓時能量迅速提高但不浮躁。帶北方地方口音而咬字端正，預設情緒是警覺、克制與堅決，盛怒時仍保有清晰的是非感。"
+      }
+    },
+    {
+      "name": "王六兒",
+      "aliases": [
+        "六姐"
+      ],
+      "importance": "major",
+      "oneLiner": "懂得把情慾、婚姻與權勢做成交易的外室，在利害之間直率而強韌地求取生路。",
+      "persona": {
+        "gender": "女",
+        "ageRange": "二十八至二十九歲（第33回明載）",
+        "identity": "王屠之妹、韓道國之妻、韓愛姐之母，後為西門慶外室",
+        "appearance": "身材高挑，瓜子臉，膚色紫膛；善於打扮，能在中等人家婦人的端整裝束與私宴盛裝之間切換。髮式、衣料與首飾細節依其獲贈衣飾及新宅後的生活推斷。（推斷）",
+        "personality": [
+          "刁潑直率",
+          "務實逐利",
+          "善於逢迎",
+          "情慾坦白",
+          "處境強韌"
+        ],
+        "temperament": "語氣爽利，敢把私情和得失直接說給丈夫聽；面對能帶來資源的人則懂得放軟身段、安排酒席與掌握獨處時機。（推斷）",
+        "motivation": "在丈夫收入與自身處境之外取得更穩定的房屋、銀錢、衣飾與使女，也為家人和說情者把自己與西門慶的關係轉成實際資源。",
+        "arc": "先因與小叔私通捲入街坊爭案，藉西門慶官勢脫困；女兒入京後，她成為西門慶外室，與丈夫共同利用這段關係置宅聚財。西門家敗後，她與丈夫、女兒流落臨清，以私窠維生，之後隨何官人去湖州並終嫁韓二。",
+        "relationships": [
+          {
+            "name": "韓道國",
+            "relation": "丈夫；她把與西門慶的私情明白告知他，夫妻共同以此謀取房產與商業利益。"
+          },
+          {
+            "name": "韓愛姐",
+            "relation": "女兒；她參與女兒入京前的準備，後託來保把簪鞋帶給女兒。"
+          },
+          {
+            "name": "西門慶",
+            "relation": "情人與資助者；她以外室身分接待他，也替苗青說情並獲得銀錢衣物。"
+          },
+          {
+            "name": "韓二",
+            "relation": "丈夫之弟；早年與她私通，西門家敗後最終與她成婚。"
+          },
+          {
+            "name": "王經",
+            "relation": "弟弟；他替她探望住在翟府的女兒。"
+          },
+          {
+            "name": "申二姐",
+            "relation": "常受她延請的唱曲女子；她曾安排其在家宴中獻唱。"
+          }
+        ],
+        "evidence": [
+          "排行六姐",
+          "既是下顧，明日請他過來",
+          "也是我輸了身一場",
+          "與王六兒打的一似火炭般熱",
+          "夫妻二人各訴離情一遍"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Adult live-action full-body historical portrait of a Chinese woman aged twenty-eight to twenty-nine, tall and slender with a long oval face, natural warm deep-brown complexion with a subtle reddish-purple undertone, poised shoulders, observant eyes, and a direct self-possessed expression. She is dressed as a prosperous middling-household wife in a fitted dark plum jacket over a bronze-gold pleated skirt, with restrained jade-green edging, a neat high coiffure, one gold hairpin, small earrings, and a folded handkerchief. Her stance is welcoming yet strategically guarded. Natural skin texture, period-authentic textiles and grooming, soft warm interior daylight, cinematic photographic realism, uncluttered neutral background, non-sexualized adult dignity, no celebrity resemblance. (inferred except for stated build, face, and complexion) Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "成年真人古裝角色攝影：二十八至二十九歲中國女性，身材高挑纖長，瓜子臉，自然暖深棕膚色，帶微紅紫底色，肩背端正，眼神善於觀察，神情直接而有主見。她作富足中等人家婦人打扮，穿深梅色合身上衣、銅金色褶裙與克制的玉綠滾邊，梳整齊高髻，配一支金簪、小耳飾與摺好的手巾。站姿既迎客又保留戒心。自然皮膚、真實古代布料與髮飾，柔暖室內日光、電影寫實攝影、乾淨中性背景，非情色化成年尊嚴，不仿照任何名人。（身材、臉型、膚色為原典明載，其餘推斷）",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, child, teenager, youthful minor, sexualized pose, nudity, exposed underwear, glamour fetish styling, CGI, synthetic CGI render, illustration, anime, cartoon, painting, digital art, fantasy costume, modern clothing, modern objects, plastic skin, beauty filter, excessive makeup, neon colors, theatrical fog, cluttered background, text, watermark, logo, distorted anatomy, extra limbs, extra fingers",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "adult live action",
+          "historical photography"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Orthographic live-action costume reference photography of the same adult woman described above (inferred except for stated build, face, and complexion): front, strict side, and back full-body views side by side, identical tall slender proportions, facial structure, natural warm deep-brown complexion with a subtle reddish-purple undertone, high coiffure, single gold hairpin, dark plum jacket, bronze-gold pleated skirt, jade-green edging, handkerchief, and footwear in every view. Neutral standing pose, arms relaxed, shared ground line, plain pure white seamless background, even diffuse studio light, natural skin and fabric texture, no cast shadow, no text, no illustration, no CGI. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "明亮結實的成年女中音，胸腔共鳴穩，字尾帶一點爽利的挑起。（推斷）",
+        "pitch": "中音域，情緒高昂時上探但不尖銳。（推斷）",
+        "pace": "中等偏快，敘事與談條件時俐落連貫，逢迎時節奏放柔。（推斷）",
+        "accent": "帶清河地方色彩的北方官話，家常語氣濃，面對權勢時較為收斂。（推斷）",
+        "emotion": "預設為坦率、精明與熱絡，底層保持防備與求生意志。（推斷）",
+        "referenceHint": "像一名敢把情分與價碼都說明白、仍能把酒席照應周全的成熟女主人。（推斷）",
+        "prompt": "An adult female voice, perceived age twenty-eight to twenty-nine. A bright, sturdy mezzo-soprano with a medium pitch, stable chest resonance, minimal breathiness, and clear articulation; phrase endings occasionally lift with brisk confidence. The pace is moderately fast, with a crisp, fluent rhythm when negotiating and a softer, more yielding cadence when welcoming or flattering others. Use Northern Mandarin with a noticeable Qinghe regional coloring and a strongly conversational quality, becoming more restrained around authority. Keep the energy medium-high. The default emotion is candid, shrewd, and warm, with an underlying guardedness and will to survive. Design a consistent voice rather than performing a specific line.",
+        "promptLocal": "二十八至二十九歲成年女聲，明亮結實的女中音，胸腔共鳴穩定，氣聲少，咬字清楚，字尾偶爾爽利上挑。語速中等偏快，談條件時俐落連貫，迎客與逢迎時則放柔節奏。帶清河地方色彩的北方官話，能量中高，預設情緒是坦率、精明與熱絡，底層保有防備與求生意志。只設計穩定聲線，不演繹特定臺詞。（推斷）"
+      }
+    },
+    {
+      "name": "普靜",
+      "aliases": [],
+      "importance": "major",
+      "oneLiner": "岱嶽雪洞修行的神異高僧，先救月娘，後度孝哥並薦拔群魂，收束全書因果。",
+      "persona": {
+        "gender": "男",
+        "ageRange": "年長成年男性，確切年齡未載",
+        "identity": "岱嶽東峯雪澗洞修行高僧，後在永福寺度化孝哥並為群魂薦拔",
+        "appearance": "原典稱其為老僧、雪洞老和尚，末回明載身披紫褐袈裟、手執九環錫杖、腳穿芒鞋、肩背布袋與經典。五官、身材與實際歲數未載；年長感可據稱謂推斷。",
+        "personality": [
+          "慈悲",
+          "洞察因果",
+          "堅定守諾",
+          "不受財物",
+          "言語直截"
+        ],
+        "temperament": "平靜而不柔弱，面對危難先安定眾人，談及宿願與出家時則堅定、不與世俗討價還價；誦咒薦拔時莊嚴清明。（推斷）",
+        "motivation": "救人脫險、履行十年前收徒因緣，並以佛法化解眾人累積的冤業，使孝哥與群魂各得解脫。",
+        "arc": "第八十四回在雪澗洞收留逃難的吳月娘一行，拒收布匹並約定日後度其子；第百回亂世重逢，帶眾人入永福寺，度孝哥出家，誦咒薦拔西門家及相關亡魂，完成全書宗教收束。",
+        "relationships": [
+          {
+            "name": "吳月娘",
+            "relation": "先在岱嶽危途中救她投宿，並與她約定日後收其親生子為徒。"
+          },
+          {
+            "name": "明悟禪師",
+            "relation": "十年前預定的弟子；亂世重逢後被他度化出家。"
+          },
+          {
+            "name": "吳大舅",
+            "relation": "第八十四回同行求助者；他向其說明雪洞去路並保護整隊過夜。"
+          },
+          {
+            "name": "吳二舅",
+            "relation": "末回對收徒提出世俗反對者；他仍堅持宿願並引眾人到永福寺。"
+          },
+          {
+            "name": "西門慶",
+            "relation": "末回受其經咒薦拔的亡魂之一，得以另行託生。"
+          },
+          {
+            "name": "周秀",
+            "relation": "戰死後受其薦拔的亡魂之一。"
+          }
+        ],
+        "evidence": [
+          "法名普靜"
+        ]
+      },
+      "image": {
+        "style": "擬真實拍晚明歷史劇試裝定妝照，人物身分、臉部、體態、衣著與配色鎖定外部現行視覺權威",
+        "prompt": "Full-body casting portrait of a clearly adult elderly Chinese Buddhist monk portrayed between sixty-five and seventy-five, with natural aged skin, a lean weathered face, calm penetrating eyes, and an upright walking posture. He wears an authentic dark purplish-brown kasaya over muted earth-colored monastic robes, straw sandals, and carries one khakkhara staff fitted with exactly nine individually separated loose metal rings plus a plain cloth shoulder bag holding bound scriptures. The materials are worn but carefully maintained; there is no jewelry, magical glow, or fantasy ornament. Real human actor, live-action historical religious wardrobe, realistic skin, hemp, wood, and metal texture, soft dawn light at a simple cave entrance, restrained documentary cinematography, dignified non-sexualized adult, absolutely not illustration, not anime, not CGI, not a 3D render. Elderly casting is inferred from the source calling him an old monk; exact age and facial details are not stated. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.",
+        "promptLocal": "真人古裝選角攝影：明確成年的年長佛門僧人，約六十五至七十五歲的選角推斷，面容清瘦風霜、眼神平靜透澈。穿紫褐袈裟與土色僧衣、芒鞋，持一杖，杖頭明確裝有九個可逐一辨識的獨立鬆環，背裝有經典的布袋。材質磨舊但整潔，無神光與奇幻裝飾；洞口晨光、自然老化皮膚與真實麻布木金屬質感。",
+        "negativePrompt": "illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, child, teenager, minor, youthful childlike face, sexualized pose, nudity, fetish styling, illustration, anime, manga, painting, concept art, CGI, synthetic CGI render, game asset, doll-like skin, fantasy costume, modern clothing, modern objects, neon color, glamour retouching, text, watermark, logo, extra limbs, extra fingers, distorted hands, duplicate person, inconsistent wardrobe",
+        "tags": [
+          "live-action",
+          "photographic",
+          "wardrobe camera test",
+          "character sheet",
+          "real skin texture",
+          "85mm lens",
+          "adult live-action",
+          "elderly monk"
+        ],
+        "sheet": "Create ONE 16:9 landscape canvas divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, both shoulders fully visible, centred like an ID photograph with a clean straight horizontal bottom cut; this portrait is the facial identity anchor. RIGHT-TOP ZONE: three equal-height FULL-BODY views of the SAME actor, true front, strict left profile and true back, on one shared ground line; the face, age, body proportions, hairstyle, garments, colours and shoes must match the left portrait exactly. PROPORTIONS ARE CRITICAL: correct anatomy and limb lengths, clear margin above and below, no stretching, squashing or foreshortening. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, smaller than the figures; if they do not fit, continue down the right edge; the detail studies give way, not the figures. Plain pure white background, generous even margins, no scenery, no written labels, no text, no watermark. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill and real ambient occlusion. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. IDENTITY-LOCKED ACTOR AND COSTUME DESCRIPTION: Three-view live-action costume reference of the same clearly adult elderly Chinese Buddhist monk portrayed between sixty-five and seventy-five: front, strict side, and back full-body views with identical lean aged proportions, naturally weathered inferred face, shaved head, dark purplish-brown kasaya, earth-colored robes, straw sandals, one staff per view, exactly nine individually separated loose metal rings on each staff, twenty-seven rings total across the three views, cloth shoulder bag, and bound scriptures. Neutral upright pose, all views aligned on one ground line. Real human actor, authentic monastic garment construction, realistic aged skin, hemp, wood, and metal texture, even soft studio daylight, plain light-gray background, no aura, no magic effects, no text, no illustration, no anime, no CGI, no 3D render. Elderly age and facial details are inferred. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear."
+      },
+      "voice": {
+        "timbre": "沉靜乾淨的年長男低音，略帶歲月磨出的沙質，胸腔與口腔共鳴均衡。（推斷）",
+        "pitch": "低音域，平穩不虛弱，關鍵句略上提以保持清晰。（推斷）",
+        "pace": "語速緩而不拖，停頓充足；勸誡與誦偈時節拍端正、字字可辨。（推斷）",
+        "accent": "以北方官話為底，帶長年雲遊僧人的清楚通行發音。（推斷）",
+        "emotion": "預設慈悲、洞察與安定；涉及宿願與因果時堅定，不帶怒氣卻不容推諉。（推斷）",
+        "referenceHint": "像一位在危途石洞中先讓眾人安住、十年後仍平靜履行收徒之約的年長高僧。（推斷）",
+        "prompt": "An adult male voice perceived as elderly. A calm, clean bass with a low pitch, a slight age-worn grain, balanced chest and oral resonance, and very little breathiness; the voice must remain steady rather than frail. Keep the pace slow but purposeful and the rhythm spacious, using ample pauses that create room for reflection and reassure others. Admonitions should never sound scolding, yet their gently descending endings should make responsibility inescapable. For verses and sutra chanting, use an even, disciplined cadence with every word clearly articulated. Use Northern Mandarin with the clear, broadly intelligible pronunciation of a monk who has wandered for many years. Maintain low-to-medium but unwavering energy. The default emotion is compassionate, perceptive, and serene, becoming firm when speaking of vows, causality, or consequences, never angry. Keep the voice natural, add no mystical effects, and design a consistent voice rather than performing a specific line.",
+        "promptLocal": "年長而明確成年的男低音，聲線沉靜乾淨，帶少量歲月形成的沙質，但不能虛弱。語速緩慢而有方向，每個停頓都像留出思考與安定他人的空間；勸誡時不責罵，卻以穩定下沉的句尾表明不可推諉。誦偈與經咒要節拍端正、字字清楚，保持人聲真實，不加入神祕特效。口音以北方官話為底，像長年雲遊而能讓各地人聽懂的僧人。（推斷）"
+      }
+    }
+  ]
+}

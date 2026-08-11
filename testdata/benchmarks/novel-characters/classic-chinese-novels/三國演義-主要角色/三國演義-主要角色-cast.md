@@ -1,0 +1,1321 @@
+# 三國演義・主要角色 — 角色表
+
+共 16 位角色：貂蟬、孫夫人、糜夫人、甘夫人、蔡夫人、伏皇后、甄氏、祝融夫人、劉備、關羽、張飛、諸葛亮、曹操、孫權、周瑜、司馬懿
+
+## 故事摘要
+
+東漢末年政權崩解，各地諸侯、士族與軍隊在聯盟和戰爭中重新分配天下。劉備、曹操與孫權建立三方核心，關羽、張飛、周瑜、諸葛亮等人以武力與謀略推動局勢，宮廷與婚姻中的女性也承擔聯盟、繼承和反抗的高風險行動。從洛陽權臣鬥爭、荊州流離到赤壁與南中戰事，這群人物共同構成一個由忠誠、名分、家族和生存選擇交織的長期政治世界。
+
+---
+
+## 貂蟬
+
+> 主要角色 · 在權臣壓迫下承擔連環計風險，以表演、判斷與勇氣周旋於董卓與呂布之間。
+
+![貂蟬 左：半身像　右：全身三視圖](images/貂蟬-sheet.png)
+
+### 人物側寫
+
+- **性別**：女
+- **年齡**：約十八至二十二歲（推斷）
+- **身分**：司徒王允府中歌伎，連環計的執行者
+- 機敏 / 沉著 / 勇敢 / 善表演 / 有責任感
+
+**外貌**　漢末洛陽約二十歲的漢族女性，細長鵝蛋臉、沉著杏眼與受過歌舞訓練的端正體態。穿深緋與煙紫層疊曲裾，配低調金簪、細腰帶與舞袖，華美但不情色。（推斷）
+
+**性情**　善於觀察對方情緒並控制自己的表情，真正的恐懼與決心都藏在禮數之下。
+
+**動機**　協助王允除去董卓，終止權臣暴虐，同時在被當作政治工具的處境中求生。
+
+**角色弧線**　從王允府中的歌伎被推上政治核心，以精準表演促成董卓與呂布決裂，也承受計策成功後仍缺乏自主的代價。
+
+**人物關係**
+
+- 王允 — 收養並委以連環計的司徒
+- 呂布 — 被她引導反抗董卓的武將
+- 董卓 — 必須以親近姿態周旋的權臣
+
+**原文依據**
+
+> 貂蟬也。其女自幼選入府中，教以歌舞，年方二八，色伎俱佳，允以親女待之。是夜允
+
+> 。允即命備氈車，先將貂蟬送到相府。卓亦起身告辭。允親送董卓直到相府，然後辭回
+
+> 布立住曰：「容我徐圖良策。」語罷，提戟欲去。貂蟬曰：「妾在深閨，聞將軍之
+
+> 布於是終日不出，只同嚴氏，貂蟬飲酒解悶。謀士許汜，王楷入見布，進計曰：「
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，深緋、煙紫與暗金配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a twenty-year-old Han Chinese court performer in late-2nd-century Luoyang, slender oval face, steady almond eyes, poised dancer posture, black hair in a restrained Han-period high bun She wears layered deep-crimson and smoky-purple Han-period quju robes, restrained gold hairpins, a narrow belt and long controlled dance sleeves. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：漢末洛陽約二十歲的漢族女性，細長鵝蛋臉、沉著杏眼與受過歌舞訓練的端正體態。穿深緋與煙紫層疊曲裾，配低調金簪、細腰帶與舞袖，華美但不情色。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a twenty-year-old Han Chinese court performer in late-2nd-century Luoyang, slender oval face, steady almond eyes, poised dancer posture, black hair in a restrained Han-period high bun She wears layered deep-crimson and smoky-purple Han-period quju robes, restrained gold hairpins, a narrow belt and long controlled dance sleeves. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the restrained gold hairpin, controlled dance sleeve, narrow belt clasp, layered quju collar, embroidered cloth shoe. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：清亮而受控的年輕女中音
+- **音高**：中高音
+- **語速**：禮貌緩慢，施計時精準停頓
+- **口音**：漢末洛陽上層語感（推斷）
+- **情緒**：表面柔順，內裡警醒堅定
+- **類比**：像一位每次停頓都在觀察權力風向的宮府歌者
+
+**配音提示詞 EN**
+
+```text
+A female voice at the character's stated adult age. Clear controlled mezzo-soprano, mid-high pitch, polished court diction, measured phrasing, precise pauses, outward softness covering vigilance and resolve.
+```
+
+約二十歲的清亮女中音，音高偏中高，宮府咬字精準；語速克制、停頓有意識，柔順表面下保持警醒與決心。
+
+---
+
+## 孫夫人（孫權之妹）
+
+> 主要角色 · 帶著持兵侍女出嫁的江東貴女，在婚姻聯盟與家族命令之間展現剛烈主見。
+
+![孫夫人 左：半身像　右：全身三視圖](images/孫夫人-sheet.png)
+
+### 人物側寫
+
+- **性別**：女
+- **年齡**：約二十至二十五歲（推斷）
+- **身分**：孫權之妹、劉備之妻，江東政治婚姻的核心人物
+- 剛烈 / 尚武 / 自尊 / 果斷 / 重家族
+
+**外貌**　東漢末年江東約二十三歲的漢族貴族女性，眉眼銳利、體態挺拔，帶長期接觸兵器的穩定站姿。穿赤褐與墨綠交領袍裙，外加便於行動的短襦與窄袖，配小型佩劍、皮革護腕和黑色靴履。（推斷）
+
+**性情**　說話直接、行動迅速，不把婚姻視為被動服從；即使被兄長與夫家利用，也會用自己的威勢改變場面。
+
+**動機**　維持江東家族利益與個人尊嚴，避免自己只成為兩方爭奪的物件。
+
+**角色弧線**　從政治婚姻的新婦成為劉備身邊具獨立威勢的夫人，返吳衝突則揭露她的選擇始終受兩國權力挾持。
+
+**人物關係**
+
+- 孫權 — 安排婚姻並召她返吳的兄長
+- 劉備 — 政治婚姻中的丈夫
+- 趙雲 — 在截江事件中阻止她帶走阿斗的將領
+
+**原文依據**
+
+> 玄德大喜。數日之內，大排筵會，孫夫人與玄德結親。至晚客散，兩行紅炬，接引
+
+> 與孫夫人入拜國太。孫夫人曰：「夫主想父母宗祖墳墓，俱在涿郡，晝夜傷感不已。今
+
+> 救下船，折卻水軍無數。遙觀玄德，孫夫人車馬僕從，都停住於山頂之上，瑜如何不氣
+
+> 糧草器仗，尺寸不存。蜀將川兵，降者無數。時孫夫人在吳，聞猇亭兵敗，訛傳先主死
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，赤褐、墨綠與黑色配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a twenty-three-year-old Han Chinese noblewoman from Jiangdong in the early 3rd century, sharp eyes, upright athletic posture and confident bearing shaped by a martial household She wears russet and dark-green Han-period crossed-collar robes with a short practical outer jacket, narrow sleeves, a small ceremonial sword, leather wrist guards and black boots. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：東漢末年江東約二十三歲的漢族貴族女性，眉眼銳利、體態挺拔，帶長期接觸兵器的穩定站姿。穿赤褐與墨綠交領袍裙，外加便於行動的短襦與窄袖，配小型佩劍、皮革護腕和黑色靴履。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a twenty-three-year-old Han Chinese noblewoman from Jiangdong in the early 3rd century, sharp eyes, upright athletic posture and confident bearing shaped by a martial household She wears russet and dark-green Han-period crossed-collar robes with a short practical outer jacket, narrow sleeves, a small ceremonial sword, leather wrist guards and black boots. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the small ceremonial sword, leather wrist guard, crossed collar, compact hair ornament, black riding boot. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：明亮堅實的年輕女中音
+- **音高**：中音
+- **語速**：俐落直接，命令時不拖尾音
+- **口音**：江東貴族語感（推斷）
+- **情緒**：自信、警戒，受制時帶壓住的怒意
+- **類比**：像一位習慣讓持兵侍女立即照令行動的江東女主人
+
+**配音提示詞 EN**
+
+```text
+A female voice at the character's stated adult age. Bright firm mezzo voice, mid pitch, crisp Jiangdong noble diction, brisk direct pace, command without shouting, confidence edged by restrained anger when controlled.
+```
+
+約二十三歲的明亮女中音，音高居中，帶江東貴族語感；節奏俐落直接，命令不需提高音量，受制時有被壓住的怒意。
+
+---
+
+## 糜夫人
+
+> 主要角色 · 在長坂坡潰散中以受傷之身保全幼主，把危局裡的判斷置於自身安危之前。
+
+![糜夫人 左：半身像　右：全身三視圖](images/糜夫人-sheet.png)
+
+### 人物側寫
+
+- **性別**：女
+- **年齡**：約二十五至三十五歲（推斷）
+- **身分**：劉備夫人，長坂坡亂軍中保護阿斗的重要人物
+- 決斷 / 堅忍 / 護幼 / 克制 / 勇敢
+
+**外貌**　東漢末年荊州戰亂中約三十歲的漢族貴族女性，面容疲憊、姿態受傷但眼神堅決。穿蒙塵的赭褐與灰藍漢代袍裙，衣角有奔逃磨損，完整衣著、不呈現傷口獵奇。（推斷）
+
+**性情**　平時端靜，危急時迅速判斷誰能帶孩子突圍，不以哭喊拖延行動。
+
+**動機**　在亂軍中保住阿斗與劉備家系，避免趙雲因照料自己失去突圍機會。
+
+**角色弧線**　她的主要行動集中在長坂坡，短暫卻以極端情勢下的自主決定改變幼主與趙雲的命運。
+
+**人物關係**
+
+- 劉備 — 在戰亂中失散的丈夫
+- 趙雲 — 託付阿斗並要求其立即突圍的將領
+- 阿斗 — 在亂軍中全力保護的幼主
+
+**原文依據**
+
+> 也，糜夫人乃糜竺之妹也。──孫乾、簡雍、糜竺、糜芳守徐州。玄德與張飛屯小沛。
+
+> 棄了車仗，雜於百姓內步行，又撞見一枝軍馬衝散。糜夫人與阿斗不知何往。我獨自逃
+
+> 出重圍。」糜夫人曰：「不可。將軍豈可無馬？此子全賴將軍保護。妾已重傷，死何足
+
+> 帝。尊皇后吳氏為皇太后。甘夫人為昭烈皇后。糜夫人亦追諡為皇后。陞賞群臣，大郝
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，赭褐、灰藍與塵土色配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a thirty-year-old Han Chinese noblewoman during the early-3rd-century Jingzhou campaign, exhausted face, injured guarded posture and unwavering eyes She wears dust-marked russet-brown and gray-blue Han robes with travel wear at the hems, fully clothed and presented without graphic injury. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：東漢末年荊州戰亂中約三十歲的漢族貴族女性，面容疲憊、姿態受傷但眼神堅決。穿蒙塵的赭褐與灰藍漢代袍裙，衣角有奔逃磨損，完整衣著、不呈現傷口獵奇。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a thirty-year-old Han Chinese noblewoman during the early-3rd-century Jingzhou campaign, exhausted face, injured guarded posture and unwavering eyes She wears dust-marked russet-brown and gray-blue Han robes with travel wear at the hems, fully clothed and presented without graphic injury. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the dust-marked sleeve, layered collar, worn hem, simple hairpin, cloth shoe. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：疲憊但穩定的成年女中音
+- **音高**：中音
+- **語速**：呼吸短促仍把指令說清楚
+- **口音**：荊州上層家庭語感（推斷）
+- **情緒**：痛苦中保持決斷
+- **類比**：像一位在亂軍逼近時仍先把孩子交到可靠者手中的母親
+
+**配音提示詞 EN**
+
+```text
+A female voice at the character's stated adult age. Adult mezzo voice, mid pitch, breath shortened by exhaustion yet diction remains clear, restrained noble bearing, decisive urgency without melodrama.
+```
+
+約三十歲的成年女中音，因疲憊而氣息短，仍能把每個指令說清楚；語氣端正克制，急迫而不煽情。
+
+---
+
+## 甘夫人
+
+> 主要角色 · 在長年遷徙與戰亂中維繫劉備家室，也是阿斗身世與蜀漢繼承線的重要母親。
+
+![甘夫人 左：半身像　右：全身三視圖](images/甘夫人-sheet.png)
+
+### 人物側寫
+
+- **性別**：女
+- **年齡**：約二十五至三十五歲（推斷）
+- **身分**：劉備夫人、阿斗生母
+- 沉靜 / 忍耐 / 慈愛 / 適應力強 / 重家人
+
+**外貌**　東漢末年約三十歲的漢族貴族女性，柔和長圓臉、沉靜眼神與略顯旅途疲憊的身形。穿柔褐與淺青漢代交領袍裙，飾物極少，外加便於遷徙的披帛與布鞋。（推斷）
+
+**性情**　面對軍旅遷徙多以沉著配合維持日常，危機中關切孩子與同行者而少作張揚。
+
+**動機**　在反覆流離中保護家人，使幼子能在軍政動盪裡存活。
+
+**角色弧線**　她從劉備家室成員成為阿斗生母，個人形象被戰亂與繼承需求包圍，呈現亂世女性被迫承擔的延續責任。
+
+**人物關係**
+
+- 劉備 — 長期隨軍流離的丈夫
+- 阿斗 — 在戰亂中被保護的幼子
+- 糜夫人 — 共同承受長坂坡危局的夫人
+
+**原文依據**
+
+> 曹操。」玄德用其言，令雲長守下邳；甘、糜二夫人亦於下邳安置──甘夫人乃小沛人
+
+> 再以此言告二嫂。甘夫人曰：「一二人相從，無妨於事。」公乃令周倉撥人伴隨裴元紹
+
+> ：「使主母失散，雲之罪也！糜夫人與小主人安在？」甘夫人曰：「我與糜夫人被逐，
+
+> 帝。尊皇后吳氏為皇太后。甘夫人為昭烈皇后。糜夫人亦追諡為皇后。陞賞群臣，大郝
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，柔褐、淺青與米白配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a thirty-year-old Han Chinese noblewoman living through early-3rd-century military displacement, gentle long-round face, calm eyes and travel-worn bearing She wears soft-brown and pale-cyan Han crossed-collar robes with minimal jewellery, a practical travel shawl and cloth shoes. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：東漢末年約三十歲的漢族貴族女性，柔和長圓臉、沉靜眼神與略顯旅途疲憊的身形。穿柔褐與淺青漢代交領袍裙，飾物極少，外加便於遷徙的披帛與布鞋。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a thirty-year-old Han Chinese noblewoman living through early-3rd-century military displacement, gentle long-round face, calm eyes and travel-worn bearing She wears soft-brown and pale-cyan Han crossed-collar robes with minimal jewellery, a practical travel shawl and cloth shoes. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the minimal hairpin, travel shawl weave, crossed collar, mended hem, cloth shoe. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：柔暖而低調的成年女中音
+- **音高**：中低音
+- **語速**：緩慢清楚
+- **口音**：漢末中原與荊州間的官話語感（推斷）
+- **情緒**：安定、憂心而不失溫柔
+- **類比**：像一位在營帳遷徙間仍維持家中節奏的母親
+
+**配音提示詞 EN**
+
+```text
+A female voice at the character's stated adult age. Warm understated adult mezzo, low-mid pitch, slow clear diction, gentle steadiness shaped by repeated displacement, worry held beneath a calming tone.
+```
+
+約三十歲的柔暖女中音，音高偏中低，語速緩慢清楚；多次遷徙造成的憂心被壓在安定溫柔的語氣下。
+
+---
+
+## 蔡夫人
+
+> 主要角色 · 以母族與內宅影響力介入荊州繼承，為兒子劉琮爭取位置的政治行動者。
+
+![蔡夫人 左：半身像　右：全身三視圖](images/蔡夫人-sheet.png)
+
+### 人物側寫
+
+- **性別**：女
+- **年齡**：約四十至五十歲（推斷）
+- **身分**：劉表後妻、劉琮之母，荊州繼承鬥爭的推動者
+- 精明 / 護子 / 多疑 / 權力敏感 / 果斷
+
+**外貌**　漢末荊州約四十五歲的漢族貴族女性，長方臉、眼神審慎，成熟端正而有管理威勢。穿深紫與墨青厚實曲裾，配蔡氏家族玉飾與整齊高髻，服裝輪廓封閉嚴整。（推斷）
+
+**性情**　擅長把家族關係轉成政治壓力，說話端整卻會迅速排除被視為威脅的人。
+
+**動機**　確保劉琮繼承荊州並維持蔡氏家族影響力。
+
+**角色弧線**　她成功推動劉琮取得繼承位置，卻也讓荊州在外敵壓境時更依賴內部算計與倉促決策。
+
+**人物關係**
+
+- 劉表 — 受其信任並影響繼承安排的丈夫
+- 劉琮 — 全力扶持的兒子
+- 劉備 — 被她視為威脅並設法排除的客將
+
+**原文依據**
+
+> 表喜，欲從其言。蔡瑁告其姊蔡夫人曰：「劉備遣三將居外，而自居荊州，久必為
+
+> 卻說劉表聞玄德語，口雖不言，心懷不樂，別了玄德，退入內宅。蔡夫人曰：「適
+
+> 宗族，分領荊州之兵；命治中鄧義、別駕劉先守荊州。蔡夫人自與劉琮前赴襄陽駐紮，
+
+> 殺死劉琮及蔡夫人。于禁回報曹操，操重賞于禁，便使人往隆中搜尋孔明妻小，卻不知
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，深紫、墨青與冷玉配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a forty-five-year-old Han Chinese aristocratic political matriarch in early-3rd-century Jingzhou, mature rectangular face, cautious eyes and controlled authority She wears weighty deep-purple and ink-cyan Han quju robes, a clan jade ornament and a precise high bun, with a closed formal silhouette. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：漢末荊州約四十五歲的漢族貴族女性，長方臉、眼神審慎，成熟端正而有管理威勢。穿深紫與墨青厚實曲裾，配蔡氏家族玉飾與整齊高髻，服裝輪廓封閉嚴整。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a forty-five-year-old Han Chinese aristocratic political matriarch in early-3rd-century Jingzhou, mature rectangular face, cautious eyes and controlled authority She wears weighty deep-purple and ink-cyan Han quju robes, a clan jade ornament and a precise high bun, with a closed formal silhouette. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the clan jade ornament, precise high bun, heavy robe border, formal sash, dark cloth shoe. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：冷靜厚實的中年女中音
+- **音高**：中低音
+- **語速**：慢而有審議感
+- **口音**：荊州上層家族語感（推斷）
+- **情緒**：克制、多疑，談及兒子時轉為強硬
+- **類比**：像一位在家宴中也能推動繼承決策的宗族女主人
+
+**配音提示詞 EN**
+
+```text
+A female voice at the character's stated adult age. Mature firm contralto, low-mid pitch, slow deliberative cadence, aristocratic Jingzhou diction, controlled suspicion and sharpened resolve when protecting her son.
+```
+
+約四十五歲的厚實女低音，音高偏中低，節奏緩慢而像在審議；帶荊州上層家族語感，克制多疑，護子時轉為強硬。
+
+---
+
+## 伏皇后（伏后）
+
+> 主要角色 · 身在受控宮廷仍試圖聯絡外援反抗曹操，以皇后身分承擔高風險政治行動。
+
+![伏皇后 左：半身像　右：全身三視圖](images/伏皇后-sheet.png)
+
+### 人物側寫
+
+- **性別**：女
+- **年齡**：約三十至四十歲（推斷）
+- **身分**：漢獻帝皇后，反對曹操專權的宮廷政治人物
+- 剛毅 / 憂國 / 謹慎 / 有政治判斷 / 敢於反抗
+
+**外貌**　漢末許都約三十五歲的漢族皇后，端長臉、深眼窩與長期緊繃的克制神情。穿暗朱與玄黑漢代皇后禮服，玉飾與冠飾莊重克制，不採後世戲曲鳳冠。（推斷）
+
+**性情**　長期在監視下保持儀態，私下行動慎密；被逼至絕境時仍以皇后尊嚴面對權臣。
+
+**動機**　削弱曹操對天子的控制，恢復漢室政治自主並保護皇帝。
+
+**角色弧線**　她從被挾持宮廷中的皇后轉為主動密謀者，失敗後遭到殘酷清算，凸顯漢室名位與實權的斷裂。
+
+**人物關係**
+
+- 漢獻帝 — 共同受曹操控制並試圖維護的丈夫
+- 曹操 — 她密謀反抗的權臣
+- 伏完 — 被寄望提供外援的父親
+
+**原文依據**
+
+> 傕姪李暹引兵圍住宮院，用車二乘，一乘載天子，一乘載伏皇后，使賈詡、左靈監
+
+> ，勿怨朕躬！」言訖，淚下如雨。伏后亦大哭。操怒曰：「猶作女兒態耶！」叱武士牽
+
+> 少頃，尚書令華歆引五百兵入到後殿，問宮人：「伏后何在？」宮人皆推不知。歆
+
+> 當年伏后出宮門，跣足哀號別至尊。司馬今朝依此例，天教還報在兒孫。
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，暗朱、玄黑與冷玉配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a thirty-five-year-old Han Chinese empress in late-2nd-century Xuchang, dignified long face, deep-set watchful eyes and tension held beneath formal composure She wears dark-vermilion and black Han imperial court robes with restrained jade ornaments and a historically grounded formal headdress, not a later opera crown. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：漢末許都約三十五歲的漢族皇后，端長臉、深眼窩與長期緊繃的克制神情。穿暗朱與玄黑漢代皇后禮服，玉飾與冠飾莊重克制，不採後世戲曲鳳冠。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a thirty-five-year-old Han Chinese empress in late-2nd-century Xuchang, dignified long face, deep-set watchful eyes and tension held beneath formal composure She wears dark-vermilion and black Han imperial court robes with restrained jade ornaments and a historically grounded formal headdress, not a later opera crown. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the grounded formal headdress, jade pendant, dark-vermilion woven border, sealed letter sleeve, black court shoe. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：端肅而微顫的成年女中音
+- **音高**：中音
+- **語速**：公開場合極慢，私語時緊促
+- **口音**：漢末宮廷雅正語感（推斷）
+- **情緒**：恐懼受控而意志堅定
+- **類比**：像一位知道宮牆有耳、仍要把密令說完整的皇后
+
+**配音提示詞 EN**
+
+```text
+A female voice at the character's stated adult age. Dignified adult mezzo, mid pitch, formal court diction, very slow in public and compressed in private, fear tightly controlled beneath political resolve.
+```
+
+約三十五歲的端肅女中音，音高居中，宮廷咬字雅正；公開場合極慢，私下密語緊促，恐懼被嚴密控制在政治決心之下。
+
+---
+
+## 甄氏（甄夫人）
+
+> 主要角色 · 在袁曹政權更替中被迫轉換家族位置的貴族女性，其處境映出勝負如何進入婚姻。
+
+![甄氏 左：半身像　右：全身三視圖](images/甄氏-sheet.png)
+
+### 人物側寫
+
+- **性別**：女
+- **年齡**：約二十至三十歲（推斷）
+- **身分**：袁熙之妻，鄴城陷落後進入曹氏家族
+- 端莊 / 審慎 / 適應力強 / 自持 / 敏感
+
+**外貌**　漢末河北約二十五歲的漢族貴族女性，端正橢圓臉、沉靜眼神與收束的站姿。穿灰紫與月白漢代交領袍裙，飾物精緻而低調，保留由袁入曹的中性克制。（推斷）
+
+**性情**　身處勝者審視時保持禮貌與自制，極少讓私人情緒直接外露。
+
+**動機**　在政權更替與婚姻被重新安排時保全生命、尊嚴與家人。
+
+**角色弧線**　她由袁氏媳婦成為曹丕之妻，身分轉換主要由軍事勝負決定，呈現亂世貴族女性選擇空間的侷限。
+
+**人物關係**
+
+- 袁熙 — 原先的丈夫
+- 曹丕 — 鄴城陷落後迎娶她的勝方公子
+- 曹操 — 決定曹氏家族安排的權力中心
+
+**原文依據**
+
+> 男袁熙之妻甄氏也。因熙出鎮幽州，甄氏不肯遠行，故留於此。」
+
+> 不能保全妾家，願獻甄氏為世子執箕帚。」操教喚出甄氏拜於前。操視之曰：「真吾兒
+
+> 」。自丕納為貴妃，因甄夫人失寵，郭貴妃欲謀為后，卻與幸臣張韜商議。時丕有疾，
+
+> 帝，謚母甄氏為文昭皇后。封鐘繇為太傅，曹真為大將軍，曹休為大司馬，華歆為太尉
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，灰紫、月白與冷銀配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a twenty-five-year-old Han Chinese noblewoman from late-2nd-century Hebei, balanced oval face, quiet observant eyes and a restrained formal posture She wears gray-violet and moon-white Han crossed-collar robes with refined but understated ornaments and a controlled neutral silhouette. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：漢末河北約二十五歲的漢族貴族女性，端正橢圓臉、沉靜眼神與收束的站姿。穿灰紫與月白漢代交領袍裙，飾物精緻而低調，保留由袁入曹的中性克制。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a twenty-five-year-old Han Chinese noblewoman from late-2nd-century Hebei, balanced oval face, quiet observant eyes and a restrained formal posture She wears gray-violet and moon-white Han crossed-collar robes with refined but understated ornaments and a controlled neutral silhouette. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the understated hairpin, layered collar, fine woven border, narrow sash, pale cloth shoe. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：清柔而自持的年輕女中音
+- **音高**：中高音
+- **語速**：慢，字句留有距離
+- **口音**：河北士族語感（推斷）
+- **情緒**：端莊、戒備，悲傷不外露
+- **類比**：像一位在勝者家中必須讓每句話都無可挑剔的貴族女子
+
+**配音提示詞 EN**
+
+```text
+A female voice at the character's stated adult age. Soft restrained young mezzo, mid-high pitch, refined Hebei noble diction, slow distanced phrasing, formal composure with guarded grief kept internal.
+```
+
+約二十五歲的清柔女中音，音高偏中高，帶河北士族語感；語速緩慢、字句留有距離，端莊表面下把戒備與悲傷收住。
+
+---
+
+## 祝融夫人
+
+> 主要角色 · 能以飛刀和騎戰正面迎敵的南中女將，在部族與婚姻聯盟中擁有實際軍事能力。
+
+![祝融夫人 左：半身像　右：全身三視圖](images/祝融夫人-sheet.png)
+
+### 人物側寫
+
+- **性別**：女
+- **年齡**：約二十五至三十五歲（推斷）
+- **身分**：南中孟獲之妻、親自率軍出戰的女性武將
+- 勇猛 / 果斷 / 自信 / 忠於部族 / 好勝
+
+**外貌**　三世紀南中約三十歲的本地女性武將，日曬膚色、顴骨分明、體格矯健，眼神直接。穿以棕紅、靛藍和皮革構成的南中實戰服，配織紋護臂、飛刀套與短靴，避免通用奇幻裸甲。（推斷）
+
+**性情**　戰場上反應直接，對挑戰以行動回答；不因對手名聲退讓，也不把自己縮在丈夫身後。
+
+**動機**　保衛孟獲政權與南中自主，證明自己的戰力足以承擔部族危機。
+
+**角色弧線**　她以少見的女性武將身分直接改變戰局，雖最終敗於蜀軍，仍以戰力而非婚姻附屬被故事記住。
+
+**人物關係**
+
+- 孟獲 — 共同抵抗蜀軍的丈夫
+- 趙雲 — 南征戰場上的對手
+- 諸葛亮 — 主導南征與招撫的蜀漢統帥
+
+**原文依據**
+
+> 馬忠聽得張嶷被執，急出救時，早被蠻兵困住。望見祝融夫人挺標勒馬而立，忠忿
+
+> 前去。次日，蠻兵報入洞中，說趙雲搦戰。祝融夫人即上馬出迎。二人戰不數合，雲撥
+
+> 獲不從，今將孟獲並祝融夫人及宗黨數百餘人盡皆擒來，獻與丞相。」
+
+> 卻說孟獲與祝融夫人並孟優、帶來洞主、一切宗黨在別帳飲酒。忽一人入帳謂孟獲
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，棕紅、靛藍與皮革色配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a thirty-year-old woman warrior native to the Nanzhong region in the 3rd century, sun-browned skin, defined cheekbones, athletic build and direct fearless gaze She wears practical brown-red and indigo regional textiles with leather reinforcement, woven bracers, a fitted throwing-knife case and sturdy short boots, never revealing fantasy armour. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：三世紀南中約三十歲的本地女性武將，日曬膚色、顴骨分明、體格矯健，眼神直接。穿以棕紅、靛藍和皮革構成的南中實戰服，配織紋護臂、飛刀套與短靴，避免通用奇幻裸甲。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a thirty-year-old woman warrior native to the Nanzhong region in the 3rd century, sun-browned skin, defined cheekbones, athletic build and direct fearless gaze She wears practical brown-red and indigo regional textiles with leather reinforcement, woven bracers, a fitted throwing-knife case and sturdy short boots, never revealing fantasy armour. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the throwing-knife case, woven bracer, regional textile pattern, leather fastening, sturdy short boot. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：明亮有力的成年女中音
+- **音高**：中音
+- **語速**：短句迅速，戰場上投射強
+- **口音**：南中地域語感（推斷）
+- **情緒**：自信、好勝、忠誠
+- **類比**：像一位在馬背上也能把軍令喊得清楚的部族女將
+
+**配音提示詞 EN**
+
+```text
+A female voice at the character's stated adult age. Powerful adult mezzo, mid pitch, strong outdoor projection, concise rapid commands, Nanzhong regional colouring, fearless competitive energy and loyalty.
+```
+
+約三十歲的有力女中音，音高居中，戶外投射強；短句迅速，帶南中地域語感，自信好勝而忠於部族。
+
+---
+
+## 劉備（玄德、劉玄德、先主）
+
+> 主要角色 · 以仁厚名望、韌性與結盟能力在亂世反覆失地又重建勢力的核心領袖。
+
+![劉備 左：半身像　右：全身三視圖](images/劉備-sheet.png)
+
+### 人物側寫
+
+- **性別**：男
+- **年齡**：約四十至五十歲（推斷）
+- **身分**：蜀漢開國君主，漢室宗親與流動軍政集團領袖
+- 仁厚 / 堅韌 / 善結盟 / 克制 / 有政治野心
+
+**外貌**　漢末至三國約四十五歲的漢族領袖，長臉、大耳特徵含蓄呈現，眼神溫和而疲憊，體態端穩。穿素雅土黃與深青漢代長袍，外加低調甲片護肩和雙股劍佩帶，兼具流亡君主與統帥身分。（推斷）
+
+**性情**　待人溫和、善於傾聽，重大挫敗後仍能迅速尋求新盟友；情感真切也能成為政治號召。
+
+**動機**　建立足以匡扶漢室並安置追隨者的政權，取得不再寄人籬下的根據地。
+
+**角色弧線**　從地方義軍領袖歷經多次依附與流亡，終於據有益州、建立蜀漢；仁義理想與帝王選擇也逐漸產生張力。
+
+**人物關係**
+
+- 關羽 — 結義兄弟與核心將領
+- 張飛 — 結義兄弟與先鋒武將
+- 諸葛亮 — 三顧延請的軍師與政略核心
+- 孫夫人 — 吳蜀聯盟下的政治婚姻
+
+**原文依據**
+
+> 山靖王劉勝之後，漢景帝閣下玄孫﹔姓劉，名備，字玄德。昔劉勝之子劉貞，漢武時封
+
+> 。張武、陳孫引兵來迎。玄德與關、張、趙雲出馬在門旗下。望見張武所騎之馬，極其
+
+> 德若投旱路，必經此道而過。當日徐盛、丁奉瞭望得玄德一行人到，各綽兵器截住去路
+
+> 鎮中土。樓桑玄德本皇孫，義結關張願扶主。東西奔走恨無家，將寡兵微作羈旅。南陽
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，土黃、深青與暗鐵配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a forty-five-year-old Han Chinese warlord and claimant in the early 3rd century, long face, subtly prominent ears, compassionate tired eyes and steady dignified posture He wears restrained earth-yellow and deep-cyan Han robes with modest lamellar shoulder protection, a paired-sword harness and practical dark boots. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：漢末至三國約四十五歲的漢族領袖，長臉、大耳特徵含蓄呈現，眼神溫和而疲憊，體態端穩。穿素雅土黃與深青漢代長袍，外加低調甲片護肩和雙股劍佩帶，兼具流亡君主與統帥身分。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a forty-five-year-old Han Chinese warlord and claimant in the early 3rd century, long face, subtly prominent ears, compassionate tired eyes and steady dignified posture He wears restrained earth-yellow and deep-cyan Han robes with modest lamellar shoulder protection, a paired-sword harness and practical dark boots. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the paired-sword harness, modest lamellar shoulder, woven robe border, simple crown, practical boot. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：溫厚帶疲憊的中年男中音
+- **音高**：中低音
+- **語速**：從容，說服人時留足停頓
+- **口音**：漢末北方士人官話語感（推斷）
+- **情緒**：仁厚、悲憫，決斷時不失硬度
+- **類比**：像一位屢次失去城池仍能讓追隨者留下的領袖
+
+**配音提示詞 EN**
+
+```text
+A male voice at the character's stated adult age. Warm mature baritone, low-mid pitch, deliberate persuasive cadence, educated northern Han diction, compassionate fatigue with resilient authority.
+```
+
+約四十五歲的溫厚男中音，音高偏中低，節奏從容且善用停頓；帶北方士人語感，疲憊與悲憫之下仍有韌性和權威。
+
+---
+
+## 關羽（關公、雲長、關雲長）
+
+> 主要角色 · 以忠義、自尊與壓倒性武勇著稱的統帥，威嚴也可能轉成孤高判斷。
+
+![關羽 左：半身像　右：全身三視圖](images/關羽-sheet.png)
+
+### 人物側寫
+
+- **性別**：男
+- **年齡**：約四十至五十歲（推斷）
+- **身分**：劉備結義兄弟、蜀漢核心將領
+- 忠義 / 勇猛 / 自負 / 守信 / 威嚴
+
+**外貌**　三世紀約四十五歲的漢族武將，身材高大，面色偏紅、鳳眼、長髯，威嚴但不做神像化妝。穿墨綠戰袍與暗鐵札甲，配青龍偃月刀、綠色頭巾與厚底戰靴，材質務實。（推斷）
+
+**性情**　平日寡言，對認可者有禮，面對敵手與不被尊重者則顯得冷峻傲慢。
+
+**動機**　守護劉備集團與結義承諾，以軍功維持自身忠義名聲。
+
+**角色弧線**　從共同起兵的武將成為獨鎮荊州的統帥，個人威望達到高峰，也因孤立與輕敵走向敗亡。
+
+**人物關係**
+
+- 劉備 — 誓約與政治共同體的兄長
+- 張飛 — 性情相反的結義弟弟
+- 曹操 — 曾厚待他卻無法留住其忠心的敵方領袖
+
+**原文依據**
+
+> 吾姓關，名羽，字壽長，後改雲長，河東解良人也。因本處勢豪，倚勢凌人，被吾殺了
+
+> 關公稱謝，護送車仗，住滎陽進發。滎陽太守王植，卻與韓福是兩親家；聞得關公
+
+> 告雲長欲殺之事。玄德曰：「吾弟性急，極難與言。子諭可暫回，容吾取了東川，漢中
+
+> 恤將士家屬，因此關公軍勢瓦解。今淮南將士家屬，皆在中原，可急撫恤，更以兵斷其
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，墨綠、暗鐵與赭紅配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a very tall forty-five-year-old Han Chinese general in the early 3rd century, naturally ruddy face, narrow phoenix eyes, exceptionally long dark beard and grave commanding posture, historical human rather than deity He wears a deep-green war robe over dark iron lamellar armour, a green headcloth, heavy campaign boots and carries a long crescent-bladed polearm. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：三世紀約四十五歲的漢族武將，身材高大，面色偏紅、鳳眼、長髯，威嚴但不做神像化妝。穿墨綠戰袍與暗鐵札甲，配青龍偃月刀、綠色頭巾與厚底戰靴，材質務實。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a very tall forty-five-year-old Han Chinese general in the early 3rd century, naturally ruddy face, narrow phoenix eyes, exceptionally long dark beard and grave commanding posture, historical human rather than deity He wears a deep-green war robe over dark iron lamellar armour, a green headcloth, heavy campaign boots and carries a long crescent-bladed polearm. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the crescent polearm blade, long beard, green headcloth knot, lamellar plate lacing, heavy campaign boot. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：深沉有金屬感的成熟男低音
+- **音高**：低音
+- **語速**：慢而字句分明
+- **口音**：河東武人語感（推斷）
+- **情緒**：威嚴、自信，鄙夷時更冷
+- **類比**：像一位不必提高音量便能讓軍帳安靜的主將
+
+**配音提示詞 EN**
+
+```text
+A male voice at the character's stated adult age. Deep mature bass-baritone with metallic firmness, low pitch, slow exact diction, Hedong martial colouring, grave authority and cold disdain when challenged.
+```
+
+約四十五歲的深沉男低音，音高低，咬字慢而分明；帶河東武人語感，威嚴厚重，受挑戰時冷意更強。
+
+---
+
+## 張飛（翼德、張翼德）
+
+> 主要角色 · 以爆發力、直率與震懾性嗓門衝在最前，也因失控暴烈傷害自己的軍隊。
+
+![張飛 左：半身像　右：全身三視圖](images/張飛-sheet.png)
+
+### 人物側寫
+
+- **性別**：男
+- **年齡**：約三十五至四十五歲（推斷）
+- **身分**：劉備結義兄弟、蜀漢猛將
+- 勇猛 / 直率 / 暴躁 / 重義 / 好酒
+
+**外貌**　三世紀約四十歲的漢族猛將，肩背極寬，豹頭環眼、濃密短鬚，肌肉厚實而動勢前傾。穿黑褐戰袍與粗重鐵甲，配丈八蛇矛、紅黑護腕與耐磨戰靴。（推斷）
+
+**性情**　情緒幾乎直接化成音量與行動，對兄弟極重情，對部下卻常缺乏節制。
+
+**動機**　以戰功保護結義兄長與集團，用正面力量迅速解決威脅。
+
+**角色弧線**　從起兵猛將一路建立赫赫戰功，卻始終未能完全克服酒後暴虐，最終被身邊部下反噬。
+
+**人物關係**
+
+- 劉備 — 忠誠追隨的結義兄長
+- 關羽 — 並肩作戰的結義兄長
+- 呂布 — 多次正面交鋒的強敵
+
+**原文依據**
+
+> 形貌異常，問其姓名。其人曰：「某姓張，名飛，字翼德。世居涿郡，頗有莊田，賣酒
+
+> 次日，又使趙雲搦戰。操兵旬日不出。玄德再使張飛搦戰，操兵亦不出。玄德愈疑
+
+> 四個人說道：「將軍不須心焦。這幾日打探得有一條小路，可以偷過巴郡。」張飛故意
+
+> 張翼德大戰張郃，人皆驚懼。吾今日見之，方知其勇也。若留下此人，必為蜀中之害。
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，黑褐、暗鐵與深紅配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a massively broad forty-year-old Han Chinese shock general in the early 3rd century, round fierce eyes, heavy brows, dense short beard, thick muscular build and forward-driving stance He wears black-brown war robes beneath heavy iron lamellar armour, red-black bracers, durable campaign boots and carries a long serpent-bladed spear. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：三世紀約四十歲的漢族猛將，肩背極寬，豹頭環眼、濃密短鬚，肌肉厚實而動勢前傾。穿黑褐戰袍與粗重鐵甲，配丈八蛇矛、紅黑護腕與耐磨戰靴。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a massively broad forty-year-old Han Chinese shock general in the early 3rd century, round fierce eyes, heavy brows, dense short beard, thick muscular build and forward-driving stance He wears black-brown war robes beneath heavy iron lamellar armour, red-black bracers, durable campaign boots and carries a long serpent-bladed spear. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the serpent spear point, dense short beard, iron plate lacing, red-black bracer, worn campaign boot. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：雷鳴般粗厚的成熟男低音
+- **音高**：低音
+- **語速**：短促爆發，飲酒後更急
+- **口音**：燕趙武人口音（推斷）
+- **情緒**：豪烈、易怒、重情
+- **類比**：像一聲能壓過戰鼓的軍陣喝令
+
+**配音提示詞 EN**
+
+```text
+A male voice at the character's stated adult age. Thunderous rough bass, very low pitch, explosive short phrases, northern martial accent, huge projection, fierce loyalty and volatile anger.
+```
+
+約四十歲的雷鳴男低音，音高極低，短句爆發、投射巨大；帶北方武人口音，豪烈重情而易怒。
+
+---
+
+## 諸葛亮（孔明、諸葛孔明、臥龍）
+
+> 主要角色 · 以長期規畫、知識與自律把流亡集團變成國家的軍政設計者。
+
+![諸葛亮 左：半身像　右：全身三視圖](images/諸葛亮-sheet.png)
+
+### 人物側寫
+
+- **性別**：男
+- **年齡**：約三十五至四十五歲（推斷）
+- **身分**：蜀漢丞相、軍師與政略核心
+- 冷靜 / 自律 / 深謀 / 勤勉 / 責任感強
+
+**外貌**　三世紀約四十歲的漢族軍師，清瘦長臉、眼神冷靜，留短鬚，姿態端直而不武張。穿羽白與深灰寬袖文士袍，戴綸巾，持羽扇，腰間掛簡牘袋與小型印綬。（推斷）
+
+**性情**　說話平穩、善用層層推演取得信任，壓力越大越少顯露情緒。
+
+**動機**　實踐隆中對、輔佐劉備與後主，使蜀漢在強敵間維持自主。
+
+**角色弧線**　從隆中隱士被三顧請出，逐步成為蜀漢軍政中樞；成功建立制度，也因事事親決承擔近乎耗盡生命的責任。
+
+**人物關係**
+
+- 劉備 — 三顧延請並託付國政的君主
+- 周瑜 — 赤壁合作又彼此競逐的吳軍統帥
+- 司馬懿 — 北伐中長期較量的魏國對手
+
+**原文依據**
+
+> 孔明。乃漢司隸校尉諸葛豐之後其父名珪，字子貢，為泰山郡丞，早卒。亮從其叔玄。
+
+> 且說玄德在葭萌關日久，甚得民心。忽接得孔明文書，知孫夫人已回東吳。又聞曹
+
+> 訖，然後自與梁虔引出城等候；只留梁緒、尹賞守城。原來孔明果遣趙雲引一軍埋伏於
+
+> 白帝託孤堪痛楚！孔明六出祁山前，願以隻手將天補。何期歷數到此終，長星半夜落山
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，羽白、深灰與竹褐配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a lean forty-year-old Han Chinese strategist in the 3rd century, long composed face, calm analytical eyes, short neat beard and upright unshowy posture He wears feather-white and deep-gray scholar robes, a historically grounded guan scarf, carries a feather fan, bamboo-slip case and modest official seal. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：三世紀約四十歲的漢族軍師，清瘦長臉、眼神冷靜，留短鬚，姿態端直而不武張。穿羽白與深灰寬袖文士袍，戴綸巾，持羽扇，腰間掛簡牘袋與小型印綬。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a lean forty-year-old Han Chinese strategist in the 3rd century, long composed face, calm analytical eyes, short neat beard and upright unshowy posture He wears feather-white and deep-gray scholar robes, a historically grounded guan scarf, carries a feather fan, bamboo-slip case and modest official seal. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the feather fan, guan scarf fold, bamboo-slip case, official seal, cloth shoe. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：清冷穩定的成熟男中音
+- **音高**：中音
+- **語速**：從容而邏輯分段清楚
+- **口音**：荊襄士人語感（推斷）
+- **情緒**：克制、自信，疲憊極少外露
+- **類比**：像一位在軍帳中把複雜局勢拆成可執行步驟的丞相
+
+**配音提示詞 EN**
+
+```text
+A male voice at the character's stated adult age. Cool steady mature baritone, mid pitch, precise logical segmentation, Jingxiang scholar diction, restrained confidence and fatigue kept almost inaudible.
+```
+
+約四十歲的清冷男中音，音高居中，語句依邏輯分段；帶荊襄士人語感，自信克制，疲憊幾乎不外露。
+
+---
+
+## 曹操（孟德、曹孟德、魏王）
+
+> 主要角色 · 兼具政治手腕、軍事冒險與詩人氣質的權力中心，善用人才也深受猜疑驅動。
+
+![曹操 左：半身像　右：全身三視圖](images/曹操-sheet.png)
+
+### 人物側寫
+
+- **性別**：男
+- **年齡**：約五十至六十歲（推斷）
+- **身分**：魏國奠基者、漢末權臣與統帥
+- 雄才 / 多疑 / 果決 / 善用人 / 富文采
+
+**外貌**　漢末約五十五歲的漢族統帥，身高中等、額頭寬，眼神敏銳多變，鬍鬚整齊而略帶風霜。穿玄黑與暗紅統帥袍甲，配簡潔冠帽、佩劍與虎符，避免純粹白臉奸臣化妝。（推斷）
+
+**性情**　談笑與威嚇切換迅速，能欣賞才能，也會在安全感受威脅時先下手為強。
+
+**動機**　結束群雄割據並把秩序掌握在自己手中，以實際能力而非舊名分統合天下。
+
+**角色弧線**　從討董諸侯成為控制漢廷的魏王，建立最強政權；成功與猜疑同步擴張，使他始終既是秩序建立者也是威脅來源。
+
+**人物關係**
+
+- 劉備 — 互相辨識野心並長期競逐的對手
+- 關羽 — 賞識並試圖收服的敵將
+- 司馬懿 — 納入麾下但保持戒心的後期謀臣
+
+**原文依據**
+
+> 長髯；官拜騎都尉；沛國譙郡人也：姓曹，名操，字孟德。操父曹嵩，本姓夏侯氏；因
+
+> 、李典等，各持兵器，前後擁衛。曹操以鞭指袁紹曰：「吾於天子之前，保奏你為大將
+
+> 馬騰兄子馬岱諫曰：「曹操心懷叵測，叔父若往，死遭其害。」超曰：「兒願盡起
+
+> 瓚，各逞雄才占一方。曹操專權居相府，牢籠英俊用文武。威震天子令諸侯，總領貔貅
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，玄黑、暗紅與鐵灰配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a fifty-five-year-old Han Chinese warlord and statesman in the early 3rd century, medium stature, broad forehead, quick assessing eyes, weathered face and neatly kept beard He wears black and dark-red command robes over restrained lamellar armour, a compact formal crown, sword, military tally and black boots. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：漢末約五十五歲的漢族統帥，身高中等、額頭寬，眼神敏銳多變，鬍鬚整齊而略帶風霜。穿玄黑與暗紅統帥袍甲，配簡潔冠帽、佩劍與虎符，避免純粹白臉奸臣化妝。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a fifty-five-year-old Han Chinese warlord and statesman in the early 3rd century, medium stature, broad forehead, quick assessing eyes, weathered face and neatly kept beard He wears black and dark-red command robes over restrained lamellar armour, a compact formal crown, sword, military tally and black boots. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the military tally, compact crown, sword hilt, dark-red armour lacing, black command boot. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：乾亮而有穿透力的成熟男中音
+- **音高**：中低音
+- **語速**：機敏多變，詩句時放慢
+- **口音**：譙沛與洛陽官場混合語感（推斷）
+- **情緒**：自信、試探，猜疑時突然收冷
+- **類比**：像一位能在宴席笑談中同時衡量所有人忠誠的統帥
+
+**配音提示詞 EN**
+
+```text
+A male voice at the character's stated adult age. Penetrating mature baritone, low-mid pitch, agile shifts between wit and command, educated northern diction, slows for poetry and turns abruptly cold under suspicion.
+```
+
+約五十五歲的乾亮男中音，音高偏中低，能在機智笑談與軍令間迅速切換；吟詩時放慢，猜疑時聲線突然轉冷。
+
+---
+
+## 孫權（仲謀、孫仲謀、吳侯）
+
+> 主要角色 · 在父兄基業、江東士族與強敵夾擊間維持平衡的年輕君主。
+
+![孫權 左：半身像　右：全身三視圖](images/孫權-sheet.png)
+
+### 人物側寫
+
+- **性別**：男
+- **年齡**：約三十至四十歲（推斷）
+- **身分**：江東之主、孫吳政權核心
+- 沉著 / 善權衡 / 知人 / 有戒心 / 務實
+
+**外貌**　三世紀約三十五歲的漢族江東君主，方長臉、眼神沉著，體態精實而不誇張。穿赭黃與青黑江東君主袍服，配低調冠帽、短劍與虎形帶扣。（推斷）
+
+**性情**　比武將更能等待資訊，聽取多方意見後才定案；決定一出便要求部屬一致執行。
+
+**動機**　守住江東基業，使孫氏在曹劉兩方之間取得自主與長期政權。
+
+**角色弧線**　他從承接兄長基業的年輕領袖成長為能主導聯盟與戰爭的君主，平衡能力既是優勢也常造成反覆。
+
+**人物關係**
+
+- 周瑜 — 倚重的江東統帥
+- 劉備 — 聯盟與競爭交錯的鄰國領袖
+- 孫夫人 — 被納入吳蜀外交安排的妹妹
+
+**原文依據**
+
+> 卻說孫堅有四子，皆吳夫人所生：長子名策，字伯符；次子名權，字仲謀；三子名
+
+> 孫權在後面看見，問曰：「玄德公如何恨此石？」玄德曰：「備年近五旬，不能為
+
+> 鼓譟，舉火如星，喊聲大震。甘寧從寨之南門殺出，無人敢當。孫權令周泰引一枝兵來
+
+> 興遂迎皓為君。皓字元宗，大帝孫權太子孫和之子也。當年七月，即皇帝位，改元
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，赭黃、青黑與古銅配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a thirty-five-year-old Han Chinese ruler of Jiangdong in the early 3rd century, square-long face, steady evaluating eyes and compact disciplined build He wears ochre-yellow and blue-black ruler robes with a restrained crown, short sword, tiger-shaped belt buckle and black boots. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：三世紀約三十五歲的漢族江東君主，方長臉、眼神沉著，體態精實而不誇張。穿赭黃與青黑江東君主袍服，配低調冠帽、短劍與虎形帶扣。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a thirty-five-year-old Han Chinese ruler of Jiangdong in the early 3rd century, square-long face, steady evaluating eyes and compact disciplined build He wears ochre-yellow and blue-black ruler robes with a restrained crown, short sword, tiger-shaped belt buckle and black boots. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the tiger belt buckle, restrained crown, short-sword hilt, woven robe border, black boot. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：沉穩清晰的成年男中音
+- **音高**：中低音
+- **語速**：聽取意見時慢，決策時簡短
+- **口音**：江東上層語感（推斷）
+- **情緒**：務實、戒慎，怒意受控
+- **類比**：像一位會讓群臣把話說完、最後用短句定案的年輕君主
+
+**配音提示詞 EN**
+
+```text
+A male voice at the character's stated adult age. Steady clear adult baritone, low-mid pitch, measured listening cadence followed by concise decisions, Jiangdong court colouring, pragmatic caution and controlled anger.
+```
+
+約三十五歲的沉穩男中音，音高偏中低；聽取意見時節奏慢，決策時短而清楚，帶江東上層語感，務實戒慎。
+
+---
+
+## 周瑜（公瑾、周公瑾、大都督）
+
+> 主要角色 · 兼具音律修養、俊雅風度與軍事決斷的江東統帥，在聯盟中維持吳方主導權。
+
+![周瑜 左：半身像　右：全身三視圖](images/周瑜-sheet.png)
+
+### 人物側寫
+
+- **性別**：男
+- **年齡**：約三十至三十五歲（推斷）
+- **身分**：孫吳大都督、赤壁之戰核心統帥
+- 俊雅 / 果斷 / 自信 / 精於軍事 / 重江東利益
+
+**外貌**　三世紀約三十三歲的漢族江東統帥，清俊長臉、修整短鬚，體格精實，姿態有音樂家般節制。穿深赤與靛青精緻將袍，外覆輕量札甲，配長劍、指揮節與小型音律玉佩。（推斷）
+
+**性情**　禮儀周到而競爭心強，戰場決策快速；對威脅吳國自主的盟友保持高度警戒。
+
+**動機**　擊退曹操、保障江東，並避免劉備集團藉聯盟坐大。
+
+**角色弧線**　他在赤壁達到軍事聲望高峰，後續與劉備、諸葛亮的角力則使聯盟勝利轉化為新的權力焦慮。
+
+**人物關係**
+
+- 孫權 — 信任並授予兵權的君主
+- 諸葛亮 — 赤壁合作又競爭的蜀方軍師
+- 曹操 — 赤壁決戰的北方強敵
+
+**原文依據**
+
+> 乃廬江舒城人：姓周，名瑜，字公瑾。原來孫堅討董卓之時，移家舒城，瑜與孫策同年
+
+> 各出掌中之字，互相觀看，皆大笑。原來周瑜掌中字，乃一『火』字，孔明掌中，亦一
+
+> 卻說周瑜見孔明襲了南郡，又聞他襲了荊襄，如何不氣？氣傷箭瘡，半晌方甦。眾
+
+> ，朕復何疑？」即出升殿，命鎮南大將軍杜預為大都督，引兵十萬出江陵；鎮東大將軍
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，深赤、靛青與冷玉配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a handsome thirty-three-year-old Han Chinese commander from Jiangdong in the early 3rd century, refined long face, neat short beard, athletic build and controlled musician-like poise He wears deep-red and indigo command robes over light lamellar armour, with a long sword, command baton and a small music-themed jade pendant. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：三世紀約三十三歲的漢族江東統帥，清俊長臉、修整短鬚，體格精實，姿態有音樂家般節制。穿深赤與靛青精緻將袍，外覆輕量札甲，配長劍、指揮節與小型音律玉佩。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a handsome thirty-three-year-old Han Chinese commander from Jiangdong in the early 3rd century, refined long face, neat short beard, athletic build and controlled musician-like poise He wears deep-red and indigo command robes over light lamellar armour, with a long sword, command baton and a small music-themed jade pendant. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the command baton, music jade pendant, sword guard, light lamellar lacing, polished boot. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：清亮有權威的年輕男中音
+- **音高**：中音
+- **語速**：流暢，軍令時切得俐落
+- **口音**：江東士族語感（推斷）
+- **情緒**：自信、優雅，競爭時轉銳
+- **類比**：像一位能聽出曲中錯音、也能在火攻前精準下令的統帥
+
+**配音提示詞 EN**
+
+```text
+A male voice at the character's stated adult age. Clear authoritative young baritone, mid pitch, fluid cultured phrasing, crisp military cuts, Jiangdong aristocratic diction, elegant confidence sharpening under rivalry.
+```
+
+約三十三歲的清亮男中音，音高居中，語句流暢有文化修養；軍令切分俐落，帶江東士族語感，競爭時聲線轉銳。
+
+---
+
+## 司馬懿（仲達、司馬仲達）
+
+> 主要角色 · 以耐心、偽裝與風險控制熬過多次政局變化，成為後期真正掌握節奏的人。
+
+![司馬懿 左：半身像　右：全身三視圖](images/司馬懿-sheet.png)
+
+### 人物側寫
+
+- **性別**：男
+- **年齡**：約五十五至六十五歲（推斷）
+- **身分**：曹魏後期統帥與權力核心
+- 隱忍 / 審慎 / 多謀 / 善觀勢 / 意志強
+
+**外貌**　三世紀約六十歲的漢族老年統帥，瘦長臉、眼皮略沉，鬢髮灰白，姿態節省動作而持續觀察。穿灰黑與暗褐魏國官袍，外加低調指揮甲，配竹簡袋、短劍與深色靴。（推斷）
+
+**性情**　很少讓情緒先於判斷，能接受暫時退讓；面對挑釁更重視對手目的而非個人面子。
+
+**動機**　保全家族與自身權力，等待能以最低風險取得決定性優勢的時機。
+
+**角色弧線**　從受曹氏防備的謀臣成為抵抗諸葛亮的主帥，最後利用政變掌握魏國實權，長期隱忍轉成制度性權力。
+
+**人物關係**
+
+- 曹操 — 早期賞用又保持戒心的上位者
+- 諸葛亮 — 北伐中反覆較量的對手
+- 曹爽 — 後期權力鬥爭中被他推翻的政敵
+
+**原文依據**
+
+> 卻說曹操罷三公之職，自以丞相兼之，以毛玠為東曹掾；崔琰為西曹掾；司馬懿為
+
+> ，特來聽調。」真曰：「曾別仲達否？」郃曰：「仲達分付云：『吾軍勝，蜀兵必不退
+
+> 盞燈處而走。只要引得司馬懿入葫蘆谷內，吾自有擒之之計。」
+
+> 生京兆尹司馬防，防生宣帝司馬懿，懿生景帝司馬師，文帝司馬昭；是為七廟也。大事
+
+### 造型
+
+**畫風**　擬真實拍劇組試裝定妝照，灰黑、暗褐與舊銀配色
+
+`live-action`, `photographic`, `wardrobe camera test`, `character sheet`, `real skin texture`, `85mm lens`
+
+**生圖提示詞 EN**
+
+```text
+Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. a sixty-year-old Han Chinese senior commander of Cao Wei in the 3rd century, lean long face, heavy watchful eyelids, graying temples and economical observant posture He wears gray-black and dark-brown Wei official robes with understated command armour, a bamboo-document pouch, short sword and dark boots. Three-quarter waist-up view against a neutral warm-gray seamless studio backdrop, a large soft-box key from the upper left with gentle cool bounce fill, shallow depth of field, face in sharpest focus. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear. No illustration, painting, anime, cartoon, CGI, text, watermark or signature.
+```
+
+擬真實拍劇組試裝定妝照：三世紀約六十歲的漢族老年統帥，瘦長臉、眼皮略沉，鬢髮灰白，姿態節省動作而持續觀察。穿灰黑與暗褐魏國官袍，外加低調指揮甲，配竹簡袋、短劍與深色靴。四分之三半身視角，中性暖灰無縫背景，左上大型柔光箱主光與冷調反射補光，淺景深，面部最清晰。皮膚保留毛孔、細小汗毛與自然膚色變化；眼睛有實拍高光，眉眼略不對稱，髮際線有碎髮；衣料具真實重量、織紋、縫線與褶皺自陰影。
+
+**負向提示詞**
+
+```text
+illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop, modern clothing, modern haircut, cheap cosplay, fantasy armour unrelated to the source
+```
+
+**角色設定圖提示詞 EN**
+
+```text
+Use case: historical-scene. Asset type: live-action production character model sheet. Create ONE 16:9 landscape canvas for a sixty-year-old Han Chinese senior commander of Cao Wei in the 3rd century, lean long face, heavy watchful eyelids, graying temples and economical observant posture He wears gray-black and dark-brown Wei official robes with understated command armour, a bamboo-document pouch, short sword and dark boots. The canvas is divided into three zones by thin hairline rules. LEFT ZONE occupies about 34% of the canvas width: one large front-facing bust portrait, head and shoulders, centred like an ID photograph. BOTH SHOULDERS ARE FULLY VISIBLE with clear space on either side; no side cropping, fade, vignette or rounded bottom; end the portrait with a clean straight horizontal cut below the chest. This portrait is the facial identity anchor. LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with gentle bounce fill, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck. RIGHT-TOP ZONE: three FULL-BODY views of the SAME character, front, left profile and back, standing side by side on one shared ground line. Their faces must match the bust portrait exactly — same features, hairstyle and expression. PROPORTIONS ARE CRITICAL: equal height and head-to-body ratio, correct limb lengths, natural anatomy, feet on the ground line, clear margin above and below, no stretching, squashing or foreshortening. LIGHTING IN THE RIGHT ZONES: flat even orthographic frontal studio light with no directional key and no cast shadows on the backdrop. RIGHT-BOTTOM ZONE: four to five small isolated detail studies, evenly spaced and smaller than the figures: the bamboo-document pouch, graying temple hair, understated armour clasp, short-sword hilt, dark boot. If details do not fit, continue them down the right edge; the detail studies give way, not the figures. Plain pure white background throughout, generous even margins, no scenery, no written labels, no text, no watermark. Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still. True photographic skin with visible pores, fine vellus hair, uneven natural tone, faint capillaries, genuine subsurface scattering, moles and freckles left in place, no beauty retouching or skin smoothing; eyes with a real catchlight, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear.
+```
+
+### 聲音
+
+- **音色**：低而乾的老年男中音
+- **音高**：低音
+- **語速**：極慢，先聽後答
+- **口音**：河內士族官話語感（推斷）
+- **情緒**：冷靜、隱忍，勝券在握時仍不外露
+- **類比**：像一位願意讓對手先耗盡自己、再用一句話結束議論的老統帥
+
+**配音提示詞 EN**
+
+```text
+A male voice at the character's stated adult age. Dry elderly bass-baritone, low pitch, extremely patient cadence, listens before answering, Henei aristocratic diction, controlled calculation with almost no audible triumph.
+```
+
+約六十歲的乾低男中音，音高低，節奏極慢而總是先聽後答；帶河內士族語感，計算與隱忍幾乎不讓勝意外露。
+

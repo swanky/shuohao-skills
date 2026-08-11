@@ -1,0 +1,483 @@
+{
+  "schema_version": "1.0.0",
+  "external_repo": "C:\\cc_home\\novel-characters-lab\\jinpingmei-full",
+  "package_id": "current-visual-authority-cast-v002",
+  "package_recorded_canonical_manifest_sha256": "bcc8b15eb524e6c0837f6e3bd96d3b95e2634114b12d85c605823badf6c05020",
+  "actual_current_manifest_sha256": "95451ae83fe3d5dfb7e81cbf102845cb2b5f9ce695af9299f458adaef057a4a9",
+  "actual_canonical_manifest_sha256": "95451ae83fe3d5dfb7e81cbf102845cb2b5f9ce695af9299f458adaef057a4a9",
+  "package_manifest_hash_drift": true,
+  "authority_snapshot_sha256": "af53b5b3f50cd386d57da9fb771a3dd9dda2068960f4a700604038926a44fcdd",
+  "authority_projection_sha256": "1fe12a28539f79a61a418f10dce97bfa5baeca91ceb7a6a254564ad9d018ebc6",
+  "authority_image_count": 38,
+  "character_count": 19,
+  "publish_action": "NONE",
+  "sheet_generation_strategy": "REFERENCE_LOCKED_GENERATION_WITH_MINOR_SAFETY_EXCEPTION",
+  "reference_locked_generated_count": 18,
+  "deterministic_minor_exception_count": 1,
+  "composite_baseline_directory": "images/composite-baseline",
+  "generated_review_directory": "images/generated-review",
+  "identity_qa": {
+    "status": "PASS_WITH_MINOR_GENERATIVE_VARIANCE",
+    "review_method": "逐張目視比對 master／identity-reference 與 turnaround，檢查臉部骨相、表觀年齡、身形、髮型、衣裝結構、配色、鞋履及跨視角一致性",
+    "accepted_variance": "耳形、眼睛大小、局部鞋型與小型飾品可有輕微生成差異；不得形成另一位演員或另一套服裝",
+    "reviewed_on": "2026-08-11"
+  },
+  "transformations": [
+    {
+      "canonical_name": "潘金蓮",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/core-five/authority/masters/潘金蓮-master.png",
+        "current_path": "_current/images/masters/01-pan-jinlian.png",
+        "sha256": "58f9302b02f87d58f30ac790586b22ab520a9b6bcbdefc952b465ddb22100b9c"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/core-five/authority/images/潘金蓮-turnaround.png",
+        "current_path": "_current/images/turnarounds/01-pan-jinlian.png",
+        "sha256": "a0c2c913fb7758aa5de964fa0df7c66d3caa8f542ea747b1fe6a8e879970e799"
+      },
+      "derived_sheet": {
+        "path": "images/潘金蓮-sheet.png",
+        "sha256": "8064817f4df0b7c2dcf1490cb0a6b1f6f02844207b43993f16590e8cd5b403a7",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "李瓶兒",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/core-five/authority/masters/李瓶兒-master.png",
+        "current_path": "_current/images/masters/02-li-ping-er.png",
+        "sha256": "efb565886bb9c76a2b11142cde750d70fc508f9994237e3ba71cc24cf156a67b"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/core-five/authority/images/李瓶兒-turnaround.png",
+        "current_path": "_current/images/turnarounds/02-li-ping-er.png",
+        "sha256": "da4a07a43709e315eb3998fcda6beb0c2654ea1f690e3c657c674dc6153437dc"
+      },
+      "derived_sheet": {
+        "path": "images/李瓶兒-sheet.png",
+        "sha256": "325cb1bc7baf975499af46cc3a3cf667d0de3f0321cb59d98aee05e7c897cd8d",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "吳月娘",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/core-five/authority/masters/吳月娘-master.png",
+        "current_path": "_current/images/masters/03-wu-yue-niang.png",
+        "sha256": "d1288c90a0d899a11b640773144234cdba262f4e436484b5c719ba60247a783e"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/core-five/authority/images/吳月娘-turnaround.png",
+        "current_path": "_current/images/turnarounds/03-wu-yue-niang.png",
+        "sha256": "aaf537eb5c1977930f780e041a070e44bd72cdcee224702f61e8c30a809b05e0"
+      },
+      "derived_sheet": {
+        "path": "images/吳月娘-sheet.png",
+        "sha256": "eec59a54f7285347f6de54cb56e9ebdca60ccc65c7079c8cd0f2c2d08743e185",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "龐春梅",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/core-five/authority/masters/龐春梅-master.png",
+        "current_path": "_current/images/masters/04-pang-chun-mei.png",
+        "sha256": "ba4bd2aef89550f355f81bfab629840ba7faf569ee72f5203810145677c5fdda"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/core-five/authority/images/龐春梅-turnaround.png",
+        "current_path": "_current/images/turnarounds/04-pang-chun-mei.png",
+        "sha256": "85a21e81edb268c47379ee4a682712a3d4b87b041cb2e04303628cc48e2cc318"
+      },
+      "derived_sheet": {
+        "path": "images/龐春梅-sheet.png",
+        "sha256": "48e390524eb924fd993fd9572c5e6004948a8f23f27d6af01c6e40cabc8db207",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "宋惠蓮",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/core-five/authority/masters/宋惠蓮-master.png",
+        "current_path": "_current/images/masters/05-song-hui-lian.png",
+        "sha256": "03a8b220ac713932f3dcb5438823cca8adb5854b51eef021d2466581ab20fe72"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/core-five/authority/images/宋惠蓮-turnaround.png",
+        "current_path": "_current/images/turnarounds/05-song-hui-lian.png",
+        "sha256": "e68cac056ab6b9ec785eed21339cd65027bcf2ed6219661ac84efe3c21a6ce36"
+      },
+      "derived_sheet": {
+        "path": "images/宋惠蓮-sheet.png",
+        "sha256": "23ca2fcb88fefa5667ebab21aebc59b2dcb6a0c8ebcf97d700bd60ce674c09c0",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "西門慶",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved/ximenqing-main-29-30-v002.png",
+        "current_path": "_current/images/masters/06-ximenqing.png",
+        "sha256": "777a48e69e79d01e72c83b1aa4cc806b7c1e1e9d91114cb0ad5e9dc2b536d262"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved-turnarounds/ximenqing-turnaround-v002-landscape.png",
+        "current_path": "_current/images/turnarounds/06-ximenqing.png",
+        "sha256": "20a7cec53bd9b96367877dd4708a93774f8114c3a3c0cd869e2d59347824a92e"
+      },
+      "derived_sheet": {
+        "path": "images/西門慶-sheet.png",
+        "sha256": "c38fbb7019fcd93ca4bfba6e77d09507a4927e02b24c27b3983da3316f8e7b55",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "孟玉樓",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved/meng-yulou-master-v001.png",
+        "current_path": "_current/images/masters/07-meng-yulou.png",
+        "sha256": "077f3aa9561286048987f6721151427511bb02d5decc7d6e0ca6754831657648"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved-turnarounds/meng-yulou-turnaround-v001.png",
+        "current_path": "_current/images/turnarounds/07-meng-yulou.png",
+        "sha256": "bde8b4855995cd2f41e7d2373361c9fc27d63660e40f40be0ed5043dbf2d1b84"
+      },
+      "derived_sheet": {
+        "path": "images/孟玉樓-sheet.png",
+        "sha256": "d9464901b283f274e40f8033678a14ea74ab4b2e19f48c3230c9f6997e78927f",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "李嬌兒",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY_V002",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved/li-jiaoer-master-v002.png",
+        "current_path": "_current/images/masters/08-li-jiaoer.png",
+        "sha256": "cf263cab2f178cf3db0b6bcd817478dabb6868f62cfeb0d88cdcf3b585455bbf"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved-turnarounds/li-jiaoer-turnaround-v002.png",
+        "current_path": "_current/images/turnarounds/08-li-jiaoer.png",
+        "sha256": "d6b367df11026d4645ef46afddee2c7d3e0704aee35a4cdfdc039c6fa7b3b486"
+      },
+      "derived_sheet": {
+        "path": "images/李嬌兒-sheet.png",
+        "sha256": "d4edd265d606a5f8ef2dd60e7a2d1854f6aba26f8272eb08a3b9548e36550b00",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "陳經濟",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved/chen-jingji-master-v001.png",
+        "current_path": "_current/images/masters/09-chen-jingji.png",
+        "sha256": "160e862cd91d24b0fdba0c5022eb95f906dcc17f18ab8081aadd87958a07dd52"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved-turnarounds/chen-jingji-turnaround-v001.png",
+        "current_path": "_current/images/turnarounds/09-chen-jingji.png",
+        "sha256": "99e1fd65dc69c0e2031a87cd62bd452f7a675737e495e8a4e314ad0af5b40f7e"
+      },
+      "derived_sheet": {
+        "path": "images/陳經濟-sheet.png",
+        "sha256": "cbe7b5b1abcdc68348aabac372ceb6bace6f63329d0a1551e3f7b04021b835f3",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "應伯爵",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved/ying-bojue-master-v001.png",
+        "current_path": "_current/images/masters/10-ying-bojue.png",
+        "sha256": "da719acf5441f69f1eecc7aabb46ea1343f066f887825880df75d3ddc33669dc"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved-turnarounds/ying-bojue-turnaround-v001.png",
+        "current_path": "_current/images/turnarounds/10-ying-bojue.png",
+        "sha256": "5b06e64c39a9d497dd32f7aebd64f1b932ad45dba865cace9b4fccd7d9c645c7"
+      },
+      "derived_sheet": {
+        "path": "images/應伯爵-sheet.png",
+        "sha256": "89be525e6ef889e7a4a3f8d94f4bd56d858e76c270f5e51f12ce6cb5b790963e",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "孫雪娥",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved/sun-xuee-master-v001.png",
+        "current_path": "_current/images/masters/11-sun-xuee.png",
+        "sha256": "db7c8d85bc5cbf88b555b2effdc96931a8bc9a71fb49aba6e5262c0a761a0f45"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/next-six/live-action-masters/v001/approved-turnarounds/sun-xuee-turnaround-v001.png",
+        "current_path": "_current/images/turnarounds/11-sun-xuee.png",
+        "sha256": "55707169dd6aa0e4348007fbdc0660227f97643e2d2f1a9c2774490ccad985da"
+      },
+      "derived_sheet": {
+        "path": "images/孫雪娥-sheet.png",
+        "sha256": "5c739a6213c2081f4703c97bfa363dd70781898a5b0e734a4927402e4f1ef3b9",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "王婆",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_COMPLETE_VISUAL_AUTHORITY_COMPOSITE",
+      "master_or_identity_reference": {
+        "type": "IDENTITY_REFERENCE",
+        "source_path": "data/visuals/characters/wang-po/v001/pilot/candidates/wang-po-master-v001.png",
+        "current_path": "_current/images/identity-references/12-wang-po-identity-only.png",
+        "sha256": "456e5c90d37b41262190d722e825183704c55ba914332d3b3b4a4342b5585fe0"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/wang-po/v001/approved-turnarounds/wang-po-turnaround-v001.png",
+        "current_path": "_current/images/turnarounds/12-wang-po.png",
+        "sha256": "77d5d17dd00472235c8a170e9bc947256fd049c9769222cf90a26419c698ddfe"
+      },
+      "derived_sheet": {
+        "path": "images/王婆-sheet.png",
+        "sha256": "f35040ce98f3b98e43d2b77e6c859fa19aa76e4d7445c7148cb3e183d78e87bc",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "左側身份來源鎖定臉部；右上 turnaround 鎖定體態、衣著與鞋履。"
+    },
+    {
+      "canonical_name": "武植",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/major-cast/v001/authority/wu-zhi/master-v001.png",
+        "current_path": "_current/images/masters/13-wu-zhi.png",
+        "sha256": "95e59822adeeb4d821fdfda49fd33eb335d10492f9a1ea75cf40ef8765086152"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/major-cast/v001/authority/wu-zhi/turnaround-v001.png",
+        "current_path": "_current/images/turnarounds/13-wu-zhi.png",
+        "sha256": "41e7829b4371e68dbd95eca5e1ff8de0ed4b41823def9fb85004408398fc97b1"
+      },
+      "derived_sheet": {
+        "path": "images/武植-sheet.png",
+        "sha256": "ea932f4b809585c7ab2ca571af8679f5626b437a6b296ac8cac31c05fba51ea6",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "花子虛",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/major-cast/v001/authority/hua-zixu/master-v001.png",
+        "current_path": "_current/images/masters/14-hua-zixu.png",
+        "sha256": "e2da110d9b88079ae0654a7f03ae1a66bd96cded7a83ee76b3cc6261e72b6db7"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/major-cast/v001/authority/hua-zixu/turnaround-v001.png",
+        "current_path": "_current/images/turnarounds/14-hua-zixu.png",
+        "sha256": "608f1a072240ef604e68236695da8090b891840b019e03c1a06489397793046b"
+      },
+      "derived_sheet": {
+        "path": "images/花子虛-sheet.png",
+        "sha256": "d4c67c32b3a87dbe89ec1263708f9af9e1f90d0a7fa716eb1b26538f5da511b4",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "韓愛姐",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/major-cast/v001/authority/han-aijie/master-v001.png",
+        "current_path": "_current/images/masters/15-han-aijie.png",
+        "sha256": "16e81a2f4c42c1d2610b60b7204fa905cbb86fe6f6bfce644f0a37ed0eec59fa"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/major-cast/v001/authority/han-aijie/turnaround-v001.png",
+        "current_path": "_current/images/turnarounds/15-han-aijie.png",
+        "sha256": "59ad73a809aaa7c02fb85acda94a2f0c3e84567cd494bc90bd37e57d2c7f74b6"
+      },
+      "derived_sheet": {
+        "path": "images/韓愛姐-sheet.png",
+        "sha256": "b1c99675757cb19764153a1b47c68fba22e9a48fe7ceea1ee3149020bad933d5",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "DETERMINISTIC_COMPOSITE",
+      "note": "僅以既有完整衣著、非情色 authority bytes 作確定性組合，未生成身體或服裝變體。"
+    },
+    {
+      "canonical_name": "周秀",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/major-cast/v001/authority/zhou-xiu/master-v001.png",
+        "current_path": "_current/images/masters/16-zhou-xiu.png",
+        "sha256": "8d5be2b4d0c8a78a41a8febfab6fde7e545223b1156af8edb4e912064d5539cc"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/major-cast/v001/authority/zhou-xiu/turnaround-v001.png",
+        "current_path": "_current/images/turnarounds/16-zhou-xiu.png",
+        "sha256": "58a279336273f6d180073c2aa06da286bb34f31d3d7bb7527fde7786b819f280"
+      },
+      "derived_sheet": {
+        "path": "images/周秀-sheet.png",
+        "sha256": "35ae34f0096b6c021ce881d414cd9d21fd638906feac6a0fee5f679c79f76466",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "武松",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_REPAIRED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/major-cast/v001/authority/wu-song/master-v002.png",
+        "current_path": "_current/images/masters/17-wu-song.png",
+        "sha256": "4ec21e1c81b8af2f7e88c08cf65ad9005b36ec17893777eeccbea43854e4fec8"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/major-cast/v001/authority/wu-song/turnaround-v002.png",
+        "current_path": "_current/images/turnarounds/17-wu-song.png",
+        "sha256": "c0bb7a544f3937a1b6827ababf4b78726f6427c3ba11b4597fc1fcc5db51191d"
+      },
+      "derived_sheet": {
+        "path": "images/武松-sheet.png",
+        "sha256": "ea39b5df0a7ec3ea89c4b0509180e16ab6e1fdd957143842ca57ea0665bf10fd",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "王六兒",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_REPAIRED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/major-cast/v001/authority/wang-liuer/master-v002.png",
+        "current_path": "_current/images/masters/18-wang-liuer.png",
+        "sha256": "07fc39d23531b4cf24d136d69fe97f944f883e001ab889231c477ce33edb07e5"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/major-cast/v001/authority/wang-liuer/turnaround-v002.png",
+        "current_path": "_current/images/turnarounds/18-wang-liuer.png",
+        "sha256": "c16707446864cb0b3c6ddc88e6a06a6c3949035181ec899ab359c80bc44c55b1"
+      },
+      "derived_sheet": {
+        "path": "images/王六兒-sheet.png",
+        "sha256": "f23b6f6f956128787234b0e4b0fd3b8ad3739ab743c1f3ffd42eea3bb1eeb115",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    },
+    {
+      "canonical_name": "普靜",
+      "package_id": "current-visual-authority-cast-v002",
+      "authority_status": "OWNER_APPROVED_REPAIRED_CURRENT_AUTHORITY",
+      "master_or_identity_reference": {
+        "type": "MASTER",
+        "source_path": "data/visuals/characters/major-cast/v001/authority/pu-jing/master-v001.png",
+        "current_path": "_current/images/masters/19-pu-jing.png",
+        "sha256": "851b1a81254610775a9e92e8d3cd6054f7091f1b4deae0f0e85a3251698f2fae"
+      },
+      "turnaround": {
+        "source_path": "data/visuals/characters/major-cast/v001/authority/pu-jing/turnaround-v003.png",
+        "current_path": "_current/images/turnarounds/19-pu-jing.png",
+        "sha256": "73d6a074e916af1d5032e32de3452c464d3251fd2e5beb95b88b1491d6cd0ff3"
+      },
+      "derived_sheet": {
+        "path": "images/普靜-sheet.png",
+        "sha256": "610991ff6bf98f221b968664afdb44a28cd1c9f9ad0b5a21b38438424feb4a41",
+        "width": 1672,
+        "height": 941
+      },
+      "transformation": "REFERENCE_LOCKED_GENERATION",
+      "note": "master 鎖定身份、年齡與主要衣著；turnaround 鎖定正、側、背視圖。"
+    }
+  ]
+}

@@ -167,6 +167,11 @@ ghibli）但内容是环境版——真实感来自用旧的材质，不是皮�
 - 同步上游至 `1327fcf`：新增 `novel-outline`，並合併角色關係圖譜、JSON 匯出、
   預設 30 位角色全數生圖及 EPIPE 修正。
 - 保留本 fork 的臺灣正體中文預設與 `photoreal` 畫風。
+- 新增《紅樓夢》主要女性角色版本化品質基準：八位角色的 JSON／Markdown 資料、
+  HTML 報告、八張預設角色圖，以及林黛玉的 `ghibli`／`photoreal`／`realistic`
+  三種畫風對照圖；八位角色均以完整原文通過 `validate`。
+- 重整 `testdata/`：測試輸入移至 `corpora/`、經驗收的 skill 產物移至
+  `benchmarks/`，尚未執行的中國古典小說角色規劃移至 `docs/plans/`。
 
 **預設輸出台灣正體中文**
 
@@ -211,7 +216,8 @@ ghibli）但内容是环境版——真实感来自用旧的材质，不是皮�
 - `references/schema.md` 的示例自相矛盾：頂層寫 `"style": "realistic"`，
   `image` 卻是 `Flat vector cartoon` + 禁 `photorealistic`。照抄會被 `validate` 擋
 
-自測 220 → 264 項。
+目前 `novel-characters` 自測 318 項、`novel-outline` 自測 200 項，全部通過。
+
 ## novel-outline 1.0.0 — 2026-08-10
 
 首個版本。把一本小說改編成短劇大綱五件套：改編說明 / 人物表 / 爽點表 /
