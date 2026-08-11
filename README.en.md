@@ -1,19 +1,16 @@
 [中文](README.md) · **English**
 
-> These skills are free and open source, built and battle-tested on real AI short-drama production.
-> If they save you an afternoon, consider [**buying me a coffee on Ko-fi**](https://ko-fi.com/eternityspring) ☕ — it keeps the updates coming.
-
 # shuohao-skills
 
-**Agent skills for AI short-drama production** — from a novel to shoot-ready material: character bibles, adaptation outlines, scene & prop bibles. Built for AI coding agents, **runs in both Claude Code and codex**.
-
-> **This is a fork** of [eternityspring/shuohao-skills](https://github.com/eternityspring/shuohao-skills).
-> What differs here:
+> This project is forked from [eternityspring/shuohao-skills](https://github.com/eternityspring/shuohao-skills)
+> and continues to build on the original work. What differs here:
 >
 > - **Defaults to Taiwanese Traditional Chinese** (`zh-TW`) — Taiwanese word choices, not just converted glyphs. Use `--lang zh` for Simplified
 > - Adds a **`photoreal`** style preset: live-action wardrobe camera test
 >
 > See the [CHANGELOG](CHANGELOG.md).
+
+**Agent skills for AI short-drama production** — from a novel to shoot-ready material: character bibles, adaptation outlines, scene & prop bibles. Built for AI coding agents, **runs in both Claude Code and codex**.
 
 | Skill | What it does |
 | --- | --- |
