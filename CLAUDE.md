@@ -57,6 +57,12 @@ This file provides guidance to Claude Code (claude.ai/code) and Codex when worki
 
 所有指令都零依賴，只要 `node` >= 18，沒有 npm 套件、沒有 build 步驟。
 
+從 repo 根目錄一次跑完三套自測：
+
+```bash
+for f in skills/*/scripts/selftest.mjs; do node "$f"; done
+```
+
 ```bash
 cd skills/novel-characters
 
@@ -88,7 +94,7 @@ node scripts/novel-characters.mjs slug "胡二爺"                 # 安全檔�
 
 ### 這個 repo 是什麼
 
-一個 AI 短劇製作 skill 集合，目前包含 `novel-characters` 與 `novel-outline`。**Claude Code 和 codex 都能跑**；需要生圖的步驟由 codex 內建能力處理。
+一個 AI 短劇製作 skill 集合，目前包含 `novel-characters`、`novel-outline` 與 `novel-art`。**Claude Code 和 codex 都能跑**；需要生圖的步驟由 codex 內建能力處理。
 
 一個 skill = 一個目錄 + 一份 `SKILL.md`。`install.sh` 認的就是 `SKILL.md` 存不存在。
 

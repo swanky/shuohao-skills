@@ -2,99 +2,99 @@
 
 # novel-art
 
-给 AI 短剧出**美术设定集**：场景 + 叙事道具。前提刻在骨子里：**这是 AI 生成，不是实拍**——没有堪景、搭景、置景采买，环境和道具都是要被生成几十次还得长一样的资产。交付物不是置景清单，是一致性方案。
+為 AI 短劇製作**美術設定集**：場景 + 敘事道具。前提刻在骨子裡：**這是 AI 生成，不是實拍**——沒有堪景、搭景、置景採買，環境和道具都是要被生成幾十次還得長得一致的資產。交付物不是置景清單，是一致性方案。
 
-**场景层**：
+**場景層**：
 
-- **设计意图** — 这个空间为哪场戏存在，不是户型说明
-- **一致性锚点**（每景 3–5 个） — 每次生成必现的可辨识特征（补丁船篷、断裂的第七块桥板）。观众靠它认场景，QC 靠它核对生成镜头有没有漂
-- **光照时段变体** — AI 换时段是**重新生成不是重新打灯**，每个状态落成完整英文提示词
-- **变体机制** — `variantOf` + `changes` 把衍生场景挂在母场景上，出图拿母场景成图当参考
+- **設計意圖** — 這個空間為哪場戲存在，不是空間格局說明
+- **一致性錨點**（每景 3–5 個） — 每次生成必現的可辨識特徵（補丁船篷、斷裂的第七塊橋板）。觀眾靠它認場景，QC 靠它核對生成鏡頭有沒有漂
+- **光照時段變體** — AI 換時段是**重新生成不是重新打光**，每個狀態寫成完整英文提示詞
+- **變體機制** — `variantOf` + `changes` 把衍生場景掛在母場景上，生圖時使用母場景成圖作為參考
 
-**道具层**（只收**叙事道具**：有特写、跨集、承载剧情，通常 3–8 件）：
+**道具層**（只收**敘事道具**：有特寫、跨集、承載劇情，通常 3–8 件）：
 
-- **戏剧功能** — 皮箱是全剧悬念、旧砚是爆点实体——先说它在剧里干什么
-- **状态变体** — 合上/打开、藏着/摊开：道具有状态弧，每个状态一张参考图
-- **尺度参照** — 手持级/桌面级/家具级，英文短语写死进提示词——AI 把手持道具画成家具尺寸是高频事故
-- **白底无手** — 道具图要被贴进各种镜头，必须纯白可抠；拿着道具的手是最常见污染
+- **戲劇功能** — 皮箱是全劇懸念、舊硯是爆點實體——先說它在劇裡做什麼
+- **狀態變體** — 闔上/打開、藏著/攤開：道具有狀態弧，每個狀態一張參考圖
+- **尺度參照** — 手持級/桌面級/家具級，英文短語明確寫入提示詞——AI 把手持道具畫成家具尺寸是常見問題
+- **白底無手** — 道具圖要被合成進各種鏡頭，因此必須使用純白背景、方便去背；拿著道具的手是最常見汙染
 
-场景陈设归场景锚点、一次性手部道具镜头级提示词解决——都不单独建资产。
+場景陳設歸場景錨點、一次性手部道具鏡頭級提示詞解決——都不單獨建資產。
 
-产出 `art.json` + Markdown + 一个双击就能开的 `art-report.html`：
+產出 `art.json` + Markdown + 一個雙擊就能開的 `art-report.html`：
 
 ![art-report.html](assets/report.webp)
 
-## 质量门：11 道，全是代码
+## 品質門：11 道，全是程式碼
 
-与仓库里另外两个 skill 同一主张：**checklist 交给模型自觉是靠不住的**。
+與倉庫裡另外兩個 skill 同一主張：**checklist 交給模型自覺是靠不住的**。
 
-| 门 | 规则 |
+| 門 | 規則 |
 | --- | --- |
-| 一致性锚点 | 3–5 个（场景与道具同规） |
-| 光照状态 | 每景 ≥1 且落成英文提示词 |
-| **无人** | 反向提示词禁人（场景与道具都查） |
-| 提示词语言 | 全部英文 |
-| 提示词不含角色名 | `validate --cast cast.json` 才查；不给就**明说跳过** |
-| 变体引用完整 | `variantOf` 指向存在的场景且带 `changes` |
-| 风格与反向词匹配 | `realistic` 不禁 photorealistic、`ghibli` 必须禁 |
-| **道具状态** | ≥1 且落成英文提示词 |
-| **道具尺度** | scale 枚举对应的英文短语必须出现在提示词里 |
-| **道具无手** | 反向提示词禁 hands/fingers |
-| **道具白底** | 设定图必须 pure white background |
+| 一致性錨點 | 3–5 個（場景與道具同規） |
+| 光照狀態 | 每景 ≥1 且寫成英文提示詞 |
+| **無人** | 負向提示詞禁人（場景與道具都查） |
+| 提示詞語言 | 全部英文 |
+| 提示詞不含角色名 | `validate --cast cast.json` 才查；不給就**明說跳過** |
+| 變體引用完整 | `variantOf` 指向存在的場景且帶 `changes` |
+| 風格與負向詞相符 | `realistic` 不禁 photorealistic、`ghibli` 必須禁 |
+| **道具狀態** | ≥1 且寫成英文提示詞 |
+| **道具尺度** | scale 列舉對應的英文短語必須出現在提示詞裡 |
+| **道具無手** | 負向提示詞禁 hands/fingers |
+| **道具白底** | 設定圖必須 pure white background |
 
-自测里每道门都有**击穿用例**——证明它真的会拦。
+自測裡每道門都有**反例測試**——證明它真的會攔。
 
-## 跟另外两个 skill 的接力
+## 跟另外兩個 skill 的接力
 
 ```
-novel-characters → cast.json    （谁：角色资产）
-novel-outline    → outline.json （什么：结构与分集）
-novel-art        → art.json     （哪里 + 手里拿的：美术资产）
+novel-characters → cast.json    （誰：角色資產）
+novel-outline    → outline.json （什麼：結構與分集）
+novel-art        → art.json     （哪裡 + 手裡拿的：美術資產）
 ```
 
-- `seed <outline.json>` 确定性预填场景清单、出现集、承载爽点；道具表大纲里没有，模型按 `prop-pass.md` 从原文提取
-- `validate --cast <cast.json>` 用角色表查提示词里有没有混进角色名
-- 画风预设与 novel-characters **同名对齐**（realistic / ghibli）但内容是环境版——真实感来自用旧的材质，不是皮肤毛孔
+- `seed <outline.json>` 確定性預填場景清單、出現集、承載爽點；道具表大綱裡沒有，模型按 `prop-pass.md` 從原文提取
+- `validate --cast <cast.json>` 用角色表查提示詞裡有沒有混進角色名
+- 畫風預設與 novel-characters **使用相同名稱**（realistic / ghibli），但內容是環境專用版本——真實感來自用舊的材質，不是皮膚毛孔
 
-## 命令行直接用
+## 命令列直接用
 
 ```bash
-node scripts/novel-art.mjs seed outline.json > art.json      # 从大纲预填场景骨架
+node scripts/novel-art.mjs seed outline.json > art.json      # 從大綱預填場景骨架
 node scripts/novel-art.mjs validate art.json --cast cast.json
-node scripts/novel-art.mjs checkup art.json                  # 只跑质量门
-node scripts/novel-art.mjs render art.json --html            # 出报告
-node scripts/novel-art.mjs styles                            # 看画风预设
+node scripts/novel-art.mjs checkup art.json                  # 只跑品質門
+node scripts/novel-art.mjs render art.json --html            # 出報告
+node scripts/novel-art.mjs styles                            # 檢視畫風預設
 ```
 
-## 出图（可选）
+## 生圖（可選）
 
-走 codex 内置 `$imagegen`，零 API key。场景和道具各一张 16:9 设定图，版面都是**主视角大图 + 底部和右侧的 L 形细节边框**：场景细节格放锚点特写，道具细节格放锚点特写 + 其他状态 + 侧面。场景**无人**；道具另加**无手、纯白背景**。变体场景拿母场景成图当参考图。没有 codex 就只交提示词，其余照常。调用契约见 `references/sheet.md`。
+走 codex 內建 `$imagegen`，零 API key。場景和道具各一張 16:9 設定圖，版面都是**主視角大圖 + 底部和右側的 L 形細節邊框**：場景細節格放錨點特寫，道具細節格放錨點特寫 + 其他狀態 + 側面。場景**無人**；道具另加**無手、純白背景**。變體場景使用母場景成圖作為參考圖。沒有 codex 就只交提示詞，其餘照常。呼叫契約見 `references/sheet.md`。
 
-## 文件
+## 檔案
 
 ```
-SKILL.md                 给 agent 读的工作流
+SKILL.md                 給 agent 讀的工作流
 scripts/
   novel-art.mjs          seed / validate / checkup / render / styles / slug
-  selftest.mjs           131 项断言，不调模型
+  selftest.mjs           131 項斷言，不調模型
 references/
-  schema.md              art.json 结构 + 硬规则
-  scene-pass.md          怎么填场景设定（AI 短剧的思路）
-  prop-pass.md           怎么选、怎么填叙事道具
-  sheet.md               设定图出图的 codex 调用契约
-  report-style.md        报告的设计约定
+  schema.md              art.json 結構 + 硬規則
+  scene-pass.md          怎麼填場景設定（AI 短劇的思路）
+  prop-pass.md           怎麼選、怎麼填敘事道具
+  sheet.md               設定圖生圖的 codex 呼叫契約
+  report-style.md        報告的設計約定
 examples/
-  渡口-art.json           《渡口》三场景 + 两件道具样例，全部质量门通过
+  渡口-art.json           《渡口》三場景 + 兩件道具樣例，全部品質門通過
 assets/
-  report.webp            报告截图
+  report.webp            報告截圖
 ```
 
-## 自测
+## 自測
 
 ```bash
 node scripts/selftest.mjs
 ```
 
-131 项断言，覆盖 seed / 画风预设 / 11 道门逐项击穿 / 渲染 / 导出。不调模型、不花额度、1 秒跑完。改完脚本先跑这个。
+131 項斷言，覆蓋 seed / 畫風預設 / 11 道門逐項反例測試 / 渲染 / 匯出。不調模型、不花額度、1 秒跑完。改完腳本先跑這個。
 
-**只在 macOS + Node 24 上实测过。** 代码没有平台相关调用，Linux 和更低版本 Node 理论上没问题，但**没验过**。
+**只在 macOS + Node 24 上實測過。** 程式碼沒有平台相關呼叫，Linux 和更低版本 Node 理論上沒有問題，但**尚未驗證**。

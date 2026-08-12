@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// novel-art — deterministic helpers for the novel-art skill (场景 + 道具).
+// novel-art — deterministic helpers for the novel-art skill (場景 + 道具).
 // Zero dependencies on purpose: the skill must work in any directory
 // without an npm install. Node 18+ (stdlib only).
 
@@ -8,39 +8,39 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /* ------------------------------------------------------------------ */
-/* 画风预设（环境版）                                                    */
+/* 畫風預設（環境版）                                                    */
 /* ------------------------------------------------------------------ */
 /*
- * 与 novel-characters 的两档画风同名对齐（realistic / ghibli），
- * 但内容是环境的表面处理，不是皮肤毛孔——把角色那套带进环境是错的。
- * 换风格是整套换：render / surface / negative / tags 整块取用，不混搭。
+ * 與 novel-characters 的兩檔畫風名稱一致（realistic / ghibli），
+ * 但內容是環境的表面處理，不是皮膚毛孔——將角色版本套用到環境並不正確。
+ * 換風格是整套換：render / surface / negative / tags 整塊取用，不混搭。
  *
- * 最容易踩的坑与角色 skill 相同：realistic 绝不能禁 photorealistic，
- * ghibli 必须禁。validate 会拦。
+ * 最容易出錯之處與角色 skill 相同：realistic 絕不能禁 photorealistic，
+ * ghibli 必須禁。validate 會攔。
  */
 
 export const DEFAULT_STYLE = 'realistic';
 
 export const SCENE_STYLE_PRESETS = {
   realistic: {
-    label: '半写实厚涂',
+    label: '半寫實厚塗',
     render:
       'Semi-realistic environment concept art, painterly rendering with visible brush texture, grounded architectural perspective, cinematic depth',
     surface:
       'Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows',
-    // 这里绝不能禁 photorealistic——一边要真实感一边禁真实感是自相矛盾的
+    // 這裡絕不能禁 photorealistic——一邊要真實感一邊禁真實感是自相矛盾的
     negative:
       'people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature',
     tags: ['semi-realistic', 'environment sheet', 'painterly', 'weathered materials', 'cinematic'],
   },
 
   ghibli: {
-    label: '吉卜力动画',
+    label: '吉卜力動畫',
     render:
       'Hand-painted anime background art in the manner of classic Studio Ghibli films: soft watercolour-and-gouache rendering, clean readable shapes, warm naturalistic palette, gentle painterly edges',
     surface:
       'Simplified but affectionate detail: flat colour planes with soft gradations, foliage and clutter grouped into readable clumps, warm light pooling on surfaces; textures suggested with a few brush strokes rather than rendered out; no photographic micro-detail',
-    // 这里反过来，必须禁写实
+    // 這裡反過來，必須禁寫實
     negative:
       'people, human figures, characters, crowds, photorealistic, 3d render, hyperrealistic texture, harsh contrast, gritty grime, lens effects, text, watermark, signature',
     tags: ['ghibli-like', 'background art', 'watercolour', 'environment sheet', 'warm palette'],
@@ -63,12 +63,12 @@ export function slug(name) {
 }
 
 /* ------------------------------------------------------------------ */
-/* seed — 从 outline.json 确定性预填骨架                                 */
+/* seed — 從 outline.json 確定性預填骨架                                 */
 /* ------------------------------------------------------------------ */
 /*
- * 场景清单、主场景标记、出现集、承载爽点、复用方案在 outline.json 里
- * 都是现成的——这些不该让模型重新想一遍。seed 把它们搬进骨架，
- * 模型只填设计字段（设计意图 / 锚点 / 光照 / 提示词）。
+ * 場景清單、主場景標記、出現集、承載爽點、複用方案在 outline.json 裡
+ * 都是現成的——這些不該讓模型重新判斷。seed 會將它們帶入骨架，
+ * 模型只填設計欄位（設計意圖 / 錨點 / 光照 / 提示詞）。
  */
 
 export function seedFromOutline(outline) {
@@ -83,13 +83,13 @@ export function seedFromOutline(outline) {
       id: s.id,
       name: s.name,
       primary: !!s.primary,
-      // 模型要填的设计字段，先占位
+      // 模型要填的設計欄位，先佔位
       summary: '',
       anchors: [],
       lighting: [],
       image: { prompt: '', negativePrompt: '', sheet: '', tags: [] },
-      // 从 outline 搬来的事实，不用再想
-      ...(s.reusePlan ? { seedNote: `outline 的复用方案：${s.reusePlan}——考虑做成某个主场景的变体（variantOf + changes）` } : {}),
+      // 從 outline 帶入的事實，不必重新判斷
+      ...(s.reusePlan ? { seedNote: `outline 的複用方案：${s.reusePlan}——考慮做成某個主場景的變體（variantOf + changes）` } : {}),
       usage: { episodes, beats: carried },
     };
   });
@@ -98,32 +98,32 @@ export function seedFromOutline(outline) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 质量门                                                               */
+/* 品質門                                                               */
 /* ------------------------------------------------------------------ */
 /*
- * 与另外两个 skill 同一主张：checklist 是代码，不是给模型读的文字。
- * AI 短剧环境资产的硬规则都在这——空景、锚点、光照状态、
- * 提示词语言、风格与反向词匹配、变体引用完整。
+ * 與另外兩個 skill 同一主張：checklist 是程式碼，不是給模型讀的文字。
+ * AI 短劇環境資產的硬規則都在這——空景、錨點、光照狀態、
+ * 提示詞語言、風格與負向詞相符、變體引用完整。
  */
 
 const thText = (s) => typeof s === 'string' && s.trim();
-/** 中日韩表意文字与假名、谚文——出图提示词里出现就说明串语言了。 */
+/** 中日韓表意文字與假名、諺文——生圖提示詞裡出現就表示混入其他語言。 */
 const CJK = /[㐀-鿿぀-ヿ가-힯]/;
-/** 环境参考图必须空景：反向提示词里必须把「人」禁掉。 */
+/** 環境參考圖必須空景：負向提示詞裡必須禁止人物。 */
 const PEOPLE_BAN = /people|human|figure|character|crowd/i;
 
 export const ANCHOR_RANGE = [3, 5];
 
 /*
- * 道具尺度参照：AI 经常把手持道具画成家具尺寸——实拍不存在的坑。
- * scale 是中文枚举，出图提示词里必须出现对应的英文短语，validate 会对着查。
+ * 道具尺度參照：AI 經常把手持道具畫成家具尺寸——實拍不會遇到的問題。
+ * scale 是中文列舉，生圖提示詞裡必須出現對應的英文短語，validate 會逐一檢查。
  */
 export const PROP_SCALES = {
-  手持级: 'handheld scale',
-  桌面级: 'tabletop scale',
-  家具级: 'furniture scale',
+  手持級: 'handheld scale',
+  桌面級: 'tabletop scale',
+  家具級: 'furniture scale',
 };
-/** 道具参考图不许有手——拿着道具的手是最常见的污染。 */
+/** 道具參考圖不得出現手——拿著道具的手是最常見的汙染。 */
 const HANDS_BAN = /hand|finger/i;
 
 export function gateReport(doc, castNames = null) {
@@ -139,22 +139,22 @@ export function gateReport(doc, castNames = null) {
   const style = doc?.style ?? DEFAULT_STYLE;
   const preset = scenePreset(style);
 
-  // 场景与道具共用的门：锚点 / 空景 / 英文 / 角色名 / 风格匹配
+  // 場景與道具共用的門：錨點 / 空景 / 英文 / 角色名 / 風格相符
   for (const s of [...scenes, ...props]) {
-    const label = s?.name ?? s?.id ?? '(无名)';
+    const label = s?.name ?? s?.id ?? '(無名)';
 
-    // 锚点 3–5：少了认不出场景，多了 QC 核对不过来
+    // 錨點 3–5：太少無法辨識場景，太多則讓 QC 難以逐一核對
     const anchorN = Array.isArray(s?.anchors) ? s.anchors.length : 0;
-    if (anchorN < ANCHOR_RANGE[0] || anchorN > ANCHOR_RANGE[1]) bad.anchors.push(`${label}（${anchorN} 个）`);
+    if (anchorN < ANCHOR_RANGE[0] || anchorN > ANCHOR_RANGE[1]) bad.anchors.push(`${label}（${anchorN} 個）`);
 
-    // 光照状态 ≥1（仅场景）：AI 换时段是重新生成，不是重新打灯
+    // 光照狀態 ≥1（僅場景）：AI 換時段是重新生成，不是重新打光
     if (scenes.includes(s) && (!Array.isArray(s?.lighting) || s.lighting.length === 0)) bad.lighting.push(label);
 
-    // 空景：反向提示词必须禁人
+    // 空景：負向提示詞必須禁人
     const neg = s?.image?.negativePrompt ?? '';
     if (!PEOPLE_BAN.test(neg)) bad.people.push(label);
 
-    // 机器字段永远英文（场景的光照 + 道具的状态一起扫）
+    // 機器欄位永遠英文（場景的光照 + 道具的狀態一起掃）
     const machine = [
       s?.image?.prompt, s?.image?.negativePrompt, s?.image?.sheet,
       ...(s?.lighting ?? []).map((l) => l?.prompt),
@@ -163,7 +163,7 @@ export function gateReport(doc, castNames = null) {
     ];
     if (machine.some((v) => typeof v === 'string' && CJK.test(v))) bad.english.push(label);
 
-    // 提示词不许出现角色名（给了 cast 才查）
+    // 提示詞不得出現角色名（有提供 cast 才檢查）
     if (castNames?.length) {
       const texts = [
         s?.image?.prompt, s?.image?.sheet,
@@ -172,63 +172,63 @@ export function gateReport(doc, castNames = null) {
       ];
       for (const n of castNames) {
         if (texts.some((v) => typeof v === 'string' && v.includes(n))) {
-          bad.names.push(`${label} 出现「${n}」`);
+          bad.names.push(`${label} 出現「${n}」`);
           break;
         }
       }
     }
 
-    // 变体引用完整
+    // 變體引用完整
     if (s?.variantOf !== undefined) {
       if (!ids.has(s.variantOf) || s.variantOf === s.id) bad.variant.push(`${label} → ${s.variantOf}`);
       else if (!thText(s?.changes)) bad.variant.push(`${label} 缺 changes`);
     }
 
-    // 风格与反向词匹配 + sheet 带渲染句
+    // 風格與負向詞相符 + sheet 帶渲染句
     const bansRealism = /photorealistic|3d render/i.test(neg);
-    if (style === 'realistic' && bansRealism) bad.style.push(`${label} 禁了 photorealistic`);
-    if (style === 'ghibli' && !bansRealism) bad.style.push(`${label} 没禁 photorealistic`);
-    if (thText(s?.image?.sheet) && !s.image.sheet.includes(preset.render)) bad.style.push(`${label} 的 sheet 缺渲染句`);
+    if (style === 'realistic' && bansRealism) bad.style.push(`${label} 不應禁止 photorealistic`);
+    if (style === 'ghibli' && !bansRealism) bad.style.push(`${label} 必須禁止 photorealistic`);
+    if (thText(s?.image?.sheet) && !s.image.sheet.includes(preset.render)) bad.style.push(`${label} 的 sheet 缺少渲染句`);
   }
 
-  // 道具专属的门
+  // 道具專屬的門
   for (const pr of props) {
-    const label = pr?.name ?? pr?.id ?? '(无名)';
+    const label = pr?.name ?? pr?.id ?? '(無名)';
 
-    // 状态 ≥1：合上/打开、藏着/摊开——每个状态都是一张要单独生成的参考
+    // 狀態 ≥1：闔上/打開、藏著/攤開——每個狀態都是一張要單獨生成的參考
     if (!Array.isArray(pr?.states) || pr.states.length === 0) bad.states.push(label);
 
-    // 尺度参照：scale 枚举 + 提示词里必须出现对应英文短语
+    // 尺度參照：scale 列舉 + 提示詞裡必須出現對應英文短語
     const scaleEn = PROP_SCALES[pr?.scale];
     if (!scaleEn) {
-      bad.scale.push(`${label}（scale 必须是 ${Object.keys(PROP_SCALES).join('/')}）`);
+      bad.scale.push(`${label}（scale 必須是 ${Object.keys(PROP_SCALES).join('/')}）`);
     } else if (![pr?.image?.prompt, pr?.image?.sheet].every((v) => typeof v === 'string' && v.includes(scaleEn))) {
-      bad.scale.push(`${label}（提示词缺「${scaleEn}」）`);
+      bad.scale.push(`${label}（提示詞缺「${scaleEn}」）`);
     }
 
-    // 无手：拿着道具的手是最常见的污染，反向提示词必须禁
+    // 無手：拿著道具的手是最常見的汙染，負向提示詞必須禁
     if (!HANDS_BAN.test(pr?.image?.negativePrompt ?? '')) bad.hands.push(label);
 
-    // 白底：道具参考图要被贴进各种镜头，必须纯白背景可抠
+    // 白底：道具參考圖要被合成進各種鏡頭，必須使用純白背景、方便去背
     if (!/white background/i.test(pr?.image?.sheet ?? '')) bad.whitebg.push(label);
   }
 
-  add('anchors', `一致性锚点 ${ANCHOR_RANGE[0]}–${ANCHOR_RANGE[1]} 个`, scenes.length + props.length > 0 && bad.anchors.length === 0, bad.anchors.join('；'));
-  add('lighting', '光照状态至少 1 个且落成提示词', scenes.length > 0 && bad.lighting.length === 0, bad.lighting.join('；'));
-  add('no-people', '参考图无人：反向提示词禁人（场景与道具都查）', scenes.length + props.length > 0 && bad.people.length === 0, bad.people.join('；'));
-  add('english', '出图提示词全部英文', scenes.length + props.length > 0 && bad.english.length === 0, bad.english.join('；'));
+  add('anchors', `一致性錨點 ${ANCHOR_RANGE[0]}–${ANCHOR_RANGE[1]} 個`, scenes.length + props.length > 0 && bad.anchors.length === 0, bad.anchors.join('；'));
+  add('lighting', '光照狀態至少 1 個且寫成提示詞', scenes.length > 0 && bad.lighting.length === 0, bad.lighting.join('；'));
+  add('no-people', '參考圖無人：負向提示詞禁人（場景與道具都查）', scenes.length + props.length > 0 && bad.people.length === 0, bad.people.join('；'));
+  add('english', '生圖提示詞全部英文', scenes.length + props.length > 0 && bad.english.length === 0, bad.english.join('；'));
   add(
     'no-names',
-    '提示词不含角色名',
+    '提示詞不含角色名',
     bad.names.length === 0,
-    castNames?.length ? bad.names.join('；') : '未提供 cast.json，本门跳过（视为通过）',
+    castNames?.length ? bad.names.join('；') : '未提供 cast.json，本門跳過（視為通過）',
   );
-  add('variants', '变体引用完整（variantOf 存在且带 changes）', bad.variant.length === 0, bad.variant.join('；'));
-  add('style-match', '风格与反向提示词匹配', bad.style.length === 0, bad.style.join('；'));
-  add('prop-states', '道具状态至少 1 个且落成提示词', props.length === 0 || bad.states.length === 0, bad.states.join('；'));
-  add('prop-scale', '道具尺度参照写进提示词', props.length === 0 || bad.scale.length === 0, bad.scale.join('；'));
-  add('prop-hands', '道具参考图无手：反向提示词禁手', props.length === 0 || bad.hands.length === 0, bad.hands.join('；'));
-  add('prop-white', '道具设定图纯白背景可抠', props.length === 0 || bad.whitebg.length === 0, bad.whitebg.join('；'));
+  add('variants', '變體引用完整（variantOf 存在且帶 changes）', bad.variant.length === 0, bad.variant.join('；'));
+  add('style-match', '風格與負向提示詞相符', bad.style.length === 0, bad.style.join('；'));
+  add('prop-states', '道具狀態至少 1 個且寫成提示詞', props.length === 0 || bad.states.length === 0, bad.states.join('；'));
+  add('prop-scale', '道具尺度參照寫進提示詞', props.length === 0 || bad.scale.length === 0, bad.scale.join('；'));
+  add('prop-hands', '道具參考圖無手：負向提示詞禁手', props.length === 0 || bad.hands.length === 0, bad.hands.join('；'));
+  add('prop-white', '道具設定圖純白背景、方便去背', props.length === 0 || bad.whitebg.length === 0, bad.whitebg.join('；'));
 
   return gates;
 }
@@ -240,70 +240,70 @@ export function gateReport(doc, castNames = null) {
 export function validateArt(doc, castNames = null) {
   const problems = [];
   const p = (msg) => problems.push(msg);
-  if (!doc || typeof doc !== 'object') return ['art.json 不是对象'];
+  if (!doc || typeof doc !== 'object') return ['art.json 不是物件'];
 
-  if (!thText(doc.source)) p('缺少 source（剧名/书名）');
-  if (!SUPPORTED_STYLES.includes(doc.style)) p(`style 必须是 ${SUPPORTED_STYLES.join('/')}，实际是 ${JSON.stringify(doc.style)}`);
+  if (!thText(doc.source)) p('缺少 source（劇名/書名）');
+  if (!SUPPORTED_STYLES.includes(doc.style)) p(`style 必須是 ${SUPPORTED_STYLES.join('/')}，實際是 ${JSON.stringify(doc.style)}`);
 
   const scenes = doc.scenes;
   if (!Array.isArray(scenes) || scenes.length === 0) {
-    p('scenes 为空');
+    p('scenes 為空');
     return problems;
   }
 
-  // 道具（可选块）：给了就逐件查结构
+  // 道具（可選塊）：有提供就逐件查結構
   for (const pr of doc.props ?? []) {
-    const label = pr?.name ?? pr?.id ?? '(无名)';
-    if (!/^P\d{2,}$/.test(pr?.id ?? '')) p(`[${label}] 道具 id 必须是 P01 这种格式`);
+    const label = pr?.name ?? pr?.id ?? '(無名)';
+    if (!/^P\d{2,}$/.test(pr?.id ?? '')) p(`[${label}] 道具 id 必須是 P01 這種格式`);
     if (!thText(pr?.name)) p(`[${pr?.id}] 道具缺 name`);
-    if (!thText(pr?.summary)) p(`[${label}] 缺 summary（戏剧功能：这件道具承载什么剧情）`);
+    if (!thText(pr?.summary)) p(`[${label}] 缺 summary（戲劇功能：這件道具承載什麼劇情）`);
     for (const a of pr?.anchors ?? []) {
-      if (!thText(a?.name) || !thText(a?.desc)) p(`[${label}] 锚点缺 name 或 desc`);
+      if (!thText(a?.name) || !thText(a?.desc)) p(`[${label}] 錨點缺 name 或 desc`);
     }
     for (const st of pr?.states ?? []) {
-      if (!thText(st?.state)) p(`[${label}] 状态缺 state（合上/打开……）`);
-      if (!thText(st?.prompt)) p(`[${label}] 状态「${st?.state ?? '?'}」缺 prompt（英文）`);
+      if (!thText(st?.state)) p(`[${label}] 狀態缺 state（闔上/打開……）`);
+      if (!thText(st?.prompt)) p(`[${label}] 狀態「${st?.state ?? '?'}」缺 prompt（英文）`);
     }
     const img = pr?.image;
     if (!img || typeof img !== 'object') {
       p(`[${label}] 缺 image`);
     } else {
       for (const f of ['prompt', 'negativePrompt', 'sheet']) {
-        if (!thText(img[f])) p(`[${label}] image.${f} 缺失或为空`);
+        if (!thText(img[f])) p(`[${label}] image.${f} 缺失或為空`);
       }
-      if (!Array.isArray(img.tags)) p(`[${label}] image.tags 必须是数组`);
+      if (!Array.isArray(img.tags)) p(`[${label}] image.tags 必須是陣列`);
     }
     for (const sid of pr?.relatedScenes ?? []) {
-      if (!scenes.some((sc) => sc?.id === sid)) p(`[${label}] relatedScenes 里的 ${sid} 不存在`);
+      if (!scenes.some((sc) => sc?.id === sid)) p(`[${label}] relatedScenes 裡的 ${sid} 不存在`);
     }
     if (pr?.usage !== undefined) {
-      if (!Array.isArray(pr.usage?.episodes)) p(`[${label}] usage.episodes 必须是数组`);
-      if (!Array.isArray(pr.usage?.beats)) p(`[${label}] usage.beats 必须是数组`);
+      if (!Array.isArray(pr.usage?.episodes)) p(`[${label}] usage.episodes 必須是陣列`);
+      if (!Array.isArray(pr.usage?.beats)) p(`[${label}] usage.beats 必須是陣列`);
     }
   }
   {
     const seenP = new Set();
     for (const pr of doc.props ?? []) {
-      if (seenP.has(pr?.id)) p(`道具 id ${pr.id} 重复`);
+      if (seenP.has(pr?.id)) p(`道具 id ${pr.id} 重複`);
       seenP.add(pr?.id);
     }
   }
 
   const seen = new Set();
   for (const s of scenes) {
-    const label = s?.name ?? s?.id ?? '(无名)';
-    if (!/^S\d{2,}$/.test(s?.id ?? '')) p(`[${label}] 场景 id 必须是 S01 这种格式`);
-    if (seen.has(s?.id)) p(`场景 id ${s.id} 重复`);
+    const label = s?.name ?? s?.id ?? '(無名)';
+    if (!/^S\d{2,}$/.test(s?.id ?? '')) p(`[${label}] 場景 id 必須是 S01 這種格式`);
+    if (seen.has(s?.id)) p(`場景 id ${s.id} 重複`);
     seen.add(s?.id);
     if (!thText(s?.name)) p(`[${s?.id}] 缺 name`);
-    if (typeof s?.primary !== 'boolean') p(`[${label}] 缺 primary（是不是主场景）`);
-    if (!thText(s?.summary)) p(`[${label}] 缺 summary（设计意图：这个空间讲什么故事）`);
+    if (typeof s?.primary !== 'boolean') p(`[${label}] 缺 primary（是不是主場景）`);
+    if (!thText(s?.summary)) p(`[${label}] 缺 summary（設計意圖：這個空間講什麼故事）`);
 
     for (const a of s?.anchors ?? []) {
-      if (!thText(a?.name) || !thText(a?.desc)) p(`[${label}] 锚点缺 name 或 desc`);
+      if (!thText(a?.name) || !thText(a?.desc)) p(`[${label}] 錨點缺 name 或 desc`);
     }
     for (const l of s?.lighting ?? []) {
-      if (!thText(l?.state)) p(`[${label}] 光照状态缺 state（晨雾/夜戏/黄昏……）`);
+      if (!thText(l?.state)) p(`[${label}] 光照狀態缺 state（晨霧/夜戲/黃昏……）`);
       if (!thText(l?.prompt)) p(`[${label}] 光照「${l?.state ?? '?'}」缺 prompt（英文）`);
     }
 
@@ -312,26 +312,26 @@ export function validateArt(doc, castNames = null) {
       p(`[${label}] 缺 image`);
     } else {
       for (const f of ['prompt', 'negativePrompt', 'sheet']) {
-        if (!thText(img[f])) p(`[${label}] image.${f} 缺失或为空`);
+        if (!thText(img[f])) p(`[${label}] image.${f} 缺失或為空`);
       }
-      if (!Array.isArray(img.tags)) p(`[${label}] image.tags 必须是数组`);
+      if (!Array.isArray(img.tags)) p(`[${label}] image.tags 必須是陣列`);
     }
 
     if (s?.usage !== undefined) {
-      if (!Array.isArray(s.usage?.episodes)) p(`[${label}] usage.episodes 必须是数组`);
-      if (!Array.isArray(s.usage?.beats)) p(`[${label}] usage.beats 必须是数组`);
+      if (!Array.isArray(s.usage?.episodes)) p(`[${label}] usage.episodes 必須是陣列`);
+      if (!Array.isArray(s.usage?.beats)) p(`[${label}] usage.beats 必須是陣列`);
     }
   }
 
-  // 质量门失败并入违规列表
+  // 品質門失敗併入違規列表
   for (const g of gateReport(doc, castNames)) {
-    if (!g.ok) p(`质量门未过：${g.label}${g.detail ? `（${g.detail}）` : ''}`);
+    if (!g.ok) p(`品質門未通過：${g.label}${g.detail ? `（${g.detail}）` : ''}`);
   }
 
   return problems;
 }
 
-/** 从 cast.json 提取名字 + 别名，给「提示词不含角色名」那道门用。 */
+/** 從 cast.json 提取名字 + 別名，供「提示詞不含角色名」品質門使用。 */
 export function castNamesOf(cast) {
   const chars = Array.isArray(cast) ? cast : (cast?.characters ?? []);
   const names = [];
@@ -343,57 +343,57 @@ export function castNamesOf(cast) {
 }
 
 /* ------------------------------------------------------------------ */
-/* render — 界面文案                                                    */
+/* render — 介面文案                                                    */
 /* ------------------------------------------------------------------ */
-/* v1 只有中文。全部收在这张表里，加语言时换成按 lang 取值的表。 */
+/* v1 只有中文。全部收在這張表裡，加語言時換成按 lang 取值的表。 */
 
 const T = {
-  kicker: '美术设定集',
-  docTitle: (s) => `${s} · 美术设定集`,
-  styleLine: (label) => `画风：${label}`,
-  exportJson: '导出 JSON',
-  gates: '质量门',
-  gatesPass: '全部通过',
-  gatesFail: (n) => `${n} 项未过`,
-  gatePill: (okN, total) => `质量门 ${okN} / ${total}`,
+  kicker: '美術設定集',
+  docTitle: (s) => `${s} · 美術設定集`,
+  styleLine: (label) => `畫風：${label}`,
+  exportJson: '匯出 JSON',
+  gates: '品質門',
+  gatesPass: '全部通過',
+  gatesFail: (n) => `${n} 項未通過`,
+  gatePill: (okN, total) => `品質門 ${okN} / ${total}`,
   kpi: {
-    scenes: '场景', scenesSub: (p2, v) => `主场景 ${p2}${v ? ` · 变体 ${v}` : ''}`,
-    propsK: '叙事道具', propsSub: (st) => `${st} 个状态变体`,
-    anchors: '一致性锚点', anchorsSub: '生成镜头的核对表（场景 + 道具）',
-    lighting: '光照状态', lightingSub: '换时段 = 重新生成',
+    scenes: '場景', scenesSub: (p2, v) => `主場景 ${p2}${v ? ` · 變體 ${v}` : ''}`,
+    propsK: '敘事道具', propsSub: (st) => `${st} 個狀態變體`,
+    anchors: '一致性錨點', anchorsSub: '生成鏡頭的核對表（場景 + 道具）',
+    lighting: '光照狀態', lightingSub: '換時段 = 重新生成',
   },
-  secList: '场景清单',
-  secCards: '场景设定卡',
-  secPropList: '道具清单',
-  secPropCards: '道具设定卡',
-  secGates: '质量门',
-  propListCols: ['ID', '道具', '尺度', '状态', '关联场景', '出现集', '锚点'],
-  statesTitle: '状态变体',
+  secList: '場景清單',
+  secCards: '場景設定卡',
+  secPropList: '道具清單',
+  secPropCards: '道具設定卡',
+  secGates: '品質門',
+  propListCols: ['ID', '道具', '尺度', '狀態', '關聯場景', '出現集', '錨點'],
+  statesTitle: '狀態變體',
   scaleLabel: '尺度',
-  relatedScenesLabel: '关联场景',
-  carriedByLabel: '关联角色',
-  propSheetCaption: '主视角＋底部与右侧细节条 · 纯白背景',
-  listCols: ['ID', '场景', '类型', '出现集', '锚点', '光照', '变体'],
-  primaryScene: '主场景', onceScene: '一次性', variantScene: '变体',
-  anchorsTitle: '一致性锚点',
-  anchorsHint: '每次生成都必须出现的特征——认场景靠它，QC 也靠它',
-  lightingTitle: '光照与时段',
-  usageTitle: '出现集',
-  beatsTitle: '承载爽点',
-  variantTitle: '变体来源',
-  variantChanges: '改动',
-  promptsTitle: '出图提示词包',
-  promptMaster: '主视角 EN',
-  promptNegative: '反向提示词',
-  promptSheet: '设定图 EN',
-  copy: '复制', copied: '已复制', copyFailed: '复制失败', copyJson: '复制整个场景 JSON',
-  noImage: '尚未出图',
-  noImageHint: '用下方提示词生成',
-  zoomImage: '放大查看',
-  closeImage: '关闭',
-  sheetCaption: '主视角＋底部与右侧细节条',
+  relatedScenesLabel: '關聯場景',
+  carriedByLabel: '關聯角色',
+  propSheetCaption: '主視角＋底部與右側細節條 · 純白背景',
+  listCols: ['ID', '場景', '型別', '出現集', '錨點', '光照', '變體'],
+  primaryScene: '主場景', onceScene: '一次性', variantScene: '變體',
+  anchorsTitle: '一致性錨點',
+  anchorsHint: '每次生成都必須出現的特徵——認場景靠它，QC 也靠它',
+  lightingTitle: '光照與時段',
+  usageTitle: '出現集',
+  beatsTitle: '承載爽點',
+  variantTitle: '變體來源',
+  variantChanges: '改動',
+  promptsTitle: '生圖提示詞包',
+  promptMaster: '主視角 EN',
+  promptNegative: '負向提示詞',
+  promptSheet: '設定圖 EN',
+  copy: '複製', copied: '已複製', copyFailed: '複製失敗', copyJson: '複製整個場景 JSON',
+  noImage: '尚未生圖',
+  noImageHint: '用下方提示詞生成',
+  zoomImage: '放大檢視',
+  closeImage: '關閉',
+  sheetCaption: '主視角＋底部與右側細節條',
   none: '—',
-  colophon: '设定与提示词由模型依据大纲/原文生成，质量门由脚本确定性检查。参考图一律无人——人是另一层资产；道具参考图另加无手、纯白背景。',
+  colophon: '設定與提示詞由模型依據大綱/原文生成，品質門由腳本確定性檢查。參考圖一律無人——人是另一層資產；道具參考圖另加無手、純白背景。',
 };
 
 /* ------------------------------------------------------------------ */
@@ -474,8 +474,8 @@ export function renderMarkdown(doc) {
 /* render — html                                                       */
 /* ------------------------------------------------------------------ */
 /*
- * 与另外两份报告同一套视觉语言：冷灰印张 + 铁锈红印记，1600 宽，
- * 全部平铺可 Cmd+F，零外部依赖。设计约定见 references/report-style.md。
+ * 與另外兩份報告同一套視覺語言：冷灰印張 + 鐵鏽紅印記，1600 寬，
+ * 全部平鋪可 Cmd+F，零外部依賴。設計約定見 references/report-style.md。
  */
 
 function embedDoc(doc) {
@@ -608,7 +608,7 @@ export function renderHtml(doc) {
 </ul>`;
 
   return `<!doctype html>
-<html lang="zh"><head>
+<html lang="zh-TW"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(t.docTitle(doc.source))}</title>
@@ -662,7 +662,7 @@ tr:last-child td{border-bottom:0}
 td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink-2);white-space:nowrap}
 .mono{font:400 11.5px/1.7 var(--mono);color:var(--ink-2);word-break:break-word}
 
-/* 场景设定卡：一排两张（方便截图宣传），卡内纵排、设定图占满卡宽 */
+/* 場景設定卡：一排兩張（方便截圖宣傳），卡內縱排、設定圖佔滿卡寬 */
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
 @media(max-width:1100px){.cards{grid-template-columns:1fr}}
 .scene{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:18px 20px}
@@ -680,7 +680,7 @@ td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink-2);white-s
 .plate .zoom{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
 .plate .zoom:focus-visible{outline:2px solid var(--seal);outline-offset:-2px}
 .plate img{display:block;width:100%;height:auto}
-/* 图片弹层 */
+/* 圖片彈層 */
 .lightbox{position:fixed;inset:0;z-index:50;display:none;place-items:center;
   background:#191d21e6;padding:32px;cursor:zoom-out}
 .lightbox.on{display:grid}
@@ -700,7 +700,7 @@ td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink-2);white-s
 .blk h4{font:500 11px/1.6 var(--sans);letter-spacing:.18em;color:var(--seal);margin-bottom:8px}
 .blk h4 small{display:block;letter-spacing:0;font-weight:400;color:var(--ink-3);font-size:11px}
 .anchors{margin:0;padding:0 0 0 2px;list-style:none;counter-reset:an}
-/* ::before 序号也是网格项，desc 必须显式钉在第二列，否则会掉进 22px 窄列一字一行 */
+/* ::before 序號也是網格項，desc 必須顯式釘在第二列，否則會掉進 22px 窄列一字一行 */
 .anchors li{counter-increment:an;display:grid;grid-template-columns:22px minmax(0,1fr);column-gap:8px;
   padding:6px 0;border-top:1px solid var(--rule);font-size:13px}
 .anchors li:first-child{border-top:0}
@@ -817,7 +817,7 @@ ${propCards}
 <script>
 const L = ${JSON.stringify({ copied: T.copied, failed: T.copyFailed })};
 
-// 图片弹层：点图放大，点背景或 Esc 关闭
+// 圖片彈層：點圖放大，點背景或 Esc 關閉
 const lb = document.querySelector('.lightbox');
 const lbImg = lb.querySelector('img');
 function closeLb() { lb.classList.remove('on'); lbImg.removeAttribute('src'); }
@@ -828,7 +828,7 @@ document.addEventListener('click', (e) => {
 });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
 
-// 复制按钮
+// 複製按鈕
 document.addEventListener('click', async (e) => {
   const btn = e.target.closest('.copy');
   if (!btn) return;
@@ -844,7 +844,7 @@ document.addEventListener('click', async (e) => {
   setTimeout(() => { btn.textContent = label; delete btn.dataset.done; }, 1600);
 });
 
-// 导出：报告自己带着完整的 art.json，下载的是它原样
+// 匯出：報告自己帶著完整的 art.json，下載的是它原樣
 document.querySelector('.expo').addEventListener('click', (e) => {
   const btn = e.currentTarget;
   const url = URL.createObjectURL(
@@ -852,7 +852,7 @@ document.querySelector('.expo').addEventListener('click', (e) => {
   );
   const a = Object.assign(document.createElement('a'), { href: url, download: btn.dataset.name });
   a.click();
-  // 别立刻回收——Safari 会抢在下载读完之前撤掉 blob
+  // 不要立刻回收——Safari 可能在下載完成前撤銷 blob
   setTimeout(() => URL.revokeObjectURL(url), 10000);
 });
 </script>
@@ -863,17 +863,17 @@ document.querySelector('.expo').addEventListener('click', (e) => {
 /* CLI                                                                 */
 /* ------------------------------------------------------------------ */
 
-const USAGE = `novel-art.mjs — novel-art skill 的确定性工具（场景 + 道具）
+const USAGE = `novel-art.mjs — novel-art skill 的確定性工具（場景 + 道具）
 
-  seed <outline.json>                    从大纲预填 art.json 骨架（打印到 stdout，道具留空待提取）
-  validate <art.json> [--cast c.json]    校验；有违规逐条打印并 exit 1
-                                         给了 cast.json 才查「提示词不含角色名」
-  checkup <art.json> [--cast c.json]     只打印质量门 ✓/✗，有未过项 exit 1
-  render <art.json> [--html|--md]        渲染报告到 stdout（默认 --md）
-  styles [id]                            打印画风预设的完整内容
-  slug <name>                            场景名转安全文件名
+  seed <outline.json>                    從大綱預填 art.json 骨架（列印到 stdout，道具留空待提取）
+  validate <art.json> [--cast c.json]    校驗；有違規逐條列印並 exit 1
+                                         有提供 cast.json 才查「提示詞不含角色名」
+  checkup <art.json> [--cast c.json]     只列印品質門 ✓/✗，有未通過項目時 exit 1
+  render <art.json> [--html|--md]        渲染報告到 stdout（預設 --md）
+  styles [id]                            列印畫風預設的完整內容
+  slug <name>                            場景名轉安全檔名
 
-render 会自动去 images/<slug>-sheet.png 找图，找到就嵌进报告。`;
+render 會自動去 images/<slug>-sheet.png 找圖，找到就嵌進報告。`;
 
 function readJson(path) {
   return JSON.parse(readFileSync(resolve(path), 'utf8'));
@@ -905,24 +905,24 @@ function main(argv) {
     const doc = readJson(path);
     const castPath = flag(rest, '--cast');
     const names = castPath ? castNamesOf(readJson(castPath)) : null;
-    if (!castPath) console.error('⚠️ 没给 --cast，跳过「提示词不含角色名」检查');
+    if (!castPath) console.error('⚠️ 未提供 --cast，跳過「提示詞不含角色名」檢查');
 
     if (cmd === 'checkup') {
       const gates = gateReport(doc, names);
       for (const g of gates) console.log(`${g.ok ? '✓' : '✗'} ${g.label}${!g.ok && g.detail ? ` — ${g.detail}` : ''}`);
       const failedN = gates.filter((g) => !g.ok).length;
-      console.log(failedN ? `\n✗ ${failedN} 项未过` : '\n✓ 全部通过');
+      console.log(failedN ? `\n✗ ${failedN} 項未通過` : '\n✓ 全部通過');
       if (failedN) process.exit(1);
       return;
     }
 
     const problems = validateArt(doc, names);
     if (problems.length) {
-      console.error(`✗ ${problems.length} 处违规：\n`);
+      console.error(`✗ ${problems.length} 處違規：\n`);
       for (const x of problems) console.error('  ' + x);
       process.exit(1);
     }
-    console.log(`✓ ${doc.scenes.length} 个场景${(doc.props ?? []).length ? ` + ${doc.props.length} 件道具` : ''}全部通过校验（style=${doc.style}）`);
+    console.log(`✓ ${doc.scenes.length} 個場景${(doc.props ?? []).length ? ` + ${doc.props.length} 件道具` : ''}全部通過校驗（style=${doc.style}）`);
     return;
   }
 
@@ -930,7 +930,7 @@ function main(argv) {
     const [path] = rest;
     if (!path) throw new Error('用法：render <art.json> [--html|--md]');
     const doc = readJson(path);
-    // 图存在才挂上去；没有就渲染成占位，不影响其余内容
+    // 只有圖片存在時才加入；否則渲染成佔位，不影響其餘內容
     const outDir = resolve(path, '..');
     for (const item of [...doc.scenes, ...(doc.props ?? [])]) {
       const rel = `images/${slug(item.name)}-sheet.png`;
@@ -943,12 +943,12 @@ function main(argv) {
   if (cmd === 'styles') {
     const only = rest[0];
     if (only && !SUPPORTED_STYLES.includes(only)) {
-      throw new Error(`未知风格 ${only}（可用：${SUPPORTED_STYLES.join('/')}）`);
+      throw new Error(`未知風格 ${only}（可用：${SUPPORTED_STYLES.join('/')}）`);
     }
     const ids = only ? [only] : SUPPORTED_STYLES;
     console.log(JSON.stringify({
       default: DEFAULT_STYLE,
-      note: '整块取用不混搭；环境预设与 novel-characters 的角色预设同名对齐但内容不同',
+      note: '整塊取用不混搭；環境預設與 novel-characters 的角色預設名稱一致但內容不同',
       presets: Object.fromEntries(ids.map((id) => [id, SCENE_STYLE_PRESETS[id]])),
     }, null, 2));
     return;
@@ -963,7 +963,7 @@ function main(argv) {
   throw new Error(`未知命令 ${cmd}\n\n${USAGE}`);
 }
 
-// 软链安装时 argv[1] 是链接路径，两边都取 realpath 才能比得上
+// 軟鏈安裝時 argv[1] 是連結路徑，兩邊都取 realpath 才能比得上
 function isMainModule() {
   if (!process.argv[1]) return false;
   try {
@@ -974,7 +974,7 @@ function isMainModule() {
 }
 
 if (isMainModule()) {
-  // `render ... | head` 这类管道提前关闭时安静退出，别甩 EPIPE 堆栈
+  // `render ... | head` 這類管道提前關閉時安靜退出，不要拋出 EPIPE 堆疊
   process.stdout.on('error', (e) => {
     if (e.code === 'EPIPE') process.exit(0);
     throw e;

@@ -28,7 +28,7 @@
 node scripts/novel-characters.mjs ui-template fr   # 印出待翻譯的骨架
 ```
 
-![report.html](assets/report.png)
+![report.html](assets/report.webp)
 
 角色設定圖（自帶樣例《渡口》的沈知微）：
 

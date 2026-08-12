@@ -4,34 +4,34 @@
   "scenes": [
     {
       "id": "S01",
-      "name": "渡船船舱",
+      "name": "渡船船艙",
       "primary": true,
-      "summary": "全剧的主舞台：一条老木船的敞篷客舱，六排坐板，篷布漏光。空间要小到人与人躲不开视线，又要有足够的前后景层次给正反打留位置。所有秘密都在这里被逼出来，舱体本身要像个沉默的审讯室。",
+      "summary": "全劇的主舞臺：一條老木船的敞篷客艙，六排坐板，篷布漏光。空間要小到人與人躲不開視線，又要有足夠的前後景層次給正反打留位置。所有秘密都在這裡被逼出來，艙體本身要像個沉默的審訊室。",
       "anchors": [
         {
-          "name": "补丁船篷",
-          "desc": "篷布右后角一块颜色更深的方形补丁，漏下一道光缝"
+          "name": "補丁船篷",
+          "desc": "篷布右後角一塊顏色更深的方形補丁，漏下一道光縫"
         },
         {
           "name": "磨白的坐板",
-          "desc": "第二排坐板中段被四十年乘客磨出浅色包浆，木纹发亮"
+          "desc": "第二排坐板中段被四十年乘客磨出淺色包漿，木紋發亮"
         },
         {
-          "name": "船头铜铃",
-          "desc": "拳头大的旧铜铃挂在篷杆前端，绿锈斑驳，缆绳打着水手结"
+          "name": "船頭銅鈴",
+          "desc": "拳頭大的舊銅鈴掛在篷杆前端，綠鏽斑駁，纜繩打著水手結"
         },
         {
-          "name": "舱底积水线",
-          "desc": "舱板接缝处一条深色水渍线，随戏可见微微反光"
+          "name": "艙底積水線",
+          "desc": "艙板接縫處一條深色水漬線，隨戲可見微微反光"
         }
       ],
       "lighting": [
         {
-          "state": "晨雾",
+          "state": "晨霧",
           "prompt": "dense white morning fog outside the canopy, soft diffuse light with no shadows, cool grey palette, visibility beyond the gunwale fading to white"
         },
         {
-          "state": "雾散近岸",
+          "state": "霧散近岸",
           "prompt": "fog thinning to warm haze, low golden sunlight entering through the canopy seam, long soft shadows across the benches, mood lifting"
         }
       ],
@@ -57,35 +57,35 @@
           6
         ],
         "beats": [
-          "悬念钩",
+          "懸念鉤",
           "身份揭破",
-          "反转",
+          "反轉",
           "收束"
         ]
       }
     },
     {
       "id": "S02",
-      "name": "渡口栈桥",
+      "name": "渡口棧橋",
       "primary": true,
-      "summary": "开场与收尾的门面景：一条探进雾里的旧木栈桥，岸端连着土坡，水端消失在白雾里。它承担「进入故事」和「离开故事」两个仪式性时刻，构图要有明确的纵深引导——栈桥就是一条通往未知的走廊。",
+      "summary": "開場與收尾的門面景：一條探進霧裡的舊木棧橋，岸端連著土坡，水端消失在白霧裡。它承擔「進入故事」和「離開故事」兩個儀式性時刻，構圖要有明確的縱深引導——棧橋就是一條通往未知的走廊。",
       "anchors": [
         {
-          "name": "断裂的第七块桥板",
-          "desc": "从岸边数第七块桥板断了一角，用麻绳捆着一截圆木补上"
+          "name": "斷裂的第七塊橋板",
+          "desc": "從岸邊數第七塊橋板斷了一角，用麻繩捆著一截圓木補上"
         },
         {
-          "name": "系缆石桩",
-          "desc": "岸端一只矮石桩，缆绳勒出深槽，顶面被磨得发亮"
+          "name": "繫纜石樁",
+          "desc": "岸端一隻矮石樁，纜繩勒出深槽，頂面被磨得發亮"
         },
         {
-          "name": "挑灯木杆",
-          "desc": "栈桥中段一根歪斜的木杆，铁钩上挂一盏熄着的纸灯笼"
+          "name": "挑燈木杆",
+          "desc": "棧橋中段一根歪斜的木杆，鐵鉤上掛一盞熄著的紙燈籠"
         }
       ],
       "lighting": [
         {
-          "state": "浓雾清晨",
+          "state": "濃霧清晨",
           "prompt": "thick white fog swallowing the far end of the pier, flat shadowless light, wet plank surfaces with faint sheen, cold desaturated palette"
         }
       ],
@@ -107,35 +107,35 @@
           6
         ],
         "beats": [
-          "悬念钩",
+          "懸念鉤",
           "收束"
         ]
       }
     },
     {
       "id": "S03",
-      "name": "对岸芦苇滩",
+      "name": "對岸蘆葦灘",
       "primary": false,
       "variantOf": "S02",
-      "changes": "栈桥同一机位换背板：水端方向替换成大片芦苇荡前景，去掉挑灯木杆，雾更薄、色温更暖，桥板细节复用 S02 的资产",
-      "summary": "第 5 集反转戏的远景背板：船过河心时隐约可见的对岸。它只需要「存在感」不需要细节——一片被雾泡软的芦苇剪影，暗示彼岸并不比此岸更可靠。作为 S02 的变体生成，省一套环境资产。",
+      "changes": "棧橋同一機位換背板：水端方向替換成大片蘆葦蕩前景，去掉挑燈木杆，霧更薄、色溫更暖，橋板細節複用 S02 的資產",
+      "summary": "第 5 集反轉戲的遠景背板：船過河心時隱約可見的對岸。它只需要「存在感」不需要細節——一片被霧泡軟的蘆葦剪影，暗示彼岸並不比此岸更可靠。作為 S02 的變體生成，省一套環境資產。",
       "anchors": [
         {
-          "name": "芦苇浪线",
-          "desc": "芦苇顶端在雾中连成一条起伏的灰线，是画面唯一的轮廓"
+          "name": "蘆葦浪線",
+          "desc": "蘆葦頂端在霧中連成一條起伏的灰線，是畫面唯一的輪廓"
         },
         {
-          "name": "半沉的旧船骨",
-          "desc": "滩涂近水处露出一截朽烂的船肋骨，黑色，挂着水草"
+          "name": "半沉的舊船骨",
+          "desc": "灘塗近水處露出一截朽爛的船肋骨，黑色，掛著水草"
         },
         {
-          "name": "一线滩涂反光",
-          "desc": "退潮泥滩在薄雾下泛一条冷光，分开水面与苇丛"
+          "name": "一線灘塗反光",
+          "desc": "退潮泥灘在薄霧下泛一條冷光，分開水面與葦叢"
         }
       ],
       "lighting": [
         {
-          "state": "薄雾午前",
+          "state": "薄霧午前",
           "prompt": "thin warm haze, diffuse pale gold light, reed silhouettes soft-edged, mudflat sheen catching the brightest value in frame"
         }
       ],
@@ -156,7 +156,7 @@
           5
         ],
         "beats": [
-          "反转"
+          "反轉"
         ]
       }
     }
@@ -164,30 +164,30 @@
   "props": [
     {
       "id": "P01",
-      "name": "旧皮箱",
-      "scale": "手持级",
-      "summary": "全剧最强的悬念道具：沈知微从第 1 集抱到第 6 集，谁碰翻谁的脸。观众要在六集里反复看到它的每个细节，最后开箱那一刻它就是主角——一致性崩了整部剧的底牌就穿帮。",
+      "name": "舊皮箱",
+      "scale": "手持級",
+      "summary": "全劇最關鍵的懸念道具：沈知微從第 1 集抱到第 6 集，誰碰它，她就跟誰翻臉。觀眾會在六集裡反覆看到每個細節，最後打開皮箱的那一刻，它就是主角——一旦失去一致性，整部劇的懸念就會穿幫。",
       "anchors": [
         {
-          "name": "绿锈铜扣",
-          "desc": "两只方形铜搭扣，绿锈从缝里渗出来，右边那只有一道新划痕"
+          "name": "綠鏽銅釦",
+          "desc": "兩隻方形銅搭扣，綠鏽從縫裡滲出來，右邊那只有一道新劃痕"
         },
         {
-          "name": "磨白的边角",
-          "desc": "四个包角的牛皮磨得发白起毛，右下角最重"
+          "name": "磨白的邊角",
+          "desc": "四個包角的牛皮磨得發白起毛，右下角最重"
         },
         {
-          "name": "提手缠布",
-          "desc": "皮质提手断过，用靛蓝土布缠了两圈，布头塞在内侧"
+          "name": "提手纏布",
+          "desc": "皮質提手斷過，用靛藍土布纏了兩圈，布頭塞在內側"
         }
       ],
       "states": [
         {
-          "state": "合上",
+          "state": "闔上",
           "prompt": "the suitcase closed and latched, resting upright, brass clasps fastened, worn leather surfaces catching soft light"
         },
         {
-          "state": "打开",
+          "state": "打開",
           "prompt": "the suitcase lying open, lid at full angle, revealing a stack of folded petition papers and a small wooden memorial tablet inside, dark fabric lining creased"
         }
       ],
@@ -219,28 +219,28 @@
           6
         ],
         "beats": [
-          "悬念钩",
+          "懸念鉤",
           "收束"
         ]
       }
     },
     {
       "id": "P02",
-      "name": "县衙旧砚",
-      "scale": "手持级",
-      "summary": "第 3 集大爆点的实体：陆行远口袋里的「硬东西」。掏出来之前它是威胁，掏出来之后它是冤案的钥匙——砚底的县衙刻印是全剧最重要的一个特写镜头。",
+      "name": "縣衙舊硯",
+      "scale": "手持級",
+      "summary": "第 3 集大爆點的實體：陸行遠口袋裡的「硬東西」。掏出來之前它是威脅，掏出來之後它是冤案的鑰匙——硯底的縣衙刻印是全劇最重要的一個特寫鏡頭。",
       "anchors": [
         {
-          "name": "砚底县衙刻印",
-          "desc": "底面阴刻两行小字官印，笔画里积着旧墨"
+          "name": "硯底縣衙刻印",
+          "desc": "底面陰刻兩行小字官印，筆畫裡積著舊墨"
         },
         {
           "name": "缺角",
-          "desc": "右上角磕掉指甲盖大小一块，断面颜色更深"
+          "desc": "右上角磕掉指甲蓋大小一塊，斷面顏色更深"
         },
         {
           "name": "墨池月痕",
-          "desc": "墨池边缘磨出一圈月牙形浅痕，用了几十年的证据"
+          "desc": "墨池邊緣磨出一圈月牙形淺痕，用了幾十年的證據"
         }
       ],
       "states": [
@@ -257,7 +257,7 @@
         "S01"
       ],
       "carriedBy": [
-        "陆行远"
+        "陸行遠"
       ],
       "image": {
         "prompt": "An old Chinese ink stone at handheld scale, dark grey duan stone with a chipped upper corner, moon-shaped wear ring around the ink pool, two lines of carved official seal characters on its underside, isolated on a pure white background, no people, no hands",
