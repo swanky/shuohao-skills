@@ -1,5 +1,16 @@
 # Changelog
 
+## Fork 1.9.0 — 2026-08-23
+
+- 同步 upstream 至 `0e5eb68`，整合 39 筆提交。
+- 新增 `novel-script` 與 `novel-storyboard`，完成從大綱、角色、美術、劇本到分鏡的五段製作管線。
+- 新增 `scripts/report.mjs`，可將現有的五段報告合成具左側導覽的單頁報告，並處理 CSS／腳本作用域與圖片相對路徑。
+- `novel-outline` 新增敘事道具表與第 14 道品質門；`novel-art` 的 `seed` 會接續使用大綱道具資料。
+- `novel-characters` 新增 `seed <outline.json>`、同劇畫風一致與同批提示詞去重校驗，音色提示詞改為緊湊參數格式，並修正 Windows 換行誤判。
+- `novel-storyboard` 支援選用外部鏡頭配方卡庫與品質門失敗統計；上游已將 `shot-recipes` 遷往獨立的影片 skills repository，因此本 repository 只保留自測 fixture 與中性的路徑說明。
+- 上游新增的文件、CLI 文案、程式註解、範例、流程圖與報告介面皆轉為台灣正體中文；保留 `novel-characters` 的 `STRINGS.zh` 簡體語系、預設 `zh-TW` 與 `photoreal` 畫風。
+- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 249 項、`novel-script` 154 項、`novel-storyboard` 254 項及單頁報告 92 項自測全部通過，共 1,306 項。
+
 ## Fork 1.8.0 — 2026-08-12
 
 - 同步上游至 `d2c3703`：新增 `novel-art` 美術設定集 skill，並取得三份報告封面改用 WebP 的更新。

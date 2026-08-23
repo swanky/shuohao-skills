@@ -1,12 +1,5 @@
 [中文](README.md) · **English**
 
-> 👋 **Open to work / collaboration** — I'm between jobs right now, and this repo is what I build in that spare time.
-> Happy to hear from anyone this resonates with. Besides **remote work**, I'm also open to a **half-collaboration**: a few thousand RMB a month for living costs plus a profit share. On-site trips are possible where the work genuinely needs them. What I'm really after is finding people on the same wavelength to build something in this AI wave.
-> Email: **[eternityspring@gmail.com](mailto:eternityspring@gmail.com)** · Résumé: **[resume.79px.com](https://resume.79px.com)** · WeChat **`hao_dev`** (please mention `github` when you add me)
->
-> These skills are free and open source, built and battle-tested on real AI short-drama production.
-> If they save you an afternoon, consider [**buying me a coffee on Ko-fi**](https://ko-fi.com/eternityspring) ☕ — it keeps the updates coming.
-
 # shuohao-skills
 
 **Agent skills for AI short-drama production** — from a novel to shoot-ready material: character bibles, adaptation outlines, scene & prop bibles, screenplays, storyboards. Built for AI coding agents, **runs in both Claude Code and codex**.
@@ -14,6 +7,14 @@
 Here is the whole pipeline — **the outline converges the structure; script, scenes and characters iterate together; the storyboard only outputs, it makes no new decisions**:
 
 <img src="assets/pipeline-en.webp" alt="AI short-drama production pipeline" width="680">
+
+> **This is a fork** of [eternityspring/shuohao-skills](https://github.com/eternityspring/shuohao-skills).
+> What differs here:
+>
+> - **Defaults to Taiwanese Traditional Chinese** (`zh-TW`) — Taiwanese word choices, not just converted glyphs. Use `--lang zh` for Simplified
+> - Adds a **`photoreal`** style preset: live-action wardrobe camera test
+>
+> See the [CHANGELOG](CHANGELOG.md).
 
 | Skill | What it does |
 | --- | --- |
@@ -102,7 +103,7 @@ ln -s "$PWD/skills/novel-characters" ~/.codex/skills/novel-characters
 | **Model quota** | Yes | Uses your current session's quota. **No API key needed** |
 | **codex CLI** | Optional | Only for image generation (via its built-in `$imagegen`). Without it, image steps are skipped and everything else still runs |
 
-> **Note on output language.** These skills are Chinese-first. `novel-characters` produces Chinese character profiles even for an English source novel, and its validator actively rejects English in those fields. See that skill's README for what it would take to change.
+> **Note on output language.** These skills are Chinese-first, and this fork defaults to Taiwanese Traditional Chinese (`zh-TW`). `novel-characters` produces Chinese character profiles even for an English source novel, and its validator actively rejects English in those fields. Pass `--lang en` for an English report; see that skill's README.
 
 ## Repository conventions
 

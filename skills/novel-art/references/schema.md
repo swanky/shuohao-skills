@@ -1,96 +1,96 @@
-# art.json 结构
+# art.json 結構
 
-美术设定集（场景 + 叙事道具）的载体。**模型只填设计字段**，场景与道具的出现集、承载爽点都由 `seed` 从 outline.json 搬运；大纲没有 `props` 时道具表留空，由模型按 `prop-pass.md` 从原文提取。Markdown 和报告由 `render` 渲染。
+美術設定集（場景 + 敘事道具）的載體。**模型只填設計欄位**，場景與道具的出現集、承載爽點都由 `seed` 從 outline.json 搬運；大綱沒有 `props` 時道具表留空，由模型按 `prop-pass.md` 從原文提取。Markdown 和報告由 `render` 渲染。
 
 ```json
 {
   "source": "渡口",
   "style": "realistic",
   "scenes": [{
-    "id": "S01", "name": "渡船船舱", "primary": true,
-    "summary": "设计意图：这个空间讲什么故事……",
-    "anchors": [{ "name": "补丁船篷", "desc": "……" }],
-    "lighting": [{ "state": "晨雾", "prompt": "dense white morning fog ..." }],
+    "id": "S01", "name": "渡船船艙", "primary": true,
+    "summary": "設計意圖：這個空間講什麼故事……",
+    "anchors": [{ "name": "補丁船篷", "desc": "……" }],
+    "lighting": [{ "state": "晨霧", "prompt": "dense white morning fog ..." }],
     "image": { "prompt": "…", "negativePrompt": "…", "sheet": "…", "tags": [] },
-    "variantOf": "S02", "changes": "换背板 + 芦苇前景",
-    "usage": { "episodes": [1, 6], "beats": ["悬念钩"] }
+    "variantOf": "S02", "changes": "換背板 + 蘆葦前景",
+    "usage": { "episodes": [1, 6], "beats": ["懸念鉤"] }
   }],
   "props": [{
-    "id": "P01", "name": "旧皮箱", "scale": "手持级",
-    "summary": "戏剧功能：全剧悬念核心……",
-    "anchors": [{ "name": "绿锈铜扣", "desc": "……" }],
+    "id": "P01", "name": "舊皮箱", "scale": "手持級",
+    "summary": "戲劇功能：全劇懸念核心……",
+    "anchors": [{ "name": "綠鏽銅釦", "desc": "……" }],
     "states": [{ "state": "合上", "prompt": "the suitcase closed ..." }],
     "relatedScenes": ["S01"], "carriedBy": ["沈知微"],
     "image": { "prompt": "…", "negativePrompt": "…", "sheet": "…", "tags": [] },
-    "usage": { "episodes": [1, 6], "beats": ["悬念钩"] }
+    "usage": { "episodes": [1, 6], "beats": ["懸念鉤"] }
   }]
 }
 ```
 
-## 顶层
+## 頂層
 
-| 字段 | 必填 | 说明 |
+| 欄位 | 必填 | 說明 |
 | --- | --- | --- |
-| `source` | 是 | 剧名/书名 |
-| `style` | 是 | `realistic` / `ghibli`，与 novel-characters 的画风同名对齐（内容是环境版，不带皮肤毛孔那套） |
-| `scenes` | 是 | 场景数组 |
-| `props` | 否 | **叙事道具**数组——只收有特写、跨集、承载剧情的（3–8 件为宜），场景陈设归场景锚点。选法见 `prop-pass.md` |
+| `source` | 是 | 劇名/書名 |
+| `style` | 是 | `realistic` / `ghibli`，與 novel-characters 的畫風同名對齊（內容是環境版，不帶皮膚毛孔那套） |
+| `scenes` | 是 | 場景陣列 |
+| `props` | 否 | **敘事道具**陣列——只收有特寫、跨集、承載劇情的（3–8 件為宜），場景陳設歸場景錨點。選法見 `prop-pass.md` |
 
-## 单个场景（以校验器为准）
+## 單個場景（以校驗器為準）
 
-| 字段 | 必填 | 语言 | 说明 |
+| 欄位 | 必填 | 語言 | 說明 |
 | --- | --- | --- | --- |
-| `id` | 是 | — | `S01` 格式，全局唯一。用 seed 时沿用 outline 的场景 id |
-| `name` | 是 | 中文 | 场景名 |
-| `primary` | 是 | — | 是不是主场景 |
-| `summary` | 是 | 中文 | **设计意图**：这个空间讲什么故事、要什么感觉，不是户型说明 |
-| `anchors` | 3–5 个 | 中文 | **一致性锚点** `{name, desc}`：每次生成都必须出现的可辨识特征。认场景靠它，QC 生成镜头也靠它 |
-| `lighting` | ≥1 个 | state 中文 / prompt 英文 | **光照状态**：AI 换时段是重新生成不是重新打灯，每个状态必须落成完整提示词 |
-| `image.prompt` | 是 | **英文** | 主视角单图提示词，**必须写明空景无人** |
-| `image.negativePrompt` | 是 | **英文** | **必须禁人**（people/figure/…），这是空景的硬保证 |
-| `image.sheet` | 是 | **英文** | 环境设定图完整版面指令（见 `sheet.md`），必须整段包含当前风格的渲染句 |
-| `image.tags` | 是 | 英文 | 风格标签数组 |
-| `variantOf` | 否 | — | 变体的母场景 id。AI 生成一个新景很便宜，但**变体复用母场景资产更一致**——outline 里带 reusePlan 的场景优先做成变体 |
-| `changes` | variantOf 时必填 | 中文 | 相对母场景改了什么（换时段/换天气/换前景/删道具） |
-| `usage` | 否 | — | `{episodes, beats}`，seed 自动填，手写也行 |
+| `id` | 是 | — | `S01` 格式，全域唯一。用 seed 時沿用 outline 的場景 id |
+| `name` | 是 | 中文 | 場景名 |
+| `primary` | 是 | — | 是不是主場景 |
+| `summary` | 是 | 中文 | **設計意圖**：這個空間講什麼故事、要什麼感覺，不是戶型說明 |
+| `anchors` | 3–5 個 | 中文 | **一致性錨點** `{name, desc}`：每次生成都必須出現的可辨識特徵。認場景靠它，QC 生成鏡頭也靠它 |
+| `lighting` | ≥1 個 | state 中文 / prompt 英文 | **光照狀態**：AI 換時段是重新生成不是重新打燈，每個狀態必須落成完整提示詞 |
+| `image.prompt` | 是 | **英文** | 主視角單圖提示詞，**必須寫明空景無人** |
+| `image.negativePrompt` | 是 | **英文** | **必須禁人**（people/figure/…），這是空景的硬保證 |
+| `image.sheet` | 是 | **英文** | 環境設定圖完整版面指令（見 `sheet.md`），必須整段包含當前風格的渲染句 |
+| `image.tags` | 是 | 英文 | 風格標籤陣列 |
+| `variantOf` | 否 | — | 變體的母場景 id。AI 生成一個新景很便宜，但**變體複用母場景資產更一致**——outline 裡帶 reusePlan 的場景優先做成變體 |
+| `changes` | variantOf 時必填 | 中文 | 相對母場景改了什麼（換時段/換天氣/換前景/刪道具） |
+| `usage` | 否 | — | `{episodes, beats}`，seed 自動填，手寫也行 |
 
-## 单件道具（以校验器为准）
+## 單件道具（以校驗器為準）
 
-| 字段 | 必填 | 语言 | 说明 |
+| 欄位 | 必填 | 語言 | 說明 |
 | --- | --- | --- | --- |
-| `id` | 是 | — | `P01` 格式，全局唯一 |
+| `id` | 是 | — | `P01` 格式，全域唯一 |
 | `name` | 是 | 中文 | 道具名 |
-| `scale` | 是 | 枚举 | `手持级` / `桌面级` / `家具级`，对应英文短语必须出现在提示词里 |
-| `summary` | 是 | 中文 | **戏剧功能**：这件道具承载什么剧情 |
-| `anchors` | 3–5 个 | 中文 | 经得起特写的细节特征（铜扣的新划痕、墨池的月牙磨痕） |
-| `states` | ≥1 个 | state 中文 / prompt 英文 | **状态变体**：合上/打开、藏着/摊开——每个状态一张参考 |
-| `relatedScenes` | 否 | — | 主要出现的场景 id，必须存在 |
-| `carriedBy` | 否 | 中文 | 谁带着它，自由文本 |
-| `image.prompt` | 是 | **英文** | 白底主视角，**必须带尺度短语、无人无手** |
-| `image.negativePrompt` | 是 | **英文** | **必须禁人且禁手**（hands/fingers） |
-| `image.sheet` | 是 | **英文** | 设定图版面指令，**必须写明 pure white background** + 当前风格渲染句 |
+| `scale` | 是 | 列舉 | `手持級` / `桌面級` / `傢俱級`，對應英文短語必須出現在提示詞裡 |
+| `summary` | 是 | 中文 | **戲劇功能**：這件道具承載什麼劇情 |
+| `anchors` | 3–5 個 | 中文 | 經得起特寫的細節特徵（銅釦的新劃痕、墨池的月牙磨痕） |
+| `states` | ≥1 個 | state 中文 / prompt 英文 | **狀態變體**：合上/開啟、藏著/攤開——每個狀態一張參考 |
+| `relatedScenes` | 否 | — | 主要出現的場景 id，必須存在 |
+| `carriedBy` | 否 | 中文 | 誰帶著它，自由文字 |
+| `image.prompt` | 是 | **英文** | 白底主視角，**必須帶尺度短語、無人無手** |
+| `image.negativePrompt` | 是 | **英文** | **必須禁人且禁手**（hands/fingers） |
+| `image.sheet` | 是 | **英文** | 設定圖版面指令，**必須寫明 pure white background** + 當前風格渲染句 |
 | `usage` | 否 | — | `{episodes, beats}` |
 
-## 硬规则（11 道质量门，全是代码）
+## 硬規則（11 道品質門，全是程式碼）
 
-1. 锚点 3–5 个——少了认不出，多了核对不过来
-2. 光照状态 ≥1 且都有英文提示词
-3. **空景**：反向提示词必须禁人。环境和角色是两层资产，混在一张图里一致性全毁
-4. 出图提示词（主图/反向/设定图/光照）全部英文
-5. 提示词不含角色名（`validate --cast cast.json` 才查，不给就明说跳过）
-6. 变体引用完整：`variantOf` 指向存在的场景且带 `changes`
-7. 风格与反向词匹配：`realistic` 不禁 photorealistic、`ghibli` 必须禁；`sheet` 必须含渲染句
+1. 錨點 3–5 個——少了認不出，多了核對不過來
+2. 光照狀態 ≥1 且都有英文提示詞
+3. **空景**：負向提示詞必須禁人。環境和角色是兩層資產，混在一張圖裡一致性全毀
+4. 生圖提示詞（主圖/反向/設定圖/光照）全部英文
+5. 提示詞不含角色名（`validate --cast cast.json` 才查，不給就明說跳過）
+6. 變體引用完整：`variantOf` 指向存在的場景且帶 `changes`
+7. 風格與反向詞匹配：`realistic` 不禁 photorealistic、`ghibli` 必須禁；`sheet` 必須含渲染句
 
-道具专属四道：
+道具專屬四道：
 
-8. 状态 ≥1 且都有英文提示词
-9. 尺度参照写进提示词（scale 枚举对应的英文短语）
-10. 反向提示词禁手——拿着道具的手是最常见污染
-11. 设定图纯白背景可抠
+8. 狀態 ≥1 且都有英文提示詞
+9. 尺度參照寫進提示詞（scale 列舉對應的英文短語）
+10. 負向提示詞禁手——拿著道具的手是最常見汙染
+11. 設定圖純白背景可摳
 
-## 校验
+## 校驗
 
 ```bash
 node scripts/novel-art.mjs validate art.json --cast cast.json
-node scripts/novel-art.mjs checkup art.json               # 只打印 11 道门 ✓/✗
+node scripts/novel-art.mjs checkup art.json               # 只列印 11 道門 ✓/✗
 ```

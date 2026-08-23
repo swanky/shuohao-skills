@@ -65,16 +65,17 @@ This file provides guidance to Claude Code (claude.ai/code) and Codex when worki
 
 所有指令都零依賴，只要 `node` >= 18，沒有 npm 套件、沒有 build 步驟。
 
-從 repo 根目錄一次跑完三套自測：
+從 repo 根目錄一次跑完五套 skill 自測與單頁報告自測：
 
 ```bash
 for f in skills/*/scripts/selftest.mjs; do node "$f"; done
+node scripts/report-selftest.mjs
 ```
 
 ```bash
 cd skills/novel-characters
 
-node scripts/selftest.mjs                              # 全部自測（318 項，不呼叫模型，約一秒）
+node scripts/selftest.mjs                              # 全部自測（399 項，不呼叫模型，約一秒）
 
 node scripts/novel-characters.mjs                      # 印出用法
 node scripts/novel-characters.mjs chunk book.txt /tmp/wk       # 切塊
@@ -102,11 +103,11 @@ node scripts/novel-characters.mjs slug "胡二爺"                 # 安全檔�
 
 ### 這個 repo 是什麼
 
-一個 AI 短劇製作 skill 集合，目前包含 `novel-characters`、`novel-outline` 與 `novel-art`。**Claude Code 和 codex 都能跑**；需要生圖的步驟由 codex 內建能力處理。
+一個 AI 短劇製作 skill 集合，目前包含 `novel-outline`、`novel-characters`、`novel-art`、`novel-script` 與 `novel-storyboard`。**Claude Code 和 codex 都能跑**；需要生圖的步驟由 codex 內建能力處理。
 
 一個 skill = 一個目錄 + 一份 `SKILL.md`。`install.sh` 認的就是 `SKILL.md` 存不存在。
 
-### 職責切分：模型做判斷，腳本做檢查
+### novel-characters：模型做判斷，腳本做檢查
 
 這是整個專案的核心設計，改東西前要先理解：
 
@@ -135,7 +136,7 @@ cast.json ──→ validate ──→ 生圖（可選）──→ render ──
 
 `chunk` / `merge` / `validate` / `render` 是腳本；兩趟是模型。**Step 7 的 validate 不能跳**。
 
-### 三套互相牽制的機制
+### novel-characters 的三套互相牽制機制
 
 改任何一套之前先確認另外兩套：
 

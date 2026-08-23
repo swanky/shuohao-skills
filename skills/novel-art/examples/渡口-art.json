@@ -166,7 +166,7 @@
       "id": "P01",
       "name": "舊皮箱",
       "scale": "手持級",
-      "summary": "全劇最關鍵的懸念道具：沈知微從第 1 集抱到第 6 集，誰碰它，她就跟誰翻臉。觀眾會在六集裡反覆看到每個細節，最後打開皮箱的那一刻，它就是主角——一旦失去一致性，整部劇的懸念就會穿幫。",
+      "summary": "全劇最關鍵的懸念道具：沈知微從第 1 集抱到第 6 集，誰碰它，她就跟誰翻臉。觀眾會在六集裡反覆看到每個細節，最後開啟皮箱的那一刻，它就是主角——一旦失去一致性，整部劇的懸念就會穿幫。",
       "anchors": [
         {
           "name": "綠鏽銅釦",
@@ -187,7 +187,7 @@
           "prompt": "the suitcase closed and latched, resting upright, brass clasps fastened, worn leather surfaces catching soft light"
         },
         {
-          "state": "打開",
+          "state": "開啟",
           "prompt": "the suitcase lying open, lid at full angle, revealing a stack of folded petition papers and a small wooden memorial tablet inside, dark fabric lining creased"
         }
       ],

@@ -20,7 +20,7 @@
 
 3. **光照狀態從分集反推。**依場景出現集數中的時段與天氣填寫狀態，不要憑空列出「白天／夜晚／黃昏」的完整組合——不會使用的狀態只會增加維護負擔。
 
-4. **提示詞永遠英文，永遠空景。**`image.prompt` 裡明寫 empty scene / no people，`negativePrompt` 必須禁人。**絕不出現角色名、作者名、作品名**——圖像模型會把它認識的東西畫進去。
+4. **提示詞永遠英文，永遠空景。**`image.prompt` 裡明寫 empty scene / no people，`negativePrompt` 必須禁人。**絕不出現角色名、作者名、作品名**——影像模型會把它認識的東西畫進去。
 
 5. **風格整套取用。**執行 `node scripts/novel-art.mjs styles` 取得目前風格的 render／surface／negative／tags，`image.sheet` 必須完整包含渲染句和表面處理句，不要混搭兩種風格。
 

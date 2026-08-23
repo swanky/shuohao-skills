@@ -1,26 +1,26 @@
 #!/usr/bin/env node
 /**
- * report.mjs —— 把 novel 系列各 skill 的报告合成一张单页，左侧导航切换。
+ * report.mjs —— 把 novel 系列各 skill 的報告合成一張單頁，左側導航切換。
  *
- * 定位：**组装器，不是第六个 skill**。它不 import 任何 skill 的代码，而是调各自的
- * `render --html` 拿产物再拼装。三条好处：
+ * 定位：**組裝器，不是第六個 skill**。它不 import 任何 skill 的程式碼，而是調各自的
+ * `render --html` 拿產物再拼裝。三條好處：
  *
- *   1. 六个 skill 一行不改，各自仍然独立可跑、可以单独拷走
- *   2. 各 skill 的加载逻辑（图存在才挂、ctx 组装、语言优先级）只有一份，不在这里重写
- *   3. 某个 skill 改了渲染，这里自动跟上，不会漂
+ *   1. 六個 skill 一行不改，各自仍然獨立可跑、可以單獨拷走
+ *   2. 各 skill 的載入邏輯（圖存在才掛、ctx 組裝、語言優先順序）只有一份，不在這裡重寫
+ *   3. 某個 skill 改了渲染，這裡自動跟上，不會漂
  *
- * 合并要解决三件事，都在这个文件里做，不侵入 skill：
+ * 合併要解決三件事，都在這個檔案裡做，不侵入 skill：
  *
- *   - **样式串味**：五份报告共用 57 个类名，其中 13 个同名不同定义（`.copy` `.kpis`
- *     `.badge` `.chip` …）。做法是给每份样式的每条选择器加作用域前缀。
- *     已量过：五份报告的 CSS 里**没有任何 `#id` 选择器**，所以只处理类与元素选择器。
- *   - **脚本串味**：各报告的脚本都是 `document.querySelector('.expo')` 这种全局查询。
- *     合成一页后只会命中第一个——五个导出按钮会全废。做法是给每份脚本套一层
- *     作用域代理，把查询限制在自己的 pane 内。
- *   - **图片路径**：各报告的图相对自己那份 json 的目录（`images/…`、`E01-01/f1.png`）。
- *     合成后要按输出文件的位置重算。
+ *   - **樣式串味**：五份報告共用 57 個類名，其中 13 個同名不同定義（`.copy` `.kpis`
+ *     `.badge` `.chip` …）。做法是給每份樣式的每條選擇器加作用域字首。
+ *     已量過：五份報告的 CSS 裡**沒有任何 `#id` 選擇器**，所以只處理類與元素選擇器。
+ *   - **腳本串味**：各報告的腳本都是 `document.querySelector('.expo')` 這種全域查詢。
+ *     合成一頁後只會命中第一個——五個匯出按鈕會全廢。做法是給每份腳本套一層
+ *     作用域代理，把查詢限制在自己的 pane 內。
+ *   - **圖片路徑**：各報告的圖相對自己那份 json 的目錄（`images/…`、`E01-01/f1.png`）。
+ *     合成後要按輸出檔案的位置重算。
  *
- * 用法见 USAGE。
+ * 用法見 USAGE。
  */
 
 import { execFileSync } from 'node:child_process';
@@ -32,17 +32,17 @@ const here = dirname(fileURLToPath(import.meta.url));
 const skillsDir = resolve(here, '..', 'skills');
 
 /* ------------------------------------------------------------------ */
-/* 面板定义                                                            */
+/* 面板定義                                                            */
 /* ------------------------------------------------------------------ */
 
 /**
- * 顺序照流程图：大纲 → （角色 · 美术 · 剧本）→ 分镜。
+ * 順序照流程圖：大綱 → （角色 · 美術 · 劇本）→ 分鏡。
  *
- * `needs` 是这份报告渲染时要一并喂进去的上游——合并器手上有全部路径，
- * 顺手传给各自的 render，用户不用自己拼一长串参数。分镜的 `--script`
- * 是硬前提（没有剧本它会直接报错），其余都是可选增强。
+ * `needs` 是這份報告渲染時要一併餵進去的上游——合併器手上有全部路徑，
+ * 順手傳給各自的 render，使用者不用自己拼一長串參數。分鏡的 `--script`
+ * 是硬前提（沒有劇本它會直接報錯），其餘都是可選增強。
  *
- * `dir` 是端到端 demo 工作目录约定里对应的子目录名，`--from` 自动发现时用。
+ * `dir` 是端到端 demo 工作目錄約定裡對應的子目錄名，`--from` 自動發現時用。
  */
 export const PANES = [
   {
@@ -50,9 +50,9 @@ export const PANES = [
     skill: 'novel-outline',
     flag: '--outline',
     dir: 'outline',
-    label: '大纲',
+    label: '大綱',
     labelEn: 'Outline',
-    hint: '改编结构与分集',
+    hint: '改編結構與分集',
     hintEn: 'Adaptation & episodes',
     needs: [],
   },
@@ -63,7 +63,7 @@ export const PANES = [
     dir: 'characters',
     label: '角色',
     labelEn: 'Characters',
-    hint: '画像与设定图',
+    hint: '畫像與設定圖',
     hintEn: 'Profiles & sheets',
     needs: [],
   },
@@ -72,9 +72,9 @@ export const PANES = [
     skill: 'novel-art',
     flag: '--art',
     dir: 'art',
-    label: '美术',
+    label: '美術',
     labelEn: 'Art',
-    hint: '场景与道具',
+    hint: '場景與道具',
     hintEn: 'Scenes & props',
     needs: ['--cast'],
   },
@@ -83,9 +83,9 @@ export const PANES = [
     skill: 'novel-script',
     flag: '--script',
     dir: 'script',
-    label: '剧本',
+    label: '劇本',
     labelEn: 'Screenplay',
-    hint: '场次、节拍、台词',
+    hint: '場次、節拍、臺詞',
     hintEn: 'Scenes, beats, lines',
     needs: ['--outline', '--art', '--cast'],
   },
@@ -94,30 +94,30 @@ export const PANES = [
     skill: 'novel-storyboard',
     flag: '--storyboard',
     dir: 'storyboard',
-    label: '分镜',
+    label: '分鏡',
     labelEn: 'Storyboard',
-    hint: '段、分镜、首帧',
+    hint: '段、分鏡、首幀',
     hintEn: 'Segments, cuts, frames',
     needs: ['--script', '--outline', '--art', '--cast'],
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* 拆文档                                                              */
+/* 拆文件                                                              */
 /* ------------------------------------------------------------------ */
 
 /**
- * 把一份完整 HTML 文档拆成 { style, body, scripts, title }。
+ * 把一份完整 HTML 文件拆成 { style, body, scripts, title }。
  *
- * 各报告都是 `<!doctype html><html><head><style>…</style></head><body>…</body></html>`
- * 这个固定形状，所以正则够用——不引入 DOM 解析器，这个仓库零依赖。
+ * 各報告都是 `<!doctype html><html><head><style>…</style></head><body>…</body></html>`
+ * 這個固定形狀，所以正則夠用——不引入 DOM 解析器，這個儲存庫零依賴。
  */
 export function splitDoc(html) {
   const styles = [...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1]);
 
-  // **只抠真正的 JavaScript**。各报告都用 `<script type="application/json" id="…-data">`
-  // 内嵌自己那份源 JSON 给导出按钮读——那是数据不是脚本，必须原样留在正文里。
-  // 抠错了会被当成代码执行，浏览器直接甩 `Unexpected token ':'`。
+  // **只摳真正的 JavaScript**。各報告都用 `<script type="application/json" id="…-data">`
+  // 內嵌自己那份源 JSON 給匯出按鈕讀——那是資料不是腳本，必須原樣留在正文裡。
+  // 摳錯了會被當成程式碼執行，瀏覽器直接甩 `Unexpected token ':'`。
   const isJs = (attrs) => {
     if (/\bsrc=/.test(attrs)) return false;
     const type = (attrs.match(/\btype="([^"]*)"/) ?? [])[1];
@@ -128,36 +128,36 @@ export function splitDoc(html) {
 
   const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/);
   let body = bodyMatch ? bodyMatch[1] : html;
-  // 正文里把 JS 剥掉（它们要单独套作用域），数据块留下
+  // 正文裡把 JS 剝掉（它們要單獨套作用域），資料區塊留下
   body = body.replace(SCRIPT_RE, (whole, attrs) => (isJs(attrs) ? '' : whole));
   const title = (html.match(/<title>([\s\S]*?)<\/title>/) ?? [])[1] ?? '';
   return { style: styles.join('\n'), body, scripts, title };
 }
 
 /* ------------------------------------------------------------------ */
-/* 样式加作用域                                                        */
+/* 樣式加作用域                                                        */
 /* ------------------------------------------------------------------ */
 
 /**
- * 给一份样式表的每条选择器加上作用域前缀。
+ * 給一份樣式表的每條選擇器加上作用域字首。
  *
- * 四种要特殊对待的：
- *   - `:root` / `html` / `body` → 直接换成作用域本身（自定义属性挂在 pane 上，
- *     pane 内部照常继承）
- *   - `@keyframes` → **整块原样保留**，里面的 `0%` `from` `to` 不是选择器
- *   - `@media` / `@supports` → 递归处理内部，`@` 行本身不动
- *   - 逗号分隔的选择器组 → 每一支各自加前缀
+ * 四種要特殊對待的：
+ *   - `:root` / `html` / `body` → 直接換成作用域本身（自定義屬性掛在 pane 上，
+ *     pane 內部照常繼承）
+ *   - `@keyframes` → **整塊原樣保留**，裡面的 `0%` `from` `to` 不是選擇器
+ *   - `@media` / `@supports` → 遞迴處理內部，`@` 行本身不動
+ *   - 逗號分隔的選擇器組 → 每一支各自加字首
  */
 export function scopeCss(css, scope) {
-  // 先剥注释。规则之间的注释会被当成下一条选择器的一部分，而注释里的逗号会把
-  // 选择器切断——实测 `/* episode overview: first three cards, … */` 就是这么
-  // 变成一条选择器的。剥掉是最省事的解，合并产物里也不需要这些注释。
+  // 先剝註釋。規則之間的註釋會被當成下一條選擇器的一部分，而註釋裡的逗號會把
+  // 選擇器切斷——實測 `/* episode overview: first three cards, … */` 就是這麼
+  // 變成一條選擇器的。剝掉是最省事的解，合併產物裡也不需要這些註釋。
   const css2 = css.replace(/\/\*[\s\S]*?\*\//g, '');
   const out = [];
   let i = 0;
 
   const readBlock = (from) => {
-    // 从 `{` 开始配对到对应的 `}`，返回结束位置（指向 `}` 之后）
+    // 從 `{` 開始配對到對應的 `}`，返回結束位置（指向 `}` 之後）
     let depth = 0;
     for (let k = from; k < css2.length; k += 1) {
       if (css2[k] === '{') depth += 1;
@@ -177,7 +177,7 @@ export function scopeCss(css, scope) {
     const inner = css2.slice(brace + 1, end - 1);
 
     if (/^@(keyframes|font-face|counter-style|property)/i.test(head)) {
-      // 动画关键帧与字体声明整块原样搬，内部不是选择器
+      // 動畫關鍵幀與字型宣告整塊原樣搬，內部不是選擇器
       out.push(`${head}{${inner}}`);
     } else if (/^@(media|supports|layer|container)/i.test(head)) {
       out.push(`${head}{${scopeCss(inner, scope)}}`);
@@ -189,10 +189,10 @@ export function scopeCss(css, scope) {
         .map((sel) => {
           const s = sel.trim();
           if (!s) return '';
-          // 页面级选择器换成作用域本身：自定义属性与基础排版落在 pane 上
+          // 頁面級選擇器換成作用域本身：自定義屬性與基礎排版落在 pane 上
           if (/^(:root|html|body)$/.test(s)) return scope;
           if (/^(:root|html|body)\b/.test(s)) return s.replace(/^(:root|html|body)\b/, scope);
-          // `*` 单独一支时不加空格，避免选中 pane 自己以外的东西时语义漂移
+          // `*` 單獨一支時不加空格，避免選中 pane 自己以外的東西時語義漂移
           return `${scope} ${s}`;
         })
         .filter(Boolean)
@@ -209,14 +209,14 @@ export function scopeCss(css, scope) {
 /* ------------------------------------------------------------------ */
 
 /**
- * 给正文里的 id 加前缀，并同步改掉引用它的地方。
+ * 給正文裡的 id 加字首，並同步改掉引用它的地方。
  *
- * 已量过：五份报告跨文档重复的 id 有 9 个（`#ep-1`…`#ep-6`、`#sec-gates`、
- * `#sec-scenes`、`#sec-rhythm`）。不改的话页内锚点会跳到别的面板去。
+ * 已量過：五份報告跨文件重複的 id 有 9 個（`#ep-1`…`#ep-6`、`#sec-gates`、
+ * `#sec-scenes`、`#sec-rhythm`）。不改的話頁內錨點會跳到別的面板去。
  *
- * 一并改的引用点：`href="#…"`、`data-pane="…"`（大纲的图表/表格切换靠它跟
- * `p.id` 比对）、`aria-controls`、`for`。**脚本里的 id 字符串不用改**——
- * 作用域代理会在 `getElementById` 里自动补前缀。
+ * 一併改的引用點：`href="#…"`、`data-pane="…"`（大綱的圖表/表格切換靠它跟
+ * `p.id` 比對）、`aria-controls`、`for`。**腳本裡的 id 字串不用改**——
+ * 作用域代理會在 `getElementById` 裡自動補字首。
  */
 export function scopeHtml(body, prefix) {
   return body
@@ -228,11 +228,11 @@ export function scopeHtml(body, prefix) {
 }
 
 /**
- * 把相对图片路径按输出文件的位置重算。
+ * 把相對圖片路徑按輸出檔案的位置重算。
  *
- * 各报告的图相对各自 json 所在目录（角色是 `images/…`，分镜是 `E01-01/f1.png`）。
- * 合成一页之后，浏览器按合并文件的位置解析，不重算就全是断图。
- * `data:` 与绝对地址原样不动。
+ * 各報告的圖相對各自 json 所在目錄（角色是 `images/…`，分鏡是 `E01-01/f1.png`）。
+ * 合成一頁之後，瀏覽器按合併檔案的位置解析，不重算就全是斷圖。
+ * `data:` 與絕對地址原樣不動。
  */
 export function rebaseAssets(text, fromDir, outDir) {
   const fix = (p) => {
@@ -242,26 +242,26 @@ export function rebaseAssets(text, fromDir, outDir) {
   };
   return text
     .replace(/\b(src|data-img|data-src|poster)="([^"]*)"/g, (m, attr, val) => `${attr}="${fix(val)}"`)
-    // 内联样式与样式表里的 `url(...)`。角色报告的缩略图就走这条
-    // （`style="background-image:url('images/…')"`），只查属性会漏掉它，
-    // 表现是缩略图 404 但大图正常——很不好排查，所以两条路都覆盖。
+    // 內聯樣式與樣式表裡的 `url(...)`。角色報告的縮圖就走這條
+    // （`style="background-image:url('images/…')"`），只查屬性會漏掉它，
+    // 表現是縮圖 404 但大圖正常——很不好排查，所以兩條路都覆蓋。
     .replace(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g, (m, q, val) => `url(${q}${fix(val)}${q})`);
 }
 
 /* ------------------------------------------------------------------ */
-/* 脚本加作用域                                                        */
+/* 腳本加作用域                                                        */
 /* ------------------------------------------------------------------ */
 
 /**
- * 给一份报告的脚本套上作用域。
+ * 給一份報告的腳本套上作用域。
  *
- * 各报告的脚本都写成 `document.querySelector('.expo')` 这种全局查询——合成一页
- * 之后只会命中第一个面板的那个，其余四个导出按钮直接失效。这里用一个 Proxy 把
- * `document` 换掉：查询类方法限制在自己的 pane 内，`getElementById` 顺手补上
- * id 前缀（所以脚本里的 id 字符串一个都不用改），其余属性与方法原样透传给真的
- * document（`createElement` 这些还要用）。
+ * 各報告的腳本都寫成 `document.querySelector('.expo')` 這種全域查詢——合成一頁
+ * 之後只會命中第一個面板的那個，其餘四個匯出按鈕直接失效。這裡用一個 Proxy 把
+ * `document` 換掉：查詢類方法限制在自己的 pane 內，`getElementById` 順手補上
+ * id 字首（所以腳本裡的 id 字串一個都不用改），其餘屬性與方法原樣透傳給真的
+ * document（`createElement` 這些還要用）。
  *
- * 整段包在 IIFE 里，顺带隔离各报告的顶层 `const`——五份脚本里有重名的。
+ * 整段包在 IIFE 裡，順帶隔離各報告的頂層 `const`——五份腳本里有重名的。
  */
 export function scopeJs(js, paneId, prefix) {
   return `(function(){
@@ -284,12 +284,12 @@ ${js}
 }
 
 /* ------------------------------------------------------------------ */
-/* 组装一个面板                                                        */
+/* 組裝一個面板                                                        */
 /* ------------------------------------------------------------------ */
 
 /**
- * 把一份完整报告文档变成一个可以塞进外壳的面板。
- * 纯函数，不碰文件系统——自测直接喂 HTML 字符串就能验。
+ * 把一份完整報告文件變成一個可以塞進外殼的面板。
+ * 純函式，不碰檔案系統——自測直接餵 HTML 字串就能驗。
  */
 export function makePane(html, { id, fromDir = '.', outDir = '.' } = {}) {
   const { style, body, scripts, title } = splitDoc(html);
@@ -307,19 +307,19 @@ export function makePane(html, { id, fromDir = '.', outDir = '.' } = {}) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 外壳                                                                */
+/* 外殼                                                                */
 /* ------------------------------------------------------------------ */
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 const SHELL_I18N = {
   zh: {
-    kicker: '短剧制作报告',
-    nav: '流水线',
-    expandAll: '平铺全部',
-    expandHint: '平铺之后 Cmd+F 能搜到所有面板',
-    collapse: '回到分栏',
-    empty: '没有任何一段的产出——至少要给一份 json',
+    kicker: '短劇製作報告',
+    nav: '流水線',
+    expandAll: '平鋪全部',
+    expandHint: '平鋪之後 Cmd+F 能搜到所有面板',
+    collapse: '回到分欄',
+    empty: '沒有任何一段的產出——至少要給一份 json',
     htmlLang: 'zh',
   },
   en: {
@@ -334,11 +334,11 @@ const SHELL_I18N = {
 };
 
 /**
- * 外壳布局：左侧固定导航 + 右侧内容区。
+ * 外殼佈局：左側固定導航 + 右側內容區。
  *
- * 只有当前面板显示，所以 Cmd+F 默认只搜得到当前这一份——这跟各报告「全部平铺
- * 可 Cmd+F」的设计主张是冲突的。所以留了「平铺全部」开关：按下之后所有面板同时
- * 显示，搜索恢复全局。默认分栏，因为五份加起来将近六十万字符，一次全渲染很沉。
+ * 只有當前面板顯示，所以 Cmd+F 預設只搜得到當前這一份——這跟各報告「全部平鋪
+ * 可 Cmd+F」的設計主張是衝突的。所以留了「平鋪全部」開關：按下之後所有面板同時
+ * 顯示，搜尋恢復全域。預設分欄，因為五份加起來將近六十萬字元，一次全渲染很沉。
  */
 export function renderShell(panes, { title = '', lang = 'zh', subtitle = '' } = {}) {
   const t = SHELL_I18N[lang] ?? SHELL_I18N.zh;
@@ -362,7 +362,7 @@ export function renderShell(panes, { title = '', lang = 'zh', subtitle = '' } = 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} · ${esc(t.kicker)}</title>
 <style>
-/* ---- 外壳。视觉语言跟各报告同一套：冷灰印张 + 铁锈红印记 ---- */
+/* ---- 外殼。視覺語言跟各報告同一套：冷灰印張 + 鐵鏽紅印記 ---- */
 :root{
   --paper:#f6f6f4; --panel:#fff; --ink:#1a1a18; --ink-2:#44443f; --ink-3:#77776f;
   --rule:#d2d5d0; --rule-2:#c2c6bf; --seal:#8a3324; --seal-soft:#8a332412;
@@ -377,7 +377,7 @@ body{
 }
 .rp-app{display:flex;align-items:flex-start;min-height:100vh}
 
-/* ---- 左侧导航 ---- */
+/* ---- 左側導航 ---- */
 .rp-rail{
   position:sticky;top:0;flex:0 0 var(--rail);width:var(--rail);height:100vh;
   background:var(--panel);border-right:1px solid var(--rule);
@@ -413,14 +413,14 @@ body{
 .rp-allbtn:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
 .rp-railfoot p{margin:8px 2px 0;font-size:10.5px;color:var(--ink-3);line-height:1.5}
 
-/* ---- 内容区 ---- */
+/* ---- 內容區 ---- */
 .rp-main{flex:1 1 auto;min-width:0}
 .rp-pane{display:none}
 .rp-pane.rp-on{display:block}
 .rp-app.rp-all .rp-pane{display:block;border-bottom:1px solid var(--rule)}
 .rp-app.rp-all .rp-rail .rp-nv{opacity:.55}
 
-/* 各报告原本自己撑满视口，塞进 pane 之后交给内容区控制宽度 */
+/* 各報告原本自己撐滿視口，塞進 pane 之後交給內容區控制寬度 */
 .rp-pane{max-width:100%;overflow-x:auto}
 
 @media (max-width:900px){
@@ -433,7 +433,7 @@ body{
   .rp-pane{display:block!important;break-after:page}
 }
 
-/* ---- 各面板自己的样式，已加作用域前缀 ---- */
+/* ---- 各面板自己的樣式，已加作用域字首 ---- */
 ${panes.map((p) => `/* ===== ${p.id} ===== */\n${p.css}`).join('\n')}
 </style>
 </head>
@@ -468,7 +468,7 @@ ${body}
     window.scrollTo(0,0);
   }
   navs.forEach(function(n){n.addEventListener('click',function(){app.classList.remove('rp-all');show(n.dataset.pane);});});
-  // 数字键 1–9 直接切面板
+  // 數字鍵 1–9 直接切面板
   document.addEventListener('keydown',function(e){
     if(e.metaKey||e.ctrlKey||e.altKey)return;
     var tag=(e.target&&e.target.tagName||'').toLowerCase();
@@ -476,14 +476,14 @@ ${body}
     var i=parseInt(e.key,10);
     if(i>=1&&i<=navs.length){app.classList.remove('rp-all');show(navs[i-1].dataset.pane);}
   });
-  // 平铺：所有面板同时显示，Cmd+F 恢复全局
+  // 平鋪：所有面板同時顯示，Cmd+F 恢復全域
   var all=document.getElementById('rp-allbtn');
   var LBL={on:${JSON.stringify(t.collapse)},off:${JSON.stringify(t.expandAll)}};
   all.addEventListener('click',function(){
     var on=app.classList.toggle('rp-all');
     all.textContent=on?LBL.on:LBL.off;
   });
-  // 深链：#pane-script 直接落到那一屏
+  // 深鏈：#pane-script 直接落到那一屏
   var h=(location.hash||'').replace(/^#/,'');
   if(h&&document.getElementById(h))show(h);
 })();
@@ -497,31 +497,31 @@ ${panes.map((p) => (p.js ? `<script>\n${p.js}\n</script>` : '')).filter(Boolean)
 /* CLI                                                                 */
 /* ------------------------------------------------------------------ */
 
-const USAGE = `report.mjs —— 把 novel 系列各 skill 的报告合成一张单页
+const USAGE = `report.mjs —— 把 novel 系列各 skill 的報告合成一張單頁
 
-  node scripts/report.mjs --from <demo目录> [--out report.html] [--lang zh|en]
+  node scripts/report.mjs --from <demo目錄> [--out report.html] [--lang zh|en]
   node scripts/report.mjs --outline o.json --cast c.json … [--out report.html]
 
-  --from <目录>      按端到端 demo 工作目录约定自动发现：
+  --from <目錄>      按端到端 demo 工作目錄約定自動發現：
                      outline/ characters/ art/ script/ storyboard/ 各取一份 json
-  --outline <f>      单独指定某一段的 json，可与 --from 混用（显式的优先）
+  --outline <f>      單獨指定某一段的 json，可與 --from 混用（顯式的優先）
   --cast <f>
   --art <f>
   --script <f>
   --storyboard <f>
-  --out <f>          输出路径，默认 report.html
-  --lang zh|en       外壳与各报告的界面语言，默认 zh
-  --title <s>        左上角标题，默认取第一份 json 的 source
+  --out <f>          輸出路徑，預設 report.html
+  --lang zh|en       外殼與各報告的介面語言，預設 zh
+  --title <s>        左上角標題，預設取第一份 json 的 source
 
-  **给了哪几段就出哪几个面板**——只有角色就只有一个面板，五段齐全就是五个。
-  各 skill 的 render 一行不改，仍然可以单独出各自的报告。`;
+  **給了哪幾段就出哪幾個面板**——只有角色就只有一個面板，五段齊全就是五個。
+  各 skill 的 render 一行不改，仍然可以單獨出各自的報告。`;
 
 function flag(argv, name, fallback = null) {
   const i = argv.indexOf(name);
   return i >= 0 && argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[i + 1] : fallback;
 }
 
-/** 在一个目录里找唯一一份看着像该段产出的 json（排掉报告与清单类文件）。 */
+/** 在一個目錄裡找唯一一份看著像該段產出的 json（排掉報告與清單類檔案）。 */
 function findJson(dir, skill) {
   if (!existsSync(dir)) return null;
   const kind = skill.replace('novel-', '');
@@ -542,7 +542,7 @@ function main(argv) {
   const outDir = dirname(outPath);
   const lang = flag(argv, '--lang', 'zh');
 
-  // 路径来源：显式参数优先，其次从 --from 目录自动发现
+  // 路徑來源：顯式參數優先，其次從 --from 目錄自動發現
   const paths = {};
   for (const p of PANES) {
     const explicit = flag(argv, p.flag);
@@ -550,7 +550,7 @@ function main(argv) {
   }
 
   const chosen = PANES.filter((p) => paths[p.flag]);
-  if (!chosen.length) throw new Error(`没有找到任何一段的产出。\n\n${USAGE}`);
+  if (!chosen.length) throw new Error(`沒有找到任何一段的產出。\n\n${USAGE}`);
 
   const panes = [];
   for (const p of chosen) {
@@ -558,12 +558,12 @@ function main(argv) {
     const cli = join(skillsDir, p.skill, 'scripts', `${p.skill}.mjs`);
     const args = ['render', jsonPath, '--html', '--lang', lang];
     for (const need of p.needs) {
-      // 上游有就带上；没有就不带，各 skill 自己会说明跳过了什么
+      // 上游有就帶上；沒有就不帶，各 skill 自己會說明跳過了什麼
       if (paths[need]) args.push(need, paths[need]);
     }
     let html;
     try {
-      // cwd 定在 json 所在目录：各 skill 的图存在检查是相对那里做的
+      // cwd 定在 json 所在目錄：各 skill 的圖存在檢查是相對那裡做的
       html = execFileSync(process.execPath, [cli, ...args], {
         cwd: dirname(jsonPath),
         encoding: 'utf8',
@@ -572,7 +572,7 @@ function main(argv) {
       });
     } catch (e) {
       const why = (e.stderr || e.message || '').trim().split('\n')[0];
-      console.error(`⚠️ ${p.skill} 这一段没渲染出来，跳过：${why}`);
+      console.error(`⚠️ ${p.skill} 這一段沒渲染出來，跳過：${why}`);
       continue;
     }
     const pane = makePane(html, { id: p.id, fromDir: dirname(jsonPath), outDir });
@@ -580,7 +580,7 @@ function main(argv) {
     panes.push(pane);
   }
 
-  if (!panes.length) throw new Error('每一段都没渲染成功，没有可合成的内容');
+  if (!panes.length) throw new Error('每一段都沒渲染成功，沒有可合成的內容');
 
   const titleFlag = flag(argv, '--title');
   let title = titleFlag;
@@ -588,13 +588,13 @@ function main(argv) {
     const first = paths[chosen[0].flag];
     try {
       title = JSON.parse(readFileSync(first, 'utf8')).source ?? '';
-    } catch { /* 读不出来就退回文件名 */ }
+    } catch { /* 讀不出來就退回檔名 */ }
     if (!title) title = basename(first).replace(/[-_](cast|outline|art|script|storyboard)\.json$/i, '').replace(/\.json$/i, '');
   }
 
   const sub = panes.map((p) => (lang === 'en' ? p.meta.labelEn : p.meta.label)).join(lang === 'en' ? ' · ' : ' · ');
   writeFileSync(outPath, renderShell(panes, { title, lang, subtitle: sub }));
-  console.log(`✓ ${panes.length} 个面板 → ${relative(process.cwd(), outPath) || outPath}`);
+  console.log(`✓ ${panes.length} 個面板 → ${relative(process.cwd(), outPath) || outPath}`);
   for (const p of panes) console.log(`    ${lang === 'en' ? p.meta.labelEn : p.meta.label}  ${p.title || ''}`);
 }
 

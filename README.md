@@ -1,79 +1,78 @@
 **中文** · [English](README.en.md)
 
-> 👋 **找工作 / 合作** — 作者目前在空窗期，这个仓库就是业余的一点小探索。
-> 有缘的朋友欢迎联系。**远程工作**之外，也接受**半合作**——每月几千块生活费 + 利润分成。如有必要，FED的话，也是可以考虑到场出差。希望在AI浪潮下，能找到同频朋友一起做点事情。
-> 个人简历：**[resume.79px.com](https://resume.79px.com)**
-> 
-> 我建了一个 **AI 短剧交流群**（付费），聊 AI 短剧的工作流、工具和实操。
-> 有兴趣的加我：**微信 `hao_dev`**，添加时**备注 `github`**。
->
-> <img src="assets/wechat.png" alt="烁皓微信二维码" width="180">
-
 # shuohao-skills
 
-**AI 短剧制作的 skill 集合**：从一本小说到直接喂生成管线的制作素材——拆角色、排大纲、出场景与道具设定、写剧本、切分镜。给 AI 编码 agent 用，**Claude Code 和 codex 都能跑**。
+**AI 短劇製作的 skill 集合**：從一本小說到直接餵生成管線的製作素材——拆角色、排大綱、出場景與道具設定、寫劇本、切分鏡。給 AI coding agent 用，**Claude Code 和 codex 都能跑**。
 
-整条管线长这样——**改编大纲收敛结构，剧本、场景、角色三者同步迭代，分镜只做输出不做新决定**：
+整條管線長這樣——**改編大綱收斂結構，劇本、場景、角色三者同步迭代，分鏡只做輸出不做新決定**：
 
-<img src="assets/pipeline.webp" alt="AI 短剧制作流程图" width="680">
+<img src="assets/pipeline.webp" alt="AI 短劇製作流程圖" width="680">
 
-| Skill | 做什么 |
+> **這是 fork。** 上游是 [eternityspring/shuohao-skills](https://github.com/eternityspring/shuohao-skills)，
+> 並在原專案基礎上持續整合新功能。本 fork 的差異：
+>
+> - **預設輸出台灣正體中文**（`zh-TW`），用詞照台灣習慣而不只是換字形。要簡體用 `--lang zh`
+> - 新增 **`photoreal`** 畫風預設：擬真實拍，劇組試裝定妝照的質感
+>
+> 詳見 [CHANGELOG](CHANGELOG.md)。
+
+| Skill | 做什麼 |
 | --- | --- |
-| [**novel-outline**](skills/novel-outline) | 把一本小说改编成短剧大纲五件套：改编说明、人物表、爽点表、分集梗概、资产清单（含叙事道具表）。14 道质量门全部脚本检查，支持已有大纲的体检模式 |
-| [**novel-characters**](skills/novel-characters) | 把大纲定下的角色做成角色设定集：人物画像、形象提示词、音色提示词、角色设定图。吃 outline.json 预填角色表，报告语言与出图风格可选 |
-| [**novel-art**](skills/novel-art) | 给 AI 短剧出美术设定集（场景 + 叙事道具）：一致性锚点、光照与状态变体、尺度参照、无人无手白底提示词。吃 outline.json 预填清单，11 道质量门全部脚本检查 |
-| [**novel-script**](skills/novel-script) | 给 AI 短剧写剧本：场次 + 节拍流（动作与台词交替），逐集时长按语速确定性折算，钩子前 3 拍冷开场兑现是门，台词本按角色聚合带音色提示词直接对接 TTS。10 道质量门全部脚本检查 |
-| [**novel-storyboard**](skills/novel-storyboard) | 给 AI 短剧出分镜：段（一次生成 ≤15 秒）→ 分镜（2–5 秒硬门）→ 分镜图（主图钉 0.00 秒、子图钉各自切点），MiniMax H3 提示词的对齐指令与切点时刻逐字对账；分镜图拿设定图当参考图真出图，export 一键出投产包。17 道质量门全部脚本检查 |
+| [**novel-outline**](skills/novel-outline) | 把一本小說改編成短劇大綱五件套：改編說明、人物表、爽點表、分集梗概、資產清單（含敘事道具表）。14 道品質門全部腳本檢查，支援已有大綱的體檢模式 |
+| [**novel-characters**](skills/novel-characters) | 把大綱定下的角色做成角色設定集：人物畫像、形象提示詞、音色提示詞、角色設定圖。吃 outline.json 預填角色表，報告語言與生圖風格可選 |
+| [**novel-art**](skills/novel-art) | 給 AI 短劇出美術設定集（場景 + 敘事道具）：一致性錨點、光照與狀態變體、尺度參照、無人無手白底提示詞。吃 outline.json 預填清單，11 道品質門全部腳本檢查 |
+| [**novel-script**](skills/novel-script) | 給 AI 短劇寫劇本：場次 + 節拍流（動作與臺詞交替），逐集時長按語速確定性折算，鉤子前 3 拍冷開場兌現是門，臺詞本按角色聚合帶音色提示詞直接對接 TTS。10 道品質門全部腳本檢查 |
+| [**novel-storyboard**](skills/novel-storyboard) | 給 AI 短劇出分鏡：段（一次生成 ≤15 秒）→ 分鏡（2–5 秒硬門）→ 分鏡圖（主圖釘 0.00 秒、子圖釘各自切點），MiniMax H3 提示詞的對齊指令與切點時刻逐字對賬；分鏡圖拿設定圖當參考圖真生圖，export 一鍵出投產包。17 道品質門全部腳本檢查 |
 
-**五个 skill 的报告都支持中英双语界面**：默认中文，`render --lang en` 出全英文报告（数据内容保持原文）。
+**五個 skill 的報告都支援中英雙語介面**：預設中文，`render --lang en` 出全英文報告（資料內容保持原文）。
 
-## 合成一张单页
+## 合成一張單頁
 
-五段的报告可以合成一张单页，左侧导航切换——**有哪几段就出哪几个面板**：
-
-```bash
-node scripts/report.mjs --from <demo目录> --out report.html
-```
-
-`--from` 按下面的[工作目录约定](#端到端-demo-工作目录约定)自动发现五份 json；也可以逐个指定（`--outline` `--cast` `--art` `--script` `--storyboard`）。只跑了角色那一段就只有一个面板，不报错。
-
-它是**组装器，不是独立 skill**：不 import 任何 skill 的代码，而是调各自的 `render --html` 拿产物再拼装。所以五个 skill 一行不改、各自仍然独立可跑、可以单独拷走；某个 skill 改了渲染，这边自动跟上。
-
-合并时处理三件事——**这三件都在组装器里做，不侵入 skill**：
-
-- **样式串味**。五份报告共用 57 个类名，其中 13 个同名不同定义（`.copy` `.kpis` `.badge` `.chip`……），所以给每份样式的每条选择器加作用域前缀
-- **脚本串味**。各报告的脚本都是 `document.querySelector('.expo')` 这种全局查询，合成一页后只会命中第一个——五个导出按钮会全废。做法是给每份脚本套一层作用域代理
-- **图片路径**。各报告的图相对自己那份 json 的目录（`images/…`、`E01-01/f1.png`），合成后按输出文件的位置重算
-
-默认一次显示一个面板（五份加起来将近六十万字符）。左下角「平铺全部」把所有面板同时展开，Cmd+F 恢复全局搜索。数字键 `1`–`5` 切面板，`#pane-script` 这样的深链可以直接分享到某一屏。
+五段的報告可以合成一張單頁，左側導航切換——**有哪幾段就出哪幾個面板**：
 
 ```bash
-node scripts/report-selftest.mjs   # 92 项断言，不起浏览器
+node scripts/report.mjs --from <demo目錄> --out report.html
 ```
 
-丢一本小说进去，出这五套：
+`--from` 按下面的[工作目錄約定](#端到端-demo-工作目錄約定)自動發現五份 json；也可以逐個指定（`--outline` `--cast` `--art` `--script` `--storyboard`）。只跑了角色那一段就只有一個面板，不報錯。
 
-**novel-outline · 短剧改编大纲**
+它是**組裝器，不是獨立 skill**：不 import 任何 skill 的程式碼，而是調各自的 `render --html` 拿產物再拼裝。所以五個 skill 一行不改、各自仍然獨立可跑、可以單獨拷走；某個 skill 改了渲染，這邊自動跟上。
 
-![短剧改编大纲报告](skills/novel-outline/assets/report.webp)
+合併時處理三件事——**這三件都在組裝器裡做，不侵入 skill**：
 
-**novel-characters · 角色设定集**
+- **樣式串味**。五份報告共用 57 個類名，其中 13 個同名不同定義（`.copy` `.kpis` `.badge` `.chip`……），所以給每份樣式的每條選擇器加作用域字首
+- **腳本串味**。各報告的腳本都是 `document.querySelector('.expo')` 這種全域查詢，合成一頁後只會命中第一個——五個匯出按鈕會全廢。做法是給每份腳本套一層作用域代理
+- **圖片路徑**。各報告的圖相對自己那份 json 的目錄（`images/…`、`E01-01/f1.png`），合成後按輸出檔案的位置重算
 
-![角色设定集报告](skills/novel-characters/assets/report.webp)
+預設一次顯示一個面板（五份加起來將近六十萬字元）。左下角「平鋪全部」把所有面板同時展開，Cmd+F 恢復全域搜尋。數字鍵 `1`–`5` 切面板，`#pane-script` 這樣的深鏈可以直接分享到某一屏。
 
-**novel-art · 美术设定集（场景 + 道具，设定图为 skill 实际生成）**
+```bash
+node scripts/report-selftest.mjs   # 92 項斷言，不起瀏覽器
+```
 
-![美术设定集报告](skills/novel-art/assets/report.webp)
+丟一本小說進去，出這五套：
 
-**novel-script · 剧本（时长仪表 + 分集剧本 + 台词本）**
+**novel-outline · 短劇改編大綱**
 
-![剧本报告](skills/novel-script/assets/report.webp)
+![短劇改編大綱報告](skills/novel-outline/assets/report.webp)
 
-**novel-storyboard · 分镜（分镜节奏带 + 主/子分镜图为 skill 实际生成 + H3 提示词）**
+**novel-characters · 角色設定集**
 
-![分镜报告](skills/novel-storyboard/assets/report.webp)
+![角色設定集報告](skills/novel-characters/assets/report.webp)
 
-## 安装
+**novel-art · 美術設定集（場景 + 道具，設定圖為 skill 實際生成）**
+
+![美術設定集報告](skills/novel-art/assets/report.webp)
+
+**novel-script · 劇本（時長儀表 + 分集劇本 + 臺詞本）**
+
+![劇本報告](skills/novel-script/assets/report.webp)
+
+**novel-storyboard · 分鏡（分鏡節奏帶 + 主/子分鏡圖為 skill 實際生成 + H3 提示詞）**
+
+![分鏡報告](skills/novel-storyboard/assets/report.webp)
+
+## 安裝
 
 ```bash
 git clone https://github.com/eternityspring/shuohao-skills.git
@@ -81,85 +80,85 @@ cd shuohao-skills
 ./scripts/install.sh
 ```
 
-自动检测本机装了 Claude Code 还是 codex，把所有 skill **软链**过去——`git pull` 之后立刻生效，不用重装。
+自動檢測本機裝了 Claude Code 還是 codex，把所有 skill **軟鏈**過去——`git pull` 之後立刻生效，不用重灌。
 
 ```bash
-./scripts/install.sh novel-characters   # 只装某一个
-./scripts/install.sh --codex            # 只装到 codex
-./scripts/install.sh --uninstall        # 取消软链
+./scripts/install.sh novel-characters   # 只裝某一個
+./scripts/install.sh --codex            # 只裝到 codex
+./scripts/install.sh --uninstall        # 取消軟鏈
 ```
 
-不想用脚本就自己链：
+不想用腳本就自己鏈：
 
 ```bash
 ln -s "$PWD/skills/novel-characters" ~/.claude/skills/novel-characters
 ln -s "$PWD/skills/novel-characters" ~/.codex/skills/novel-characters
 ```
 
-## 前置条件
+## 前置條件
 
-| | 必需？ | 说明 |
+| | 必需？ | 說明 |
 | --- | --- | --- |
-| **Node** | 必需 | ≥ 18。skill 的脚本只用标准库，**没有 npm 依赖，不需要 install** |
-| **模型额度** | 必需 | 用你当前会话的额度，**不需要任何 API key** |
-| **codex CLI** | 可选 | 出图才用得上（走内置 `$imagegen`）。没有就跳过出图，其余产出照常 |
+| **Node** | 必需 | ≥ 18。skill 的腳本只用標準庫，**沒有 npm 依賴，不需要 install** |
+| **模型額度** | 必需 | 用你當前會話的額度，**不需要任何 API key** |
+| **codex CLI** | 可選 | 生圖才用得上（走內建 `$imagegen`）。沒有就跳過生圖，其餘產出照常 |
 
-## 仓库约定
+## 儲存庫約定
 
-每个 skill 一个目录，**自包含、可以单独拷走**：
+每個 skill 一個目錄，**自包含、可以單獨拷走**：
 
 ```
 skills/<skill-name>/
-├── SKILL.md          给 agent 读的工作流（必需）
-├── README.md         给人读的说明
+├── SKILL.md          給 agent 讀的工作流（必需）
+├── README.md         給人讀的說明
 ├── scripts/
-│   ├── <name>.mjs    确定性工具，零依赖
-│   └── selftest.mjs  自测，不调模型（必需）
-├── references/       按需加载的详细指令
-├── examples/         自带样例，同时当测试夹具
-└── assets/           截图
+│   ├── <name>.mjs    確定性工具，零依賴
+│   └── selftest.mjs  自測，不調模型（必需）
+├── references/       按需載入的詳細指令
+├── examples/         自帶樣例，同時當測試夾具
+└── assets/           截圖
 ```
 
-两条硬要求：
+兩條硬要求：
 
-- 每个 skill 必须有 `SKILL.md`
-- 每个 skill 必须有 `scripts/selftest.mjs`，**不调用模型、不花额度**，覆盖全部确定性逻辑
+- 每個 skill 必須有 `SKILL.md`
+- 每個 skill 必須有 `scripts/selftest.mjs`，**不呼叫模型、不花額度**，覆蓋全部確定性邏輯
 
-加新 skill 之前，先把全部自测跑一遍：
+加新 skill 之前，先把全部自測跑一遍：
 
 ```bash
 for f in skills/*/scripts/selftest.mjs; do node "$f"; done
 ```
 
-没有配 CI——自测足够快（1 秒），本地跑一次比等 CI 更省事。**只在 macOS + Node 24 上验过**；代码没有平台相关调用，Linux 和更低版本 Node 理论上没问题，但没验。
+沒有配 CI——自測足夠快（1 秒），本地跑一次比等 CI 更省事。**只在 macOS + Node 24 上驗過**；程式碼沒有平臺相關呼叫，Linux 和更低版本 Node 理論上沒問題，但沒驗。
 
-## 端到端 demo 工作目录约定
+## 端到端 demo 工作目錄約定
 
-把一本小说从头跑完五段（角色 → 大纲 → 美术 → 剧本 → 分镜），会产出大量 `*.json` / `*.md` / `*-report.html`。**不要平铺在根目录**，按五个 skill 各建一个目录归档，一眼对应流水线五段：
+把一本小說從頭跑完五段（角色 → 大綱 → 美術 → 劇本 → 分鏡），會產出大量 `*.json` / `*.md` / `*-report.html`。**不要平鋪在根目錄**，按五個 skill 各建一個目錄歸檔，一眼對應流水線五段：
 
 ```
 <demo>/
-├── outline/       ← novel-outline 产出：<剧>-outline.json / .md / -report.html
-├── characters/    ← novel-characters 产出：<剧>-cast.json / .md / -report.html
-├── art/           ← novel-art 产出：<剧>-art.json / .md / -report.html
-├── script/        ← novel-script 产出：<剧>-script.json / .md / -report.html
-├── storyboard/    ← novel-storyboard 产出：<剧>-storyboard.json / .md / -report.html
-│   ├── manifest.json  ← export 产出
-│   ├── E01-01/        ← export 的分镜投产包，每段一个文件夹（prompt.md + f1..fN.png）
+├── outline/       ← novel-outline 產出：<劇>-outline.json / .md / -report.html
+├── characters/    ← novel-characters 產出：<劇>-cast.json / .md / -report.html
+├── art/           ← novel-art 產出：<劇>-art.json / .md / -report.html
+├── script/        ← novel-script 產出：<劇>-script.json / .md / -report.html
+├── storyboard/    ← novel-storyboard 產出：<劇>-storyboard.json / .md / -report.html
+│   ├── manifest.json  ← export 產出
+│   ├── E01-01/        ← export 的分鏡投產包，每段一個資料夾（prompt.md + f1..fN.png）
 │   ├── E01-02/
 │   └── …
-├── docs/          ← 自己写的使用说明、PR 草稿等（与机器产物解耦）
-└── scripts/       ← 跑管线的辅助脚本（探索期脚本用 _ 前缀保留溯源）
+├── docs/          ← 自己寫的使用說明、PR 草稿等（與機器產物解耦）
+└── scripts/       ← 跑管線的輔助腳本（探索期腳本用 _ 字首保留溯源）
 ```
 
-约定要点：
+約定要點：
 
-- **每个 skill 一个目录**，装它自己的 `json` / `md` / `html` 三件套，加新角色/场景只往对应目录放，不污染根目录
-- **分镜的 `manifest.json` 与 `E01-0x/` 投产包一起归 `storyboard/`**，就是 `export --out storyboard` 的原样产出。**段文件夹不要再往下收一层**（例如收进 `segments/`）：分镜报告里的图走相对路径 `<段号>/f<切序>.png`，报告 html 与段文件夹必须同级，多套一层目录，报告里的图会**静默**全变成「未生成」占位——实测把 10 个段文件夹移进 `segments/` 之后，内嵌图从 2 张变 0 张，报告不会报错
-- **报告 HTML 与生成的图/视频可由 `render` 重跑再生**——进版本控制时建议只提交 `json` / `md` / `docs` / `scripts`，报告 HTML 和分镜 `png` 用 `.gitignore` 排除，保持仓库轻量
-- 用法类文档（如各报告的使用说明）放 `docs/`，与 skill 自动生成的产物分开，方便单独维护
+- **每個 skill 一個目錄**，裝它自己的 `json` / `md` / `html` 三件套，加新角色/場景只往對應目錄放，不汙染根目錄
+- **分鏡的 `manifest.json` 與 `E01-0x/` 投產包一起歸 `storyboard/`**，就是 `export --out storyboard` 的原樣產出。**段資料夾不要再往下收一層**（例如收進 `segments/`）：分鏡報告裡的圖走相對路徑 `<段號>/f<切序>.png`，報告 html 與段資料夾必須同級，多套一層目錄，報告裡的圖會**靜默**全變成「未生成」佔位——實測把 10 個段資料夾移進 `segments/` 之後，內嵌圖從 2 張變 0 張，報告不會報錯
+- **報告 HTML 與生成的圖/影片可由 `render` 重跑再生**——進版本控制時建議只提交 `json` / `md` / `docs` / `scripts`，報告 HTML 和分鏡 `png` 用 `.gitignore` 排除，保持儲存庫輕量
+- 用法類文件（如各報告的使用說明）放 `docs/`，與 skill 自動生成的產物分開，方便單獨維護
 
-> 这套结构来自《渡口》端到端 demo 的实际归档经验，demo 的工作目录在本仓库之外，这里只固化约定。
+> 這套結構來自《渡口》端到端 demo 的實際歸檔經驗，demo 的工作目錄在本儲存庫之外，這裡只固化約定。
 
 
 ## License

@@ -1,51 +1,51 @@
-# H3 视频提示词 · 写法规范（内化版）
+# H3 影片提示詞 · 寫法規範（內化版）
 
-方法论学自 MiniMax-H3 官方提示词指南（I2VA / 多图对齐模式），**内化成本 skill 自带文档——不依赖任何外部 skill**。写每段的 `h3Prompt` 照这份做，结构部分有质量门逐字对账。
+方法論學自 MiniMax-H3 官方提示詞指南（I2VA / 多圖對齊模式），**內化成本 skill 自帶文件——不依賴任何外部 skill**。寫每段的 `h3Prompt` 照這份做，結構部分有品質門逐字對賬。
 
-## 语言分工
+## 語言分工
 
-- **默认整条英文**（`promptLang: 'en'`）——官方规范的口径：正文、对齐指令、字段名、镜头标记全英文，禁角色名（用 an old ferryman 这类通用身份）
-- 三样东西保留原文语言（官方规定）：**台词**（`<d>[Chinese] …</d>` 逐字原文，一个标点都不许动，门盯着）、歌词、画面里可见的文字（英文双引号原样引用）
-- `promptLang: 'zh'` 可切整条中文（对齐指令、字段名、镜头标记都有中文版，人名放行）——偏离官方推荐的备选项，实测中文效果不稳就回英文
+- **預設整條英文**（`promptLang: 'en'`）——官方規範的口徑：正文、對齊指令、欄位名、鏡頭標記全英文，禁角色名（用 an old ferryman 這類通用身份）
+- 三樣東西保留原文語言（官方規定）：**臺詞**（`<d>[Chinese] …</d>` 逐字原文，一個標點都不許動，門盯著）、歌詞、畫面裡可見的文字（英文雙引號原樣引用）
+- `promptLang: 'zh'` 可切整條中文（對齊指令、欄位名、鏡頭標記都有中文版，人名放行）——偏離官方推薦的備選項，實測中文效果不穩就回英文
 
-## 结构（validate 逐字对账的部分）
+## 結構（validate 逐字對賬的部分）
 
 ```text
 How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 3.00-second mark of the target video; ….
-（单分镜的段改用官方 I2VA 固定句：For the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.）
+（單分鏡的段改用官方 I2VA 固定句：For the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.）
 
 integrated_multimodal_description:
-[Shot 1] Cinematic, live-action, cold gray-green palette. 按 <Picture 1> 的构图锚定人物与状态，再写这几秒发生什么、镜头怎么动、谁说了什么（全英文）。
-[Shot 2] At 00:03.000, the camera cuts to <Picture 2>: ……（**每个镜头独立一行**，切点时刻开头，等于前面分镜秒数的累计）
+[Shot 1] Cinematic, live-action, cold gray-green palette. 按 <Picture 1> 的構圖錨定人物與狀態，再寫這幾秒發生什麼、鏡頭怎麼動、誰說了什麼（全英文）。
+[Shot 2] At 00:03.000, the camera cuts to <Picture 2>: ……（**每個鏡頭獨立一行**，切點時刻開頭，等於前面分鏡秒數的累計）
 
-overall_soundscape: 1–4 句英文：环境声、动作声、非语言人声。不复述台词。
+overall_soundscape: 1–4 句英文：環境聲、動作聲、非語言人聲。不復述臺詞。
 
-non_diegetic_music: 1–3 句英文写配器与速度（角色听不见、只有观众听得见）。没有就写 N/A。
+non_diegetic_music: 1–3 句英文寫配器與速度（角色聽不見、只有觀眾聽得見）。沒有就寫 N/A。
 ```
 
-中文模式（promptLang=zh）的对应 token：`参考图与目标视频的对齐——` / `整体视听描述：` / `[镜头 k] 于 00:0X.XXX，`，配乐没有写「无」。
+中文模式（promptLang=zh）的對應 token：`參考圖與目標影片的對齊——` / `整體視聽描述：` / `[鏡頭 k] 於 00:0X.XXX，`，配樂沒有寫「無」。
 
-首行对齐指令和切点时刻**由分镜秒数推导**，改了秒数忘改提示词，validate 当场拦。
+首行對齊指令和切點時刻**由分鏡秒數推導**，改了秒數忘改提示詞，validate 當場攔。
 
-## 运镜
+## 運鏡
 
-- 词表 20 种（schema.md 的 camera 枚举），可加幅度（小幅/大幅）与速度（缓/快），写成自然动作句：「镜头小幅缓推向掐白的指节」
-- **每个分镜的运镜词必须落在自己那一行里**：英文用官方词（static shot / push in / tracking shot……），中文模式用词表的中文词（固定/推/拉/跟拍……）——门按 `promptLang` 检查
+- 詞表 20 種（schema.md 的 camera 列舉），可加幅度（小幅/大幅）與速度（緩/快），寫成自然動作句：「鏡頭小幅緩推向掐白的指節」
+- **每個分鏡的運鏡詞必須落在自己那一行裡**：英文用官方詞（static shot / push in / tracking shot……），中文模式用詞表的中文詞（固定/推/拉/跟拍……）——門按 `promptLang` 檢查
 
-## 说话人与台词
+## 說話人與臺詞
 
-- 说话人第一次出现给足辨识信息（身份、年龄段、音色、语速），编号 `(S1)` `(S2)` 全段稳定；同说不同人用 `(S1,S2)`
-- `<d>` 里只放语言标签和台词原文；身份、音色、语气写在 `<d>` 外面
-- **画外音**：中文写「以画外音说（唇形完全闭合）」；英文用官方句式 `says in an off-screen voiceover … while their lips remain completely closed`
-- 画面里真实可见的文字（招牌、字条）用英文双引号原样引用，不翻译
+- 說話人第一次出現給足辨識資訊（身份、年齡段、音色、語速），編號 `(S1)` `(S2)` 全段穩定；同說不同人用 `(S1,S2)`
+- `<d>` 裡只放語言標籤和臺詞原文；身份、音色、語氣寫在 `<d>` 外面
+- **畫外音**：中文寫「以畫外音說（唇形完全閉合）」；英文用官方句式 `says in an off-screen voiceover … while their lips remain completely closed`
+- 畫面裡真實可見的文字（招牌、字條）用英文雙引號原樣引用，不翻譯
 
-## 声音字段的分工（踩过的坑）
+## 聲音欄位的分工（踩過的坑）
 
-- 台词、歌声、剧内音乐 → 描述字段；环境与动作声 → `overall_soundscape`；配乐 → `non_diegetic_music`
-- **声景也是动作指令**：画面动作改了，声景必须一起改——声景里写「铜铃在撞击时炸响」，视频就真把撞击演出来
+- 臺詞、歌聲、劇內音樂 → 描述欄位；環境與動作聲 → `overall_soundscape`；配樂 → `non_diegetic_music`
+- **聲景也是動作指令**：畫面動作改了，聲景必須一起改——聲景裡寫「銅鈴在撞擊時炸響」，影片就真把撞擊演出來
 
-## 关键帧怎么用
+## 關鍵幀怎麼用
 
-- 主分镜图（f1）钉 0.00 秒，是这一段世界观的完全参照；每个 `[Shot k]` 先锚定 `<Picture k>` 的构图与人物状态，再写动作展开
-- 动作遵守 novel-script 的**常见动作原则**：挑担上船、搭手卸担这类模型见过千万次的动作；精确物理交互、微表情不要写
-- 人物**此刻的位置状态**（已上船 / 在舱内）要和分镜图一致——图与文对不上，模型听图的，动作就乱
+- 主分鏡圖（f1）釘 0.00 秒，是這一段世界觀的完全參照；每個 `[Shot k]` 先錨定 `<Picture k>` 的構圖與人物狀態，再寫動作展開
+- 動作遵守 novel-script 的**常見動作原則**：挑擔上船、搭手卸擔這類模型見過千萬次的動作；精確物理互動、微表情不要寫
+- 人物**此刻的位置狀態**（已上船 / 在艙內）要和分鏡圖一致——圖與文對不上，模型聽圖的，動作就亂

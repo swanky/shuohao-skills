@@ -2,12 +2,12 @@
 name: novel-characters
 version: 1.11.0
 description: |
-  从小说或短故事里拆出角色表、人物画像、形象提示词、音色提示词，
-  并给每个角色出角色设定图（左半身像 + 右全身三视图 + 细节条），产出 JSON + Markdown + 可交互的 report.html。
-  报告语言可指定（--lang），默认中文，任意语言都支持；
-  出图风格可指定（--style），默认半写实，也可以出吉卜力动画风。
-  零依赖、零 API key，用当前会话额度；出图走 codex 内置 $imagegen（可选）。
-  Use when asked to 拆小说角色、分析人物、生成角色卡、character sheets from a novel。
+  從小說或短故事裡拆出角色表、人物畫像、形象提示詞、音色提示詞，
+  並給每個角色出角色設定圖（左半身像 + 右全身三檢視 + 細節條），產出 JSON + Markdown + 可互動的 report.html。
+  報告語言可指定（--lang），預設台灣正體中文（zh-TW），任意語言都支援；
+  生圖風格可指定（--style），預設半寫實，也可以出吉卜力動畫風或擬真實拍。
+  零依賴、零 API key，用當前會話額度；生圖走 codex 內建 $imagegen（可選）。
+  Use when asked to 拆小說角色、分析人物、生成角色卡、character sheets from a novel。
 allowed-tools:
   - Read
   - Write
@@ -17,19 +17,19 @@ allowed-tools:
 triggers:
   - novel-characters
   - 拆角色
-  - 拆书角色
-  - 小说角色
-  - 人物画像
+  - 拆書角色
+  - 小說角色
+  - 人物畫像
   - 角色卡
-  - 三视图
+  - 三檢視
   - character sheet from novel
 metadata:
   license: Apache-2.0
   requires:
     bins:
-      - node          # >= 18，只用标准库，无 npm 依赖
+      - node          # >= 18，只用標準庫，無 npm 依賴
     optional:
-      - codex         # 有才出三视图；没有就只交提示词，其余照常
+      - codex         # 有才出三檢視；沒有就只交提示詞，其餘照常
   runtimes:
     - claude-code
     - codex
@@ -37,238 +37,285 @@ metadata:
 
 ## novel-characters
 
-输入一篇小说/短故事，输出每个角色的：人物画像、形象提示词、音色提示词、角色设定图。
+輸入一篇小說/短故事，輸出每個角色的：人物畫像、形象提示詞、音色提示詞、角色設定圖。
 
-`{baseDir}` = 本文件所在目录。脚本 `{baseDir}/scripts/novel-characters.mjs`，零依赖，`node` 直接跑。
+`{baseDir}` = 本檔案所在目錄。腳本 `{baseDir}/scripts/novel-characters.mjs`，零依賴，`node` 直接跑。
 
-**运行环境**：Claude Code 和 codex 都能跑。差别只在第 8 步出图——见 `references/sheet.md`。
+**執行環境**：Claude Code 和 codex 都能跑。差別只在第 8 步生圖——見 `references/sheet.md`。
 
 ---
 
-### Step 0 — 确定报告语言
+### Step 0 — 確定報告語言
 
-用户可以指定语言，比如「用英文」「--lang en」「日本語で」。**没说就是中文（`zh`）。**
+使用者可以指定語言，比如「用英文」「--lang en」「日本語で」。**沒說就是台灣正體中文（`zh-TW`）。**
 
-这个 `lang` 会一路传下去：第二趟生成角色卡时决定人类可读字段用什么语言，`validate` 和 `render` 也都要带上。
+想要簡體中文得明確說，用 `--lang zh`。
 
-**界面文案分两种情况：**
+這個 `lang` 會一路傳下去：第二趟生成角色卡時決定人類可讀欄位用什麼語言，`validate` 和 `render` 也都要帶上。
 
-- `zh` / `en` / `ja` —— 内置，不用管
-- **其他任何语言** —— 你要现场翻一份。跑
+**介面文案分兩種情況：**
+
+- `zh-TW` / `zh` / `en` / `ja` —— 內建，不用管
+- **其他任何語言** —— 你要現場翻一份。跑
 
   ```bash
   node {baseDir}/scripts/novel-characters.mjs ui-template <lang>
   ```
 
-  它打印一份英文骨架，把每个值翻译成目标语言，整块放进 `cast.json` 顶层的 `ui` 字段。渲染时会合并进内置表。
+  它列印一份英文骨架，把每個值翻譯成目標語言，整塊放進 `cast.json` 頂層的 `ui` 欄位。渲染時會合並進內建表。
 
-  **不给 `ui` 的话 `validate` 会直接报错**——否则报告会是「角色内容是法语、界面标签是英文」的半吊子状态。
+  **不給 `ui` 的話 `validate` 會直接報錯**——否則報告會是「角色內容是法語、介面標籤是英文」的半吊子狀態。
 
-支持的语言不受内置表限制，法语韩语西班牙语都能出完整报告。
+支援的語言不受內建表限制，法語韓語西班牙語都能出完整報告。
 
-### Step 0.5 — 确定画风
+#### `zh-TW` 的用語規範
 
-用户可以指定出图风格：**默认 `realistic`**（半写实厚涂），想要动画质感就用 `ghibli`（吉卜力式手绘赛璐璐）。
+介面文案腳本管了，**角色卡內容是你寫的，得你自己守**。寫 `persona`、`voice` 的人類可讀欄位時：
+
+**用台灣慣用詞，不是簡體詞換字形。** 直接換字形會寫出一眼看得出的翻譯腔：
+
+| 別寫 | 要寫 |
+| --- | --- |
+| 個性、氣質 | 個性、氣質 |
+| 影片、圖片 | 影片、圖片 |
+| 品質 | 品質 |
+| 資訊 | 資訊 |
+| 預設、透過、支援 | 預設、透過、支援 |
+| 水準、計畫 | 水準、計畫 |
+
+**一簡對多繁的字最容易翻錯**，外貌描寫裡幾乎必踩：
+
+| 簡 | 看語境選 | 例 |
+| --- | --- | --- |
+| 發 | 髮／發 | 頭**髮**、一**頭**長**髮**；**發**現 |
+| 幹 | 乾／幹／幹 | **乾**淨、**乾**瘦；**幹**活 |
+| 裡 | 裡／裡 | 眼**裡**、**裡**面；公**裡** |
+| 松 | 鬆／松 | **鬆**垮、**鬆**弛；**松**樹 |
+| 醜 | 醜／醜 | **醜**陋；**醜**角 |
+| 面 | 面／麵 | **面**容；**麵**條 |
+| 只 | 只／隻 | **只**是；一**隻**手 |
+| 復 | 復／複／覆 | 恢**復**；**複**雜；答**覆** |
+| 系 | 係／系／繫 | 關**係**；**系**統；維**繫** |
+
+**引號用「」『』**，不要 `""`。
+
+**不受影響的**：`image.prompt` / `image.negativePrompt` / `image.tags` / `image.sheet` / `voice.prompt` 這些機器欄位永遠是英文，`validate` 會攔中文字元。
+
+### Step 0.5 — 確定畫風
+
+使用者可以指定生圖風格，**預設 `realistic`**：
+
+| id | 說明 | 什麼時候用 |
+| --- | --- | --- |
+| `realistic` | 半寫實厚塗。預設 | 一般設定集 |
+| `ghibli` | 吉卜力式手繪賽璐璐 | 想要動畫質感 |
+| `photoreal` | 擬真實拍，劇組試裝定妝照 | 要真人選角感、歷史劇質感 |
 
 ```bash
-node {baseDir}/scripts/novel-characters.mjs styles   # 打印预设的完整内容
+node {baseDir}/scripts/novel-characters.mjs styles   # 列印預設的完整內容
 ```
 
-读 `{baseDir}/references/style-presets.md`。**换风格是整套换**——每个预设自带 render / surface / lighting / negative / tags 五块，整块取用，不要混搭。
+讀 `{baseDir}/references/style-presets.md`。**換風格是整套換**——每個預設自帶 render / surface / lighting / negative / tags 五塊，整塊取用，不要混搭。
 
-最容易搞反的是反向提示词：`realistic` 绝不能禁 `photorealistic`，`ghibli` 必须禁。`validate` 会拦这个。
+最容易搞反的是負向提示詞，三個預設的立場兩兩不同：
 
-版面规则（16:9 三区、比例、细节让位）**不随风格变**，变的只有渲染质感。
+- `realistic` / `photoreal` **絕不能**禁 `photorealistic`
+- `ghibli` **必須**禁
+- `photoreal` 另外**必須**禁 `illustration` / `painting` / `anime` / `cartoon`——它要的是照片不是畫，漏了模型很容易交一張插畫
 
-### Step 1 — 定位输入
+`validate` 三條都會攔。
 
-用户给文件路径就直接用。直接粘正文的，**先落到一个临时 .txt**——后面校验「引文是否逐字」要拿原文比对，没有原文文件这步就没法做。
+版面規則（16:9 三區、比例、細節讓位）**不隨風格變**，變的只有渲染質感。
 
-确定输出目录：用户指定就用；没指定就用原书同级目录。
+### Step 1 — 定位輸入
 
-**有 `outline.json`（novel-outline 的产出）就一起要过来，走 seed**——大纲是角色设定的上游，它的 `characters` 块已经定死了角色清单：
+使用者給檔案路徑就直接用。直接粘正文的，**先落到一個臨時 .txt**——後面校驗「引文是否逐字」要拿原文比對，沒有原文檔案這步就沒法做。
+
+確定輸出目錄：使用者指定就用；沒指定就用原書同級目錄。
+
+**有 `outline.json`（novel-outline 的產出）就一起要過來，走 seed**——大綱是角色設定的上游，它的 `characters` 塊已經定死了角色清單：
 
 ```bash
 node {baseDir}/scripts/novel-characters.mjs seed <outline.json> > <workdir>/seed.json
 ```
 
-搬过来的是大纲已经拍板的事实，留空的是这一层才该做的设计：
+搬過來的是大綱已經拍板的事實，留空的是這一層才該做的設計：
 
-| outline 的字段 | seed 之后 |
+| outline 的欄位 | seed 之後 |
 | --- | --- |
-| `id` | 原样保留成角色码——下游 script / storyboard 用它引用角色 |
-| `name` | 角色表就照这份，**不再自己判断谁该进** |
-| `tier` | 映射成 `importance`：`lead` → `protagonist`、`support` → `supporting`、`functional` → `minor` |
-| `arc` | 直接落进 `persona.arc` |
-| `role` / `from` | 进 `seedNote`——定位（女主 / 反派）与「由原著的谁合并而来」，扫原文时知道该收哪几条线的戏 |
+| `id` | 原樣保留成角色碼——下游 script / storyboard 用它引用角色 |
+| `name` | 角色表就照這份，**不再自己判斷誰該進** |
+| `tier` | 對映成 `importance`：`lead` → `protagonist`、`support` → `supporting`、`functional` → `minor` |
+| `arc` | 直接落進 `persona.arc` |
+| `role` / `from` | 進 `seedNote`——定位（女主 / 反派）與「由原著的誰合併而來」，掃原文時知道該收哪幾條線的戲 |
 
-留空待填：`aliases`（要读原文才知道）、`oneLiner`、`persona` 其余各项、`image`、`voice`。**seed 出来的是骨架不是成品**，直接跑 `validate` 会报一堆字段缺失，那是预期的——后面 Step 2–6 就是来填它的。
+留空待填：`aliases`（要讀原文才知道）、`oneLiner`、`persona` 其餘各項、`image`、`voice`。**seed 出來的是骨架不是成品**，直接跑 `validate` 會報一堆欄位缺失，那是預期的——後面 Step 2–6 就是來填它的。
 
-两处口径要守住：
+兩處口徑要守住：
 
-- **大纲定的分档不要推翻**。谁重要是改编阶段拍板的事，这一层只负责把定下来的人做深。真觉得分档不对，回去改大纲，别在这里悄悄改一个不一样的
-- **主角组内部可以细分**。outline 的 `lead` 是「男女主 + 主反派」一整组，对应 `protagonist` 与 `major` 两档，seed 一律给 `protagonist`；照 `seedNote` 里的定位把主角之外的改成 `major`，这不算推翻分档
+- **大綱定的分檔不要推翻**。誰重要是改編階段拍板的事，這一層只負責把定下來的人做深。真覺得分檔不對，回去改大綱，別在這裡悄悄改一個不一樣的
+- **主角組內部可以細分**。outline 的 `lead` 是「男女主 + 主反派」一整組，對應 `protagonist` 與 `major` 兩檔，seed 一律給 `protagonist`；照 `seedNote` 裡的定位把主角之外的改成 `major`，這不算推翻分檔
 
-**没有 `outline.json` 也照常跑**，本 skill 不依赖它——跳过 seed，从 Step 2 开始自己从原文拆角色表。
+**沒有 `outline.json` 也照常跑**，本 skill 不依賴它——跳過 seed，從 Step 2 開始自己從原文拆角色表。
 
-### Step 2 — 分块
+### Step 2 — 分塊
 
 ```bash
 node {baseDir}/scripts/novel-characters.mjs chunk <book.txt> <workdir>
 ```
 
-打印 `{"chunks": N, ...}`。
+列印 `{"chunks": N, ...}`。
 
-- **N == 1**：跳过 Step 3，直接在当前会话读原文做第一趟，结果自己写成 `<workdir>/roster-00.json`
-- **N > 1**：进 Step 3
-- `truncated: true`：明确告诉用户尾部没扫到，别闷着
+- **N == 1**：跳過 Step 3，直接在當前會話讀原文做第一趟，結果自己寫成 `<workdir>/roster-00.json`
+- **N > 1**：進 Step 3
+- `truncated: true`：明確告訴使用者尾部沒掃到，別悶著
 
-### Step 3 — 第一趟扫描（仅 N > 1）
+### Step 3 — 第一趟掃描（僅 N > 1）
 
-**当前环境支持子代理就并发**（Claude Code 的 Task、codex 的 subagent）：每块一个子代理，**所有调用放在同一条消息里**才是真并发。不支持就一块一块串行读，结果一样，只是慢。
+**當前環境支援子代理就併發**（Claude Code 的 Task、codex 的 subagent）：每塊一個子代理，**所有呼叫放在同一條訊息裡**才是真併發。不支援就一塊一塊序列讀，結果一樣，只是慢。
 
-每个子代理的任务：
-1. 读 `{baseDir}/references/roster-pass.md`，照它执行
-2. 读 `<workdir>/chunk-NN.txt`
-3. 把 roster JSON 写到 `<workdir>/roster-NN.json`
-4. 只回一句「done NN，抽到 X 个角色」
+每個子代理的任務：
+1. 讀 `{baseDir}/references/roster-pass.md`，照它執行
+2. 讀 `<workdir>/chunk-NN.txt`
+3. 把 roster JSON 寫到 `<workdir>/roster-NN.json`
+4. 只回一句「done NN，抽到 X 個角色」
 
-### Step 4 — 归并 + 复核
+### Step 4 — 歸併 + 複核
 
 ```bash
 node {baseDir}/scripts/novel-characters.mjs merge <workdir> | tee <workdir>/merged.json
 ```
 
-落到 `merged.json` 不只是留档：Step 6 的 assemble 靠它拿同档角色的戏份顺序。
+落到 `merged.json` 不只是留檔：Step 6 的 assemble 靠它拿同檔角色的戲份順序。
 
-按名字+别名精确收敛（某块把「陆」列成「陆行远」的别名，两条就并成一个人），notes 累加、quotes 去重，按出现块数降序——出现的块越多戏份越重。
+按名字+別名精確收斂（某塊把「陸」列成「陸行遠」的別名，兩條就併成一個人），notes 累加、quotes 去重，按出現塊數降序——出現的塊越多戲份越重。
 
-输出是 `{ "characters": [...], "mergeCandidates": [...] }`。**`mergeCandidates` 要逐条复核**：精确匹配只能收敛两块恰好写了相同称呼的情况，剩下的是语义判断，脚本做不了。候选来自名字包含关系（`「陆」⊂「陆行远」`）——是强信号不是判决，同姓的父子、兄弟就不能合。候选之外你自己看出来的同人（「陆先生」和「行远」没有包含关系，不会进候选）也要合。
+輸出是 `{ "characters": [...], "mergeCandidates": [...] }`。**`mergeCandidates` 要逐條複核**：精確匹配只能收斂兩塊恰好寫了相同稱呼的情況，剩下的是語義判斷，腳本做不了。候選來自名字包含關係（`「陸」⊂「陸行遠」`）——是強訊號不是判決，同姓的父子、兄弟就不能合。候選之外你自己看出來的同人（「陸先生」和「行遠」沒有包含關係，不會進候選）也要合。
 
-要合并就写一份 merges.json 再落地：
+要合併就寫一份 merges.json 再落地：
 
 ```json
-{ "merges": [{ "keep": "陆行远", "absorb": ["陆", "陆先生"] }] }
+{ "merges": [{ "keep": "陸行遠", "absorb": ["陸", "陸先生"] }] }
 ```
 
 ```bash
 node {baseDir}/scripts/novel-characters.mjs merge <workdir> --apply merges.json | tee <workdir>/merged.json
 ```
 
-`keep`/`absorb` 用名字或任一别名定位都行，找不到会直接报错。输出仍带 `mergeCandidates`，剩下的都确认是不同的人（或清空）再进下一步。没有要合的就直接往下走——但 `merged.json` 必须留着。
+`keep`/`absorb` 用名字或任一別名定位都行，找不到會直接報錯。輸出仍帶 `mergeCandidates`，剩下的都確認是不同的人（或清空）再進下一步。沒有要合的就直接往下走——但 `merged.json` 必須留著。
 
-### Step 5 — 选角
+### Step 5 — 選角
 
-取前 N 位。默认 30，用户说了就听用户的。剩下的角色在最后汇报里提一句「还识别出 X 位没做画像」。
+取前 N 位。預設 30，使用者說了就聽使用者的。剩下的角色在最後彙報裡提一句「還識別出 X 位沒做畫像」。
 
 ### Step 6 — 第二趟出卡
 
-每个角色一份，同样能并发就并发。
+每個角色一份，同樣能併發就併發。
 
-每份任务拿到：
-- `{baseDir}/references/profile-pass.md` 和 `{baseDir}/references/schema.md`（读它们，照着做）
-- **报告语言 `lang`**（Step 0 定的）
-- 该角色归并后的 `name` / `aliases` / `notes` / `quotes`
-- **同批其他角色的名字**（避免长相声线撞车）
+每份任務拿到：
+- `{baseDir}/references/profile-pass.md` 和 `{baseDir}/references/schema.md`（讀它們，照著做）
+- **報告語言 `lang`**（Step 0 定的）
+- 該角色歸併後的 `name` / `aliases` / `notes` / `quotes`
+- **同批其他角色的名字**（避免長相聲線撞車）
 
-角色卡 JSON 写到 `<workdir>/card-<slug>.json`。**断点续跑**：`card-<slug>.json` 已存在的角色不必重跑。
+角色卡 JSON 寫到 `<workdir>/card-<slug>.json`。**斷點續跑**：`card-<slug>.json` 已存在的角色不必重跑。
 
-**同时写一段故事摘要**：用 `lang` 指定的语言，3–5 句，交代时空背景、核心情境、这几个人聚在一起的由头。短篇直接从原文写；长篇从各块的 roster note 归纳。不剧透结局，不写成推荐语。写到 `<workdir>/summary.txt`。非内置语言的话，把 Step 0 翻好的 ui 整块存成 `<workdir>/ui.json`。
+**同時寫一段故事摘要**：用 `lang` 指定的語言，3–5 句，交代時空背景、核心情境、這幾個人聚在一起的由頭。短篇直接從原文寫；長篇從各塊的 roster note 歸納。不劇透結局，不寫成推薦語。寫到 `<workdir>/summary.txt`。非內建語言的話，把 Step 0 翻好的 ui 整塊存成 `<workdir>/ui.json`。
 
-然后合成 cast.json——**用 assemble，不要手拼**（手拼会丢字段、写错顶层键）：
+然後合成 cast.json——**用 assemble，不要手拼**（手拼會丟欄位、寫錯頂層鍵）：
 
 ```bash
 node {baseDir}/scripts/novel-characters.mjs assemble <workdir> \
-  --source <书名> --lang <lang> --style <style> \
-  --out <输出目录>/<书名>-cast.json
+  --source <書名> --lang <lang> --style <style> \
+  --out <輸出目錄>/<書名>-cast.json
 ```
 
-坏卡会被逐个点名——哪份 `card-*.json` 坏了就只重跑那个角色，其他不用动。
+壞卡會被逐個點名——哪份 `card-*.json` 壞了就只重跑那個角色，其他不用動。
 
-同档角色的先后是戏份顺序，来自 Step 4 留下的 `<workdir>/merged.json`（assemble 自动读，也可用 `--order` 指别的文件）。报告左栏「按戏份排序」的序号就靠它——看到「同档角色将按文件名序」的警告说明 merged.json 丢了，回 Step 4 重新生成。
+同檔角色的先後是戲份順序，來自 Step 4 留下的 `<workdir>/merged.json`（assemble 自動讀，也可用 `--order` 指別的檔案）。報告左欄「按戲份排序」的序號就靠它——看到「同檔角色將按檔名序」的警告說明 merged.json 丟了，回 Step 4 重新生成。
 
-### Step 7 — 校验 ⛔ 不能跳
+### Step 7 — 校驗 ⛔ 不能跳
 
 ```bash
 node {baseDir}/scripts/novel-characters.mjs validate <cast.json> <book.txt>
 ```
 
-记得带上 `--lang`（Step 0 定的）。检查：结构、`importance` 枚举、**引文逐字**、**出图提示词不含人名**、**语言分工**（人类字段跟随 `lang`、出图/TTS 提示词永远英文）、以及**非内置语言必须带 `ui`**。
+記得帶上 `--lang`（Step 0 定的）。檢查：結構、`importance` 列舉、**引文逐字**、**生圖提示詞不含人名**、**語言分工**（人類欄位跟隨 `lang`、生圖/TTS 提示詞永遠英文）、以及**非內建語言必須帶 `ui`**。
 
-**有违规就按报错逐条修，改完重跑，直到通过。** 这四类错模型真的会犯——这套检查就是被真实输出打出来的。
+**有違規就按報錯逐條修，改完重跑，直到透過。** 這四類錯模型真的會犯——這套檢查就是被真實輸出打出來的。
 
-### Step 8 — 出图（可选，每个角色都出）
+### Step 8 — 生圖（可選，每個角色都出）
 
-**每个角色一张**，用 `image.sheet`，落到 `./images/<slug>-sheet.png`。一张横构图内部左右分栏：
+**每個角色一張**，用 `image.sheet`，落到 `./images/<slug>-sheet.png`。一張橫構圖內部左右分欄：
 
 ```
 ┌──────────┬────────────────────────────┐
-│  半身像   │   正视    侧视    背视       │
-│ （证件照） ├────────────────────────────┤
-│  面部基准  │  细节 · 细节 · 细节 · 细节   │
+│  半身像   │   正視    側視    背視       │
+│ （證件照） ├────────────────────────────┤
+│  面部基準  │  細節 · 細節 · 細節 · 細節   │
 │   ~34%   │            16:9            │
 └──────────┴────────────────────────────┘
 ```
 
-左栏半身像是面部设计基准，右上三视图的脸照它画，右下是关键细节的小特写。**两条硬要求**：三视图的脸必须与半身像一致（否则一张图两个长相）；三个全身像的比例必须协调（模型会为了塞下细节把人压扁）。
+左欄半身像是面部設計基準，右上三檢視的臉照它畫，右下是關鍵細節的小特寫。**兩條硬要求**：三檢視的臉必須與半身像一致（否則一張圖兩個長相）；三個全身像的比例必須協調（模型會為了塞下細節把人壓扁）。
 
-读 `{baseDir}/references/sheet.md`，照它的调用契约做。要点：
+讀 `{baseDir}/references/sheet.md`，照它的呼叫契約做。要點：
 
-- **没有 codex 就整步跳过**，只交提示词，后面照常走
-- 跑在 codex 里就直接用 `$imagegen`；跑在别处就 shell 调 codex，先按那里的脚本探测版本最高的 binary（旧版会直接报错）
-- **一个角色一次调用，绝不批量**
-- 单个失败就跳过，不阻断；最后汇总说明
-- **断点续跑**：`images/<slug>-sheet.png` 已存在就跳过，失败重来时只补缺的
+- **沒有 codex 就整步跳過**，只交提示詞，後面照常走
+- 跑在 codex 裡就直接用 `$imagegen`；跑在別處就 shell 調 codex，先按那裡的腳本探測版本最高的 binary（舊版會直接報錯）
+- **一個角色一次呼叫，絕不批次**
+- 單個失敗就跳過，不阻斷；最後彙總說明
+- **斷點續跑**：`images/<slug>-sheet.png` 已存在就跳過，失敗重來時只補缺的
 
-**不按 `importance` 筛，选中的角色全都出。** 一个角色一次调用，30 个就是 30 次——这是整条管线里最慢的一步，开始前跟用户说一声要出多少张。用户想省就让他给个数，或者明说只要 `protagonist` / `major`。
+**不按 `importance` 篩，選中的角色全都出。** 一個角色一次呼叫，30 個就是 30 次——這是整條管線裡最慢的一步，開始前跟使用者說一聲要出多少張。使用者想省就讓他給個數，或者明說只要 `protagonist` / `major`。
 
-### Step 9 — 输出
+### Step 9 — 輸出
 
 ```bash
-cd <输出目录>
-node {baseDir}/scripts/novel-characters.mjs render <cast.json> --md   > <书名>-cast.md
+cd <輸出目錄>
+node {baseDir}/scripts/novel-characters.mjs render <cast.json> --md   > <書名>-cast.md
 node {baseDir}/scripts/novel-characters.mjs render <cast.json> --html > report.html
 ```
 
-语言取 `cast.json` 里的 `lang`，要临时覆盖就加 `--lang <code>`。
+語言取 `cast.json` 裡的 `lang`，要臨時覆蓋就加 `--lang <code>`。
 
-`render` 会自动去 `images/<slug>-sheet.png` 找图。所以**先出图再 render**。
+`render` 會自動去 `images/<slug>-sheet.png` 找圖。所以**先生圖再 render**。
 
-report.html 的样式约定见 `{baseDir}/references/report-style.md`——要改样式先读它，别把它改回通用卡片墙。
+report.html 的樣式約定見 `{baseDir}/references/report-style.md`——要改樣式先讀它，別把它改回通用卡片牆。
 
-最终落地：
+最終落地：
 
 ```
-<输出目录>/
-├── <书名>-cast.json
-├── <书名>-cast.md
-├── report.html                    ← 双击就能开
+<輸出目錄>/
+├── <書名>-cast.json
+├── <書名>-cast.md
+├── report.html                    ← 雙擊就能開
 └── images/
     └── <slug>-sheet.png           ← 有 codex 才有
 ```
 
-### Step 10 — 汇报
+### Step 10 — 彙報
 
-一句话说清：角色数、出图数、报告路径。校验一次没过的话，说明修了什么。有角色出图失败、被截断、或因为没有 codex 而没出图，明确说清楚。
+一句話說清：角色數、生圖數、報告路徑。校驗一次沒過的話，說明修了什麼。有角色生圖失敗、被截斷、或因為沒有 codex 而沒生圖，明確說清楚。
 
 ---
 
-## 边界
+## 邊界
 
-- 单次上限 24 块（净覆盖约 93 万字符），超了会明确报 `truncated`，不静默截断
-- 人类可读字段跟随 `--lang`（默认中文）；出图和 TTS 提示词**永远英文**，那些引擎吃英文最稳
-- 设定图最容易出的两个问题：**一张图里两个长相**、**为了塞细节把人物压扁**。拿到图先扫一眼，见 `references/sheet.md`
-- 出图只走 codex built-in `$imagegen`。**不用它的 CLI fallback**（要 `OPENAI_API_KEY`）
-- 想要能实时编辑、边跑边看的交互界面，那是另一个东西，不在这个 skill 里
+- 單次上限 24 塊（淨覆蓋約 93 萬字元），超了會明確報 `truncated`，不靜默截斷
+- 人類可讀欄位跟隨 `--lang`（預設中文）；生圖和 TTS 提示詞**永遠英文**，那些引擎吃英文最穩
+- 設定圖最容易出的兩個問題：**一張圖裡兩個長相**、**為了塞細節把人物壓扁**。拿到圖先掃一眼，見 `references/sheet.md`
+- 生圖只走 codex built-in `$imagegen`。**不用它的 CLI fallback**（要 `OPENAI_API_KEY`）
+- 想要能實時編輯、邊跑邊看的互動介面，那是另一個東西，不在這個 skill 裡
 
-## 自测
+## 自測
 
 ```bash
 node {baseDir}/scripts/selftest.mjs
 ```
 
-355 项断言，不调模型、不花额度，覆盖分块 / 归并 / 合成 / 多语言 / 校验 / 渲染的全部确定性逻辑。改完脚本先跑这个。
+399 項斷言，不調模型、不花額度，覆蓋分塊 / 歸併 / outline seed / 合成 / 多語言 / 畫風與提示詞一致性 / 校驗 / 渲染的全部確定性邏輯。改完腳本先跑這個。
 
-## 自带样例
+## 自帶樣例
 
-`{baseDir}/examples/渡口.txt` 是一篇短故事，4 个角色，其中货郎全程只有绰号、船夫只被叫过「老伯」——专门用来验别名归并。对应产出 `渡口-cast.json` / `渡口-cast.md` 可以当质量基准，也是校验的自检夹具。
+`{baseDir}/examples/渡口.txt` 是一篇短故事，4 個角色，其中貨郎全程只有綽號、船伕只被叫過「老伯」——專門用來驗別名歸併。對應產出 `渡口-cast.json` / `渡口-cast.md` 可以當品質基準，也是校驗的自檢夾具。

@@ -21,7 +21,7 @@
 
 提示詞欄位 `image.sheet`，落到 `./images/<slug>-sheet.png`。
 
-左欄的半身像是**面部設計的基準**，右欄三視圖的臉照著它畫。提示詞裡要明確要求兩邊一致，否則一張圖裡會出現兩個長相。
+左欄的半身像是**面部設計的基準**，右欄三檢視的臉照著它畫。提示詞裡要明確要求兩邊一致，否則一張圖裡會出現兩個長相。
 
 ---
 
@@ -29,7 +29,7 @@
 
 直接用 `$imagegen`，**不要再 shell 出去呼叫 `codex exec`**——那是自己套自己。
 
-把 `image.sheet` 的內容作為圖像規格交給 `$imagegen`，產生後把選定的 PNG 複製到 `<輸出目錄>/images/<slug>-sheet.png`。
+把 `image.sheet` 的內容作為影像規格交給 `$imagegen`，產生後把選定的 PNG 複製到 `<輸出目錄>/images/<slug>-sheet.png`。
 
 ## 情況 B：跑在 Claude Code 或其他環境裡
 
@@ -80,7 +80,7 @@ env -u NODE_OPTIONS "$CODEX" exec --skip-git-repo-check --sandbox workspace-writ
 
 | 參數 | 為什麼 |
 | --- | --- |
-| `--skip-git-repo-check` | 輸出目錄不是 git 倉庫時，codex 會拒絕執行 |
+| `--skip-git-repo-check` | 輸出目錄不是 git 儲存庫時，codex 會拒絕執行 |
 | `--sandbox workspace-write` | 不給就沒法往 cwd 寫檔案 |
 | `< /dev/null` | 不關 stdin，codex 會一直等輸入 |
 
@@ -127,9 +127,9 @@ env -u NODE_OPTIONS "$CODEX" exec --skip-git-repo-check --sandbox workspace-writ
 
 設定圖一律**純白背景**。理由有三個：去背乾淨、印出來是設定表該有的樣子、在深色報告裡也能讀。
 
-### 分區光照
+### 分割槽光照
 
-設定表要平光（去背、量比例），寫實要方向光（體積感）。兩者矛盾，所以**分區解決**：左欄半身像給柔和方向主光 + 環境遮蔽，右側三視圖和細節條保持平光正交。提示詞裡是兩句獨立的 `LIGHTING IN THE LEFT ZONE ONLY` / `LIGHTING IN THE RIGHT ZONES`，不要合併成一句全域光照。
+設定表要平光（去背、量比例），寫實要方向光（體積感）。兩者矛盾，所以**分割槽解決**：左欄半身像給柔和方向主光 + 環境遮蔽，右側三檢視和細節條保持平光正交。提示詞裡是兩句獨立的 `LIGHTING IN THE LEFT ZONE ONLY` / `LIGHTING IN THE RIGHT ZONES`，不要合併成一句全域光照。
 
 ### 比例 ⚠️
 
@@ -160,7 +160,7 @@ python3 "$CODEX_HOME/skills/.system/imagegen/scripts/remove_chroma_key.py" <in.p
 ## 其他約束
 
 - worker **只回檔案路徑**，不要 base64、不要 markdown 圖片預覽
-- **不要逐張打開**產生的 PNG 看——只看最終 report.html
+- **不要逐張開啟**產生的 PNG 看——只看最終 report.html
 - **不碰 CLI fallback**（`scripts/image_gen.py`，要 `OPENAI_API_KEY`）。built-in 不可用就據實回報，不要靜默降級
 - 生圖失敗**不阻斷**整個流程：跳過這個角色，最後彙總說明哪些沒出成
 

@@ -17,8 +17,8 @@
 - New repository layout keeps the skill at `skills/shot-recipes/` so more video skills can be added later.
 - Import every tracked and untracked file currently below `/Users/wesley/workspace/shuohao-skills/skills/shot-recipes/`, excluding `.DS_Store` and generated `gallery*.html` files.
 - Preserve Apache-2.0 by copying the existing `LICENSE` and `NOTICE`.
-- Do not migrate or commit `/Users/wesley/workspace/shuohao-skills/分段说明.md`.
-- Do not stage the unrelated 《查无此人》 novel-pipeline section currently present in the old `CHANGELOG.md`.
+- Do not migrate or commit `/Users/wesley/workspace/shuohao-skills/分段說明.md`.
+- Do not stage the unrelated 《查無此人》 novel-pipeline section currently present in the old `CHANGELOG.md`.
 - Never delete the old skill directory until the new repository tests pass and the import branch is pushed to GitHub.
 - Stage only explicit paths; do not use `git add .`, `git add -A`, or `git add --all`.
 - Work on `codex/import-shot-recipes` in the new repository and the existing `codex/migrate-shot-recipes` branch in the old repository.
@@ -108,21 +108,21 @@ Use `apply_patch` to make `README.md` contain these sections and facts:
 ````markdown
 # shuohao-video-skills
 
-面向 AI 短视频制作的 skills 集合：把镜头语言、分镜、生成提示词、剪辑与声音等制作经验沉淀成可复用、可检查的工作流。
+面向 AI 短影片製作的 skills 集合：把鏡頭語言、分鏡、生成提示詞、剪輯與聲音等製作經驗沉澱成可複用、可檢查的工作流。
 
 ## Skills
 
-| Skill | 做什么 |
+| Skill | 做什麼 |
 | --- | --- |
-| [shot-recipes](skills/shot-recipes) | AI 生成式视频的镜头语汇卡库：17 张配方卡、68 张技法卡，中英双版，附零依赖 CLI 与确定性质量门。 |
+| [shot-recipes](skills/shot-recipes) | AI 生成式影片的鏡頭語彙卡庫：17 張配方卡、68 張技法卡，中英雙版，附零依賴 CLI 與確定性品質門。 |
 
-## 安装单个 skill
+## 安裝單個 skill
 
 ```bash
 ln -s "$PWD/skills/shot-recipes" ~/.codex/skills/shot-recipes
 ```
 
-## 验证
+## 驗證
 
 ```bash
 node skills/shot-recipes/scripts/selftest.mjs
@@ -143,7 +143,7 @@ node_modules/
 skills/*/references/cards/gallery*.html
 ```
 
-Use `apply_patch` to create `CHANGELOG.md` with `# Changelog`, followed by the complete existing section headed `## shot-recipes 补齐好莱坞运镜：新增 14 张技法卡（1.0.0 → 1.1.0） — 2026-08-20` and the complete existing section headed `## 新 skill：shot-recipes（镜头语汇卡库） — 2026-08-16`, copied from the old changelog without any novel-pipeline sections between them.
+Use `apply_patch` to create `CHANGELOG.md` with `# Changelog`, followed by the complete existing section headed `## shot-recipes 補齊好萊塢運鏡：新增 14 張技法卡（1.0.0 → 1.1.0） — 2026-08-20` and the complete existing section headed `## 新 skill：shot-recipes（鏡頭語彙卡庫） — 2026-08-16`, copied from the old changelog without any novel-pipeline sections between them.
 
 - [ ] **Step 6: Verify snapshot completeness before staging**
 
@@ -236,7 +236,7 @@ Use `apply_patch` in `skills/novel-storyboard/scripts/selftest.mjs`:
 
 ```js
 const CARDS = loadRecipes(join(here, '../references/test-fixtures/shot-recipes'));
-eq(CARDS.size, 3, '最小卡片夹具三张全读出');
+eq(CARDS.size, 3, '最小卡片夾具三張全讀出');
 ```
 
 Keep the existing assertions for `ots-shot-reverse`, missing directories, recipe ids, must-phrases, and multi-cut length.
@@ -249,7 +249,7 @@ Run:
 node skills/novel-storyboard/scripts/selftest.mjs
 ```
 
-Expected: FAIL at `最小卡片夹具三张全读出` because the fixture directory does not exist yet.
+Expected: FAIL at `最小卡片夾具三張全讀出` because the fixture directory does not exist yet.
 
 - [ ] **Step 3: Add the three minimal card fixtures**
 
@@ -258,7 +258,7 @@ Use `apply_patch` to create `ots-shot-reverse.md`:
 ```markdown
 ---
 id: ots-shot-reverse
-name: 过肩正反打
+name: 過肩正反打
 name_en: Over-the-shoulder reverse
 cuts: [2, 3]
 sizes: [medium, close]
@@ -328,12 +328,12 @@ Use `apply_patch` on both root READMEs to:
 - remove the standalone shot vocabulary introduction, table, and `shot-recipes` row;
 - remove the shot recipe gallery heading and image;
 - remove the parenthetical `shot-recipes` reference from the `novel-storyboard` table row while retaining “17 quality gates”; 
-- change Chinese “六个 skill” references to “五个 skill” and English “six skills” references to “five skills”.
+- change Chinese “六個 skill” references to “五個 skill” and English “six skills” references to “five skills”.
 
 Run:
 
 ```bash
-rg -n 'shot-recipes|镜头语汇库|镜头配方卡库|shot vocabulary library|shot recipe library|六个 skill|six skills' README.md README.en.md
+rg -n 'shot-recipes|鏡頭語彙庫|鏡頭配方卡庫|shot vocabulary library|shot recipe library|六個 skill|six skills' README.md README.en.md
 ```
 
 Expected: no matches.
@@ -356,12 +356,12 @@ Expected: no matches.
 
 - [ ] **Step 3: Remove obsolete ignore and uncommitted changelog content**
 
-Use `apply_patch` to delete `skills/shot-recipes/references/cards/gallery*.html` from `.gitignore` and delete only the uncommitted 1.1.0 section beginning `## shot-recipes 补齐好莱坞运镜` from `CHANGELOG.md`. Leave the unrelated preceding 《查无此人》 section byte-for-byte unchanged.
+Use `apply_patch` to delete `skills/shot-recipes/references/cards/gallery*.html` from `.gitignore` and delete only the uncommitted 1.1.0 section beginning `## shot-recipes 補齊好萊塢運鏡` from `CHANGELOG.md`. Leave the unrelated preceding 《查無此人》 section byte-for-byte unchanged.
 
 Run:
 
 ```bash
-rg -n '^## shot-recipes 补齐好莱坞运镜|skills/shot-recipes/references/cards/gallery' CHANGELOG.md .gitignore
+rg -n '^## shot-recipes 補齊好萊塢運鏡|skills/shot-recipes/references/cards/gallery' CHANGELOG.md .gitignore
 ```
 
 Expected: no matches. The older committed changelog entry remains historical record.
@@ -414,7 +414,7 @@ git diff --cached --stat
 git status --short
 ```
 
-Expected: `CHANGELOG.md` and `分段说明.md` are not staged. The index contains only README cleanup, the fixture/selftest change, `.gitignore`, and deletions below `skills/shot-recipes`.
+Expected: `CHANGELOG.md` and `分段說明.md` are not staged. The index contains only README cleanup, the fixture/selftest change, `.gitignore`, and deletions below `skills/shot-recipes`.
 
 Commit:
 
@@ -442,7 +442,7 @@ git status --short
 git push -u origin codex/migrate-shot-recipes
 ```
 
-Expected: user-owned `CHANGELOG.md` and `分段说明.md` may remain unstaged; the pushed commit contains no unrelated files.
+Expected: user-owned `CHANGELOG.md` and `分段說明.md` may remain unstaged; the pushed commit contains no unrelated files.
 
 - [ ] **Step 2: Create the old-repository draft PR**
 
@@ -453,7 +453,7 @@ gh pr create --draft --base main --head codex/migrate-shot-recipes --title "Move
 gh pr view --json state,isDraft,url,files
 ```
 
-Expected: the PR is open as a draft and its files exclude the unrelated changelog section and `分段说明.md`.
+Expected: the PR is open as a draft and its files exclude the unrelated changelog section and `分段說明.md`.
 
 - [ ] **Step 3: Mark the new-repository PR ready and merge it**
 

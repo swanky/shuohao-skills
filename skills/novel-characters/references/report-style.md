@@ -112,9 +112,9 @@
 
 頂欄那個按鈕下載的**就是 `cast.json` 本身的形狀**，不是另一套匯出格式。這條是契約：外部工具改完要能直接重新匯入 `render`，也要能過 `validate`，自測裡有斷言盯著。
 
-資料以 `<script type="application/json" id="cast-data">` 內嵌一份，點匯出只是包成 Blob 下載，**不發送網路請求**。
+資料以 `<script type="application/json" id="cast-data">` 內嵌一份，點匯出只是包成 Blob 下載，**不傳送網路請求**。
 
-⚠️ **JSON 裡的 `<` 必須轉成 `<`**。正文裡出現一個 `</script` 就能把資料塊提前截斷。`<` 在 JSON 裡只可能出現在字串值中，所以整體替換是安全的。
+⚠️ **JSON 裡的 `<` 必須轉成 `<`**。正文裡出現一個 `</script` 就能把資料區塊提前截斷。`<` 在 JSON 裡只可能出現在字串值中，所以整體替換是安全的。
 
 ⚠️ **`URL.revokeObjectURL` 不能跟在 `a.click()` 後面立刻調**。Safari 會搶在下載讀完之前撤掉 blob，使用者存下來是個空檔案。延後回收。
 

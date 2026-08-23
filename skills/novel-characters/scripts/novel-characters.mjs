@@ -11,10 +11,10 @@ import { fileURLToPath } from 'node:url';
 /* chunk                                                               */
 /* ------------------------------------------------------------------ */
 
-// 块大小的权衡：块越大，单块阅读越重；块越小，块数越多，跨块归并
-// （全管线语义最难的一步）的接缝就越多。现在的模型读 4 万字符毫无压力，
-// 所以往大取——接缝少三倍，漏归并的机会也少三倍。
-// 上限 24 块，扣掉 23 段重叠净覆盖约 93 万字符。
+// 塊大小的權衡：塊越大，單塊閱讀越重；塊越小，塊數越多，跨塊歸併
+// （全管線語義最難的一步）的接縫就越多。現在的模型讀 4 萬字元毫無壓力，
+// 所以往大取——接縫少三倍，漏歸併的機會也少三倍。
+// 上限 24 塊，扣掉 23 段重疊淨覆蓋約 93 萬字元。
 export const CHUNK_SIZE = 40_000;
 export const CHUNK_OVERLAP = 1_200;
 export const MAX_CHUNKS = 24;
@@ -63,7 +63,7 @@ export function chunkText(text) {
 
 /**
  * Merge per-chunk rosters into one cast, keyed by name AND alias so that
- * 陆行远 / 陆 / 姑娘 collapse onto the same person regardless of which
+ * 陸行遠 / 陸 / 姑娘 collapse onto the same person regardless of which
  * chunk saw which form first.
  */
 export function mergeRoster(batches) {
@@ -104,11 +104,11 @@ export function mergeRoster(batches) {
 }
 
 /**
- * 疑似同人候选。跨块身份消解是语义问题，确定性代码只能做廉价的那一半：
- * 名字包含（「陆」⊂「陆行远」）是很强的合并信号，精确匹配却收敛不了它——
- * 除非某块恰好把「陆」列成了「陆行远」的别名。「陆先生」和「行远」是不是
- * 同一个人则连包含都测不出，所以候选只是嫌疑名单，判断留给模型，
- * 复核结果写成 merges.json 再用 --apply 确定性落地。
+ * 疑似同人候選。跨塊身份消解是語義問題，確定性程式碼只能做廉價的那一半：
+ * 名字包含（「陸」⊂「陸行遠」）是很強的合併訊號，精確匹配卻收斂不了它——
+ * 除非某塊恰好把「陸」列成了「陸行遠」的別名。「陸先生」和「行遠」是不是
+ * 同一個人則連包含都測不出，所以候選只是嫌疑名單，判斷留給模型，
+ * 複核結果寫成 merges.json 再用 --apply 確定性落地。
  */
 export function mergeCandidates(cast) {
   const keysOf = (c) => [c.name, ...(c.aliases ?? [])].map((s) => String(s).trim()).filter(Boolean);
@@ -119,8 +119,8 @@ export function mergeCandidates(cast) {
       for (const a of keysOf(cast[i])) {
         for (const b of keysOf(cast[j])) {
           const [short, long] = a.length <= b.length ? [a, b] : [b, a];
-          if (short.toLowerCase() === long.toLowerCase()) continue; // 相等的键 mergeRoster 已经收敛了
-          // 拉丁文字短侧至少 3 个字符，否则「Al」⊂「Alex」这类噪音太多；CJK 单字就有信息量
+          if (short.toLowerCase() === long.toLowerCase()) continue; // 相等的鍵 mergeRoster 已經收斂了
+          // 拉丁文字短側至少 3 個字元，否則「Al」⊂「Alex」這類噪音太多；CJK 單字就有資訊量
           const min = CJK.test(short) ? 1 : 3;
           if (short.length >= min && long.toLowerCase().includes(short.toLowerCase())) {
             reason = `「${short}」⊂「${long}」`;
@@ -136,10 +136,10 @@ export function mergeCandidates(cast) {
 }
 
 /**
- * 把模型复核后的合并决定落地。merges: [{ keep, absorb: [...] }]，
- * keep / absorb 用 name 或任一 alias 定位都行。找不到就整体报错——
- * 静默跳过会让调用方以为合并成功了。
- * 不改动传入的 cast：全程在副本上操作，抛错后入参照常可用。
+ * 把模型複核後的合併決定落地。merges: [{ keep, absorb: [...] }]，
+ * keep / absorb 用 name 或任一 alias 定位都行。找不到就整體報錯——
+ * 靜默跳過會讓呼叫方以為合併成功了。
+ * 不改動傳入的 cast：全程在副本上操作，拋錯後入參照常可用。
  */
 export function applyMerges(cast, merges) {
   cast = cast.map((c) => ({ ...c, aliases: [...c.aliases], notes: [...c.notes], quotes: [...c.quotes] }));
@@ -152,16 +152,16 @@ export function applyMerges(cast, merges) {
   for (const m of merges ?? []) {
     const target = index.get(keyOf(m?.keep ?? ''));
     if (!target) {
-      problems.push(`keep「${m?.keep}」在归并结果里找不到`);
+      problems.push(`keep「${m?.keep}」在歸併結果裡找不到`);
       continue;
     }
     for (const name of m?.absorb ?? []) {
       const victim = index.get(keyOf(name));
       if (!victim) {
-        problems.push(`absorb「${name}」在归并结果里找不到`);
+        problems.push(`absorb「${name}」在歸併結果裡找不到`);
         continue;
       }
-      if (victim === target) continue; // 本来就是同一个人，不算错
+      if (victim === target) continue; // 本來就是同一個人，不算錯
       for (const alias of [victim.name, ...victim.aliases]) {
         if (alias !== target.name && !target.aliases.includes(alias)) target.aliases.push(alias);
       }
@@ -192,59 +192,94 @@ export function slug(name) {
 /* i18n                                                                */
 /* ------------------------------------------------------------------ */
 /*
- * 报告语言。默认 zh。
- * 内置 zh / en 两套界面文案；给了其他语言码就用 en 的界面骨架，
- * 但角色内容仍按那个语言生成——界面词没翻译总比整篇乱掉强。
+ * 報告語言。預設 zh-TW（台灣正體）。
+ * 內建 zh-TW / zh / en / ja 四套介面文案；給了其他語言碼就用 en 的介面骨架，
+ * 但角色內容仍按那個語言生成——介面詞沒翻譯總比整篇亂掉強。
  */
 
-export const DEFAULT_LANG = 'zh';
+export const DEFAULT_LANG = 'zh-TW';
+
+/** 中文語言碼（含各地區變體），決定人類可讀欄位該不該是漢字。 */
+export const isChinese = (lang) => typeof lang === 'string' && /^zh(-|$)/i.test(lang);
+
+/** 正體／繁體中文——隻影響字型挑選，用詞差異由生成階段負責。 */
+export const isTraditionalChinese = (lang) =>
+  typeof lang === 'string' && /^zh-(tw|hk|mo|hant)/i.test(lang);
 
 /* ------------------------------------------------------------------ */
-/* 画风预设                                                             */
+/* 畫風預設                                                             */
 /* ------------------------------------------------------------------ */
 /*
- * 换风格是整套换，不是只换一句「画风」。
+ * 換風格是整套換，不是隻換一句「畫風」。
  *
- * 最容易踩的坑：两个预设的 negativePrompt 几乎是相反的。写实那套刚把
- * photorealistic 从反向词里删掉，吉卜力恰恰要禁它。毛孔、皮下散射、
- * 顺表情肌的皱纹在写实里是加分项，在吉卜力里是反效果。
+ * 最容易踩的坑：各預設的 negativePrompt 立場是相反的。寫實那套剛把
+ * photorealistic 從反向詞裡刪掉，吉卜力恰恰要禁它。毛孔、皮下散射、
+ * 順表情肌的皺紋在寫實裡是加分項，在吉卜力裡是反效果。
+ * photoreal 又反過來：它跟 realistic 一樣絕不能禁 photorealistic，
+ * 但必須禁 illustration / painting / anime——它要的是照片，不是畫。
  *
- * 所以每个预设自带五块：render / surface / lighting / negative / tags，
- * 生成角色卡时整块取用，不要混搭。
+ * 所以每個預設自帶五塊：render / surface / lighting / negative / tags，
+ * 生成角色卡時整塊取用，不要混搭。
  */
 
 export const DEFAULT_STYLE = 'realistic';
 
 export const STYLE_PRESETS = {
   realistic: {
-    label: { zh: '半写实厚涂', en: 'Semi-realistic painterly', ja: '半写実・厚塗り' },
+    label: { zh: '半写实厚涂', 'zh-TW': '半寫實厚塗', en: 'Semi-realistic painterly', ja: '半写実・厚塗り' },
     render:
       'Semi-realistic character illustration, painterly rendering with soft blended edges and visible brush texture, anatomically grounded',
     surface:
       'Skin with visible pores and uneven tone, faint capillaries at the nostrils and ear rims, subtle subsurface scattering; eyes with a wet specular highlight, moist lower lid, visible iris fibres and a limbal ring; eyelids and eyebrows slightly asymmetric — no two sides identical; individual flyaway hair strands breaking the silhouette. Fabric with a visible weave, wear and shine at elbows, cuffs and knees, cloth falling with real weight and self-shadowing in the folds',
-    // 设定表要平光才好抠图，写实要方向光才有体积——分区解决
+    // 設定表要平光才好摳圖，寫實要方向光才有體積——分割槽解決
     lighting:
       'LIGHTING IN THE LEFT ZONE ONLY: a soft directional key light from the upper left with gentle falloff, subtle ambient occlusion under the chin, in the eye sockets and where the collar meets the neck, giving the head real volume. LIGHTING IN THE RIGHT ZONES: flat even orthographic lighting with no directional key and no cast shadows, so the figures stay measurable and cleanly cut out',
-    // 注意：这里绝不能禁 photorealistic
+    // 注意：這裡絕不能禁 photorealistic
     negative:
       'plastic or waxy skin, over-smoothed airbrushed complexion, poreless doll face, perfectly symmetrical face, dead flat eyes without specular highlight, helmet-like hair with no loose strands, flat untextured fabric with no weave or wear, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop',
     tags: ['semi-realistic', 'painterly', 'character sheet', 'subsurface skin', 'directional key light'],
   },
 
   ghibli: {
-    label: { zh: '吉卜力动画', en: 'Ghibli-like animation', ja: 'ジブリ風アニメ' },
+    label: { zh: '吉卜力动画', 'zh-TW': '吉卜力動畫', en: 'Ghibli-like animation', ja: 'ジブリ風アニメ' },
     render:
       'Hand-painted anime cel illustration in the manner of classic Studio Ghibli feature animation: clean confident ink linework of even weight, simple flat cel shading with a single soft shadow tone, gentle rounded forms, warm naturalistic palette, watercolour-like softness',
-    // 写实那套的表面细节在这里全是反效果，整块换掉
+    // 寫實那套的表面細節在這裡全是反效果，整塊換掉
     surface:
       'Skin as clean flat tone with one soft shadow shape and a warm blush at the cheeks and nose — no pores, no skin texture, no subsurface detail; large clear expressive eyes with a simple round highlight and flat iris colour; hair drawn as grouped strands and clumps with clean silhouettes rather than individual hairs; clothing in simple flat colour with a few decisive fold lines, no fabric weave and no micro-texture',
-    // 平光就是这个风格本身的一部分，不需要分区
+    // 平光就是這個風格本身的一部分，不需要分割槽
     lighting:
       'Even, gentle daylight across the whole sheet with a single soft shadow tone; no dramatic key light, no ambient occlusion, no cast shadows — the flat lighting is part of the style and keeps the figures cleanly cut out',
-    // 这里反过来，必须禁写实
+    // 這裡反過來，必須禁寫實
     negative:
       'photorealistic, 3d render, hyperrealistic skin texture, visible pores, subsurface scattering, harsh contrast, heavy painterly rendering, muddy or desaturated colours, gritty texture overlay, extra fingers, malformed hands, text, watermark, signature, busy or patterned background',
     tags: ['ghibli-like', 'cel shading', 'hand-painted', 'character sheet', 'flat daylight'],
+  },
+
+  /*
+   * 擬真實拍。跟 realistic 的差別不是「更寫實一點」，是根本不同的東西：
+   * realistic 仍是畫出來的（painterly、筆觸、厚塗），photoreal 要的是
+   * 「劇組試裝定妝照」——真人、真相機、真鏡頭、真布料。
+   *
+   * 所以 negative 的重點從「別畫得太塑膠」變成「別畫」：illustration /
+   * painting / anime / CGI 全禁。但跟 realistic 一樣，photorealistic 與
+   * 3d render 裡的 photorealistic 絕不能禁——那是這個預設要的東西本身。
+   *
+   * 版面不變：16:9 三區、左半身像右三檢視，照樣分割槽打光。
+   */
+  photoreal: {
+    label: { zh: '拟真实拍', 'zh-TW': '擬真實拍', en: 'Live-action photography', ja: '実写風' },
+    render:
+      'Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still',
+    surface:
+      'True photographic skin: real visible pores, fine vellus hair, uneven natural tone, faint capillaries at the nostrils and ear rims, genuine subsurface scattering, moles and freckles left in place, no beauty retouching and no skin smoothing; eyes with a real catchlight from the key light, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands catching the light and breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear at cuffs, elbows and knees',
+    // 跟 realistic 同一套分割槽邏輯：左欄要體積，右側要能量比例、好摳圖
+    lighting:
+      'LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with a gentle bounce fill on the shadow side, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck, so the head reads as an actually photographed head with volume. LIGHTING IN THE RIGHT ZONES: flat even frontal studio light with no directional key and no cast shadows on the backdrop, so the figures stay measurable and cleanly cut out',
+    // 這裡禁的是「畫出來的」，不是「真實的」——photorealistic 絕不能進這一串
+    negative:
+      'illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop',
+    tags: ['live-action', 'photographic', 'wardrobe camera test', 'character sheet', 'real skin texture', '85mm lens'],
   },
 };
 
@@ -303,6 +338,61 @@ const STRINGS = {
     zoomImage: '放大查看',
     copyImage: '复制图片',
     closeImage: '关闭',
+  },
+  // 台湾正体。跟 zh 的差别不只在字形——用词也照台湾习惯换过：
+  // 「生圖」不是「出图」、「負向提示詞」不是「反向提示词」、「搜尋」不是「搜索」。
+  // 只换字形不换用词，读起来还是像翻译腔的简体。
+  'zh-TW': {
+    kicker: '角色設定集',
+    titleTail: ' · 角色',
+    docTitle: (s) => `${s} · 角色設定集`,
+    counts: (n, shots) => `${n} 位角色${shots ? ` · ${shots} 張設定圖` : ''} · 依戲份排序`,
+    synopsis: '故事摘要',
+    indexLabel: '角色索引',
+    aka: '又稱',
+    groups: { persona: '人物側寫', image: '造型', voice: '聲音' },
+    persona: {
+      gender: '性別', ageRange: '年齡', identity: '身分',
+      appearance: '外貌', temperament: '性情', motivation: '動機',
+      arc: '角色弧線', relationships: '人物關係', evidence: '原文依據',
+    },
+    image: {
+      style: '畫風', copyTags: '複製標籤',
+      prompt: '生圖提示詞 · 餵生圖模型用這條', promptLocal: '生圖提示詞（中文對照）',
+      negative: '負向提示詞', sheet: '角色設定圖提示詞 EN',
+    },
+    voice: {
+      timbre: '音色', pitch: '音高', pace: '語速', accent: '口音',
+      emotion: '情緒', referenceHint: '類比',
+      prompt: '音色提示詞 · 餵 TTS 引擎用這條',
+    },
+    importance: { protagonist: '主角', major: '主要角色', supporting: '配角', minor: '跑龍套' },
+    graphTitle: '人物關係圖譜',
+    graphHint: '游標停留檢視關係，點選進入角色',
+    graphCounts: (n, e) => `${n} 位角色 · ${e} 組關係`,
+    exportJson: '匯出 JSON',
+    graphLabels: '關係文字',
+    graphEmpty: '這批角色之間沒有互相指認的關係',
+    graphDangling: (n) => `另有 ${n} 條關係指向尚未建立人物側寫的角色，因此未繪入圖中`,
+    relationsAll: '全部關係',
+    copy: '複製', copied: '已複製', copyFailed: '複製失敗', copyJson: '複製整份角色 JSON',
+    sheetCaption: '左：半身像　右：全身三檢視',
+    noImage: '尚未生圖',
+    noImageHint: '用下方提示詞生成',
+    colophonA: '人物側寫與提示詞由模型依據原文生成，',
+    colophonB: '標記處為原文未明說、為了實用而補上的內容。',
+    mdTitle: (s) => `# ${s} — 角色表`,
+    mdCast: (n, names) => `共 ${n} 位角色：${names}`,
+    mdSynopsis: '## 故事摘要',
+    searchPlaceholder: '搜尋角色、特質、身分',
+    rosterTitle: '角色 · 依戲份排序',
+    footnote: '標註（推斷）的條目為原文未明寫、依據文字推演而來。',
+    noMatch: '沒有符合的角色',
+    voiceTag: 'VOICE',
+    expandAll: '全部展開',
+    zoomImage: '放大檢視',
+    copyImage: '複製圖片',
+    closeImage: '關閉',
   },
   en: {
     kicker: 'CHARACTER BIBLE',
@@ -412,22 +502,22 @@ const STRINGS = {
 };
 
 /**
- * 取界面文案。
+ * 取介面文案。
  *
- * 两层：内置表覆盖常用语言；其他语言由 skill 在生成时翻译一份塞进
- * cast.json 的 `ui`，这里合并进来。这样支持的语言不受内置表限制。
+ * 兩層：內建表覆蓋常用語言；其他語言由 skill 在生成時翻譯一份塞進
+ * cast.json 的 `ui`，這裡合並進來。這樣支援的語言不受內建表限制。
  *
- * @param lang      语言码
- * @param overrides cast.json 的 `ui`，可以只覆盖一部分键
+ * @param lang      語言碼
+ * @param overrides cast.json 的 `ui`，可以只覆蓋一部分鍵
  */
 export function strings(lang = DEFAULT_LANG, overrides = null) {
   const base = STRINGS[lang] ?? STRINGS.en;
   if (!overrides || typeof overrides !== 'object') return base;
 
-  // 只合两层——STRINGS 的嵌套就两层深，够用且不会被脏数据带偏。
+  // 只合兩層——STRINGS 的巢狀就兩層深，夠用且不會被髒資料帶偏。
   const merged = { ...base };
   for (const [k, v] of Object.entries(overrides)) {
-    if (typeof base[k] === 'function') continue; // 函数模板不接受覆盖
+    if (typeof base[k] === 'function') continue; // 函式模板不接受覆蓋
     if (v && typeof v === 'object' && !Array.isArray(v) && base[k] && typeof base[k] === 'object') {
       merged[k] = { ...base[k], ...v };
     } else if (typeof v === 'string') {
@@ -439,10 +529,10 @@ export function strings(lang = DEFAULT_LANG, overrides = null) {
 
 export const SUPPORTED_UI_LANGS = Object.keys(STRINGS);
 
-/** 需要 skill 补一份 `ui` 翻译的语言（内置表里没有的）。 */
+/** 需要 skill 補一份 `ui` 翻譯的語言（內建表裡沒有的）。 */
 export const needsUiTranslation = (lang) => !SUPPORTED_UI_LANGS.includes(lang);
 
-/** `ui` 里可覆盖的键——供 ui-template 子命令生成骨架。 */
+/** `ui` 裡可覆蓋的鍵——供 ui-template 子命令生成骨架。 */
 export function uiTemplate() {
   const en = STRINGS.en;
   const out = {};
@@ -454,51 +544,51 @@ export function uiTemplate() {
 }
 
 /* ------------------------------------------------------------------ */
-/* seed — 从大纲预填角色表骨架                                          */
+/* seed — 從大綱預填角色表骨架                                          */
 /* ------------------------------------------------------------------ */
 
 /**
- * outline 的 tier 映射成 cast 的 importance。
+ * outline 的 tier 對映成 cast 的 importance。
  *
- * 注意两边粒度不一样：outline 的 `lead` 是「主角组」，男女主与主反派都在里面，
- * 对应 cast 的 protagonist 与 major 两档。这里一律给 protagonist，由模型照
- * seedNote 里的 role（女主 / 男主 / 反派）把主角之外的改成 major——**分档本身
- * 不推翻，只在主角组内部细分**。
+ * 注意兩邊粒度不一樣：outline 的 `lead` 是「主角組」，男女主與主反派都在裡面，
+ * 對應 cast 的 protagonist 與 major 兩檔。這裡一律給 protagonist，由模型照
+ * seedNote 裡的 role（女主 / 男主 / 反派）把主角之外的改成 major——**分檔本身
+ * 不推翻，只在主角組內部細分**。
  */
 export const TIER_TO_IMPORTANCE = { lead: 'protagonist', support: 'supporting', functional: 'minor' };
 
 /**
- * 从 outline.json 预填 cast.json 骨架。
+ * 從 outline.json 預填 cast.json 骨架。
  *
- * 大纲是角色设定的上游：谁进谁不进、谁是主角组，在改编阶段就拍板了，这一层
- * 不再判断一遍。搬过来的是**大纲已经定死的事实**（角色码、名字、分档、人物线、
- * 由原著的谁合并而来），留空的是**这一层才该做的设计**（别名、画像、形象提示词、
- * 音色提示词）——别名要读原文才知道，大纲里没有。
+ * 大綱是角色設定的上游：誰進誰不進、誰是主角組，在改編階段就拍板了，這一層
+ * 不再判斷一遍。搬過來的是**大綱已經定死的事實**（角色碼、名字、分檔、人物線、
+ * 由原著的誰合併而來），留空的是**這一層才該做的設計**（別名、畫像、形象提示詞、
+ * 音色提示詞）——別名要讀原文才知道，大綱裡沒有。
  *
- * 与 novel-art / novel-script 的 seedFromOutline 同一个形状：搬事实、留设计、
- * 附一条 seedNote 带上下文。产出是骨架不是成品，直接跑 validate 会报一堆
- * 字段缺失，那是预期的。
+ * 與 novel-art / novel-script 的 seedFromOutline 同一個形狀：搬事實、留設計、
+ * 附一條 seedNote 帶上下文。產出是骨架不是成品，直接跑 validate 會報一堆
+ * 欄位缺失，那是預期的。
  */
 export function seedFromOutline(outline) {
   const characters = (outline?.characters ?? []).map((c) => {
     const note = [
-      c?.id ? `角色码 ${c.id}` : null,
-      c?.role ? `大纲定位：${c.role}` : null,
-      c?.tier ? `大纲分档：${c.tier}` : null,
-      (c?.from ?? []).length ? `合并自：${(c.from ?? []).join('、')}` : null,
+      c?.id ? `角色碼 ${c.id}` : null,
+      c?.role ? `大綱定位：${c.role}` : null,
+      c?.tier ? `大綱分檔：${c.tier}` : null,
+      (c?.from ?? []).length ? `合併自：${(c.from ?? []).join('、')}` : null,
     ].filter(Boolean).join('　');
     return {
-      // 从大纲搬来的事实，不用再想
+      // 從大綱搬來的事實，不用再想
       ...(c?.id ? { id: c.id } : {}),
       name: c?.name ?? '',
       importance: TIER_TO_IMPORTANCE[c?.tier] ?? 'supporting',
-      // 这一层才该做的设计，先占位
+      // 這一層才該做的設計，先佔位
       aliases: [],
       oneLiner: '',
       persona: {
         gender: '', ageRange: '', identity: '', appearance: '',
         personality: [], temperament: '', motivation: '',
-        // 人物弧光大纲已经写了，直接用；觉得不对回去改大纲，别在这里改一个不一样的
+        // 人物弧光大綱已經寫了，直接用；覺得不對回去改大綱，別在這裡改一個不一樣的
         arc: c?.arc ?? '',
         relationships: [], evidence: [],
       },
@@ -521,23 +611,23 @@ export function seedFromOutline(outline) {
 /* ------------------------------------------------------------------ */
 
 const IMPORTANCE = ['protagonist', 'major', 'supporting', 'minor'];
-/** 中日韩表意文字与假名、谚文——图像/TTS 提示词里出现就说明串语言了。 */
+/** 中日韓表意文字與假名、諺文——影像/TTS 提示詞裡出現就說明串語言了。 */
 const CJK = /[㐀-鿿぀-ヿ가-힯]/;
-/** 假名单独一条：用来把日文和中文区分开。 */
+/** 假名單獨一條：用來把日文和中文區分開。 */
 const KANA = /[぀-ヿ]/;
 
 const PERSONA_STRINGS = ['gender', 'ageRange', 'identity', 'appearance', 'temperament', 'motivation', 'arc'];
-/** 机器输入，永远英文——图像和 TTS 引擎都吃英文最稳，跟报告语言无关。 */
+/** 機器輸入，永遠英文——影像和 TTS 引擎都吃英文最穩，跟報告語言無關。 */
 const MACHINE_FIELDS = { image: ['prompt', 'negativePrompt', 'sheet'], voice: ['prompt'] };
-/** 给人读的，跟随报告语言。 */
+/** 給人讀的，跟隨報告語言。 */
 const HUMAN_VOICE_FIELDS = ['timbre', 'pitch', 'pace', 'accent', 'emotion', 'referenceHint'];
 
 const normalise = (s) => String(s).replace(/\s+/g, '');
 
 /**
- * @param characters 角色卡数组
- * @param sourceText 原文；null 则跳过逐字引文校验
- * @param lang       报告语言，决定人类可读字段该是什么语言
+ * @param characters 角色卡陣列
+ * @param sourceText 原文；null 則跳過逐字引文校驗
+ * @param lang       報告語言，決定人類可讀欄位該是什麼語言
  */
 export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style = DEFAULT_STYLE) {
   const problems = [];
@@ -545,18 +635,18 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
   const at = (name, msg) => problems.push(`[${name}] ${msg}`);
 
   if (!Array.isArray(characters) || characters.length === 0) {
-    return ['cast 为空或不是数组'];
+    return ['cast 為空或不是陣列'];
   }
 
-  // --- 同剧角色画风必须一致 ---
-  // 这是整批图"像不像同一部片"的底线。每个角色的 image.style 给人读的画风
-  // 一句话，模型在第二趟出卡时可能按各自服装/年龄自由发挥（藏青/冷灰/大地色
-  // 各写一套），导致同框时像四个画师画的。预设只约束大类别（realistic/ghibli），
-  // 管不到剧内统一，所以用确定性检查兜底：归一化后多于一种值就报错，并点名
-  // 哪些角色用了不同画风。单角色（或未写 image.style 的角色）不触发。
+  // --- 同劇角色畫風必須一致 ---
+  // 這是整批圖"像不像同一部片"的底線。每個角色的 image.style 給人讀的畫風
+  // 一句話，模型在第二趟出卡時可能按各自服裝/年齡自由發揮（藏青/冷灰/大地色
+  // 各寫一套），導致同框時像四個畫師畫的。預設只約束大類別（realistic/ghibli），
+  // 管不到劇內統一，所以用確定性檢查兜底：歸一化後多於一種值就報錯，並點名
+  // 哪些角色用了不同畫風。單角色（或未寫 image.style 的角色）不觸發。
   const styleByChar = [];
   for (const c of characters) {
-    const name = c?.name ?? '(无名)';
+    const name = c?.name ?? '(無名)';
     const style = c?.image?.style;
     if (typeof style === 'string' && style.trim()) styleByChar.push([name, normalise(style)]);
   }
@@ -568,22 +658,22 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
     }
     if (seen.size > 1) {
       const groups = [...seen.values()].map((names) => names.join('、')).join('  vs  ');
-      problems.push(`同剧角色画风不一致（image.style 必须统一）：${groups}`);
+      problems.push(`同劇角色畫風不一致（image.style 必須統一）：${groups}`);
     }
   }
 
-  // --- 同批角色的提示词不许雷同 ---
+  // --- 同批角色的提示詞不許雷同 ---
   /*
-   * profile-pass.md 早就写着「同一批角色之间要能区分开，别把长相和声线做成一个样」，
-   * 但没有门。模型第二趟出卡时容易套同一个模板：个体描述写得短，剩下全是真实感样板
-   * 与固定的构图光照尾巴——两个年龄性别接近的角色出来就是同一个人（issue #9）。
+   * profile-pass.md 早就寫著「同一批角色之間要能區分開，別把長相和聲線做成一個樣」，
+   * 但沒有門。模型第二趟出卡時容易套同一個模板：個體描述寫得短，剩下全是真實感樣板
+   * 與固定的構圖光照尾巴——兩個年齡性別接近的角色出來就是同一個人（issue #9）。
    *
-   * 判定：按词集合算 Jaccard 相似度，超阈值就点名那一对。
-   * 阈值取 0.75，是量出来的不是拍的——自带样例四个角色两两最高 39%，
-   * 而「只改年龄与衣服颜色」的雷同用例是 98%，中间余量极大。
+   * 判定：按詞集合算 Jaccard 相似度，超閾值就點名那一對。
+   * 閾值取 0.75，是量出來的不是拍的——自帶樣例四個角色兩兩最高 39%，
+   * 而「只改年齡與衣服顏色」的雷同用例是 98%，中間餘量極大。
    *
-   * image.sheet 刻意不查：三分区排版规范是大段固定文本，真实角色之间本来就有 63%
-   * 重合，设门必然误拦——误拦的门比没有门更糟。
+   * image.sheet 刻意不查：三分割槽排版規範是大段固定文字，真實角色之間本來就有 63%
+   * 重合，設門必然誤攔——誤攔的門比沒有門更糟。
    */
   const promptSim = (a, b) => {
     const words = (s) => new Set(String(s ?? '').toLowerCase().split(/[^a-z]+/).filter((w) => w.length > 2));
@@ -593,7 +683,7 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
     return inter / new Set([...A, ...B]).size;
   };
   const SIM_MAX = 0.75;
-  for (const [field, label] of [['prompt', '出图提示词'], ['voice', '音色提示词']]) {
+  for (const [field, label] of [['prompt', '生圖提示詞'], ['voice', '音色提示詞']]) {
     const get = (c) => (field === 'prompt' ? c?.image?.prompt : c?.voice?.prompt);
     for (let i = 0; i < characters.length; i += 1) {
       for (let j = i + 1; j < characters.length; j += 1) {
@@ -601,8 +691,8 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
         if (sim >= SIM_MAX) {
           const pct = Math.round(sim * 100);
           problems.push(
-            `${characters[i]?.name ?? '(无名)'} 与 ${characters[j]?.name ?? '(无名)'} 的${label}雷同 ${pct}%`
-            + `（上限 ${Math.round(SIM_MAX * 100)}%）——同一批角色要能区分开，别套同一个模板`,
+            `${characters[i]?.name ?? '(無名)'} 與 ${characters[j]?.name ?? '(無名)'} 的${label}雷同 ${pct}%`
+            + `（上限 ${Math.round(SIM_MAX * 100)}%）——同一批角色要能區分開，別套同一個模板`,
           );
         }
       }
@@ -610,13 +700,13 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
   }
 
   for (const c of characters) {
-    const name = c?.name ?? '(无名)';
+    const name = c?.name ?? '(無名)';
 
-    // --- 结构 ---
+    // --- 結構 ---
     if (typeof c?.name !== 'string' || !c.name.trim()) at(name, '缺少 name');
-    if (!Array.isArray(c?.aliases)) at(name, 'aliases 必须是数组');
+    if (!Array.isArray(c?.aliases)) at(name, 'aliases 必須是陣列');
     if (!IMPORTANCE.includes(c?.importance)) {
-      at(name, `importance 必须是 ${IMPORTANCE.join('/')}，实际是 ${JSON.stringify(c?.importance)}`);
+      at(name, `importance 必須是 ${IMPORTANCE.join('/')}，實際是 ${JSON.stringify(c?.importance)}`);
     }
     if (typeof c?.oneLiner !== 'string' || !c.oneLiner.trim()) at(name, '缺少 oneLiner');
 
@@ -625,11 +715,11 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
       at(name, '缺少 persona');
     } else {
       for (const f of PERSONA_STRINGS) {
-        if (typeof persona[f] !== 'string' || !persona[f].trim()) at(name, `persona.${f} 缺失或为空`);
+        if (typeof persona[f] !== 'string' || !persona[f].trim()) at(name, `persona.${f} 缺失或為空`);
       }
-      if (!Array.isArray(persona.personality)) at(name, 'persona.personality 必须是数组');
-      if (!Array.isArray(persona.relationships)) at(name, 'persona.relationships 必须是数组');
-      if (!Array.isArray(persona.evidence)) at(name, 'persona.evidence 必须是数组');
+      if (!Array.isArray(persona.personality)) at(name, 'persona.personality 必須是陣列');
+      if (!Array.isArray(persona.relationships)) at(name, 'persona.relationships 必須是陣列');
+      if (!Array.isArray(persona.evidence)) at(name, 'persona.evidence 必須是陣列');
     }
 
     const image = c?.image;
@@ -637,12 +727,12 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
       at(name, '缺少 image');
     } else {
       for (const f of ['style', 'prompt', 'negativePrompt']) {
-        if (typeof image[f] !== 'string' || !image[f].trim()) at(name, `image.${f} 缺失或为空`);
+        if (typeof image[f] !== 'string' || !image[f].trim()) at(name, `image.${f} 缺失或為空`);
       }
       if (typeof image.sheet !== 'string' || !image.sheet.trim()) {
-        at(name, 'image.sheet 缺失或为空（角色设定图提示词）');
+        at(name, 'image.sheet 缺失或為空（角色設定圖提示詞）');
       }
-      if (!Array.isArray(image.tags)) at(name, 'image.tags 必须是数组');
+      if (!Array.isArray(image.tags)) at(name, 'image.tags 必須是陣列');
     }
 
     const voice = c?.voice;
@@ -650,47 +740,47 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
       at(name, '缺少 voice');
     } else {
       for (const f of [...HUMAN_VOICE_FIELDS, 'prompt']) {
-        if (typeof voice[f] !== 'string' || !voice[f].trim()) at(name, `voice.${f} 缺失或为空`);
+        if (typeof voice[f] !== 'string' || !voice[f].trim()) at(name, `voice.${f} 缺失或為空`);
       }
       /*
-       * 音色提示词里不许出现引号包起来的台词。
-       * profile-pass.md 第 7 条写着「描述乐器本身，不是某一句台词的演绎」，
-       * 但模型会写出「杀意藏在『规矩就是规矩』这类客套话里」这种句子——
-       * 台词一进去，有些 TTS 引擎会把它当成要朗读的内容（生产里踩过）。
-       * 只查成对的引号，判定干净：正常的音色描述不需要引任何一句话。
+       * 音色提示詞裡不許出現引號包起來的臺詞。
+       * profile-pass.md 第 7 條寫著「描述樂器本身，不是某一句臺詞的演繹」，
+       * 但模型會寫出「殺意藏在『規矩就是規矩』這類客套話裡」這種句子——
+       * 臺詞一進去，有些 TTS 引擎會把它當成要朗讀的內容（製作時踩過）。
+       * 只查成對的引號，判定乾淨：正常的音色描述不需要引任何一句話。
        */
       /*
-       * 音色提示词要紧凑，不要散文。
+       * 音色提示詞要緊湊，不要散文。
        * voice design 引擎（Qwen3-TTS Voice Design / ElevenLabs / MiniMax）吃的是
-       * 参数密度：年龄性别、音色、音区、共鸣、动态、音量、语速、语调、口音、默认情绪。
-       * 写成流畅的英文散文会把这些参数稀释掉——生产里实测对比过，紧凑版明显更好。
+       * 參數密度：年齡性別、音色、音區、共鳴、動態、音量、語速、語調、口音、預設情緒。
+       * 寫成流暢的英文散文會把這些參數稀釋掉——生產裡實測對比過，緊湊版明顯更好。
        *
-       * 上限 400 字符是量出来的：自带样例四个角色 218–245，而被实测判为过冗余的
-       * 散文版是 490–514，中间余量很大。它拦的是「写成小作文」，不是「写得细」。
+       * 上限 400 字元是量出來的：自帶樣例四個角色 218–245，而被實測判為過冗餘的
+       * 散文版是 490–514，中間餘量很大。它攔的是「寫成小作文」，不是「寫得細」。
        */
       if (typeof voice.prompt === 'string' && voice.prompt.length > 400) {
-        at(name, `voice.prompt ${voice.prompt.length} 字符，超过 400——音色提示词要紧凑的参数串，不是散文；参数写全但别铺陈`);
+        at(name, `voice.prompt ${voice.prompt.length} 字元，超過 400——音色提示詞要緊湊的參數串，不是散文；參數寫全但別鋪陳`);
       }
       if (typeof voice.prompt === 'string') {
         const quoted = voice.prompt.match(/[「『"“][^」』"”]{2,}[」』"”]/);
         if (quoted) {
-          at(name, `voice.prompt 里出现了引号台词「${quoted[0].slice(0, 24)}」——音色提示词描述的是嗓子本身，不是某一句台词的演绎`);
+          at(name, `voice.prompt 裡出現了引號臺詞「${quoted[0].slice(0, 24)}」——音色提示詞描述的是嗓子本身，不是某一句臺詞的演繹`);
         }
       }
     }
 
-    // --- 引文必须逐字 ---
+    // --- 引文必須逐字 ---
     if (flatSource && Array.isArray(persona?.evidence)) {
       for (const quote of persona.evidence) {
         if (typeof quote !== 'string') {
-          at(name, 'persona.evidence 里有非字符串');
+          at(name, 'persona.evidence 裡有非字串');
         } else if (!flatSource.includes(normalise(quote))) {
           at(name, `引文不是原文逐字片段：${quote}`);
         }
       }
     }
 
-    // --- 出图提示词不许出现人名 ---
+    // --- 生圖提示詞不許出現人名 ---
     if (image) {
       const names = [c?.name, ...(Array.isArray(c?.aliases) ? c.aliases : [])].filter(
         (n) => typeof n === 'string' && n.trim(),
@@ -699,55 +789,63 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
         const value = image[field];
         if (typeof value !== 'string') continue;
         for (const n of names) {
-          if (value.includes(n)) at(name, `image.${field} 里出现了人名「${n}」`);
+          if (value.includes(n)) at(name, `image.${field} 裡出現了人名「${n}」`);
         }
       }
     }
 
-    // --- 语言分工 ---
-    // 机器字段永远英文；人类字段跟随报告语言。
-    // 只有 zh / en 能可靠自动判别，其他语言不猜、跳过。
+    // --- 語言分工 ---
+    // 機器欄位永遠英文；人類欄位跟隨報告語言。
+    // 只有 zh / en 能可靠自動判別，其他語言不猜、跳過。
     for (const [group, fields] of Object.entries(MACHINE_FIELDS)) {
       const obj = c?.[group];
       if (!obj) continue;
       for (const f of fields) {
         if (typeof obj[f] === 'string' && CJK.test(obj[f])) {
-          at(name, `${group}.${f} 是喂给模型的，必须英文，但含中日韩字符`);
+          at(name, `${group}.${f} 是餵給模型的，必須英文，但含中日韓字元`);
         }
       }
     }
     if (Array.isArray(image?.tags)) {
       for (const t of image.tags) {
-        if (typeof t === 'string' && CJK.test(t)) at(name, `image.tags 必须英文，但「${t}」含中日韩字符`);
+        if (typeof t === 'string' && CJK.test(t)) at(name, `image.tags 必須英文，但「${t}」含中日韓字元`);
       }
     }
-    // --- 风格与提示词必须匹配 ---
-    // 两个预设的反向提示词几乎是相反的，搞反了整批图都毁。
+    // --- 風格與提示詞必須匹配 ---
+    // 兩個預設的負向提示詞幾乎是相反的，搞反了整批圖都毀。
     if (image && SUPPORTED_STYLES.includes(style)) {
       const neg = typeof image.negativePrompt === 'string' ? image.negativePrompt : '';
       const bansRealism = /photorealistic|3d render/i.test(neg);
-      if (style === 'realistic' && bansRealism) {
-        at(name, 'style=realistic 却在 negativePrompt 里禁 photorealistic／3d render——自相矛盾');
-      }
-      if (style === 'ghibli' && !bansRealism) {
-        at(name, 'style=ghibli 的 negativePrompt 必须禁 photorealistic／3d render');
-      }
       const preset = stylePreset(style);
+      // 拿預設自己的立場當基準，新增預設不用回來改這裡
+      const presetBansRealism = /photorealistic|3d render/i.test(preset.negative);
+      if (!presetBansRealism && bansRealism) {
+        at(name, `style=${style} 卻在 negativePrompt 裡禁 photorealistic／3d render——自相矛盾`);
+      }
+      if (presetBansRealism && !bansRealism) {
+        at(name, `style=${style} 的 negativePrompt 必須禁 photorealistic／3d render`);
+      }
+      // 擬真實拍反過來要禁「畫出來的」，漏了模型很容易交一張插畫
+      if (style === 'photoreal' && !/illustration|painting|anime|cartoon/i.test(neg)) {
+        at(name, 'style=photoreal 的 negativePrompt 必須禁 illustration／painting／anime／cartoon');
+      }
       if (typeof image.sheet === 'string' && !image.sheet.includes(preset.render)) {
-        at(name, `image.sheet 里没有 style=${style} 的渲染句，画风会飘`);
+        at(name, `image.sheet 裡沒有 style=${style} 的渲染句，畫風會飄`);
       }
     }
 
-    // 只有这三种能可靠自动判别，其他语言不猜、跳过——误报比漏报更烦人。
+    // 只有這三種能可靠自動判別，其他語言不猜、跳過——誤報比漏報更煩人。
     if (voice) {
       for (const f of HUMAN_VOICE_FIELDS) {
         const v = voice[f];
         if (typeof v !== 'string' || !v.trim()) continue;
-        if (lang === 'en' && CJK.test(v)) at(name, `voice.${f} 应为英文，但含中日韩字符`);
-        if (lang === 'zh' && !CJK.test(v)) at(name, `voice.${f} 应为中文，实际是「${v}」`);
-        if (lang === 'zh' && KANA.test(v)) at(name, `voice.${f} 应为中文，但含日文假名`);
+        if (lang === 'en' && CJK.test(v)) at(name, `voice.${f} 應為英文，但含中日韓字元`);
+        // zh 的各地區變體（zh-TW / zh-HK…）走同一條中文檢查；
+        // 簡繁之分自動判不可靠，交給生成階段的用語約束管。
+        if (isChinese(lang) && !CJK.test(v)) at(name, `voice.${f} 應為中文，實際是「${v}」`);
+        if (isChinese(lang) && KANA.test(v)) at(name, `voice.${f} 應為中文，但含日文假名`);
         if (lang === 'ja' && !KANA.test(v) && !CJK.test(v)) {
-          at(name, `voice.${f} 应为日文，实际是「${v}」`);
+          at(name, `voice.${f} 應為日文，實際是「${v}」`);
         }
       }
     }
@@ -761,20 +859,20 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
 /* ------------------------------------------------------------------ */
 
 /**
- * 把第二趟的角色卡合成 cast.json 的顶层结构。纯机械活——之前留给模型
- * 手拼，手拼会丢字段、写错顶层键。
+ * 把第二趟的角色卡合成 cast.json 的頂層結構。純機械活——之前留給模型
+ * 手拼，手拼會丟欄位、寫錯頂層鍵。
  *
- * 排序：importance 分档，同档按 order（merge 输出的名字顺序，即戏份
- * 顺序）。不给 order 就保持传入顺序——CLI 按文件名读卡，那是 slug
- * 字典序不是戏份序，所以报告要「按戏份排序」就必须给 order。
+ * 排序：importance 分檔，同檔按 order（merge 輸出的名字順序，即戲份
+ * 順序）。不給 order 就保持傳入順序——CLI 按檔名讀卡，那是 slug
+ * 字典序不是戲份序，所以報告要「按戲份排序」就必須給 order。
  */
 export function assembleCast(cards, { source, lang = DEFAULT_LANG, style = DEFAULT_STYLE, summary = '', ui = null, order = null } = {}) {
   const rank = (c) => {
     const i = IMPORTANCE.indexOf(c?.importance);
-    return i < 0 ? IMPORTANCE.length : i; // 越界的排最后，让 validate 去报，这里不崩
+    return i < 0 ? IMPORTANCE.length : i; // 越界的排最後，讓 validate 去報，這裡不崩
   };
   const orderIndex = new Map((order ?? []).map((name, i) => [String(name).trim().toLowerCase(), i]));
-  // 不在 order 里的排到同档末尾（保持传入顺序），不报错——卡是从 merge 结果生成的，正常对得上
+  // 不在 order 裡的排到同檔末尾（保持傳入順序），不報錯——卡是從 merge 結果生成的，正常對得上
   const byOrder = (c) => orderIndex.get(String(c?.name ?? '').trim().toLowerCase()) ?? orderIndex.size;
   const characters = cards
     .map((card, i) => [card, i])
@@ -846,11 +944,11 @@ export function renderMarkdown(characters, source, summary = '', lang = DEFAULT_
 /* render — html                                                       */
 /* ------------------------------------------------------------------ */
 /*
- * 三栏工作台。设计约定见 references/report-style.md。不能破的：
- *   1. 双字域：衬线=叙事与原文，无衬线=分析，等宽=喂给机器的提示词
- *   2. 「（推断）」自动高亮，让读者一眼分清有据和补全
- *   3. 一次只看一个角色，靠左栏切换 + 顶栏搜索找人
- *   4. 打印时全部展开——屏幕上一次一个，纸上要是完整的一份
+ * 三欄工作臺。設計約定見 references/report-style.md。不能破的：
+ *   1. 雙字域：襯線=敘事與原文，無襯線=分析，等寬=餵給機器的提示詞
+ *   2. 「（推斷）」自動高亮，讓讀者一眼分清有據和補全
+ *   3. 一次只看一個角色，靠左欄切換 + 頂欄搜尋找人
+ *   4. 列印時全部展開——螢幕上一次一個，紙上要是完整的一份
  */
 
 const esc = (s) =>
@@ -860,13 +958,13 @@ const esc = (s) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 
-/** 推断标记：半角/全角 × 中英四种写法都要认，模型不挑食地乱产。 */
-const INFERRED = /（\s*(?:推断|inferred)[^）]*）|\(\s*(?:推断|inferred)[^)]*\)/gi;
+/** 推斷標記：半形/全形 × 中英四種寫法都要認，模型不挑食地亂產。 */
+const INFERRED = /（\s*(?:推斷|inferred)[^）]*）|\(\s*(?:推斷|inferred)[^)]*\)/gi;
 const marked = (s) => esc(s).replace(INFERRED, (m) => `<span class="inf">${m}</span>`);
 
 const IMPORTANCE_ORDER = ['protagonist', 'major', 'supporting', 'minor'];
 
-/** 左栏的一条角色。缩略图取设定图的左半边——那里正好是半身像。 */
+/** 左欄的一條角色。縮圖取設定圖的左半邊——那裡正好是半身像。 */
 function renderRosterItem(c, index, t) {
   const meta = [c.persona?.gender, c.persona?.ageRange].filter(Boolean).join(' · ');
   const hay = [
@@ -1004,23 +1102,23 @@ function renderCharacter(c, index, t) {
 }
 
 /* ------------------------------------------------------------------ */
-/* render — 关系图谱                                                    */
+/* render — 關係圖譜                                                    */
 /* ------------------------------------------------------------------ */
 /*
- * 圆环布局 + 向心贝塞尔。位置在 Node 里算好直接写进内联 SVG，
- * 浏览器端只管高亮和跳转——报告要能离线双击打开，不许引任何库。
+ * 圓環佈局 + 向心貝塞爾。位置在 Node 裡算好直接寫進內聯 SVG，
+ * 瀏覽器端只管高亮和跳轉——報告要能離線雙擊開啟，不許引任何庫。
  */
 
-/** 节点大小按戏份分档，一眼能看出谁是主角。 */
+/** 節點大小按戲份分檔，一眼能看出誰是主角。 */
 const NODE_R = { protagonist: 11, major: 9, supporting: 7, minor: 5.5 };
 const r1 = (n) => Math.round(n * 10) / 10;
 
 /**
- * 把 persona.relationships 解析成无向边。
+ * 把 persona.relationships 解析成無向邊。
  *
- * 按**名字 + 别名**建索引：老周的关系里写「老伯」也要连到同一个节点，
- * 只按 name 匹配会把一半的边漏掉。同一对人的两条单向记述合并成一条边，
- * 两个方向的说法都留着。指向没做画像的人算 dangling——不画，但要报数。
+ * 按**名字 + 別名**建索引：老周的關係裡寫「老伯」也要連到同一個節點，
+ * 只按 name 匹配會把一半的邊漏掉。同一對人的兩條單向記述合併成一條邊，
+ * 兩個方向的說法都留著。指向沒做畫像的人算 dangling——不畫，但要報數。
  */
 export function buildGraph(characters) {
   const key = (s) => String(s).trim().toLowerCase();
@@ -1052,7 +1150,7 @@ export function buildGraph(characters) {
 function renderGraph(ordered, t) {
   const { edges, dangling } = buildGraph(ordered);
   const n = ordered.length;
-  // 半径跟人数走，四个人不必撑满一整张画布；两侧留 110 给名字
+  // 半徑跟人數走，四個人不必撐滿一整張畫布；兩側留 110 給名字
   const R = Math.max(130, Math.min(260, 40 + n * 14));
   const side = Math.round((R + 110) * 2);
   const c0 = side / 2;
@@ -1063,13 +1161,13 @@ function renderGraph(ordered, t) {
     pos.set(c.name, { x: c0 + R * Math.cos(a), y: c0 + R * Math.sin(a), cos: Math.cos(a), sin: Math.sin(a) });
   });
 
-  // 控制点往圆心拉，弦是弯的——直线在人多时会糊成一团网
+  // 控制點往圓心拉，弦是彎的——直線在人多時會糊成一團網
   const arcs = edges.map((e, i) => {
     const p = pos.get(e.a);
     const q = pos.get(e.b);
     const cxq = c0 + ((p.x + q.x) / 2 - c0) * 0.35;
     const cyq = c0 + ((p.y + q.y) / 2 - c0) * 0.35;
-    // 标签沿弦错位排：正对面的两条弦中点都在圆心，全放 t=0.5 会叠成一坨
+    // 標籤沿弦錯位排：正對面的兩條弦中點都在圓心，全放 t=0.5 會疊成一坨
     const t = 0.5 + ((i % 3) - 1) * 0.14;
     const u = 1 - t;
     return {
@@ -1084,13 +1182,13 @@ function renderGraph(ordered, t) {
     .map((a) => `<path class="gedge" data-a="${esc(a.e.a)}" data-b="${esc(a.e.b)}" d="${a.d}"></path>`)
     .join('');
 
-  // 弦上的关系文字：取最短的一条说法截断，全文进 <title> 当原生 tooltip
+  // 弦上的關係文字：取最短的一條說法截斷，全文進 <title> 當原生 tooltip
   const labels = arcs
     .map((a) => {
       const notes = a.e.notes.filter((x) => x.text.trim());
       if (!notes.length) return '';
       const pick = notes.reduce((s, x) => ([...x.text].length < [...s.text].length ? x : s), notes[0]);
-      // 六个字。再长就压到隔壁那条弦上去了——全文在 title 和右侧关系表里
+      // 六個字。再長就壓到隔壁那條弦上去了——全文在 title 和右側關係表裡
       const chars = [...pick.text.trim()];
       const text = chars.length > 6 ? `${chars.slice(0, 6).join('')}…` : chars.join('');
       const full = notes.map((x) => `${x.from} · ${x.text}`).join('\n');
@@ -1101,7 +1199,7 @@ function renderGraph(ordered, t) {
   const dots = ordered
     .map((c) => {
       const p = pos.get(c.name);
-      // 圆顶和圆底的名字居中放，两侧的往外甩，免得压在节点上
+      // 圓頂和圓底的名字居中放，兩側的往外甩，免得壓在節點上
       const flat = Math.abs(p.cos) < 0.25;
       const anchor = flat ? 'middle' : p.cos < 0 ? 'end' : 'start';
       const lx = c0 + (R + 15) * p.cos;
@@ -1123,7 +1221,7 @@ function renderGraph(ordered, t) {
     )
     .join('');
 
-  // 边少就直接把关系文字标上；边一多就糊成一团，默认收起来，开关留给用户
+  // 邊少就直接把關係文字標上；邊一多就糊成一團，預設收起來，開關留給使用者
   const labelsOn = edges.length <= 14;
 
   return `<section class="graph${labelsOn ? ' labels' : ''}" id="graph">
@@ -1152,11 +1250,11 @@ function renderGraph(ordered, t) {
 }
 
 /*
- * 报告里内嵌的那份数据，形状**就是 cast.json**——编辑完能直接喂回
- * `render` 重新出报告，不另立一套导出格式。
+ * 報告裡內嵌的那份資料，形狀**就是 cast.json**——編輯完能直接餵回
+ * `render` 重新出報告，不另立一套匯出格式。
  *
- * `<` 转成 <：JSON 里 `<` 只可能出现在字符串值中，整体替换是安全的，
- * 而不转的话正文里一个 `</script` 就能把这个数据块提前截断。
+ * `<` 轉成 <：JSON 裡 `<` 只可能出現在字串值中，整體替換是安全的，
+ * 而不轉的話正文裡一個 `</script` 就能把這個資料區塊提前截斷。
  */
 function embedCast(characters, source, summary, lang, ui, style) {
   const data = { source, lang, style, summary, ...(ui ? { ui } : {}), characters };
@@ -1172,6 +1270,9 @@ export function renderHtml(
   style = DEFAULT_STYLE,
 ) {
   const t = strings(lang, ui);
+  // 正體中文要挑 TC 字型：Songti SC 那一串在台灣機器上多半沒裝，
+  // 掉回系統預設會跟內文的正體字形不搭。
+  const isHant = isTraditionalChinese(lang);
   const shots = characters.filter((c) => c.sheetImage).length;
   const ordered = [...characters].sort(
     (a, b) => IMPORTANCE_ORDER.indexOf(a.importance) - IMPORTANCE_ORDER.indexOf(b.importance),
@@ -1183,12 +1284,12 @@ export function renderHtml(
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(t.docTitle(source))}</title>
 <style>
-/* 冷灰印张 + 铁锈红印记。红色只用在与原文有关的地方和当前选中态。 */
+/* 冷灰印張 + 鐵鏽紅印記。紅色只用在與原文有關的地方和當前選中態。 */
 :root{
   --paper:#eceded; --panel:#f5f6f5; --side:#e4e6e3; --ink:#191d21; --ink-2:#5b636a; --ink-3:#8c9298;
   --rule:#d2d5d0; --rule-2:#c2c6bf; --seal:#8a3324; --seal-soft:#8a332412;
-  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",Georgia,"Iowan Old Style",serif;
-  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  --serif:${isHant ? '"Songti TC","PMingLiU","Source Han Serif TC","Noto Serif CJK TC"' : '"Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC"'},Georgia,"Iowan Old Style",serif;
+  --sans:${isHant ? '"PingFang TC","Microsoft JhengHei","Noto Sans CJK TC"' : '"PingFang SC","Hiragino Sans GB","Microsoft YaHei"'},system-ui,-apple-system,sans-serif;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   --top:60px; --side-w:400px;
 }
@@ -1199,7 +1300,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.7 var(--sans)
 h1,h2,h3,h4{margin:0;font-weight:400}
 button{font-family:inherit}
 
-/* ---------- 顶栏 ---------- */
+/* ---------- 頂欄 ---------- */
 .top{position:sticky;top:0;z-index:20;height:var(--top);display:flex;align-items:center;gap:24px;
   padding:0 20px;background:var(--panel);border-bottom:1px solid var(--rule-2)}
 .brand{display:flex;align-items:baseline;gap:10px;flex:none}
@@ -1213,7 +1314,7 @@ button{font-family:inherit}
 .topmeta{margin-left:auto;font-size:12px;color:var(--ink-3);display:flex;align-items:center;
   gap:10px;flex:none}
 .topmeta i{font-style:normal;color:var(--rule-2)}
-/* 导出：下载的就是内嵌的那份 cast.json，编辑完能直接喂回 render */
+/* 匯出：下載的就是內嵌的那份 cast.json，編輯完能直接餵回 render */
 .expo{margin-left:4px;font:500 11px/1 var(--sans);color:var(--ink-2);background:var(--paper);
   border:1px solid var(--rule-2);border-radius:2px;padding:6px 10px;cursor:pointer;transition:.15s}
 .expo:hover{border-color:var(--seal);color:var(--seal)}
@@ -1223,14 +1324,14 @@ button{font-family:inherit}
 .shell{display:grid;grid-template-columns:var(--side-w) minmax(0,1fr);align-items:start}
 @media(max-width:1080px){:root{--side-w:100%}.shell{grid-template-columns:1fr}}
 
-/* ---------- 左栏 ---------- */
+/* ---------- 左欄 ---------- */
 .side{position:sticky;top:var(--top);height:calc(100vh - var(--top));overflow-y:auto;
   background:var(--side);border-right:1px solid var(--rule-2)}
 @media(max-width:1080px){.side{position:static;height:auto}}
 .synopsis{padding:18px 20px;border-bottom:1px solid var(--rule)}
 .lbl{font:500 10px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3)}
 .synopsis p{margin:10px 0 0;font:400 14px/1.95 var(--serif)}
-/* 摘要默认三行，底部渐隐——左栏第一屏要留给角色列表。点一下展开，之后不再收起 */
+/* 摘要預設三行，底部漸隱——左欄第一屏要留給角色列表。點一下展開，之後不再收起 */
 .syn-clamp{cursor:pointer}
 .syn-clamp p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
   -webkit-mask-image:linear-gradient(180deg,#000 58%,transparent);
@@ -1248,9 +1349,9 @@ button{font-family:inherit}
 .rost:hover{background:#00000006}
 .rost.on{background:var(--panel);border-left-color:var(--seal)}
 .rost:focus-visible{outline:2px solid var(--seal);outline-offset:-2px}
-/* 缩略图 = 设定图的左栏切片。设定图固定 16:9、左栏占约 34%，
-   所以把整图按 1/0.34 ≈ 294% 放大再左上对齐，裁出来正好是半身像。
-   比 <img> + object-position 可控：不依赖浏览器怎么 cover。 */
+/* 縮圖 = 設定圖的左欄切片。設定圖固定 16:9、左欄佔約 34%，
+   所以把整圖按 1/0.34 ≈ 294% 放大再左上對齊，裁出來正好是半身像。
+   比 <img> + object-position 可控：不依賴瀏覽器怎麼 cover。 */
 .rost-thumb{display:block;width:76px;height:76px;border:1px solid var(--rule-2);border-radius:6px;
   background:#fff no-repeat left top;background-size:294% auto}
 .rost-body{min-width:0}
@@ -1266,7 +1367,7 @@ button{font-family:inherit}
 .badge{font-size:11px;padding:1px 7px;border:1px solid var(--rule-2);border-radius:2px;color:var(--ink-2)}
 .rost.on .badge,.char-h .badge{border-color:var(--seal);color:var(--seal)}
 
-/* ---------- 主区 ---------- */
+/* ---------- 主區 ---------- */
 .main{padding:26px 28px 72px;min-width:0;max-width:1500px}
 .char{display:none}
 .char.on{display:block}
@@ -1281,13 +1382,13 @@ button{font-family:inherit}
 .upper{display:grid;grid-template-columns:minmax(0,1fr) 500px;gap:26px;align-items:start;margin-top:20px}
 @media(max-width:1240px){.upper{grid-template-columns:1fr}}
 
-/* 设定图是白底印张 */
+/* 設定圖是白底印張 */
 .plate-wrap{position:relative;margin:0}
 .plate{display:block;width:100%;padding:0;background:#fff;border:1px solid var(--rule-2);
   border-radius:2px;overflow:hidden;cursor:zoom-in}
 .plate img{display:block;width:100%;height:auto}
 .plate:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
-/* 右下角浮在图上，hover 才明显——别挡住画面 */
+/* 右下角浮在圖上，hover 才明顯——別擋住畫面 */
 .copy-img{position:absolute;right:10px;bottom:10px;font:500 11px/1 var(--sans);color:var(--ink-2);
   background:var(--paper);border:1px solid var(--rule-2);border-radius:3px;padding:6px 10px;
   cursor:pointer;opacity:.55;transition:.15s}
@@ -1296,7 +1397,7 @@ button{font-family:inherit}
 .copy-img:focus-visible{opacity:1;outline:2px solid var(--seal);outline-offset:2px}
 .copy-img[data-done]{border-color:var(--seal);color:var(--seal);opacity:1}
 
-/* 弹层 */
+/* 彈層 */
 .lightbox{position:fixed;inset:0;z-index:50;display:none;place-items:center;
   background:#191d21e6;padding:32px;cursor:zoom-out}
 .lightbox.on{display:grid}
@@ -1316,13 +1417,13 @@ button{font-family:inherit}
 .blk h3{font:500 11px/1 var(--sans);letter-spacing:.2em;color:var(--seal);margin-bottom:7px}
 .blk p{margin:0;font-size:13.5px;line-height:1.85}
 
-/* 原文：衬线体，铁锈红边栏。这里是书自己在说话 */
+/* 原文：襯線體，鐵鏽紅邊欄。這裡是書自己在說話 */
 .source .quotes{display:grid;grid-template-columns:1fr 1fr;gap:10px 30px}
 @media(max-width:700px){.source .quotes{grid-template-columns:1fr}}
 .source blockquote{margin:0;padding-left:13px;border-left:2px solid var(--seal);
   font:400 13.5px/1.85 var(--serif)}
 
-/* ---------- 右侧信息卡 ---------- */
+/* ---------- 右側資訊卡 ---------- */
 .side-cards{display:flex;flex-direction:column;gap:14px}
 .card{border:1px solid var(--rule);border-radius:2px;background:var(--panel);padding:14px 16px}
 .card h4{font:500 11px/1 var(--sans);letter-spacing:.2em;color:var(--ink-3);margin-bottom:10px;
@@ -1338,7 +1439,7 @@ button{font-family:inherit}
 .tags li{font:400 11px/1.5 var(--mono);color:var(--ink-2);border:1px solid var(--rule-2);
   background:var(--paper);border-radius:2px;padding:1px 6px}
 
-/* ---------- 提示词 ---------- */
+/* ---------- 提示詞 ---------- */
 .prompts{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
 @media(max-width:900px){.prompts{grid-template-columns:1fr}}
 .pgroup{border:1px solid var(--rule);border-radius:2px;background:var(--panel);padding:6px 14px 10px}
@@ -1361,8 +1462,8 @@ button{font-family:inherit}
 .copy[data-done]{border-color:var(--seal);color:var(--seal)}
 .copy.wide{width:100%;padding:9px}
 
-/* ---------- 关系图谱 ---------- */
-/* 布局在 Node 里算好写进 SVG，这里只管高亮。红色仍然只给选中态 */
+/* ---------- 關係圖譜 ---------- */
+/* 佈局在 Node 裡算好寫進 SVG，這裡只管高亮。紅色仍然只給選中態 */
 .gtoggle{display:flex;align-items:center;gap:9px;width:100%;padding:13px 20px;text-align:left;
   background:none;border:0;border-bottom:1px solid var(--rule);border-left:2px solid transparent;
   cursor:pointer;color:var(--ink-2);font:500 12px/1 var(--sans);letter-spacing:.1em}
@@ -1388,8 +1489,8 @@ button{font-family:inherit}
 .gedge.dim{opacity:.15}
 .gnode{cursor:pointer;transition:.15s}
 .gnode .gdot{fill:var(--paper);stroke:var(--ink-2);stroke-width:1.5}
-/* 看不见的命中区：节点本身才十来个像素，光标很难压准。
-   单独一个类，免得被下面 .lead / .hot 的规则一起染色 */
+/* 看不見的命中區：節點本身才十來個畫素，游標很難壓準。
+   單獨一個類，免得被下面 .lead / .hot 的規則一起染色 */
 .gnode .ghit{fill:none;stroke:none;pointer-events:all}
 .gnode text{font:400 13px var(--serif);fill:var(--ink)}
 .gnode.lead .gdot{fill:var(--seal);stroke:var(--seal)}
@@ -1397,8 +1498,8 @@ button{font-family:inherit}
 .gnode.hot text{fill:var(--seal)}
 .gnode.dim{opacity:.22}
 .gnode:focus-visible{outline:2px solid var(--seal)}
-/* 弦上的关系文字。默认按边数决定开不开，悬停的那条永远显示。
-   paint-order + 同色描边 = 给字加一圈底衬，压在弦上也读得清 */
+/* 弦上的關係文字。預設按邊數決定開不開，懸停的那條永遠顯示。
+   paint-order + 同色描邊 = 給字加一圈底襯，壓在弦上也讀得清 */
 .glabel{display:none;font:400 9px var(--sans);fill:var(--ink-3);pointer-events:none;
   paint-order:stroke;stroke:var(--panel);stroke-width:3px;stroke-linejoin:round}
 .graph.labels .glabel{display:block}
@@ -1425,7 +1526,7 @@ button{font-family:inherit}
 .grel-foot{margin:0;padding:11px 16px;border-top:1px solid var(--rule);
   font-size:11px;line-height:1.6;color:var(--ink-3)}
 
-/* 签名：推断标记 */
+/* 簽名：推斷標記 */
 .inf{color:var(--ink-3);font-size:.88em;background:var(--seal-soft);padding:0 3px;border-radius:2px}
 
 .nomatch{display:none;padding:20px;font-size:13px;color:var(--ink-3)}
@@ -1433,7 +1534,7 @@ button{font-family:inherit}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
-/* 屏幕上一次一个角色，纸上要完整 */
+/* 螢幕上一次一個角色，紙上要完整 */
 @media print{
   .top,.side,.copy{display:none!important}
   .shell{display:block}
@@ -1490,7 +1591,7 @@ button{font-family:inherit}
 <script>
 const L = ${JSON.stringify({ copied: t.copied, failed: t.copyFailed })};
 
-// 导出：报告自己就带着完整的 cast.json，下载的是它原样
+// 匯出：報告自己就帶著完整的 cast.json，下載的是它原樣
 document.querySelector('.expo').addEventListener('click', (e) => {
   const btn = e.currentTarget;
   const url = URL.createObjectURL(
@@ -1498,11 +1599,11 @@ document.querySelector('.expo').addEventListener('click', (e) => {
   );
   const a = Object.assign(document.createElement('a'), { href: url, download: btn.dataset.name });
   a.click();
-  // 别在 click 之后立刻回收——Safari 上会抢在下载读完之前把 blob 撤掉，存出来是空文件
+  // 別在 click 之後立刻回收——Safari 上會搶在下載讀完之前把 blob 撤掉，存出來是空檔案
   setTimeout(() => URL.revokeObjectURL(url), 10000);
 });
 
-// 左栏切换：一次只显示一个角色
+// 左欄切換：一次只顯示一個角色
 document.querySelector('.roster').addEventListener('click', (e) => {
   const btn = e.target.closest('.rost');
   if (!btn) return;
@@ -1512,7 +1613,7 @@ document.querySelector('.roster').addEventListener('click', (e) => {
   document.querySelector('.main').scrollIntoView({ block: 'start', behavior: 'smooth' });
 });
 
-// 关系图谱：一张全景视图，跟角色详情互斥
+// 關係圖譜：一張全景檢視，跟角色詳情互斥
 const gv = document.querySelector('.graph');
 const gbtn = document.querySelector('.gtoggle');
 function showGraph(on) {
@@ -1525,13 +1626,13 @@ gbtn.addEventListener('click', () => {
   document.querySelector('.main').scrollIntoView({ block: 'start', behavior: 'smooth' });
 });
 {
-  // 弦和弦上的文字共用 data-a/data-b，高亮逻辑完全一样，放一个数组里
+  // 弦和絃上的文字共用 data-a/data-b，高亮邏輯完全一樣，放一個陣列裡
   const edges = [...gv.querySelectorAll('.gedge, .glabel')];
   const nodes = [...gv.querySelectorAll('.gnode')];
   const rows = [...gv.querySelectorAll('.grow')];
   const clear = () => [...edges, ...nodes, ...rows].forEach((el) => el.classList.remove('hot', 'dim'));
 
-  // 悬停一个人：他的关系线亮起来，没关系的压到背景里
+  // 懸停一個人：他的關係線亮起來，沒關係的壓到背景裡
   const byNode = (name) => {
     const near = new Set([name]);
     for (const e of edges) {
@@ -1554,7 +1655,7 @@ gbtn.addEventListener('click', () => {
     }
   };
 
-  // 悬停关系表的一行：只亮那一条弦
+  // 懸停關係表的一行：只亮那一條弦
   const byEdge = (a, b) => {
     for (const e of edges) {
       const hot = e.dataset.a === a && e.dataset.b === b;
@@ -1578,7 +1679,7 @@ gbtn.addEventListener('click', () => {
     if (item) item.click();
   };
 
-  // 关系文字的总开关：人多的时候标签会盖住图，一键收起
+  // 關係文字的總開關：人多的時候標籤會蓋住圖，一鍵收起
   const glab = gv.querySelector('.glabtoggle');
   glab.addEventListener('click', () => {
     const on = !gv.classList.contains('labels');
@@ -1603,7 +1704,7 @@ gbtn.addEventListener('click', () => {
     const hit = e.target.closest('.gnode, .grow');
     if (hit) jump(hit);
   });
-  // SVG 的 <g> 不是原生按钮，回车/空格要自己接
+  // SVG 的 <g> 不是原生按鈕，回車/空格要自己接
   gv.addEventListener('keydown', (e) => {
     const nd = e.target.closest('.gnode');
     if (!nd || (e.key !== 'Enter' && e.key !== ' ')) return;
@@ -1612,7 +1713,7 @@ gbtn.addEventListener('click', () => {
   });
 }
 
-// 搜索：过滤左栏；结果只剩一个就直接切过去
+// 搜尋：過濾左欄；結果只剩一個就直接切過去
 document.getElementById('q').addEventListener('input', (e) => {
   const q = e.target.value.trim().toLowerCase();
   let hits = [];
@@ -1625,7 +1726,7 @@ document.getElementById('q').addEventListener('input', (e) => {
   if (q && hits.length === 1) hits[0].click();
 });
 
-// 摘要默认三行，点一下展开全部；短到不需要折叠的就直接去掉折叠态
+// 摘要預設三行，點一下展開全部；短到不需要摺疊的就直接去掉摺疊態
 const syn = document.querySelector('.synopsis');
 if (syn) {
   const body = syn.querySelector('p');
@@ -1633,7 +1734,7 @@ if (syn) {
   syn.addEventListener('click', () => syn.classList.remove('syn-clamp'));
 }
 
-// 图片弹层
+// 圖片彈層
 const lb = document.querySelector('.lightbox');
 const lbImg = lb.querySelector('img');
 function closeLb() { lb.classList.remove('on'); lbImg.removeAttribute('src'); }
@@ -1644,7 +1745,7 @@ document.addEventListener('click', (e) => {
 });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
 
-// 复制图片本身到剪贴板（不是路径）
+// 複製圖片本身到剪貼簿（不是路徑）
 document.addEventListener('click', async (e) => {
   const btn = e.target.closest('.copy-img');
   if (!btn) return;
@@ -1653,7 +1754,7 @@ document.addEventListener('click', async (e) => {
   const label = btn.textContent;
   try {
     const blob = await (await fetch(btn.dataset.img)).blob();
-    // Safari 只认 image/png，其它格式先过一遍 canvas
+    // Safari 只認 image/png，其它格式先過一遍 canvas
     let png = blob;
     if (blob.type !== 'image/png') {
       const bmp = await createImageBitmap(blob);
@@ -1692,45 +1793,45 @@ document.addEventListener('click', async (e) => {
 /* CLI                                                                 */
 /* ------------------------------------------------------------------ */
 
-const USAGE = `novel-characters.mjs — novel-characters skill 的确定性工具
+const USAGE = `novel-characters.mjs — novel-characters skill 的確定性工具
 
-  seed <outline.json>              从大纲预填角色表骨架（打印到 stdout，画像与提示词留空待填）
-  chunk <book.txt> <workdir>       段落感知重叠切块，写 chunk-NN.txt，打印块数
-  merge <workdir>                  归并 roster-*.json，打印 {characters, mergeCandidates}
-        [--apply merges.json]      落地复核后的合并决定：{"merges":[{"keep":…,"absorb":[…]}]}
-  assemble <workdir> --source <书名>
+  seed <outline.json>              從大綱預填角色表骨架（列印到 stdout，畫像與提示詞留空待填）
+  chunk <book.txt> <workdir>       段落感知重疊切塊，寫 chunk-NN.txt，列印塊數
+  merge <workdir>                  歸併 roster-*.json，列印 {characters, mergeCandidates}
+        [--apply merges.json]      落地複核後的合併決定：{"merges":[{"keep":…,"absorb":[…]}]}
+  assemble <workdir> --source <書名>
         [--lang] [--style] [--out] 把 card-*.json + summary.txt（+ ui.json）合成 cast.json
-        [--order merged.json]      同档角色的戏份顺序（默认自动找 <workdir>/merged.json）
-  validate <cast.json> <book.txt>  校验；有违规逐条打印并 exit 1
-  render <cast.json> [--html|--md] 渲染报告到 stdout（默认 --md）
-  slug <name>                      角色名转安全文件名
-  ui-template [lang]               打印界面文案骨架，供翻译成内置表没有的语言
-  styles [id]                      打印画风预设的完整内容
+        [--order merged.json]      同檔角色的戲份順序（預設自動找 <workdir>/merged.json）
+  validate <cast.json> <book.txt>  校驗；有違規逐條列印並 exit 1
+  render <cast.json> [--html|--md] 渲染報告到 stdout（預設 --md）
+  slug <name>                      角色名轉安全檔名
+  ui-template [lang]               列印介面文案骨架，供翻譯成內建表沒有的語言
+  styles [id]                      列印畫風預設的完整內容
 
-通用选项：
-  --lang <code>     报告语言，默认取 cast.json 的 lang，再默认 ${DEFAULT_LANG}
-                    内置界面文案：${SUPPORTED_UI_LANGS.join(' / ')}；其他语言码用英文界面骨架
+通用選項：
+  --lang <code>     報告語言，預設取 cast.json 的 lang，再預設 ${DEFAULT_LANG}
+                    內建介面文案：${SUPPORTED_UI_LANGS.join(' / ')}；其他語言碼用英文介面骨架
 
-render 选项：
-  --source <name>   报告标题用的书名（默认取 cast.json 的 source 或文件名）
-  --images <dir>    图片目录名，默认 images
-                    会去找 <dir>/<slug>-sheet.png`;
+render 選項：
+  --source <name>   報告標題用的書名（預設取 cast.json 的 source 或檔名）
+  --images <dir>    圖片目錄名，預設 images
+                    會去找 <dir>/<slug>-sheet.png`;
 
 function readJson(path) {
   return JSON.parse(readFileSync(resolve(path), 'utf8'));
 }
 
-/** 取 --flag 的值，没有就返回 fallback。 */
+/** 取 --flag 的值，沒有就返回 fallback。 */
 function flag(rest, name, fallback = null) {
   const i = rest.indexOf(name);
   return i >= 0 && rest[i + 1] ? rest[i + 1] : fallback;
 }
 
-/** cast.json 可以是 {source, lang, summary, characters}，也可以是裸数组（旧格式）。 */
+/** cast.json 可以是 {source, lang, summary, characters}，也可以是裸陣列（舊格式）。 */
 function loadCast(path) {
   const raw = readJson(path);
   const characters = Array.isArray(raw) ? raw : raw.characters;
-  if (!Array.isArray(characters)) throw new Error(`${path} 里没有 characters 数组`);
+  if (!Array.isArray(characters)) throw new Error(`${path} 裡沒有 characters 陣列`);
   return {
     characters,
     source: Array.isArray(raw) ? null : raw.source,
@@ -1773,7 +1874,7 @@ function main(argv) {
         2,
       ),
     );
-    if (truncated) console.error(`⚠️ 文本超过 ${MAX_CHUNKS} 块上限，尾部未扫描`);
+    if (truncated) console.error(`⚠️ 文字超過 ${MAX_CHUNKS} 塊上限，尾部未掃描`);
     return;
   }
 
@@ -1782,7 +1883,7 @@ function main(argv) {
     if (!workdir || workdir.startsWith('--')) throw new Error('用法：merge <workdir> [--apply merges.json]');
     const dir = resolve(workdir);
     const files = readdirSync(dir).filter((f) => /^roster-.*\.json$/.test(f)).sort();
-    if (!files.length) throw new Error(`${dir} 里没有 roster-*.json`);
+    if (!files.length) throw new Error(`${dir} 裡沒有 roster-*.json`);
     const batches = files.map((f) => {
       const raw = readJson(join(dir, f));
       return Array.isArray(raw) ? raw : (raw.characters ?? []);
@@ -1793,7 +1894,7 @@ function main(argv) {
       const raw = readJson(applyPath);
       cast = applyMerges(cast, Array.isArray(raw) ? raw : (raw.merges ?? []));
     }
-    // mergeCandidates 是嫌疑名单不是判决：由调用方复核后写 merges.json 再 --apply
+    // mergeCandidates 是嫌疑名單不是判決：由呼叫方複核後寫 merges.json 再 --apply
     console.log(JSON.stringify({ characters: cast, mergeCandidates: mergeCandidates(cast) }, null, 2));
     return;
   }
@@ -1801,18 +1902,18 @@ function main(argv) {
   if (cmd === 'assemble') {
     const [workdir] = rest;
     if (!workdir || workdir.startsWith('--')) {
-      throw new Error('用法：assemble <workdir> --source <书名> [--lang zh] [--style realistic] [--out cast.json]');
+      throw new Error('用法：assemble <workdir> --source <書名> [--lang zh] [--style realistic] [--out cast.json]');
     }
     const dir = resolve(workdir);
     const sourceName = flag(rest, '--source');
-    if (!sourceName) throw new Error('assemble 需要 --source <书名>');
+    if (!sourceName) throw new Error('assemble 需要 --source <書名>');
     const lang = flag(rest, '--lang', DEFAULT_LANG);
     const style = flag(rest, '--style', DEFAULT_STYLE);
 
     const files = readdirSync(dir).filter((f) => /^card-.*\.json$/.test(f)).sort();
-    if (!files.length) throw new Error(`${dir} 里没有 card-*.json`);
+    if (!files.length) throw new Error(`${dir} 裡沒有 card-*.json`);
 
-    // 宽容解析：一份坏卡不废整批——逐个点名，重跑坏的那个角色就行
+    // 寬容解析：一份壞卡不廢整批——逐個點名，重跑壞的那個角色就行
     const problems = [];
     const cards = [];
     const seen = new Map();
@@ -1821,15 +1922,15 @@ function main(argv) {
       try {
         card = readJson(join(dir, f));
       } catch (error) {
-        problems.push(`${f} 不是合法 JSON（${error.message}）——重跑这个角色即可`);
+        problems.push(`${f} 不是合法 JSON（${error.message}）——重跑這個角色即可`);
         continue;
       }
       if (!card || typeof card !== 'object' || Array.isArray(card) || !card.name) {
-        problems.push(`${f} 不是单张角色卡（缺 name）——重跑这个角色即可`);
+        problems.push(`${f} 不是單張角色卡（缺 name）——重跑這個角色即可`);
         continue;
       }
       if (seen.has(card.name)) {
-        problems.push(`「${card.name}」有两份卡（${seen.get(card.name)} 和 ${f}），删掉多余的那份`);
+        problems.push(`「${card.name}」有兩份卡（${seen.get(card.name)} 和 ${f}），刪掉多餘的那份`);
         continue;
       }
       seen.set(card.name, f);
@@ -1838,16 +1939,16 @@ function main(argv) {
 
     const summaryPath = join(dir, 'summary.txt');
     const summary = existsSync(summaryPath) ? readFileSync(summaryPath, 'utf8').trim() : '';
-    if (!summary) problems.push(`缺 ${summaryPath}（故事摘要）——用报告语言写 3–5 句进去`);
+    if (!summary) problems.push(`缺 ${summaryPath}（故事摘要）——用報告語言寫 3–5 句進去`);
 
     const uiPath = join(dir, 'ui.json');
     const ui = existsSync(uiPath) ? readJson(uiPath) : null;
     if (needsUiTranslation(lang) && !ui) {
-      problems.push(`lang=${lang} 不在内置界面语言里，缺 ${uiPath}——用 ui-template 生成骨架翻译后放进去`);
+      problems.push(`lang=${lang} 不在內建介面語言裡，缺 ${uiPath}——用 ui-template 生成骨架翻譯後放進去`);
     }
 
-    // 同档角色的戏份顺序来自 merge 的输出——卡按文件名读入是 slug 字典序，
-    // 不给顺序的话「按戏份排序」就名存实亡
+    // 同檔角色的戲份順序來自 merge 的輸出——卡按檔名讀入是 slug 字典序，
+    // 不給順序的話「按戲份排序」就名存實亡
     const orderPath = flag(rest, '--order', existsSync(join(dir, 'merged.json')) ? join(dir, 'merged.json') : null);
     let order = null;
     if (orderPath) {
@@ -1855,11 +1956,11 @@ function main(argv) {
       const list = Array.isArray(raw) ? raw : (raw.characters ?? []);
       order = list.map((e) => (typeof e === 'string' ? e : e?.name)).filter(Boolean);
     } else {
-      console.error(`⚠️ 没有 --order 也没有 ${join(dir, 'merged.json')}，同档角色将按文件名序而不是戏份序`);
+      console.error(`⚠️ 沒有 --order 也沒有 ${join(dir, 'merged.json')}，同檔角色將按檔名序而不是戲份序`);
     }
 
     if (problems.length) {
-      console.error(`✗ ${problems.length} 处问题：\n`);
+      console.error(`✗ ${problems.length} 處問題：\n`);
       for (const p of problems) console.error('  ' + p);
       process.exit(1);
     }
@@ -1869,7 +1970,7 @@ function main(argv) {
     const out = flag(rest, '--out');
     if (out) {
       writeFileSync(resolve(out), json, 'utf8');
-      console.log(`✓ ${cast.characters.length} 个角色 → ${resolve(out)}`);
+      console.log(`✓ ${cast.characters.length} 個角色 → ${resolve(out)}`);
     } else {
       process.stdout.write(json);
     }
@@ -1883,29 +1984,29 @@ function main(argv) {
     const lang = flag(rest, '--lang', castLang);
     const style = flag(rest, '--style', castStyle);
     const source = bookPath ? readFileSync(resolve(bookPath), 'utf8') : null;
-    if (!bookPath) console.error('⚠️ 没给原文，跳过逐字引文校验');
+    if (!bookPath) console.error('⚠️ 沒給原文，跳過逐字引文校驗');
     const problems = validateCast(characters, source, lang, style);
     if (!SUPPORTED_STYLES.includes(style)) {
-      problems.unshift(`顶层 style=${style} 不是已知预设（${SUPPORTED_STYLES.join('/')}）`);
+      problems.unshift(`頂層 style=${style} 不是已知預設（${SUPPORTED_STYLES.join('/')}）`);
     }
-    // 顶层的故事摘要——报告要用，缺了就没法在顶部交代背景
+    // 頂層的故事摘要——報告要用，缺了就沒法在頂部交代背景
     if (typeof summary !== 'string' || !summary.trim()) {
-      problems.unshift('顶层缺少 summary（故事摘要），报告顶部会空着');
+      problems.unshift('頂層缺少 summary（故事摘要），報告頂部會空著');
     }
-    // 内置表没有这个语言，又没给 ui 翻译 —— 报告界面会露出英文
+    // 內建表沒有這個語言，又沒給 ui 翻譯 —— 報告介面會露出英文
     if (needsUiTranslation(lang) && !ui) {
       problems.unshift(
-        `lang=${lang} 不在内置界面语言（${SUPPORTED_UI_LANGS.join('/')}）里，` +
-          '顶层需要一份 ui 翻译，否则界面文案会是英文。' +
-          '用 `ui-template` 生成骨架后翻译填进去。',
+        `lang=${lang} 不在內建介面語言（${SUPPORTED_UI_LANGS.join('/')}）裡，` +
+          '頂層需要一份 ui 翻譯，否則介面文案會是英文。' +
+          '用 `ui-template` 生成骨架後翻譯填進去。',
       );
     }
     if (problems.length) {
-      console.error(`✗ ${problems.length} 处违规：\n`);
+      console.error(`✗ ${problems.length} 處違規：\n`);
       for (const p of problems) console.error('  ' + p);
       process.exit(1);
     }
-    console.log(`✓ ${characters.length} 个角色全部通过校验（lang=${lang}, style=${style}）`);
+    console.log(`✓ ${characters.length} 個角色全部透過校驗（lang=${lang}, style=${style}）`);
     return;
   }
 
@@ -1920,7 +2021,7 @@ function main(argv) {
     const lang = flag(rest, '--lang', castLang);
     const title = sourceFlag ?? source ?? basename(castPath).replace(/\.[^.]+$/, '');
 
-    // 图存在才挂上去；没有就渲染成占位，不影响其余内容。
+    // 圖存在才掛上去；沒有就渲染成佔位，不影響其餘內容。
     const outDir = resolve(castPath, '..');
     for (const c of characters) {
       const stem = `${imagesDir}/${slug(c.name)}`;
@@ -1939,7 +2040,7 @@ function main(argv) {
     const lang = rest[0] ?? '<lang>';
     console.log(
       JSON.stringify(
-        { note: `把下面每个值翻译成 ${lang}，整块放进 cast.json 的顶层 "ui"`, ui: uiTemplate() },
+        { note: `把下面每個值翻譯成 ${lang}，整塊放進 cast.json 的頂層 "ui"`, ui: uiTemplate() },
         null,
         2,
       ),
@@ -1950,14 +2051,14 @@ function main(argv) {
   if (cmd === 'styles') {
     const only = rest[0];
     if (only && !SUPPORTED_STYLES.includes(only)) {
-      throw new Error(`未知风格 ${only}（可用：${SUPPORTED_STYLES.join('/')}）`);
+      throw new Error(`未知風格 ${only}（可用：${SUPPORTED_STYLES.join('/')}）`);
     }
     const ids = only ? [only] : SUPPORTED_STYLES;
     console.log(
       JSON.stringify(
         {
           default: DEFAULT_STYLE,
-          note: '整块取用，不要混搭；两个预设的 negative 几乎是相反的',
+          note: '整塊取用，不要混搭；各預設的 negative 立場相反，realistic／photoreal 絕不能禁 photorealistic，ghibli 必須禁，photoreal 另外要禁 illustration／painting／anime',
           presets: Object.fromEntries(ids.map((id) => [id, STYLE_PRESETS[id]])),
         },
         null,
@@ -1976,9 +2077,9 @@ function main(argv) {
   throw new Error(`未知命令 ${cmd}\n\n${USAGE}`);
 }
 
-// 只有直接运行才跑 CLI —— selftest.mjs 需要 import 这些函数。
-// 两边都取 realpath：软链安装时 argv[1] 是链接路径，而 import.meta.url
-// 已被 Node 解析成真实路径，不归一化就永远不相等。
+// 只有直接執行才跑 CLI —— selftest.mjs 需要 import 這些函式。
+// 兩邊都取 realpath：軟鏈安裝時 argv[1] 是連結路徑，而 import.meta.url
+// 已被 Node 解析成真實路徑，不歸一化就永遠不相等。
 function isMainModule() {
   if (!process.argv[1]) return false;
   try {
@@ -1989,7 +2090,7 @@ function isMainModule() {
 }
 
 if (isMainModule()) {
-  // `render ... | head` 这类管道提前关闭时安静退出，别甩 EPIPE 堆栈
+  // `render ... | head` 這類管道提前關閉時安靜退出，別甩 EPIPE 堆疊
   process.stdout.on('error', (e) => {
     if (e.code === 'EPIPE') process.exit(0);
     throw e;

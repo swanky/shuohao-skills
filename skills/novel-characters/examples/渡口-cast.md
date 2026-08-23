@@ -4,13 +4,13 @@
 
 ## 故事摘要
 
-民國年間的清晨，一條河的渡口濃霧未散。擺渡四十年的老船夫照常開船，先後上船的是抱著舊皮箱、獨自要過河北上縣城的女學生沈知微，穿褪色軍呢大衣、右手始終揣在口袋裡的男人陸行遠，以及挑著貨擔、嗓門能穿透霧氣的貨郎胡二爺。四個人同船過河，各自揣著沒有說出口的來路與去處，霧越來越濃，船離岸時河面上什麼都看不見。
+民國年間的清晨，一條河的渡口濃霧未散。擺渡四十年的老船伕照常開船，先後上船的是抱著舊皮箱、獨自要過河北上縣城的女學生沈知微，穿褪色軍呢大衣、右手始終揣在口袋裡的男人陸行遠，以及挑著貨擔、嗓門能穿透霧氣的貨郎胡二爺。四個人同船過河，各自揣著沒有說出口的來路與去處，霧越來越濃，船離岸時河面上什麼都看不見。
 
 ---
 
 ## 沈知微（姑娘）
 
-> 主角 · 十九歲，抱著一只舊皮箱獨自過河北上，把所有害怕都攥在發白的指節裡。
+> 主角 · 十九歲，抱著一隻舊皮箱獨自過河北上，把所有害怕都攥在發白的指節裡。
 
 ### 人物側寫
 
@@ -19,9 +19,9 @@
 - **身分**：學生，獨自北上縣城的旅人
 - 拘謹 / 警覺 / 倔強 / 不善求助
 
-**外貌**　身形單薄，習慣性地往內縮。梳兩條長辮，辮梢繫著褪色的紅繩。穿藏青色學生裝，衣領洗得發白。懷裡始終抱著一只舊皮箱，指節因為用力而發白。（推斷）面容清秀，眼睛偏大，看人時帶著戒備。
+**外貌**　身形單薄，習慣性地往內縮。梳兩條長辮，辮梢繫著褪色的紅繩。穿藏青色學生裝，衣領洗得發白。懷裡始終抱著一隻舊皮箱，指節因為用力而發白。（推斷）面容清秀，眼睛偏大，看人時帶著戒備。
 
-**性情**　說話很輕，尾音總往上挑，像是在向每個人確認什麼——既是禮貌，也是不確定。全程低頭看水面，極少與人對視。被問及去向時點頭又搖頭，是那種寧可含糊其辭也不願把處境說出口的性格。
+**性情**　說話很輕，尾音總往上挑，像是在向每個人確認什麼——既是禮貌，也是不確定。全程低頭看水面，極少與人對視。被問及去向時點頭又搖頭，是那種寧可含糊其辭也不願把處境說出口的個性。
 
 **動機**　過河往北去縣城。至於為什麼必須一個人去、去了做什麼，她始終沒說。
 
@@ -37,7 +37,7 @@
 
 > 她十九歲，梳著兩條辮子，辮梢用褪色的紅繩繫著。
 
-> 她把一只舊皮箱抱在懷裡，指節因為用力而發白。
+> 她把一隻舊皮箱抱在懷裡，指節因為用力而發白。
 
 > 她說話很輕，尾音總往上挑一點，像是在向每個人確認什麼。
 
@@ -55,7 +55,7 @@
 Semi-realistic character illustration of a slender nineteen-year-old Chinese girl of the 1930s with shoulders drawn slightly inward, wearing a dark navy-blue student tunic with a plain white collar and a mid-calf skirt, holding a battered brown leather suitcase in one hand. oval face with soft rounded cheeks and a delicate jaw, large dark wary eyes with slightly heavy lower lids, straight fine eyebrows, small straight nose, thin lips held lightly closed, a quiet apprehensive expression; centre-parted black hair drawn back into two long braids tied at the tips with faded red string. Young skin with visible pores across the nose and cheeks, uneven tone, faint capillaries at the nostrils and ear rims, subtle subsurface scattering where light passes the ear edge; eyes with a wet specular highlight, moist lower lid, visible iris fibres and a soft limbal ring; eyelids and eyebrows slightly asymmetric — no two sides identical; individual flyaway hair strands breaking the silhouette at the hairline and along the braids. Cotton twill with a visible weave, softened and slightly shiny at the elbows and cuffs from wear, the skirt falling with real weight and self-shadowing inside the pleats; the leather suitcase scuffed to a paler tone at the corners with the grain still readable. Three-quarter view, waist-up, plain neutral background. Soft directional key light from the upper left with a cool fill, gentle falloff, ambient occlusion under the chin and in the folds; shallow depth of field with the face in sharpest focus. Semi-realistic character illustration, painterly rendering with soft blended edges and visible brush texture, anatomically grounded, muted palette of navy, cream and faded rose.
 ```
 
-半寫實插畫：一九三〇年代的中國少女，十九歲，身形單薄、肩膀微微內收，穿藏青色學生裝配素白衣領與及小腿的裙子，手裡提著一只磨舊的棕色皮箱。鵝蛋臉頰線柔和，一雙警覺的大眼睛，眼瞼略厚，眉細而直，鼻樑小而挺，雙唇輕抿，神情安靜而不安；中分黑髮梳成兩條長辮，辮梢系褪色紅繩。年輕皮膚，鼻翼與臉頰可見毛孔、膚色不勻，鼻翼與耳緣有細微毛細血管，耳廓邊緣透光；眼睛有濕潤高光、下眼瞼水光、虹膜纖維與柔和虹膜環；眼瞼和眉毛左右略不對稱；髮際線與辮子邊緣有細碎碎髮破開輪廓。棉斜紋布可見織紋，肘部與袖口因磨損而發亮，裙褶下垂有真實重量與自陰影；皮箱四角磨白、皮紋仍可辨。四分之三視角，半身，純中性背景。左上方柔和主光配冷調補光，光線衰減自然，下巴下方與衣褶處有環境遮蔽；淺景深，面部最實。
+半寫實插畫：一九三〇年代的中國少女，十九歲，身形單薄、肩膀微微內收，穿藏青色學生裝配素白衣領與及小腿的裙子，手裡提著一隻磨舊的棕色皮箱。鵝蛋臉頰線柔和，一雙警覺的大眼睛，眼瞼略厚，眉細而直，鼻樑小而挺，雙唇輕抿，神情安靜而不安；中分黑髮梳成兩條長辮，辮梢系褪色紅繩。年輕皮膚，鼻翼與臉頰可見毛孔、膚色不勻，鼻翼與耳緣有細微毛細血管，耳廓邊緣透光；眼睛有濕潤高光、下眼瞼水光、虹膜纖維與柔和虹膜環；眼瞼和眉毛左右略不對稱；髮際線與辮子邊緣有細碎碎髮破開輪廓。棉斜紋布可見織紋，肘部與袖口因磨損而發亮，裙褶下垂有真實重量與自陰影；皮箱四角磨白、皮紋仍可辨。四分之三視角，半身，純中性背景。左上方柔和主光配冷調補光，光線衰減自然，下巴下方與衣褶處有環境遮蔽；淺景深，面部最實。
 
 **負向提示詞**
 
@@ -103,7 +103,7 @@ A young female voice, nineteen years old. Light airy soprano in a mid-to-high re
 
 **性情**　上船不扶任何人，一步跨過一尺寬的水面，靴底把船板踩得咚一聲響。說話又快又乾脆，像在下命令。整段航程站在船頭一動不動，右手始終插在口袋裡。看沈知微的兩眼都很短，什麼也沒說——他在觀察，但不參與。
 
-**動機**　要過河，而且要快。他口袋裡那件硬東西的用途，文本沒有交代。（推斷）
+**動機**　要過河，而且要快。他口袋裡那件硬東西的用途，文字沒有交代。（推斷）
 
 **角色弧線**　靜止。唯一的鬆動是最後回頭看了沈知微一眼——比第一次那一眼多了點什麼。（推斷）
 
@@ -164,22 +164,22 @@ Single character model sheet on ONE 16:9 landscape canvas (widescreen, width to 
 A male voice, twenty-seven to twenty-eight years old. Dry tightly-focused baritone with a narrow resonant core and very little warmth. Mid-low pitch, clipped and forward-placed, consonants landing hard. Fast clipped pace with almost no filler words and abrupt full stops — phrasing built like orders rather than conversation. Northern-inflected Mandarin, crisp and unornamented. Low breathiness, tightly controlled volume, minimal emotional colour on the surface with tension held underneath.
 ```
 
-二十七八歲男聲。乾澀、聚焦的男中音，共鳴腔窄，幾乎沒有暖度。中低音區，咬字靠前、輔音落得重。語速快而短促，幾乎沒有語氣詞，句子戛然而止——措辭像下命令而不是聊天。帶北方腔的官話，清脆、不加修飾。氣聲少，音量控制得緊，表面幾乎沒有情緒起伏，底下繃著一股張力。
+二十七八歲男聲。乾澀、聚焦的男中音，共鳴腔窄，幾乎沒有暖度。中低音區，咬字靠前、子音落得重。語速快而短促，幾乎沒有語氣詞，句子戛然而止——措辭像下命令而不是聊天。帶北方腔的官話，清脆、不加修飾。氣聲少，音量控制得緊，表面幾乎沒有情緒起伏，底下繃著一股張力。
 
 ---
 
 ## 老周（老伯）
 
-> 主要角色 · 在這條河上擺了四十年渡的老船夫，一隻眼睛是白的，一船人的來去他都看在另一隻裡。
+> 主要角色 · 在這條河上擺了四十年渡的老船伕，一隻眼睛是白的，一船人的來去他都看在另一隻裡。
 
 ### 人物側寫
 
 - **性別**：男
 - **年齡**：七十上下（推斷）
-- **身分**：渡口船夫，在這條河上擺渡四十年
+- **身分**：渡口船伕，在這條河上擺渡四十年
 - 沉默 / 耐性 / 老練 / 不動聲色
 
-**外貌**　背駝得像一張拉滿的弓。左眼被早年的風沙磨得只剩一層白翳。笑起來牙齒只剩幾顆。（推斷）面皮被風水侵成深褐色，溝壑縱橫，手掌因常年握篙而粗厚變形。
+**外貌**　背駝得像一張拉滿的弓。左眼被早年的風沙磨得只剩一層白翳。笑起來牙齒只剩幾顆。（推斷）麵皮被風水侵成深褐色，溝壑縱橫，手掌因常年握篙而粗厚變形。
 
 **性情**　開口時嗓子裡總像卡著半口沒嚥下去的江水，含混、發沉。被問路時不答話，只用篙子點了點對岸——四十年裡同樣的問題他聽過太多遍。全程只笑過一次，是被胡二爺的渾話逗的。
 
@@ -215,7 +215,7 @@ A male voice, twenty-seven to twenty-eight years old. Dry tightly-focused barito
 Semi-realistic character illustration of an elderly Chinese ferryman around seventy with a heavily hunched back, wearing a faded indigo padded jacket with frayed cuffs, rolled trousers and worn straw sandals, holding a long bamboo punting pole. deeply weathered face, sunken cheeks, prominent cheekbones, the left eye clouded a pale milky white while the right stays sharp, sparse grey stubble, a nearly toothless mouth caught in a faint weary smile; thin grey hair cropped close to a balding scalp. Old sun-damaged skin: age spots across the cheekbones and the backs of the hands, slack sagging under the jaw and eyes, visible pores and uneven pigmentation. Eyelids and brows are noticeably asymmetric. Wrinkles follow the expression muscles — nasolabial folds, crow’s feet fanning from the outer eye corners, horizontal forehead lines — never randomly scored. The clouded left eye is dulled and slightly sunken with a bluish-white film, while the right keeps a wet specular highlight and visible iris fibres. Sparse grey stubble with individual hairs; thin flyaway hair strands breaking the silhouette at the balding crown. Coarse hand-woven cotton with a visible weave, quilted and pilled, the indigo faded unevenly and rubbed pale at the shoulders and cuffs, patches sewn on in mismatched thread; the fabric hangs heavy and slack with deep self-shadowing in the folds; straw sandals frayed at the weave. Three-quarter view, waist-up, plain neutral background. Soft directional key light from the upper left with a cool fill, gentle falloff, ambient occlusion under the chin and in the folds; shallow depth of field with the face in sharpest focus. Semi-realistic character illustration, painterly rendering with soft blended edges and visible brush texture, anatomically grounded, muted earth palette of slate blue, ochre and bone white.
 ```
 
-半寫實插畫：約七十歲的中國老船夫，背駝得厲害，穿褪色靛藍棉襖、袖口磨破，褲腳挽起，腳踏磨舊草鞋，手握一根長竹篙。面皮飽經風霜，臉頰凹陷、顴骨突出，左眼蒙著一層灰白翳，右眼仍清亮，灰白鬍茬稀疏，幾乎無牙的嘴帶著一絲疲憊的笑；灰髮稀薄，貼著謝頂的頭皮。老年日曬受損的皮膚：顴骨和手背有老年斑，下頜與眼下鬆弛，毛孔與色素沉著可見。皺紋順著表情肌走——法令紋、外眼角放射的魚尾紋、額頭橫紋，絕不是隨機刻線。左眼渾濁發暗、略微凹陷、覆一層青白薄膜，右眼有濕潤高光與虹膜纖維。胡茬根根分明；謝頂處有細碎飄發。粗糙手織棉，絎縫起球，靛藍褪色不勻，肩部與袖口磨白，補丁用不同顏色的線縫上；布料垂墜沉重鬆垮，褶皺深處有自陰影；草鞋編織處已磨散。四分之三視角，半身，純中性背景。左上方柔和主光配冷調補光，下巴與衣褶處有環境遮蔽；淺景深，面部最實。
+半寫實插畫：約七十歲的中國老船伕，背駝得厲害，穿褪色靛藍棉襖、袖口磨破，褲腳挽起，腳踏磨舊草鞋，手握一根長竹篙。麵皮飽經風霜，臉頰凹陷、顴骨突出，左眼蒙著一層灰白翳，右眼仍清亮，灰白鬍茬稀疏，幾乎無牙的嘴帶著一絲疲憊的笑；灰髮稀薄，貼著謝頂的頭皮。老年日曬受損的皮膚：顴骨和手背有老年斑，下頜與眼下鬆弛，毛孔與色素沉著可見。皺紋順著表情肌走——法令紋、外眼角放射的魚尾紋、額頭橫紋，絕不是隨機刻線。左眼渾濁發暗、略微凹陷、覆一層青白薄膜，右眼有濕潤高光與虹膜纖維。胡茬根根分明；謝頂處有細碎飄發。粗糙手織棉，絎縫起球，靛藍褪色不勻，肩部與袖口磨白，補丁用不同顏色的線縫上；布料垂墜沉重鬆垮，褶皺深處有自陰影；草鞋編織處已磨散。四分之三視角，半身，純中性背景。左上方柔和主光配冷調補光，下巴與衣褶處有環境遮蔽；淺景深，面部最實。
 
 **負向提示詞**
 
@@ -244,7 +244,7 @@ Single character model sheet on ONE 16:9 landscape canvas (widescreen, width to 
 An elderly male voice, around seventy-five. Low bass-baritone register, heavily gravelled and husky, as if the throat is permanently coated in river damp. Thick chest resonance with almost no head voice; word endings blur into one another. Slow unhurried pace with long breath pauses between clauses. Soft southern Chinese riverside accent, consonants worn smooth. Low energy and flat affect — settled and weary rather than sad. Minimal pitch variation, like someone who has said the same sentence for forty years.
 ```
 
-約七十五歲的老年男聲。低音區男中低聲部，沙啞粗糲、帶濃重氣泡音，像喉嚨裡常年裹著水汽。胸腔共鳴厚重，幾乎沒有頭聲，詞尾常常含混地黏在一起。語速緩慢從容，句讀之間有很長的換氣停頓。帶南方水鄉口音，輔音被磨得圓鈍。能量低、情緒平直——是疲憊沉澱而非悲傷。音高起伏極小，像一個把同一句話說了四十年的人。
+約七十五歲的老年男聲。低音區男中低聲部，沙啞粗糲、帶濃重氣泡音，像喉嚨裡常年裹著水汽。胸腔共鳴厚重，幾乎沒有頭聲，詞尾常常含混地黏在一起。語速緩慢從容，句讀之間有很長的換氣停頓。帶南方水鄉口音，子音被磨得圓鈍。能量低、情緒平直——是疲憊沉澱而非悲傷。音高起伏極小，像一個把同一句話說了四十年的人。
 
 ---
 
@@ -261,7 +261,7 @@ An elderly male voice, around seventy-five. Low bass-baritone register, heavily 
 
 **外貌**　胖乎乎的，四十來歲。滿頭是汗，笑起來眼睛眯成兩條縫。挑著兩只貨箱，箱角掛著一串小銅鈴，走一步響三聲。（推斷）短褐布衣，袖子挽到肘部，腰間束帶。
 
-**性情**　嗓門亮得能穿透霧氣，人還沒到聲音先到。上船後一路不停地說話——縣城新開的綢緞莊、北邊打仗的消息、他那個不成器的兒子。看似只是聒噪，卻是全船唯一主動問沈知微「你一個人去縣城？」的人，那一句「這世道，一個人不好走」落得比玩笑重。
+**性情**　嗓門亮得能穿透霧氣，人還沒到聲音先到。上船後一路不停地說話——縣城新開的綢緞莊、北邊打仗的訊息、他那個不成器的兒子。看似只是聒噪，卻是全船唯一主動問沈知微「你一個人去縣城？」的人，那一句「這世道，一個人不好走」落得比玩笑重。
 
 **動機**　趕上這班船，把貨挑到對岸去賣。
 
@@ -316,7 +316,7 @@ Single character model sheet on ONE 16:9 landscape canvas (widescreen, width to 
 - **音色**：明亮、帶金屬芒的男高音，穿透力強
 - **音高**：中高
 - **語速**：快，句子連成一片，幾乎不換氣
-- **口音**：北方鄉音，元音開闊
+- **口音**：北方鄉音，母音開闊
 - **情緒**：外放、樂呵，毫無防備
 - **類比**：像一個隔著兩條街就能聽見他招呼你的人
 
@@ -326,5 +326,5 @@ Single character model sheet on ONE 16:9 landscape canvas (widescreen, width to 
 A male voice, mid-forties. Bright brassy tenor with a broad forward ring that carries easily over ambient noise. Mid-high pitch with wide springy intonation swings. Fast tumbling pace, phrases running into one another with hardly a breath, frequent laughter breaking through mid-sentence. Warm rural northern Chinese accent with wide open vowels. High energy and strong breath support, unguardedly cheerful and gossipy by default, with enough weight in the lower register to land one sincere line when it comes.
 ```
 
-四十來歲男聲。明亮帶金屬芒的男高音，聲音靠前、共鳴寬，在嘈雜環境裡也能穿透。中高音區，語調起伏大而有彈性。語速快、句子一路滾著連成一片，幾乎不換氣，說到一半常自己先笑出來。帶北方鄉音，元音開闊。能量高、氣息足，默認狀態是毫無防備的樂呵和愛聊閒話，但低音區留有足夠厚度，能把偶爾一句真心話說得壓得住。
+四十來歲男聲。明亮帶金屬芒的男高音，聲音靠前、共鳴寬，在嘈雜環境裡也能穿透。中高音區，語調起伏大而有彈性。語速快、句子一路滾著連成一片，幾乎不換氣，說到一半常自己先笑出來。帶北方鄉音，母音開闊。能量高、氣息足，預設狀態是毫無防備的樂呵和愛聊閒話，但低音區留有足夠厚度，能把偶爾一句真心話說得壓得住。
 
