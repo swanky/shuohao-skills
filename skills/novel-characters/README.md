@@ -2,191 +2,208 @@
 
 # novel-characters
 
-丟一本小說或一篇短故事進去，輸出每個角色的完整設定：
+丢一本小说或一篇短故事进去，输出每个角色的完整设定：
 
-- **角色表** — 誰出場了，主角還是龍套，跨章節的不同稱呼歸併到同一個人
-- **人物側寫** — 性別、年齡、身份、外貌、性情、動機、人物弧光、關係網，每條附**原文逐字引文**
-- **形象提示詞** — 半寫實厚塗路線，雙語生圖 prompt + negative prompt + 風格標籤，直接喂 Midjourney / SD / GPT-Image
-- **音色提示詞** — 音色、音高、語速、口音、情緒，雙語 voice-design prompt，直接喂 Qwen3-TTS / ElevenLabs Voice Design
-- **角色設定圖** — **每個角色一張**：16:9 分三區，左側約 34% 證件照式半身像（面部基準）、右上全身三視圖、右下關鍵細節特寫條。**畫風可選**：預設半寫實厚塗，也可以出吉卜力動畫風或擬真實拍。白底方便去背，走 codex 內建生圖（可選）
-- **關係圖譜** — 報告裡的一個全景檢視：誰跟誰有關係、是什麼關係，一眼看完。懸停一個人亮出他的全部關係，點一下跳到那個人的詳情
+- **角色表** — 谁出场了，主角还是龙套，跨章节的不同称呼归并到同一个人
+- **人物画像** — 性别、年龄、身份、外貌、性情、动机、人物弧光、关系网，每条附**原文逐字引文**
+- **形象提示词** — 半写实厚涂路线，双语出图 prompt + negative prompt + 风格标签，直接喂 Midjourney / SD / GPT-Image
+- **音色提示词** — 音色、音高、语速、口音、情绪，双语 voice-design prompt，直接喂 Qwen3-TTS / ElevenLabs Voice Design
+- **角色设定图** — **每个角色一张**：16:9 分三区，左侧约 34% 证件照式半身像（面部基准）、右上全身三视图、右下关键细节特写条。**画风可选**：默认半写实厚涂，也可以出吉卜力动画风。白底方便抠图，走 codex 内置出图（可选）
+- **关系图谱** — 报告里的一个全景视图：谁跟谁有关系、是什么关系，一眼看完。悬停一个人亮出他的全部关系，点一下跳到那个人的详情
 
-產出 `cast.json` + Markdown + 一個雙擊就能開的 `report.html`。
+产出 `cast.json` + Markdown + 一个双击就能开的 `report.html`。
 
-**報告語言可指定**，預設台灣正體中文（`zh-TW`）：
+**报告语言可指定**，默认中文：
 
 ```
 /novel-characters ./book.txt --lang en
 /novel-characters ./book.txt --lang ja
 ```
 
-內建 **正體中文 / 簡體中文 / English / 日本語** 四套介面文案。**其他語言一樣支援**——skill 會現場把介面文案翻譯成目標語言，存進 `cast.json` 的 `ui` 欄位，渲染時合並進去。所以法語、韓語、西班牙語都能出完整報告，不會露出英文介面。
+内置 **中文 / English / 日本語** 三套界面文案。**其他语言一样支持**——skill 会现场把界面文案翻译成目标语言，存进 `cast.json` 的 `ui` 字段，渲染时合并进去。所以法语、韩语、西班牙语都能出完整报告，不会露出英文界面。
 
-想自己準備翻譯：
+想自己准备翻译：
 
 ```bash
-node scripts/novel-characters.mjs ui-template fr   # 印出待翻譯的骨架
+node scripts/novel-characters.mjs ui-template fr   # 打印待翻译的骨架
 ```
 
 ![report.html](assets/report.webp)
 
-角色設定圖（自帶樣例《渡口》的沈知微）：
+角色设定图（自带样例《渡口》的沈知微）：
 
-![角色設定圖](assets/sheet.jpg)
+![角色设定图](assets/sheet.jpg)
+
+## 上游
+
+管线里**大纲在角色的上游**：
+
+```
+novel-outline    → outline.json （什么：结构与分集，谁进谁不进）
+novel-characters → cast.json    （谁：角色资产）
+```
+
+有 `outline.json` 就走 `seed`——它的 `characters` 块已经定死了角色清单：
+
+```bash
+node scripts/novel-characters.mjs seed outline.json > seed.json
+```
+
+搬过来的是大纲拍板过的事实（角色码、名字、分档、人物线、由原著的谁合并而来），留空的是这一层才该做的设计（别名、画像、形象提示词、音色提示词）。`tier` 映射成 `importance`：`lead` → protagonist、`support` → supporting、`functional` → minor。
+
+**大纲定的分档不要在这一层推翻**，觉得不对回去改大纲。主角组内部可以细分——`lead` 是「男女主 + 主反派」一整组，seed 一律给 protagonist，照 `seedNote` 里的定位把主角之外的改成 major。
+
+**没有 `outline.json` 也照常跑**，本 skill 不依赖它——跳过 seed，直接丢一本小说进去，自己从原文拆角色表。
 
 ## 使用
 
-安裝見[倉庫根 README](../../README.md)。裝好後：
+安装见[仓库根 README](../../README.md)。装好后：
 
 ```
-/novel-characters ./你的小說.txt
+/novel-characters ./你的小说.txt
 ```
 
-或者直接說「幫我拆一下這本書的角色」並給出路徑。
+或者直接说「帮我拆一下这本书的角色」并给出路径。
 
-### 報告語言
+### 报告语言
 
-預設台灣正體中文（`zh-TW`）。用 `--lang`，或者直接說「用英文」「日本語で」：
+默认中文。用 `--lang`，或者直接说「用英文」「日本語で」：
 
 ```
-/novel-characters ./book.txt --lang zh     # 簡體中文
 /novel-characters ./book.txt --lang en
 /novel-characters ./book.txt --lang ja
 ```
 
-內建 **正體中文 / 簡體中文 / English / 日本語** 四套介面文案。**其他語言一樣支援**——skill 會現場把介面文案翻譯成目標語言，存進 `cast.json` 的 `ui` 欄位，渲染時合併。法語、韓語、西班牙語都能出完整報告，不會露出英文介面。
+内置 **中文 / English / 日本語** 三套界面文案。**其他语言一样支持**——skill 会现场把界面文案翻译成目标语言，存进 `cast.json` 的 `ui` 字段，渲染时合并。法语、韩语、西班牙语都能出完整报告，不会露出英文界面。
 
-`zh-TW` 不只是換字形：介面用「搜尋」「負向提示詞」「生圖」，角色卡內容也照台灣慣用詞寫，
-一簡對多繁的字（頭**髮**、**乾**淨、眼**裡**）由 `SKILL.md` 的用語規範約束。
+两条不跟随语言：**出图和 TTS 提示词永远英文**（引擎吃英文最稳）；**原文引文永远保持原文语言**（翻译了就不是证据了）。
 
-兩條不跟隨語言：**生圖和 TTS 提示詞永遠英文**（引擎吃英文最穩）；**原文引文永遠保持原文語言**（翻譯了就不是證據了）。
+### 出图风格
 
-### 生圖風格
-
-預設 `realistic`（半寫實厚塗）。想要動畫質感或真人選角感：
+默认 `realistic`（半写实厚涂）。想要动画质感：
 
 ```
 /novel-characters ./book.txt --style ghibli
-/novel-characters ./book.txt --style photoreal
 ```
 
-| id | 說明 |
+| id | 说明 |
 | --- | --- |
-| `realistic` | 半寫實厚塗，皮膚有毛孔和肌理，布料有織紋磨損。預設 |
-| `ghibli` | 吉卜力式手繪賽璐璐，等寬墨線、單層柔和陰影、平塗色塊 |
-| `photoreal` | 擬真實拍，劇組試裝定妝照：真人、50–85mm 鏡頭、中性暖灰背景、不修圖的皮膚 |
+| `realistic` | 半写实厚涂，皮肤有毛孔和肌理，布料有织纹磨损。默认 |
+| `ghibli` | 吉卜力式手绘赛璐璐，等宽墨线、单层柔和阴影、平涂色块 |
 
-和語言可以組合：`--lang zh-TW --style photoreal`。
+两个可以组合：`--lang ja --style ghibli`。
 
 ```bash
-node scripts/novel-characters.mjs styles          # 看所有預設
-node scripts/novel-characters.mjs styles ghibli   # 看某一個的完整內容
+node scripts/novel-characters.mjs styles          # 看所有预设
+node scripts/novel-characters.mjs styles ghibli   # 看某一个的完整内容
 ```
 
-**換風格是整套換**，不是只換一句畫風——每個預設自帶渲染方式、表面處理、光照、負向提示詞、標籤五塊。詳見 [`references/style-presets.md`](references/style-presets.md)。
+**换风格是整套换**，不是只换一句画风——每个预设自带渲染方式、表面处理、光照、反向提示词、标签五块。详见 [`references/style-presets.md`](references/style-presets.md)。
 
-## 報告長什麼樣
+## 报告长什么样
 
-三欄工作臺：頂欄搜尋，左欄是故事摘要 + 按戲份排的角色列表，主區一次只看一個角色。
+三栏工作台：顶栏搜索，左栏是故事摘要 + 按戏份排的角色列表，主区一次只看一个角色。
 
-**關係圖譜**在左欄頂部，跟角色詳情互斥。邊直接來自每個角色的 `relationships`，不用模型再跑一趟：
+**关系图谱**在左栏顶部，跟角色详情互斥。边直接来自每个角色的 `relationships`，不用模型再跑一趟：
 
-- 按**名字 + 別名**連邊——老周的關係裡寫「老伯」也連到同一個節點
-- 同一對人的兩條單向記述合併成一條邊，兩個方向的說法都留著
-- 弦上標一段關係文字（截到 6 字，全文在懸停提示和右側關係表裡）。邊多了會糊，
-  ≤ 14 條預設標出來，再多預設收起，頂部有開關
-- 懸停一個人亮出他的全部關係線，懸停關係表某一行只亮那一條，點誰跳誰
+- 按**名字 + 别名**连边——老周的关系里写「老伯」也连到同一个节点
+- 同一对人的两条单向记述合并成一条边，两个方向的说法都留着
+- 弦上标一段关系文字（截到 6 字，全文在悬停提示和右侧关系表里）。边多了会糊，
+  ≤ 14 条默认标出来，再多默认收起，顶部有开关
+- 悬停一个人亮出他的全部关系线，悬停关系表某一行只亮那一条，点谁跳谁
 
-圓環佈局在 Node 裡算好直接寫進內聯 SVG，**不引任何庫**——report.html 始終是一個能離線雙擊開啟的單檔案。
+圆环布局在 Node 里算好直接写进内联 SVG，**不引任何库**——report.html 始终是一个能离线双击打开的单文件。
 
-### 匯出 JSON
+### 导出 JSON
 
-頂欄的「匯出 JSON」下載的**就是 `cast.json` 本身的形狀**，不是另一套匯出格式：
+顶栏的「导出 JSON」下载的**就是 `cast.json` 本身的形状**，不是另一套导出格式：
 
 ```json
 { "source": "…", "lang": "zh", "style": "realistic", "summary": "…", "characters": [ … ] }
 ```
 
-所以外部工具改完可以**直接重新匯入 `render` 重新出報告**，也能過 `validate`。角色卡里的 `sheetImage`（`images/<slug>-sheet.png`）一併帶出，拿得到哪張圖對應哪個人。
+所以外部工具改完可以**直接喂回 `render` 重新出报告**，也能过 `validate`。角色卡里的 `sheetImage`（`images/<slug>-sheet.png`）一并带出，拿得到哪张图对应哪个人。
 
-資料以 `<script type="application/json">` 內嵌在報告裡，點匯出只是把它包成 Blob 下載，**不發任何網路請求**。
+数据以 `<script type="application/json">` 内嵌在报告里，点导出只是把它包成 Blob 下载，**不发任何网络请求**。
 
-## 它是怎麼工作的
+## 它是怎么工作的
 
-長文字一次性塞進上下文會丟角色，所以拆成兩趟：
+长文本一次性塞进上下文会丢角色，所以拆成两趟：
 
-**第一趟 · 掃描**（便宜）
-按段落切成 14k 字元的重疊塊，每塊併發抽「角色名 + 別名 + 該塊裡的具體描寫 + 逐字引文」。重疊是為了讓卡在切口上的角色兩邊都能看見。
+**第一趟 · 扫描**（便宜）
+按段落切成 4 万字符的重叠块，每块并发抽「角色名 + 别名 + 该块里的具体描写 + 逐字引文」。重叠是为了让卡在切口上的角色两边都能看见。
 
-**歸併**
-按名字和別名建索引，`陸行遠` / `陸` / `姑娘` 這類跨塊的不同叫法收斂成同一個人。按出現塊數當戲份權重排序。
+**归并**
+按名字和别名建索引，`陆行远` / `陆` / `姑娘` 这类跨块的不同叫法收敛成同一个人。精确匹配管不到的（「陆」和「陆行远」没有共同键），脚本会按名字包含关系列成 `mergeCandidates` 疑似同人候选，由模型复核后写成 merges.json 确定性落地合并。按出现块数当戏份权重排序。
 
 **第二趟 · 出卡**
-只對戲份最重的 N 位（**預設 30**），把歸併後的全部描寫喂進去，一次生成完整角色卡。同批角色互相知道對方的名字，避免長相和聲線撞車。族裔、年代、地域從原文推斷後寫死進生圖提示詞——**不跟報告語言走**，報告出成日文不會把民國的老船伕畫成日本人。
+只对戏份最重的 N 位（**默认 30**），把归并后的全部描写喂进去，一次生成完整角色卡。同批角色互相知道对方的名字，避免长相和声线撞车。族裔、年代、地域从原文推断后写死进出图提示词——**不跟报告语言走**，报告出成日文不会把民国的老船夫画成日本人。
 
-**校驗**（這步不能跳）
-四類硬規則，全部由腳本確定性檢查，不靠模型自覺：
+**校验**（这步不能跳）
+四类硬规则，全部由脚本确定性检查，不靠模型自觉：
 
-| 規則 | 為什麼 |
+| 规则 | 为什么 |
 | --- | --- |
-| `evidence` 必須是原文**逐字連續**片段 | 防編造。被「他說」斷開的對白不許拼接 |
-| 生圖 prompt **不許出現人名** | 圖像模型對人名偏見極重，會畫成它記憶裡的角色 |
-| 欄位**語言分工** | 人類欄位跟隨 `--lang`、生圖和 TTS 提示詞永遠英文，模型會漂 |
-| **風格與負向提示詞匹配** | `realistic` / `photoreal` 不能禁 `photorealistic`、`ghibli` 必須禁；`photoreal` 另外必須禁 `illustration`／`anime`。搞反整批圖就廢 |
-| 結構 + 列舉 | `importance` 只能是那四個值 |
+| `evidence` 必须是原文**逐字连续**片段 | 防编造。被「他说」断开的对白不许拼接 |
+| 出图 prompt **不许出现人名** | 图像模型对人名偏见极重，会画成它记忆里的角色 |
+| 字段**语言分工** | 人类字段跟随 `--lang`、出图和 TTS 提示词永远英文，模型会漂 |
+| **风格与反向提示词匹配** | `realistic` 不能禁 `photorealistic`、`ghibli` 必须禁，搞反整批图就废 |
+| 结构 + 枚举 | `importance` 只能是那四个值 |
 
-這四條不是拍腦袋定的——是模型輸出真的違反過、被校驗腳本當場抓住才立起來的。
+这四条不是拍脑袋定的——是模型输出真的违反过、被校验脚本当场抓住才立起来的。
 
-## 命令列直接用
+## 命令行直接用
 
-腳本本身不需要 agent 也能跑，只有兩趟模型呼叫需要：
+脚本本身不需要 agent 也能跑，只有两趟模型调用需要：
 
 ```bash
-node scripts/novel-characters.mjs chunk book.txt /tmp/wk        # 切塊
-node scripts/novel-characters.mjs merge /tmp/wk                 # 歸併 roster-*.json
-node scripts/novel-characters.mjs validate cast.json book.txt   # 校驗
+node scripts/novel-characters.mjs seed outline.json              # 有大纲就从它预填角色表骨架
+node scripts/novel-characters.mjs chunk book.txt /tmp/wk        # 切块
+node scripts/novel-characters.mjs merge /tmp/wk                 # 归并 roster-*.json，附疑似同人候选
+node scripts/novel-characters.mjs merge /tmp/wk --apply m.json   # 落地复核后的合并
+node scripts/novel-characters.mjs assemble /tmp/wk --source 书名 # card-*.json 合成 cast.json，同档按戏份排序
+node scripts/novel-characters.mjs validate cast.json book.txt   # 校验
 node scripts/novel-characters.mjs render cast.json --html       # 出 report.html
-node scripts/novel-characters.mjs slug "胡二爺"                  # 安全檔名
+node scripts/novel-characters.mjs slug "胡二爷"                  # 安全文件名
 ```
 
-## 邊界
+## 边界
 
-- 單次上限 24 塊（約 33 萬字元）。超了會明確報 `truncated`，**不靜默截斷**
-- 人類可讀欄位跟隨 `--lang`；生圖和 TTS 提示詞**永遠英文**，那些引擎吃英文最穩，跟報告語言無關
-- **簡繁之分腳本判不了**。`validate` 只查「是不是中文」，寫成簡體它攔不住——靠 `SKILL.md` 的用語規範約束生成階段
-- 預設取戲份最重的 30 位角色，**每位都出設定圖**——一個角色一次呼叫，所以角色多的時候這步最花時間。想少出就直接給個數，或者說只要主要角色
-- **同一批角色的畫風可能有差異**——各自獨立生圖。早期用「扁平向量卡通」時漂得很厲害（同批出成動畫感／半寫實／水墨寫實三種），換成明確的風格預設後好了很多，但不能保證完全一致。在意的話拿第一張當參考圖壓一壓，見 `references/sheet.md`
+- 单次上限 24 块（净覆盖约 93 万字符）。超了会明确报 `truncated`，**不静默截断**
+- 人类可读字段跟随 `--lang`；出图和 TTS 提示词**永远英文**，那些引擎吃英文最稳，跟报告语言无关
+- 默认取戏份最重的 30 位角色，**每位都出设定图**——一个角色一次调用，所以角色多的时候这步最花时间。想少出就直接给个数，或者说只要主要角色
+- **同一批角色的画风可能有差异**——各自独立出图。早期用「扁平矢量卡通」时漂得很厉害（同批出成动画感／半写实／水墨写实三种），换成明确的风格预设后好了很多，但不能保证完全一致。在意的话拿第一张当参考图压一压，见 `references/sheet.md`
 
-> ⚠️ **機器上裝了多個 codex 要注意版本。** 舊版本會直接報 `requires a newer version of Codex` 而不是降級。skill 裡帶了自動挑最高版本的探測邏輯，整體太舊就 `npm i -g @openai/codex`。
+> ⚠️ **机器上装了多个 codex 要注意版本。** 旧版本会直接报 `requires a newer version of Codex` 而不是降级。skill 里带了自动挑最高版本的探测逻辑，整体太旧就 `npm i -g @openai/codex`。
 
-## 檔案
+## 文件
 
 ```
-SKILL.md                 給 agent 讀的工作流
+SKILL.md                 给 agent 读的工作流
 scripts/
-  novel-characters.mjs   chunk / merge / validate / render / slug
-  selftest.mjs           318 項斷言，不調模型
+  novel-characters.mjs   chunk / merge / assemble / validate / render / slug
+  selftest.mjs           355 项断言，不调模型
 references/
-  roster-pass.md         第一趟：掃描角色
-  profile-pass.md        第二趟：生成角色卡（8 條硬規則）
-  schema.md              角色卡結構 + 欄位語言歸屬
-  sheet.md               角色設定圖生圖的 codex 呼叫契約
-  report-style.md        report.html 的設計約定
-  style-presets.md       生圖風格預設（realistic / ghibli / photoreal）
+  roster-pass.md         第一趟：扫描角色
+  profile-pass.md        第二趟：生成角色卡（8 条硬规则）
+  schema.md              角色卡结构 + 字段语言归属
+  sheet.md               角色设定图出图的 codex 调用契约
+  report-style.md        report.html 的设计约定
+  style-presets.md       出图风格预设（realistic / ghibli）
 examples/
-  渡口.txt                自帶短故事，4 個角色
-  渡口-cast.json          產出，同時是校驗自檢夾具
-  渡口-cast.md            渲染結果，品質基準
+  渡口.txt                自带短故事，4 个角色
+  渡口-cast.json          产出，同时是校验自检夹具
+  渡口-cast.md            渲染结果，质量基准
 ```
 
-`examples/渡口.txt` 裡貨郎全程只有綽號、船夫只被叫過「老伯」——專門用來驗別名歸併。
+`examples/渡口.txt` 里货郎全程只有绰号、船夫只被叫过「老伯」——专门用来验别名归并。
 
-## 自測
+## 自测
 
 ```bash
 node scripts/selftest.mjs
 ```
 
-318 項斷言，覆蓋分塊 / 別名歸併 / 多語言 / 校驗 / 渲染。不調模型、不花額度、約 1 秒跑完。改完程式先跑這個。
+355 项断言，覆盖分块 / 别名归并 / 合成 / 多语言 / 校验 / 渲染。不调模型、不花额度、1 秒跑完。改完脚本先跑这个。
 
-**只在 macOS + Node 24 上實測過。** 程式碼沒有平台相關呼叫，Linux 和更低版本 Node 理論上沒問題，但**沒驗過**。
+**只在 macOS + Node 24 上实测过。** 代码没有平台相关调用，Linux 和更低版本 Node 理论上没问题，但**没验过**。

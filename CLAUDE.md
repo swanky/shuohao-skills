@@ -47,6 +47,14 @@ This file provides guidance to Claude Code (claude.ai/code) and Codex when worki
 
 中文文案不要為了短而縮成單字詞：「保留／砍掉／合併」不要寫成「保／砍／合」，「安裝」不要寫成「裝」，「使用」不要寫成「用」。章節標題也一樣。
 
+### 共用行為規則
+
+- skill 必須自包含、可單獨複製：不依賴任何第三方 skill（包括官方 skill）。外部方法論學習後要內化成本 repository 自己的 references 文件，並註明學習來源。
+- **範例資料先定故事，再定分鏡。** 故事未定之前不要寫分鏡，更不要生圖，避免畫面先把後續故事選擇鎖死。
+- **每個 skill 的範例資料必須是自己的**，不借用其他 skill 的範例，確保每個 skill 能整份單獨複製。
+- 渲染產物（`gallery.html`、`*-report.html`）不進版本控制，因為都能由 `render` 重新產生。
+- **品質門失敗累積（`.gates.jsonl` + `stats`）目前只用於 `novel-storyboard`。** 先以實際專案驗證價值，再決定是否推廣；不要主動複製到其他 skill。
+
 ### 唯一的例外：`STRINGS.zh`
 
 `skills/novel-characters/scripts/novel-characters.mjs` 的 `STRINGS` 表裡，**`zh` 那一整套必須維持簡體**——那是 `--lang zh` 這個功能本身，不是待翻譯的內容。改了簡體報告就廢了，自測也會擋下來。
