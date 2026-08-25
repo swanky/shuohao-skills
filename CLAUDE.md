@@ -15,6 +15,7 @@ This file provides guidance to Claude Code (claude.ai/code) and Codex when worki
 
 **不是把簡體換個字形就好，用詞也要換：**
 
+<!-- zh-tw-lint: off -->
 | 別寫 | 要寫 |
 | --- | --- |
 | 软件、硬件、网络、程序 | 軟體、硬體、網路、程式 |
@@ -23,9 +24,11 @@ This file provides guidance to Claude Code (claude.ai/code) and Codex when worki
 | 打印、分辨率、缺省 | 列印、解析度、預設 |
 | 性格、水准、计划 | 個性、水準、計畫 |
 | 搜索、出图、反向提示词 | 搜尋、生圖、負向提示詞 |
+<!-- zh-tw-lint: on -->
 
 **一簡對多繁的字最容易翻錯**，角色外貌描寫幾乎必踩：
 
+<!-- zh-tw-lint: off -->
 | 簡 | 看語境選 | 例 |
 | --- | --- | --- |
 | 发 | 髮／發 | 頭**髮**、一**頭**長**髮**；**發**現 |
@@ -42,6 +45,7 @@ This file provides guidance to Claude Code (claude.ai/code) and Codex when worki
 | 通过 | 通過／透過 | **通過**校驗、**通過**測試、品質門全**通過**；**透過**管道、**透過**女婿引薦 |
 
 「通过」尤其容易一律換成「透過」——**能不能換成「經由」就是「透過」，能不能換成「合格」就是「通過」**。
+<!-- zh-tw-lint: on -->
 
 引號用「」『』，不要 `""`。
 
@@ -65,7 +69,7 @@ This file provides guidance to Claude Code (claude.ai/code) and Codex when worki
 
 所有指令都零依賴，只要 `node` >= 18，沒有 npm 套件、沒有 build 步驟。
 
-從 repo 根目錄一次跑完五套 skill 自測與單頁報告自測：
+從 repo 根目錄一次跑完六套 skill 自測與單頁報告自測：
 
 ```bash
 for f in skills/*/scripts/selftest.mjs; do node "$f"; done
@@ -104,6 +108,8 @@ node scripts/novel-characters.mjs slug "胡二爺"                 # 安全檔�
 ### 這個 repo 是什麼
 
 一個 AI 短劇製作 skill 集合，目前包含 `novel-outline`、`novel-characters`、`novel-art`、`novel-script` 與 `novel-storyboard`。**Claude Code 和 codex 都能跑**；需要生圖的步驟由 codex 內建能力處理。
+
+另有一個維運型 skill `upstream-sync`：它不產出短劇資產，負責把上游的新提交合併進來並完成正體化，是這個 fork 專屬的（見下方「fork 關係」）。
 
 一個 skill = 一個目錄 + 一份 `SKILL.md`。`install.sh` 認的就是 `SKILL.md` 存不存在。
 
@@ -188,12 +194,22 @@ cast.json ──→ validate ──→ 生圖（可選）──→ render ──
 | `origin` | `swanky/shuohao-skills`（這個 fork） |
 | `upstream` | `eternityspring/shuohao-skills`（上游，簡體） |
 
-拉上游更新：
+拉上游更新**用 `upstream-sync` skill**，它把整套流程寫死了（比對落後幾筆 → 看上游改了什麼 → 合併 → 解衝突 → 正體化 → 驗證 → 提交）：
 
 ```bash
-git fetch upstream && git rebase upstream/main
+git fetch upstream && git merge upstream/main
 ```
 
-**上游是簡體專案，rebase 一定會有簡繁衝突。** 解衝突時一律取正體版本，並把上游新加的簡體內容一併轉成正體再提交。上游新增的功能（新語言、新畫風預設、新校驗規則）要照這份文件的規範補上正體。
+**用 merge 不用 rebase**：這個 fork 的同步歷史本來就是 merge commit，而且已經推上 `origin`；rebase 會改寫已發布的歷史，逼出 force push。
+
+**上游是簡體專案，合併一定會有簡繁衝突。** 解衝突時一律取正體版本，並把上游新加的簡體內容一併轉成正體再提交。上游新增的功能（新語言、新畫風預設、新校驗規則）要照這份文件的規範補上正體。
+
+漏改由腳本掃，不靠人眼：
+
+```bash
+node skills/upstream-sync/scripts/check-zh-tw.mjs --since $(git merge-base HEAD upstream/main)
+```
+
+`✗` 是漏改必須修到零，`·` 是待確認用詞。文件裡本來就要寫出反例的地方用 `zh-tw-lint: off` ／ `on` 標記豁免；`STRINGS.zh`、`ja` 語系表與驗證簡體輸出的斷言已在腳本的白名單裡。
 
 本 fork 相對上游的差異記在 `CHANGELOG.md` 的 1.5.0 條目。

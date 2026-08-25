@@ -1,5 +1,14 @@
 # Changelog
 
+## Fork 1.10.0 — 2026-08-25
+
+- 新增 `upstream-sync` skill：fork 專屬的維運流程，把上游（簡體）的新提交合併進來、解衝突一律取正體、再把上游新增的內容整份轉成台灣正體與台灣用詞。
+- 新增 `skills/upstream-sync/scripts/check-zh-tw.mjs`：確定性用詞檢查，掃簡體專用字與大陸用詞，分 `error`／`warn` 兩級。一簡對多繁的字刻意不進字表——那是語境判斷，腳本決定不了。
+- 白名單涵蓋 `novel-characters` 的 `STRINGS.zh` 語系表、`ja` 語系表與驗證簡體輸出的自測斷言；文件裡的反例表格用 `zh-tw-lint: off`／`on` 標記豁免。
+- 修正 `novel-characters/README.en.md` 殘留的簡體人名（陆行远 → 陸行遠），由新檢查腳本掃出。
+- `CLAUDE.md` 的同步流程由 rebase 改為 merge：這個 fork 的同步歷史本來就是 merge commit 且已推上 `origin`，rebase 會改寫已發布的歷史。
+- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 249 項、`novel-script` 154 項、`novel-storyboard` 254 項、`upstream-sync` 76 項及單頁報告 92 項自測全部通過，共 1,382 項。
+
 ## Fork 1.9.0 — 2026-08-23
 
 - 同步 upstream 至 `0e5eb68`，整合 39 筆提交。
@@ -63,9 +72,11 @@
 
 - 新增內建介面語言 `zh-TW`，並把 `DEFAULT_LANG` 從 `zh` 改成 `zh-TW`。
   要簡體中文改用 `--lang zh`
+<!-- zh-tw-lint: off -->
 - **不只換字形，用詞也照台灣習慣換**：介面用「搜尋」而不是「搜索」、
   「負向提示詞」而不是「反向提示詞」、「生圖」而不是「出圖」、
   「依戲份排序」而不是「按戲份排序」
+<!-- zh-tw-lint: on -->
 - 報告字型跟著換：`zh-TW` 挑 Songti TC / PingFang TC / Microsoft JhengHei
   那一串。原來的 Songti SC 在台灣機器上多半沒裝，掉回系統預設會跟正體字形不搭
 - 角色卡內容是模型寫的，腳本管不了簡繁。`SKILL.md` 新增「`zh-TW` 的用語規範」，

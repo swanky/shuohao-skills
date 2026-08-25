@@ -23,8 +23,9 @@ Here is the whole pipeline — **the outline converges the structure; script, sc
 | [**novel-art**](skills/novel-art/README.en.md) | Art bibles for AI production (scenes + narrative props): consistency anchors, lighting & state variants, scale references, no-people/no-hands white plates. Seeds from outline.json; all 11 quality gates script-checked |
 | [**novel-script**](skills/novel-script/README.en.md) | Screenwriting for AI short drama: scenes + beat flow (action beats alternating with dialogue lines), per-episode duration deterministically estimated from reading speed, a gated cold-open hook in the first 3 beats, a per-character line book with voice prompts that feeds straight into TTS. All 10 quality gates script-checked |
 | [**novel-storyboard**](skills/novel-storyboard/README.en.md) | Storyboarding for AI short drama: segments (one generation, ≤15s) → cuts (2–5s hard gate) → keyframes (master pinned at 0.00s, sub-frames at their cut marks), with MiniMax H3 prompt alignment and cut times audited verbatim; frames actually generated with the design sheets as references, plus one-command H3 production packs. All 17 quality gates script-checked |
+| [**upstream-sync**](skills/upstream-sync) | Fork-only maintenance skill: merges upstream (Simplified Chinese) commits into this Traditional Chinese fork, resolves conflicts in favour of the Traditional side, and converts newly added upstream content to Taiwanese Traditional Chinese. The terminology check is script-enforced. Docs are in Traditional Chinese only |
 
-**Every skill renders its report in English too** — reports default to a Chinese UI; pass `--lang en` to `render` for a fully English report (data content stays as authored).
+**Every production skill renders its report in English too** — reports default to a Chinese UI; pass `--lang en` to `render` for a fully English report (data content stays as authored).
 
 ## One page for the whole pipeline
 
