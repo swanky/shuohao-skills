@@ -9,7 +9,10 @@
 - `CLAUDE.md` 的同步流程由 rebase 改為 merge：這個 fork 的同步歷史本來就是 merge commit 且已推上 `origin`，rebase 會改寫已發布的歷史。
 - 修正全 repository 把品質門的「通过（合格）」誤譯成「透過」的問題，共 26 個檔案：報告介面文案（`gatesPass`）、CLI 訊息、自測輸出與文件一律改成「通過」。`check-zh-tw.mjs` 加了對應的正則規則，這類誤譯以後會被當場擋下。
 - 修復 `novel-characters/SKILL.md` 兩張用語表：先前正體化時把「別寫」那一欄也轉成正體，導致左右兩欄相同、一簡對多繁表出現「公**裡**」「**醜**角」等錯字，對模型是反效果。反例欄恢復簡體並加上豁免標記。
-- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 249 項、`novel-script` 154 項、`novel-storyboard` 254 項、`upstream-sync` 87 項及單頁報告 92 項自測全部通過，共 1,393 項。
+- 修正 `check-zh-tw.mjs` 漏掃中文檔名檔案的問題：`git ls-files` 預設會把非 ASCII 路徑轉義成 `ä¸­` 這種形式，那樣的路徑 stat 不到而被靜默跳過，導致全部範例資料與品質基準（31 個檔案）從未被檢查。改用 `-z` 以 NUL 分隔，掃描範圍由 80 檔增為 111 檔。
+- 新增整份跳過規則：`testdata/corpora/**`（原始語料）與 `testdata/benchmarks/**`（品質基準）不檢查——原典什麼字形就是什麼字形，基準裡的 `persona.evidence` 是逐字引文、`aliases` 收的是原文出現過的稱謂，兩者都跟著語料走。
+- 修正《金瓶梅》角色基準的「網絡」為「網路」（由擴大後的掃描範圍找出）。
+- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 249 項、`novel-script` 154 項、`novel-storyboard` 254 項、`upstream-sync` 96 項及單頁報告 92 項自測全部通過，共 1,402 項。
 
 ## Fork 1.9.0 — 2026-08-23
 

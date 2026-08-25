@@ -14,6 +14,7 @@ import {
   TERM_RULES,
   allowlistFor,
   collectFiles,
+  isSkipped,
   isTextPath,
   scanText,
 } from './check-zh-tw.mjs';
@@ -144,6 +145,20 @@ ${js('on')}`).length, 0,
 }
 // zh-tw-lint: on
 
+// ── 整份跳過的路徑 ──────────────────────────────────────────
+{
+  ok(isSkipped('testdata/corpora/classic-chinese-novels/紅樓夢.txt'),
+    '原始語料整份跳過——原典什麼字形就是什麼字形');
+  ok(isSkipped('testdata/benchmarks/novel-characters/classic-chinese-novels/紅樓夢-主要角色/紅樓夢-主要角色-cast.json'),
+    '品質基準整份跳過——引文與別名以原文為準');
+  ok(!isSkipped('testdata/README.md'), 'testdata 的說明文件照常檢查');
+  ok(!isSkipped('skills/novel-outline/README.md'), 'skill 文件照常檢查');
+  // zh-tw-lint: off
+  eq(scanText('testdata/corpora/x.txt', '这是简体原文').length, 0, '跳過的檔案零命中');
+  eq(scanText('testdata/README.md', '这是简体原文').length, 1, '沒跳過的照常抓');
+  // zh-tw-lint: on
+}
+
 // ── 檔案清單 ────────────────────────────────────────────────
 {
   ok(isTextPath('a/b.md') && isTextPath('a/b.mjs') && isTextPath('a/b.json'), '文字副檔名收進來');
@@ -153,6 +168,12 @@ ${js('on')}`).length, 0,
   ok(all.length > 50, '全 repository 掃得到五十個以上的文字檔');
   ok(all.every(isTextPath), '清單裡不會混進二進位檔案');
   ok(!all.some((f) => f.endsWith('.webp')), '封面圖不在清單裡');
+
+  // git 預設會把非 ASCII 路徑轉義成 ä¸­ 這種形式，那樣的路徑 stat 不到，
+  // 中文檔名的檔案會被靜默跳過。這條盯著 -z 別被改回去。
+  ok(all.some((f) => /[一-鿿]/.test(f)), '中文檔名的檔案有進清單');
+  ok(all.some((f) => f.endsWith('渡口-cast.json')), '範例資料掃得到');
+  ok(all.every((f) => !/\\[0-7]{3}/.test(f)), '路徑沒有被 git 轉義');
 
   const scoped = collectFiles({ root, paths: ['skills/upstream-sync'] });
   ok(scoped.length >= 2 && scoped.every((f) => f.startsWith('skills/upstream-sync/')),

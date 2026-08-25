@@ -78,6 +78,13 @@ export const TERM_RULES = [
 //   2. 自測裡驗證該語系輸出的斷言
 // 另外 ja 語系字串用的是日文新字體，與簡體字形重疊，一併排除。
 export const ALLOWLIST = [
+  // 原始語料是輸入不是產物：原典什麼字形就是什麼字形，改了它引文就不是證據了。
+  { path: 'testdata/corpora/**', skip: true },
+  // 品質基準是已驗收的產物快照，整份以原文為準：`persona.evidence` 是逐字引文
+  // （`validate` 會比對），`aliases` 收的是原文出現過的稱謂形式，歸併靠它比對。
+  // 這兩處的字形跟著語料走，不跟著介面語言走。基準本身的用詞由 novel-characters
+  // 自己的 validate 把關，不是這支腳本的職責。
+  { path: 'testdata/benchmarks/**', skip: true },
   {
     path: 'skills/novel-characters/scripts/novel-characters.mjs',
     block: { start: /^\s*zh: \{\s*$/, end: /^\s*(('zh-TW')|zh-TW|en|ja): \{\s*$/ },
@@ -107,11 +114,21 @@ export function isTextPath(p) {
 /** 取出適用於這個檔案的白名單規則。 */
 export function allowlistFor(relPath) {
   const norm = relPath.split(path.sep).join('/');
-  return ALLOWLIST.filter((r) => r.path === '**' || r.path === norm);
+  return ALLOWLIST.filter((r) => {
+    if (r.path === '**') return true;
+    if (r.path.endsWith('/**')) return norm.startsWith(r.path.slice(0, -2));
+    return r.path === norm;
+  });
+}
+
+/** 整份跳過的檔案（原始語料這類「輸入不是產物」的東西）。 */
+export function isSkipped(relPath) {
+  return allowlistFor(relPath).some((r) => r.skip);
 }
 
 /** 掃一份文字，回傳命中清單。跨行的白名單區塊在這裡維持狀態。 */
 export function scanText(relPath, text) {
+  if (isSkipped(relPath)) return [];
   const rules = allowlistFor(relPath);
   const lineRules = rules.filter((r) => r.line);
   const blockRules = rules.filter((r) => r.block);
@@ -149,13 +166,19 @@ function git(args, cwd) {
   return execFileSync('git', args, { cwd, encoding: 'utf8' }).trim();
 }
 
+// 列路徑一律加 -z：git 預設會把非 ASCII 路徑加引號並轉義成 \344\270\255 這種
+// 形式，直接拿來當路徑會 stat 失敗，中文檔名的檔案就被靜默跳過了。
+function gitPaths(args, cwd) {
+  return execFileSync('git', [...args, '-z'], { cwd, encoding: 'utf8' }).split('\0').filter(Boolean);
+}
+
 /** 決定要掃哪些檔案：全部受版本控制的文字檔，或與某個 ref 有差異的部分。 */
 export function collectFiles({ root, since = null, paths = [] }) {
   // 沒指定 ref 時連未追蹤的新檔案也掃——合併途中新增的檔案同樣要合規。
   const listed = since
-    ? git(['diff', '--name-only', '--diff-filter=ACMR', since], root)
-    : git(['ls-files', '--cached', '--others', '--exclude-standard'], root);
-  let files = [...new Set(listed.split('\n').filter(Boolean).filter(isTextPath))];
+    ? gitPaths(['diff', '--name-only', '--diff-filter=ACMR', since], root)
+    : gitPaths(['ls-files', '--cached', '--others', '--exclude-standard'], root);
+  let files = [...new Set(listed.filter(isTextPath))];
   if (paths.length) {
     const wanted = paths.map((p) => path.relative(root, path.resolve(p)).split(path.sep).join('/'));
     files = files.filter((f) => wanted.some((w) => f === w || f.startsWith(`${w}/`)));
