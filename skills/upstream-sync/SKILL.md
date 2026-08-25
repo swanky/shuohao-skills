@@ -120,11 +120,13 @@ git merge upstream/main
 
 日文語系表（`ja`）用的是日文新字體，字形與簡體重疊，**同樣不要動**。
 
-轉完用腳本掃一遍，只掃這次合併碰過的檔案：
+轉完用腳本掃一遍。合併剛做完時 `ORIG_HEAD` 就是合併前的 HEAD，用它掃到的正是這次合併碰過的檔案：
 
 ```bash
-node {baseDir}/scripts/check-zh-tw.mjs --since $(git merge-base HEAD upstream/main)
+node {baseDir}/scripts/check-zh-tw.mjs --since ORIG_HEAD
 ```
+
+想連 fork 相對上游的全部差異一起看（範圍更大、不會漏），就掃 `upstream/main`；不帶 `--since` 則是全 repository，連還沒 `git add` 的新檔案也掃。
 
 輸出分兩級：`✗` 是漏改，必須修到零；`·` 是待確認的用詞，逐條看過再決定。文件裡本來就要寫出反例的地方（用詞對照表那一欄），用標記豁免：
 

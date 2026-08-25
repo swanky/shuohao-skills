@@ -67,7 +67,7 @@ metadata:
 2. **章節目錄 + 簡介**
 3. 全文**分卷摘要**（Step 2）
 
-**禁止憑書名腦補內容**——一切判斷基於給到的文字。落地手段：`adaptation.keep` 的關鍵取捨要附 `evidence`（原文逐字片段）。
+**禁止憑書名腦補內容**——一切判斷基於給到的文字。落地手段：`adaptation.keep` 的關鍵取捨要附 `evidence`（原文逐字片段），Step 6 的 `validate` 帶上原文就會逐條比對。
 
 直接粘正文的先落成 .txt。輸出目錄：使用者指定就用，沒指定用原書同級目錄。
 
@@ -111,8 +111,10 @@ node {baseDir}/scripts/novel-outline.mjs validate <workdir>/outline.json --stage
 ### Step 6 — 校驗 ⛔ 不能跳
 
 ```bash
-node {baseDir}/scripts/novel-outline.mjs validate <輸出目錄>/<書名>-outline.json
+node {baseDir}/scripts/novel-outline.mjs validate <輸出目錄>/<書名>-outline.json <book.txt>
 ```
+
+**帶上原文**，`adaptation.keep` 的每條 `evidence` 會逐字比對原文，對不上就報錯——「禁止憑書名腦補」靠這道門落地，不靠自覺。原文省略時這項跳過（既有大綱不必補原文才能校驗）。
 
 14 道品質門全部是程式碼，不是給你讀的清單：主角組 1–5 人、重要配角 ≤ 10、功能性角色 ≤ 10、主場景不超上限（隨集數動態，60 集 → 10）、敘事道具 ≤ 8 件、一次性場景有規避方案、爽點間隔 ≤ 3 集無真空、第 1 集有鉤子、大爆點不壓最後一集、每集三欄齊全、三人同框有拆解、生成難點進預警、引用完整無失業角色無空轉場景無零集道具、敘述體無對白。
 
@@ -171,7 +173,7 @@ node {baseDir}/scripts/novel-outline.mjs render <outline.json> --html > outline-
 node {baseDir}/scripts/selftest.mjs
 ```
 
-249 項斷言，不調模型、不花額度。14 道品質門每一道都有擊穿用例——證明它真的會攔。改完腳本先跑這個。
+256 項斷言，不調模型、不花額度。14 道品質門每一道都有擊穿用例——證明它真的會攔。改完腳本先跑這個。
 
 ## 自帶樣例
 

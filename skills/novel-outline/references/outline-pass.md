@@ -30,7 +30,9 @@
 寫完跑：
 
 ```bash
-node scripts/novel-outline.mjs validate <outline.json> --stage beats
+node scripts/novel-outline.mjs validate <outline.json> <book.txt> --stage beats
 ```
+
+帶上原文，`adaptation.keep` 的 `evidence` 會逐字比對——引文編不出來就過不了這關。
 
 有違規逐條修，改完重跑，直到通過才允許進分集。

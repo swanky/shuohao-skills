@@ -12,7 +12,8 @@
 - 修正 `check-zh-tw.mjs` 漏掃中文檔名檔案的問題：`git ls-files` 預設會把非 ASCII 路徑轉義成 `ä¸­` 這種形式，那樣的路徑 stat 不到而被靜默跳過，導致全部範例資料與品質基準（31 個檔案）從未被檢查。改用 `-z` 以 NUL 分隔，掃描範圍由 80 檔增為 111 檔。
 - 新增整份跳過規則：`testdata/corpora/**`（原始語料）與 `testdata/benchmarks/**`（品質基準）不檢查——原典什麼字形就是什麼字形，基準裡的 `persona.evidence` 是逐字引文、`aliases` 收的是原文出現過的稱謂，兩者都跟著語料走。
 - 修正《金瓶梅》角色基準的「網絡」為「網路」（由擴大後的掃描範圍找出）。
-- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 249 項、`novel-script` 154 項、`novel-storyboard` 254 項、`upstream-sync` 96 項及單頁報告 92 項自測全部通過，共 1,402 項。
+- `novel-outline` 的 `validate` 新增原文比對：`validate <outline.json> <book.txt>` 會逐條檢查 `adaptation.keep[].evidence` 是不是原文逐字片段。`SKILL.md` 一直把 evidence 寫成「禁止憑書名腦補」的落地手段，但先前沒有任何程式在查，模型編一段話也照樣通過。比對前去掉所有空白，與 `novel-characters` 的引文校驗同一套做法，原文定寬排版斷行不會誤判；不給原文則跳過這項，既有大綱不受影響。
+- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 256 項、`novel-script` 154 項、`novel-storyboard` 254 項、`upstream-sync` 96 項及單頁報告 92 項自測全部通過，共 1,409 項。
 
 ## Fork 1.9.0 — 2026-08-23
 

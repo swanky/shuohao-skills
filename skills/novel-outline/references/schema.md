@@ -28,7 +28,7 @@
 
 ## adaptation 改編說明
 
-`core` 一句話核心，必填。`keep` / `cut` / `merge` 每條 `{what, why}`，`keep` 至少一條；**`adaptMode` 不是忠實時 `cut` 不能為空**。`keep` 可帶 `evidence`——**原文逐字片段**，禁止憑書名腦補的對策就在這：關鍵取捨要能指回原文。`risks` 每條 `{what, plan}`。
+`core` 一句話核心，必填。`keep` / `cut` / `merge` 每條 `{what, why}`，`keep` 至少一條；**`adaptMode` 不是忠實時 `cut` 不能為空**。`keep` 可帶 `evidence`——**原文逐字片段**，禁止憑書名腦補的對策就在這：關鍵取捨要能指回原文。`validate <outline.json> <book.txt>` 會逐條比對，改寫過的引文（意思對但不是逐字）會被當場擋下；不給原文則跳過這項。`risks` 每條 `{what, plan}`。
 
 兩個可選的**決策補註**，報告的「關鍵決策」區塊會展示：
 
@@ -97,7 +97,7 @@
 ## 校驗
 
 ```bash
-node scripts/novel-outline.mjs validate outline.json --stage skeleton|beats|full
+node scripts/novel-outline.mjs validate outline.json [book.txt] --stage skeleton|beats|full
 node scripts/novel-outline.mjs checkup outline.json   # 只列印 14 道品質門 ✓/✗
 ```
 

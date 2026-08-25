@@ -103,7 +103,7 @@ node scripts/novel-outline.mjs assets outline.json              # 資產清單 J
 SKILL.md                 給 agent 讀的工作流
 scripts/
   novel-outline.mjs      chunk / validate / checkup / render / assets
-  selftest.mjs           249 項斷言，不調模型
+  selftest.mjs           256 項斷言，不調模型
 references/
   schema.md              outline.json 結構 + 硬規則
   volume-pass.md         分卷摘要怎麼寫
@@ -122,6 +122,6 @@ assets/
 node scripts/selftest.mjs
 ```
 
-249 項斷言，覆蓋分卷 / 校驗 / 品質門逐項擊穿 / 資產彙總 / 渲染（中英兩套介面）/ 匯出。不調模型、不花額度、1 秒跑完。改完腳本先跑這個。
+256 項斷言，覆蓋分卷 / 校驗（含 evidence 逐字比對原文）/ 品質門逐項擊穿 / 資產彙總 / 渲染（中英兩套介面）/ 匯出。不調模型、不花額度、1 秒跑完。改完腳本先跑這個。
 
 **只在 macOS + Node 24 上實測過。** 程式碼沒有平臺相關呼叫，Linux 和更低版本 Node 理論上沒問題，但**沒驗過**。

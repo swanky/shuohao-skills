@@ -691,4 +691,30 @@ ok(enMd.includes('**[Hook]**') && !enMd.includes('**【鉤子】**'), 'EN MD 鉤
 
 eq(DEFAULT_PER_VOLUME, 15, '預設每卷 15 章');
 
+// ── evidence 比對原文 ──────────────────────────────────────
+// 「禁止憑書名腦補」的落地手段：給了原文就逐條查 adaptation.keep 的引文
+// 是不是真的出自原文。沒給原文照舊跳過，免得逼所有既有大綱都得帶原文。
+{
+  const SRC = ['霧一厚，連自己的手都看不清。', '她把一隻舊皮箱抱在懷裡，指節因為用力而發白。'].join('\n');
+  const evidenceProblems = (doc, src) =>
+    validateOutline(doc, 'full', src).filter((x) => x.includes('evidence'));
+
+  eq(evidenceProblems(FIXTURE, null).length, 0, '不給原文時不查 evidence，既有大綱照舊通過');
+  eq(evidenceProblems(FIXTURE, SRC).length, 0, '樣例的兩條 evidence 都是原文逐字片段');
+  ok(validateOutline(FIXTURE, 'full', SRC).length === 0, '帶原文比對後樣例仍然全部通過');
+
+  const faked = JSON.parse(JSON.stringify(FIXTURE));
+  faked.adaptation.keep[0].evidence = '霧氣很濃，伸手不見五指。';
+  const bad = evidenceProblems(faked, SRC);
+  eq(bad.length, 1, '改寫過的引文抓得出來——意思對但不是逐字');
+  ok(bad[0].includes(faked.adaptation.keep[0].what), '報錯點名是哪一條 keep');
+
+  const partial = JSON.parse(JSON.stringify(FIXTURE));
+  delete partial.adaptation.keep[0].evidence;
+  eq(evidenceProblems(partial, SRC).length, 0, 'evidence 是可選欄位，沒寫的條目不查');
+
+  // 原文以 CRLF 存檔時（Windows 上 git 取出的常態）不能誤判
+  eq(evidenceProblems(FIXTURE, SRC.split('\n').join('\r\n')).length, 0, 'CRLF 原文不影響比對');
+}
+
 console.log(`✓ ${passed} 項自測全部通過`);

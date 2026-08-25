@@ -360,7 +360,7 @@ export function gateReport(outline) {
 
 export const STAGES = ['skeleton', 'beats', 'full'];
 
-export function validateOutline(outline, stage = 'full') {
+export function validateOutline(outline, stage = 'full', source = null) {
   const problems = [];
   const p = (msg) => problems.push(msg);
   if (!outline || typeof outline !== 'object') return ['outline 不是物件'];
@@ -395,6 +395,20 @@ export function validateOutline(outline, stage = 'full') {
     for (const [key, fields] of [['keep', ['what', 'why']], ['cut', ['what', 'why']], ['merge', ['what', 'why']], ['risks', ['what', 'plan']]]) {
       for (const item of ad[key] ?? []) {
         for (const f of fields) if (!thText(item?.[f])) p(`adaptation.${key} 裡有條目缺 ${f}`);
+      }
+    }
+    // evidence 是「禁止憑書名腦補」的落地手段。給了原文就逐條比對——
+    // 對不上就是編的。沒給原文照舊跳過，validate 不強制要求附原文。
+    if (source) {
+      // 比對前把空白全部拿掉：原文常是定寬排版，一句話中間就斷行，
+      // 逐字連續指的是字，不是連換行位置都要一樣。與 novel-characters 同一套做法。
+      const flat = (s) => String(s).replace(/\s+/g, '');
+      const src = flat(source);
+      for (const item of ad.keep ?? []) {
+        if (!item?.evidence) continue;
+        if (!src.includes(flat(item.evidence))) {
+          p(`adaptation.keep「${item.what ?? '?'}」的 evidence 在原文裡找不到——引文必須是原文逐字連續片段`);
+        }
       }
     }
     // 決策補註（可選）：給了就不能是空殼
@@ -1606,17 +1620,19 @@ function main(argv) {
   }
 
   if (cmd === 'validate') {
-    const [path] = rest;
-    if (!path) throw new Error('用法：validate <outline.json> [--stage skeleton|beats|full]');
+    const [path, book] = rest.filter((a) => !a.startsWith('--') && a !== flag(rest, '--stage', null));
+    if (!path) throw new Error('用法：validate <outline.json> [book.txt] [--stage skeleton|beats|full]');
     const stage = flag(rest, '--stage', 'full');
     if (!STAGES.includes(stage)) throw new Error(`--stage 只能是 ${STAGES.join('/')}`);
-    const problems = validateOutline(readJson(path), stage);
+    // 給了原文就逐條比對 adaptation.keep 的 evidence 是否真的出自原文。
+    const source = book ? readFileSync(resolve(book), 'utf8') : null;
+    const problems = validateOutline(readJson(path), stage, source);
     if (problems.length) {
       console.error(`✗ ${problems.length} 處違規（stage=${stage}）：\n`);
       for (const x of problems) console.error('  ' + x);
       process.exit(1);
     }
-    console.log(`✓ 通過校驗（stage=${stage}）`);
+    console.log(`✓ 通過校驗（stage=${stage}${source ? '，evidence 已比對原文' : ''}）`);
     return;
   }
 
