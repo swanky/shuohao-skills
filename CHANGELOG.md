@@ -7,7 +7,9 @@
 - 白名單涵蓋 `novel-characters` 的 `STRINGS.zh` 語系表、`ja` 語系表與驗證簡體輸出的自測斷言；文件裡的反例表格用 `zh-tw-lint: off`／`on` 標記豁免。
 - 修正 `novel-characters/README.en.md` 殘留的簡體人名（陆行远 → 陸行遠），由新檢查腳本掃出。
 - `CLAUDE.md` 的同步流程由 rebase 改為 merge：這個 fork 的同步歷史本來就是 merge commit 且已推上 `origin`，rebase 會改寫已發布的歷史。
-- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 249 項、`novel-script` 154 項、`novel-storyboard` 254 項、`upstream-sync` 76 項及單頁報告 92 項自測全部通過，共 1,382 項。
+- 修正全 repository 把品質門的「通过（合格）」誤譯成「透過」的問題，共 26 個檔案：報告介面文案（`gatesPass`）、CLI 訊息、自測輸出與文件一律改成「通過」。`check-zh-tw.mjs` 加了對應的正則規則，這類誤譯以後會被當場擋下。
+- 修復 `novel-characters/SKILL.md` 兩張用語表：先前正體化時把「別寫」那一欄也轉成正體，導致左右兩欄相同、一簡對多繁表出現「公**裡**」「**醜**角」等錯字，對模型是反效果。反例欄恢復簡體並加上豁免標記。
+- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 249 項、`novel-script` 154 項、`novel-storyboard` 254 項、`upstream-sync` 87 項及單頁報告 92 項自測全部通過，共 1,393 項。
 
 ## Fork 1.9.0 — 2026-08-23
 

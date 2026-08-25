@@ -310,7 +310,7 @@ eq(slug(''), 'character', '空名有兜底');
 
 /* ---------------- validateCast ---------------- */
 
-eq(validateCast(CAST, SOURCE).length, 0, '自帶樣例透過全部校驗');
+eq(validateCast(CAST, SOURCE).length, 0, '自帶樣例通過全部校驗');
 ok(validateCast([], SOURCE).length > 0, '空 cast 報錯');
 
 const clone = () => JSON.parse(JSON.stringify(CAST));
@@ -644,7 +644,7 @@ ok(isChinese('zh-TW') && isChinese('zh') && !isChinese('ja'), 'isChinese 認地�
 eq(DEFAULT_LANG, 'zh-TW', '預設語言是台灣正體');
 eq(strings('zh-TW').synopsis, '故事摘要', 'strings(zh-TW)');
 // zh 的各地區變體走同一條中文校驗，不該因為語言碼帶地區就報錯
-eq(validateCast(CAST, SOURCE, 'zh-TW').length, 0, 'zh-TW 校驗透過');
+eq(validateCast(CAST, SOURCE, 'zh-TW').length, 0, 'zh-TW 校驗通過');
 
 // 日語內建
 const ja = renderHtml(CAST, '渡し場', 'あらすじの本文', 'ja');
@@ -791,11 +791,11 @@ ok(
   validateCast(ghibliish, SOURCE, 'zh', 'realistic').some((x) => x.includes('自相矛盾')),
   'realistic 卻禁 photorealistic 會報錯',
 );
-eq(validateCast(CAST, SOURCE, 'zh', 'realistic').length, 0, '樣例按 realistic 校驗透過');
+eq(validateCast(CAST, SOURCE, 'zh', 'realistic').length, 0, '樣例按 realistic 校驗通過');
 
 // 同劇角色畫風必須一致——模型曾按各自服裝/年齡寫出四套畫風，同框像四個畫師
-// 樣例已統一，應透過；故意改掉一個角色的 image.style 必須報錯；僅空白差異不算不一致
-eq(validateCast(CAST, SOURCE, 'zh', 'realistic').length, 0, '樣例四個角色畫風統一，校驗透過');
+// 樣例已統一，應通過；故意改掉一個角色的 image.style 必須報錯；僅空白差異不算不一致
+eq(validateCast(CAST, SOURCE, 'zh', 'realistic').length, 0, '樣例四個角色畫風統一，校驗通過');
 {
   const split = clone();
   split[1].image.style = '吉卜力動畫風，明快平塗';
@@ -865,7 +865,7 @@ for (const c of photorealCast) {
   c.image.negativePrompt = STYLE_PRESETS.photoreal.negative;
   c.image.sheet = `${STYLE_PRESETS.photoreal.render}. ${c.image.sheet}`;
 }
-eq(validateCast(photorealCast, SOURCE, 'zh-TW', 'photoreal').length, 0, 'photoreal 角色卡校驗透過');
+eq(validateCast(photorealCast, SOURCE, 'zh-TW', 'photoreal').length, 0, 'photoreal 角色卡校驗通過');
 ok(
   validateCast(clone(), SOURCE, 'zh', 'photoreal').some((x) => x.includes('必須禁 illustration')),
   '樣例的負向提示詞沒禁 illustration，按 photoreal 校驗會報錯',
@@ -956,4 +956,4 @@ ok(/class="copy-img" data-img="images\/x-sheet\.png"/.test(sheetHtml), '圖上�
 ok(sheetHtml.includes('ClipboardItem'), '複製的是圖片本身而不是路徑');
 ok(/blob\.type !== 'image\/png'/.test(sheetHtml), '非 PNG 先轉碼——Safari 只認 image/png');
 
-console.log(`✓ ${passed} 項自測全部透過`);
+console.log(`✓ ${passed} 項自測全部通過`);

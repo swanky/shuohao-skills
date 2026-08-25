@@ -85,7 +85,7 @@ references/
   sheet.md               設定圖生圖的 codex 呼叫契約
   report-style.md        報告的設計約定
 examples/
-  渡口-art.json           《渡口》三場景 + 兩件道具樣例，全部品質門透過
+  渡口-art.json           《渡口》三場景 + 兩件道具樣例，全部品質門通過
 assets/
   report.webp            報告截圖
 ```

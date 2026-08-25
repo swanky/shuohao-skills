@@ -95,7 +95,7 @@ references/
   script-pass.md         寫戲：硬規則、手感規則、常見病
   report-style.md        報告的設計約定
 examples/
-  渡口-script.json        《渡口》全 6 集完整劇本（每集冷開場兌現鉤子），全部品質門透過，也是自測夾具
+  渡口-script.json        《渡口》全 6 集完整劇本（每集冷開場兌現鉤子），全部品質門通過，也是自測夾具
 assets/
   report.webp            報告截圖
 ```

@@ -77,10 +77,10 @@ eq(slug('a/b:c'), 'a-b-c', '危險字元替換');
 
 /* ---------------- 夾具本身 ---------------- */
 
-eq(validateOutline(FIXTURE).length, 0, '自帶樣例透過 full 校驗');
-eq(validateOutline(FIXTURE, 'skeleton').length, 0, '樣例透過 skeleton 校驗');
-eq(validateOutline(FIXTURE, 'beats').length, 0, '樣例透過 beats 校驗');
-ok(gateReport(FIXTURE).every((g) => g.ok), '樣例全部品質門透過');
+eq(validateOutline(FIXTURE).length, 0, '自帶樣例通過 full 校驗');
+eq(validateOutline(FIXTURE, 'skeleton').length, 0, '樣例通過 skeleton 校驗');
+eq(validateOutline(FIXTURE, 'beats').length, 0, '樣例通過 beats 校驗');
+ok(gateReport(FIXTURE).every((g) => g.ok), '樣例全部品質門通過');
 eq(gateReport(FIXTURE).length, 14, '品質門共 14 項');
 
 /* ---------------- props 敘事道具 ---------------- */
@@ -94,15 +94,15 @@ eq(gateReport(FIXTURE).length, 14, '品質門共 14 項');
   ok(gate(FIXTURE, 'refs').ok, '樣例的道具引用完整');
   ok(gate(FIXTURE, 'refs').label.includes('道具'), '有 props 時 refs 門的措辭點出道具');
 
-  // --- 向後相容：沒有 props 欄位的舊大綱必須照常透過，不是報錯 ---
+  // --- 向後相容：沒有 props 欄位的舊大綱必須照常通過，不是報錯 ---
   // 這條是這次改動最要緊的一條斷言。存量 outline.json 一份都沒有 props，
   // 如果這兩道門判失敗，等於所有舊大綱一升級就全紅。
   const old = clone(); delete old.props;
   for (const e of old.episodes) delete e.propIds;
-  eq(validateOutline(old).length, 0, '舊大綱沒有 props 照常透過 validate');
+  eq(validateOutline(old).length, 0, '舊大綱沒有 props 照常通過 validate');
   ok(gate(old, 'prop-cap').ok, '舊大綱的道具上限門跳過而不是失敗');
   ok(gate(old, 'prop-cap').detail.includes('跳過'), '跳過要明說，不靜默');
-  ok(gate(old, 'refs').ok, '舊大綱的引用門照常透過');
+  ok(gate(old, 'refs').ok, '舊大綱的引用門照常通過');
   ok(!gate(old, 'refs').label.includes('道具'), '沒有 props 時 refs 門的措辭不提道具');
   eq(gateReport(old).length, 14, '舊大綱的門數一樣是 14，跳過不等於少一道門');
 
@@ -595,8 +595,8 @@ ok(html.includes('人群 ×1（第 2 集）'), '折算錶帶生成難點明細')
 
 ok((html.match(/class="gate"/g) || []).length === 1, '品質門清單');
 eq((html.match(/<li class="ok">/g) || []).length, 14, '14 項品質門全 ✓');
-ok(html.includes('全部透過'), '透過時有總結行');
-ok(html.includes('gatepill pass'), '頁首徽章是透過態');
+ok(html.includes('全部通過'), '通過時有總結行');
+ok(html.includes('gatepill pass'), '頁首徽章是通過態');
 
 // 品質門失敗也要渲染出來——體檢模式靠這個給診斷
 {
@@ -691,4 +691,4 @@ ok(enMd.includes('**[Hook]**') && !enMd.includes('**【鉤子】**'), 'EN MD 鉤
 
 eq(DEFAULT_PER_VOLUME, 15, '預設每卷 15 章');
 
-console.log(`✓ ${passed} 項自測全部透過`);
+console.log(`✓ ${passed} 項自測全部通過`);

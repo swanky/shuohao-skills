@@ -21,7 +21,7 @@ node scripts/check-zh-tw.mjs                          # 全部受版本控制的
 node scripts/check-zh-tw.mjs --since upstream/main    # 只掃與該 ref 有差異的檔案
 node scripts/check-zh-tw.mjs --report                 # 列出全部命中，一律 exit 0
 node scripts/check-zh-tw.mjs --json                   # 給其他腳本取用
-node scripts/selftest.mjs                             # 76 項自測，不呼叫模型，約一秒
+node scripts/selftest.mjs                             # 87 項自測，不呼叫模型，約一秒
 ```
 
 命中分兩級：`✗` 是漏改，必須修到零，會讓腳本 exit 1；`·` 是語境上偶爾成立的用詞，只提示，不影響結束碼。
@@ -52,5 +52,5 @@ upstream-sync/
 ├── references/terminology.md   用詞對照、一簡對多繁、四處例外
 └── scripts/
     ├── check-zh-tw.mjs         確定性用詞檢查，零依賴
-    └── selftest.mjs            76 項自測，含反例
+    └── selftest.mjs            87 項自測，含反例
 ```

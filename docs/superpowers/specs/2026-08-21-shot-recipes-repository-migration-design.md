@@ -109,6 +109,6 @@ rg 'skills/shot-recipes|\.\./shot-recipes' README.md README.en.md skills
 
 ## 失敗與恢復
 
-在新儲存庫全部測試透過併成功推送前，不提交舊儲存庫的刪除。遷移期間舊儲存庫原始內容仍在 Git 歷史中，
+在新儲存庫全部測試通過並成功推送前，不提交舊儲存庫的刪除。遷移期間舊儲存庫原始內容仍在 Git 歷史中，
 即使檔案移動或驗證失敗，也能從 `main` 恢復；使用者現有未提交內容不透過 stash、reset 或 checkout
 改寫。

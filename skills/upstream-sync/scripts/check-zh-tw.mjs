@@ -61,6 +61,14 @@ export const TERM_RULES = [
   { bad: '性格', good: '個性', level: 'warn' },
   { bad: '計劃', good: '計畫', level: 'warn' },
   { bad: '搜索', good: '搜尋', level: 'warn' },
+  // 「通过」最容易一律換成「透過」。能換成「經由」才是「透過」，
+  // 能換成「合格」就是「通過」——品質門、校驗、測試講的都是後者。
+  {
+    pattern: /(全部|視為|直到|照常|樣例|校驗|測試|品質門)透過|透過(校驗|測試|全部|態|綠)/,
+    bad: '透過',
+    good: '通過（能換成「合格」就是「通過」）',
+    level: 'error',
+  },
 ];
 // zh-tw-lint: on
 
@@ -129,7 +137,7 @@ export function scanText(relPath, text) {
       hits.push({ file: relPath, line: i + 1, level: 'error', kind: 'simplified', found: simplified.join(''), hint: '簡體字，改成正體' });
     }
     for (const rule of TERM_RULES) {
-      if (line.includes(rule.bad)) {
+      if (rule.pattern ? rule.pattern.test(line) : line.includes(rule.bad)) {
         hits.push({ file: relPath, line: i + 1, level: rule.level, kind: 'term', found: rule.bad, hint: `改成「${rule.good}」` });
       }
     }

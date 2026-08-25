@@ -66,6 +66,16 @@ function eq(actual, expected, msg) {
   const warn = scanText('docs/x.md', '這個功能支持自訂搜索條件。');
   ok(warn.length === 2 && warn.every((h) => h.level === 'warn'), '待確認用詞是 warn 級');
 
+  // 「通过」誤譯成「透過」是這個 repository 最常犯的一種，用正則規則抓。
+  ok(TERM_RULES.some((r) => r.pattern), '有正則形式的規則');
+  for (const bad of ['品質門全部透過', '樣例透過校驗', '自測全部透過', '沒寫照常透過', '頁首徽章透過態']) {
+    const hit = scanText('docs/x.md', bad);
+    ok(hit.length === 1 && hit[0].level === 'error', `「${bad}」是誤譯，抓得到`);
+  }
+  for (const good of ['品質門全部通過', '樣例通過校驗', '透過管道打聽', '透過女婿引薦', '經由這個介面透過驗證流程']) {
+    eq(scanText('docs/x.md', good).length, 0, `「${good}」用法正確，不誤判`);
+  }
+
   const multi = scanText('docs/x.md', '第一行乾淨\n第二行有个简体\n第三行也乾淨');
   eq(multi.length, 1, '只有出問題的那一行被回報');
   eq(multi[0].line, 2, '回報的行號對得上原檔');

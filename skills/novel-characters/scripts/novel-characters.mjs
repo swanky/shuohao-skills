@@ -2006,7 +2006,7 @@ function main(argv) {
       for (const p of problems) console.error('  ' + p);
       process.exit(1);
     }
-    console.log(`✓ ${characters.length} 個角色全部透過校驗（lang=${lang}, style=${style}）`);
+    console.log(`✓ ${characters.length} 個角色全部通過校驗（lang=${lang}, style=${style}）`);
     return;
   }
 

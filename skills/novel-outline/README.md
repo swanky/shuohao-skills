@@ -111,7 +111,7 @@ references/
   episode-pass.md        分集梗概：三欄、分批、敘述體
   report-style.md        報告的設計約定
 examples/
-  渡口-outline.json       《渡口》6 集微型大綱，全部品質門透過，也是自測夾具
+  渡口-outline.json       《渡口》6 集微型大綱，全部品質門通過，也是自測夾具
 assets/
   report.webp            報告截圖
 ```

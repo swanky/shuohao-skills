@@ -224,8 +224,8 @@ export function gateReport(doc, ctx = {}) {
     }
   }
 
-  const SKIP_OUTLINE = '未提供 outline.json，本門跳過（視為透過）';
-  const SKIP_ART = '未提供 art.json，本門跳過（視為透過）';
+  const SKIP_OUTLINE = '未提供 outline.json，本門跳過（視為通過）';
+  const SKIP_ART = '未提供 art.json，本門跳過（視為通過）';
 
   add('duration', `每集時長在目標 ±${Math.round(params.tolerance * 100)}% 內`, eps.length > 0 && bad.duration.length === 0, bad.duration.join('；'));
   add('line-length', `單句臺詞 ≤ ${params.maxLineChars} 字`, bad.lineLen.length === 0, bad.lineLen.join('；'));
@@ -358,11 +358,11 @@ const GATE_LABELS_EN = {
   'refs-scenes': 'Scenes / lighting / props audited against the art bible',
 };
 const GATE_SKIPS_EN = {
-    '未提供 outline.json，本門跳過（視為透過）': 'outline.json not provided — gate skipped (treated as passing)',
-    '未提供 art.json，本門跳過（視為透過）': 'art.json not provided — gate skipped (treated as passing)',
-    '未提供 script.json，本門跳過（視為透過）': 'script.json not provided — gate skipped (treated as passing)',
-    '未提供 outline/cast，本門跳過（視為透過）': 'outline/cast not provided — gate skipped (treated as passing)',
-    '未提供 cast.json，本門跳過（視為透過）': 'cast.json not provided — gate skipped (treated as passing)',
+    '未提供 outline.json，本門跳過（視為通過）': 'outline.json not provided — gate skipped (treated as passing)',
+    '未提供 art.json，本門跳過（視為通過）': 'art.json not provided — gate skipped (treated as passing)',
+    '未提供 script.json，本門跳過（視為通過）': 'script.json not provided — gate skipped (treated as passing)',
+    '未提供 outline/cast，本門跳過（視為通過）': 'outline/cast not provided — gate skipped (treated as passing)',
+    '未提供 cast.json，本門跳過（視為通過）': 'cast.json not provided — gate skipped (treated as passing)',
 };
 /** 報告裡的門文案：英文介面取對映，未命中或中文介面回落原文。 */
 const gateText = (g, lang) => {
@@ -383,7 +383,7 @@ const I18N = {
     epRange: (a, b) => (a === b ? `第 ${a} 集` : `第 ${a}–${b} 集`),
     exportJson: '匯出 JSON',
     gates: '品質門',
-    gatesPass: '全部透過',
+    gatesPass: '全部通過',
     gatesFail: (n) => `${n} 項未過`,
     gatePill: (okN, total) => `品質門 ${okN} / ${total}`,
     kpi: {
@@ -1030,7 +1030,7 @@ function main(argv) {
       const gates = gateReport(doc, ctx);
       for (const g of gates) console.log(`${g.ok ? '✓' : '✗'} ${g.label}${!g.ok && g.detail ? ` — ${g.detail}` : ''}`);
       const failedN = gates.filter((g) => !g.ok).length;
-      console.log(failedN ? `\n✗ ${failedN} 項未過` : '\n✓ 全部透過');
+      console.log(failedN ? `\n✗ ${failedN} 項未過` : '\n✓ 全部通過');
       if (failedN) process.exit(1);
       return;
     }
@@ -1042,7 +1042,7 @@ function main(argv) {
       process.exit(1);
     }
     const st = computeStats(doc);
-    console.log(`✓ ${st.totals.episodes} 集 / ${st.totals.scenes} 場 / ${st.totals.lines} 句臺詞全部透過校驗（預估 ${st.totals.estSeconds}s / 目標 ${st.totals.targetSeconds}s）`);
+    console.log(`✓ ${st.totals.episodes} 集 / ${st.totals.scenes} 場 / ${st.totals.lines} 句臺詞全部通過校驗（預估 ${st.totals.estSeconds}s / 目標 ${st.totals.targetSeconds}s）`);
     return;
   }
 

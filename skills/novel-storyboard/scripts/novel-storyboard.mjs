@@ -643,9 +643,9 @@ export function gateReport(board, ctx = {}) {
     }
   }
 
-  const SKIP_SCRIPT = '未提供 script.json，本門跳過（視為透過）';
-  const SKIP_NAMES = '未提供 outline/cast，本門跳過（視為透過）';
-  const SKIP_SHOTS = '未掛載配方卡庫（--shots <卡片目錄>），本門跳過（視為透過）';
+  const SKIP_SCRIPT = '未提供 script.json，本門跳過（視為通過）';
+  const SKIP_NAMES = '未提供 outline/cast，本門跳過（視為通過）';
+  const SKIP_SHOTS = '未掛載配方卡庫（--shots <卡片目錄>），本門跳過（視為通過）';
   const NO_RECIPE = '本批分鏡沒有引用配方';
 
   add('coverage', '劇本節拍被恰好一次、按順序、連續認領（分鏡級）', bad.coverage.length === 0, script ? bad.coverage.join('；') : SKIP_SCRIPT);
@@ -844,12 +844,12 @@ const GATE_LABELS_EN = {
   'shot-recipe': 'Referenced recipes exist, their must-phrases are in the frame prompt, multi-cut recipes run long enough',
 };
 const GATE_SKIPS_EN = {
-    '未提供 outline.json，本門跳過（視為透過）': 'outline.json not provided — gate skipped (treated as passing)',
-    '未提供 art.json，本門跳過（視為透過）': 'art.json not provided — gate skipped (treated as passing)',
-    '未提供 script.json，本門跳過（視為透過）': 'script.json not provided — gate skipped (treated as passing)',
-    '未提供 outline/cast，本門跳過（視為透過）': 'outline/cast not provided — gate skipped (treated as passing)',
-    '未提供 cast.json，本門跳過（視為透過）': 'cast.json not provided — gate skipped (treated as passing)',
-    '未掛載配方卡庫（--shots <卡片目錄>），本門跳過（視為透過）': 'no recipe card library mounted (--shots <cards dir>) — gate skipped (treated as passing)',
+    '未提供 outline.json，本門跳過（視為通過）': 'outline.json not provided — gate skipped (treated as passing)',
+    '未提供 art.json，本門跳過（視為通過）': 'art.json not provided — gate skipped (treated as passing)',
+    '未提供 script.json，本門跳過（視為通過）': 'script.json not provided — gate skipped (treated as passing)',
+    '未提供 outline/cast，本門跳過（視為通過）': 'outline/cast not provided — gate skipped (treated as passing)',
+    '未提供 cast.json，本門跳過（視為通過）': 'cast.json not provided — gate skipped (treated as passing)',
+    '未掛載配方卡庫（--shots <卡片目錄>），本門跳過（視為通過）': 'no recipe card library mounted (--shots <cards dir>) — gate skipped (treated as passing)',
     '本批分鏡沒有引用配方': 'no cut in this batch references a recipe',
 };
 /** 報告裡的門文案：英文介面取對映，未命中或中文介面回落原文。 */
@@ -869,7 +869,7 @@ const I18N = {
     docTitle: (s, a, b) => `${s} · 分鏡${a === b ? `（第 ${a} 集）` : `（第 ${a}–${b} 集）`}`,
     epRange: (a, b) => (a === b ? `第 ${a} 集` : `第 ${a}–${b} 集`),
     exportJson: '匯出 JSON',
-    gatesPass: '全部透過',
+    gatesPass: '全部通過',
     gatesFail: (n) => `${n} 項未過`,
     gatePill: (okN, total) => `品質門 ${okN} / ${total}`,
     kpi: {
@@ -1702,7 +1702,7 @@ function main(argv) {
       logGates(gates);
       for (const g of gates) console.log(`${g.ok ? '✓' : '✗'} ${g.label}${g.detail ? ` — ${g.detail}` : ''}`);
       const failedN = gates.filter((g) => !g.ok).length;
-      console.log(failedN ? `\n✗ ${failedN} 項未過` : '\n✓ 全部透過');
+      console.log(failedN ? `\n✗ ${failedN} 項未過` : '\n✓ 全部通過');
       // 建議景別／運鏡的偏離只在這裡提示，不進門——配方是語彙不是法條，
       // 而且可選掛載的東西一旦變嚴就沒人掛了
       if (ctx.recipes) {
@@ -1733,7 +1733,7 @@ function main(argv) {
       process.exit(1);
     }
     const st = computeStats(board, ctx.script);
-    console.log(`✓ ${st.episodes.length} 集 / ${st.totals.segments} 段 / ${st.totals.cuts} 個分鏡全部透過校驗（共 ${st.totals.seconds}s / 目標 ${st.totals.targetSeconds}s / ${st.batches.length} 個生成批次）`);
+    console.log(`✓ ${st.episodes.length} 集 / ${st.totals.segments} 段 / ${st.totals.cuts} 個分鏡全部通過校驗（共 ${st.totals.seconds}s / 目標 ${st.totals.targetSeconds}s / ${st.batches.length} 個生成批次）`);
     return;
   }
 

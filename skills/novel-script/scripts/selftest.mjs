@@ -87,8 +87,8 @@ ok(voEntry.lines[0].sceneId === 'S01', '臺詞條目帶場景');
 
 /* ---------------- 品質門：全綠基線 ---------------- */
 
-ok(gateReport(FIXTURE, CTX).every((g) => g.ok), '樣例帶上游全部門透過');
-ok(gateReport(FIXTURE).every((g) => g.ok), '不帶上游也全部透過（對賬門跳過）');
+ok(gateReport(FIXTURE, CTX).every((g) => g.ok), '樣例帶上游全部門通過');
+ok(gateReport(FIXTURE).every((g) => g.ok), '不帶上游也全部通過（對賬門跳過）');
 eq(gateReport(FIXTURE).length, 10, '十道門');
 
 /* ---------------- 品質門：逐門擊穿 ---------------- */
@@ -420,4 +420,4 @@ ok(html.includes('lang="zh"'), '預設報告 html lang 是 zh');
   ok(gateEn.includes('Episode duration within'), 'EN 報告的品質門標籤翻譯且閾值原樣保留');
   ok(!gateEn.includes('每集時長在目標'), 'EN 報告不再出現中文門標籤');
 }
-console.log(`✓ ${passed} 項自測全部透過`);
+console.log(`✓ ${passed} 項自測全部通過`);

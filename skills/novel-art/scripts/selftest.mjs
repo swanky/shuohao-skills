@@ -117,8 +117,8 @@ ok(castNamesOf({ characters: [] }).length === 0, '空 cast 不炸');
 
 /* ---------------- 夾具本身 ---------------- */
 
-eq(validateArt(FIXTURE, NAMES).length, 0, '自帶樣例透過校驗（含角色名檢查）');
-ok(gateReport(FIXTURE, NAMES).every((g) => g.ok), '樣例全部品質門透過');
+eq(validateArt(FIXTURE, NAMES).length, 0, '自帶樣例通過校驗（含角色名檢查）');
+ok(gateReport(FIXTURE, NAMES).every((g) => g.ok), '樣例全部品質門通過');
 eq(gateReport(FIXTURE).length, 11, '品質門共 11 道（場景 7 + 道具 4）');
 
 /* ---------------- 品質門逐項擊穿 ---------------- */
@@ -170,7 +170,7 @@ eq(ANCHOR_RANGE.join('-'), '3-5', '錨點範圍 3–5');
   d.scenes[0].image.prompt += ' where 老周 stands';
   ok(!gate(d, 'no-names', NAMES).ok, '提示詞裡出現角色名被攔');
   ok(gate(d, 'no-names', NAMES).detail.includes('老周'), '報錯點名是誰');
-  ok(gate(d, 'no-names').ok, '沒給 cast 時這道門跳過（視為透過）');
+  ok(gate(d, 'no-names').ok, '沒給 cast 時這道門跳過（視為通過）');
   ok(gate(d, 'no-names').detail.includes('跳過'), '跳過時明說，不裝作查過');
 }
 {
@@ -305,7 +305,7 @@ ok(/e\.key === 'Escape'/.test(html), 'Esc 關閉彈層');
   ok(withImg.includes('cursor:zoom-in'), '滑鼠提示可放大');
 }
 eq((html.match(/<li class="ok">/g) || []).length, 11, '11 道品質門全 ✓');
-ok(html.includes('gatepill pass'), '頁首徽章透過態');
+ok(html.includes('gatepill pass'), '頁首徽章通過態');
 ok(html.includes('未提供 cast.json'), '報告如實標註角色名檢查被跳過');
 
 // 品質門失敗也要渲染
@@ -477,4 +477,4 @@ eq(FIXTURE.props.length, 2, '樣例帶兩件敘事道具');
   ok(gateEn.includes('Consistency anchors, 3–5'), 'EN 報告的品質門標籤翻譯且閾值原樣保留');
   ok(!gateEn.includes('一致性錨點 3–5 個'), 'EN 報告不再出現中文門標籤');
 }
-console.log(`✓ ${passed} 項自測全部透過`);
+console.log(`✓ ${passed} 項自測全部通過`);

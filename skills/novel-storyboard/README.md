@@ -135,7 +135,7 @@ references/
   frame.md               分鏡圖生圖的 codex 呼叫契約
   report-style.md        報告的設計約定
 examples/
-  渡口-storyboard.json    《渡口》第 1 集完整分鏡（10 段 34 切認領 35 拍），全部品質門透過，也是自測夾具
+  渡口-storyboard.json    《渡口》第 1 集完整分鏡（10 段 34 切認領 35 拍），全部品質門通過，也是自測夾具
 assets/
   report.webp            報告截圖
 ```

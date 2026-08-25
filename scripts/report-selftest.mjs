@@ -257,4 +257,4 @@ const DOC = `<!doctype html><html lang="zh"><head><meta charset="utf-8">
   ok(!/https?:\/\/(?!x\.com)/.test(html.replace(/https:\/\/json-schema\.org[^"']*/g, '')), '沒有外部請求');
 }
 
-console.log(`✓ ${passed} 項自測全部透過`);
+console.log(`✓ ${passed} 項自測全部通過`);

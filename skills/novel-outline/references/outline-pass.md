@@ -33,4 +33,4 @@
 node scripts/novel-outline.mjs validate <outline.json> --stage beats
 ```
 
-有違規逐條修，改完重跑，直到透過才允許進分集。
+有違規逐條修，改完重跑，直到通過才允許進分集。

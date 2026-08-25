@@ -188,7 +188,7 @@ export function gateReport(outline) {
   const beats = Array.isArray(outline?.beats) ? outline.beats : [];
   const eps = Array.isArray(outline?.episodes) ? outline.episodes : [];
   const total = outline?.params?.episodes ?? eps.length;
-  // props 是後加的欄位。**沒有這個欄位的舊大綱要照常透過**——兩道相關的門
+  // props 是後加的欄位。**沒有這個欄位的舊大綱要照常通過**——兩道相關的門
   // 都明說跳過而不是報錯，否則每一份存量 outline.json 一升級就全紅。
   const hasProps = Array.isArray(outline?.props);
   const props = hasProps ? outline.props : [];
@@ -451,7 +451,7 @@ export function validateOutline(outline, stage = 'full') {
   }
 
   // --- props 敘事道具 ---
-  // 可選欄位：舊大綱沒有 props 照常透過。寫了就按結構查。
+  // 可選欄位：舊大綱沒有 props 照常通過。寫了就按結構查。
   if (Array.isArray(outline?.props)) {
     if (outline.props.length > th.maxProps) p(`敘事道具 ${outline.props.length} 件，超過上限 ${th.maxProps}`);
     const seenP = new Set();
@@ -602,11 +602,11 @@ const GATE_LABELS_EN = {
   'no-dialogue': 'Synopses in narrative prose, no quoted dialogue',
 };
 const GATE_SKIPS_EN = {
-    '未提供 outline.json，本門跳過（視為透過）': 'outline.json not provided — gate skipped (treated as passing)',
-    '未提供 art.json，本門跳過（視為透過）': 'art.json not provided — gate skipped (treated as passing)',
-    '未提供 script.json，本門跳過（視為透過）': 'script.json not provided — gate skipped (treated as passing)',
-    '未提供 outline/cast，本門跳過（視為透過）': 'outline/cast not provided — gate skipped (treated as passing)',
-    '未提供 cast.json，本門跳過（視為透過）': 'cast.json not provided — gate skipped (treated as passing)',
+    '未提供 outline.json，本門跳過（視為通過）': 'outline.json not provided — gate skipped (treated as passing)',
+    '未提供 art.json，本門跳過（視為通過）': 'art.json not provided — gate skipped (treated as passing)',
+    '未提供 script.json，本門跳過（視為通過）': 'script.json not provided — gate skipped (treated as passing)',
+    '未提供 outline/cast，本門跳過（視為通過）': 'outline/cast not provided — gate skipped (treated as passing)',
+    '未提供 cast.json，本門跳過（視為通過）': 'cast.json not provided — gate skipped (treated as passing)',
 };
 /** 報告裡的門文案：英文介面取對映，未命中或中文介面回落原文。 */
 const gateText = (g, lang) => {
@@ -628,7 +628,7 @@ const I18N = {
       `${p.episodes} 集 × ${p.minutesPerEpisode} 分鐘 · ${p.genre} · ${p.adaptMode}改編`,
     exportJson: '匯出 JSON',
     gates: '品質門',
-    gatesPass: '全部透過',
+    gatesPass: '全部通過',
     gatesFail: (n) => `${n} 項未過`,
     gatePill: (okN, total) => `品質門 ${okN} / ${total}`,
     sections: {
@@ -1616,7 +1616,7 @@ function main(argv) {
       for (const x of problems) console.error('  ' + x);
       process.exit(1);
     }
-    console.log(`✓ 透過校驗（stage=${stage}）`);
+    console.log(`✓ 通過校驗（stage=${stage}）`);
     return;
   }
 
@@ -1626,7 +1626,7 @@ function main(argv) {
     const gates = gateReport(readJson(path));
     for (const g of gates) console.log(`${g.ok ? '✓' : '✗'} ${g.label}${!g.ok && g.detail ? ` — ${g.detail}` : ''}`);
     const failed = gates.filter((g) => !g.ok).length;
-    console.log(failed ? `\n✗ ${failed} 項未過` : '\n✓ 全部透過');
+    console.log(failed ? `\n✗ ${failed} 項未過` : '\n✓ 全部通過');
     if (failed) process.exit(1);
     return;
   }

@@ -115,7 +115,7 @@ eq(paramsOf({ params: { maxCutSeconds: 4 } }).maxCutSeconds, 4, '分鏡上限可
 
 /* ---------------- 品質門：全綠基線 ---------------- */
 
-ok(gateReport(FIXTURE, CTX).every((g) => g.ok), '樣例帶全部上游全部門透過');
+ok(gateReport(FIXTURE, CTX).every((g) => g.ok), '樣例帶全部上游全部門通過');
 eq(gateReport(FIXTURE, CTX).length, 17, '十七道門');
 {
   const gates = gateReport(FIXTURE, {});
@@ -405,7 +405,7 @@ const withRecipe = () => {
 // 跳過條件是「沒給 --shots」，不是「沒有 cut 帶 recipe」
 {
   const g = gate(FIXTURE, 'shot-recipe');
-  ok(g.ok, '沒掛卡庫本門透過');
+  ok(g.ok, '沒掛卡庫本門通過');
   ok(g.detail.includes('跳過'), '跳過要明說，不靜默');
 }
 {
@@ -736,4 +736,4 @@ ok(html.includes('老周'), 'html 裡 ID 換成名字');
   ok(renderMarkdown(doc, CTX).includes('| ots-shot-reverse |'), '不掛卡庫時配方列退回裸 id');
   ok(renderMarkdown(FIXTURE, CTX).includes('| — |'), '沒引用配方的切在配方列寫 —');
 }
-console.log(`✓ ${passed} 項自測全部透過`);
+console.log(`✓ ${passed} 項自測全部通過`);

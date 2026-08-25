@@ -101,7 +101,7 @@ node {baseDir}/scripts/novel-art.mjs validate <art.json> --cast <cast.json>
 
 11 道品質門全是程式碼。場景 + 共用 7 道：錨點 3–5、光照狀態 ≥1、**無人**、提示詞全英文、不含角色名（給了 --cast 才查）、變體引用完整、風格與反向詞匹配。道具專屬 4 道：**狀態 ≥1**、**尺度短語寫進提示詞**、**反向詞禁手**、**設定圖純白背景**。
 
-**有違規逐條修，改完重跑，直到透過。**
+**有違規逐條修，改完重跑，直到通過。**
 
 ### Step 4 — 生圖（可選）
 
@@ -165,4 +165,4 @@ node {baseDir}/scripts/selftest.mjs
 
 ## 自帶樣例
 
-`{baseDir}/examples/渡口-art.json`：《渡口》三場景 + 兩件敘事道具（舊皮箱、縣衙舊硯）的完整設定，全部品質門透過（含對著 novel-characters 樣例 cast 的角色名檢查）。當品質基準，也是自測夾具。
+`{baseDir}/examples/渡口-art.json`：《渡口》三場景 + 兩件敘事道具（舊皮箱、縣衙舊硯）的完整設定，全部品質門通過（含對著 novel-characters 樣例 cast 的角色名檢查）。當品質基準，也是自測夾具。
