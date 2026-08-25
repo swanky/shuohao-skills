@@ -142,6 +142,14 @@ ${js('on')}`).length, 0,
     '自測裡驗證簡體語系的斷言豁免');
   eq(scanText('skills/novel-characters/scripts/selftest.mjs', "ok(md.includes('设定'), '不相干的斷言');").length, 1,
     '同一支自測裡沒掛語系關鍵字的行照常檢查');
+
+  // 原文引文的字形跟著原文走，任何檔案都一樣
+  eq(scanText('examples/x-outline.json', '        "evidence": "掉包儿的法子"').length, 0,
+    'evidence 欄位的引文豁免——翻了就不是證據');
+  eq(scanText('examples/x-cast.json', '      "quotes": ["女儿是水作的骨肉"]').length, 0,
+    'quotes 欄位同樣豁免');
+  eq(scanText('examples/x-outline.json', '        "why": "这里是简体的說明文字"').length, 1,
+    '同一份 JSON 裡不是引文的欄位照常檢查');
 }
 // zh-tw-lint: on
 
@@ -151,6 +159,9 @@ ${js('on')}`).length, 0,
     '原始語料整份跳過——原典什麼字形就是什麼字形');
   ok(isSkipped('testdata/benchmarks/novel-characters/classic-chinese-novels/紅樓夢-主要角色/紅樓夢-主要角色-cast.json'),
     '品質基準整份跳過——引文與別名以原文為準');
+  ok(isSkipped('docs/plans/classic-chinese-novels/hongloumeng-60ep/volume-summaries/summary-00.json'),
+    '分卷摘要整份跳過——中間產物，引文字形跟著語料走');
+  ok(!isSkipped('docs/plans/classic-chinese-novels/hongloumeng-60ep/README.md'), '規劃文件本身照常檢查');
   ok(!isSkipped('testdata/README.md'), 'testdata 的說明文件照常檢查');
   ok(!isSkipped('skills/novel-outline/README.md'), 'skill 文件照常檢查');
   // zh-tw-lint: off

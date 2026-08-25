@@ -13,7 +13,10 @@
 - 新增整份跳過規則：`testdata/corpora/**`（原始語料）與 `testdata/benchmarks/**`（品質基準）不檢查——原典什麼字形就是什麼字形，基準裡的 `persona.evidence` 是逐字引文、`aliases` 收的是原文出現過的稱謂，兩者都跟著語料走。
 - 修正《金瓶梅》角色基準的「網絡」為「網路」（由擴大後的掃描範圍找出）。
 - `novel-outline` 的 `validate` 新增原文比對：`validate <outline.json> <book.txt>` 會逐條檢查 `adaptation.keep[].evidence` 是不是原文逐字片段。`SKILL.md` 一直把 evidence 寫成「禁止憑書名腦補」的落地手段，但先前沒有任何程式在查，模型編一段話也照樣通過。比對前去掉所有空白，與 `novel-characters` 的引文校驗同一套做法，原文定寬排版斷行不會誤判；不給原文則跳過這項，既有大綱不受影響。
-- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 256 項、`novel-script` 154 項、`novel-storyboard` 254 項、`upstream-sync` 96 項及單頁報告 92 項自測全部通過，共 1,409 項。
+- `check-zh-tw.mjs` 新增通用豁免：任何檔案的 `"evidence"` 與 `"quotes"` 欄位不檢查——原文引文永遠保持原文語言，是這個 repository 的硬規則，而 JSON 沒辦法寫註解式的豁免標記。
+- 記錄 `紅樓夢.txt` 的語料缺陷：第 55 回後半被第 120 回內容取代（第 13786–13837 行，約 1,500 字），該回後半在這份檔案裡是遺失的。掃過五部語料只有這一處。檔案維持原樣不修補，以保住 SHA-256 與來源的可追溯性。
+- 新增 [`docs/plans/classic-chinese-novels/hongloumeng-60ep/`](docs/plans/classic-chinese-novels/hongloumeng-60ep/)：把古典小說品質基準延伸到 `novel-outline` 的規劃。9 卷分卷摘要（256 條引文全部逐字對得上原文）與骨架四塊已完成並通過 `validate --stage beats`，分集梗概待寫。
+- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 256 項、`novel-script` 154 項、`novel-storyboard` 254 項、`upstream-sync` 101 項及單頁報告 92 項自測全部通過，共 1,414 項。
 
 ## Fork 1.9.0 — 2026-08-23
 

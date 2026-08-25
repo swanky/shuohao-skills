@@ -85,6 +85,8 @@ export const ALLOWLIST = [
   // 這兩處的字形跟著語料走，不跟著介面語言走。基準本身的用詞由 novel-characters
   // 自己的 validate 把關，不是這支腳本的職責。
   { path: 'testdata/benchmarks/**', skip: true },
+  // 分卷摘要是中間產物，裡面的 evidence 是原文逐字引文，字形跟著語料走。
+  { path: 'docs/plans/classic-chinese-novels/hongloumeng-60ep/volume-summaries/**', skip: true },
   {
     path: 'skills/novel-characters/scripts/novel-characters.mjs',
     block: { start: /^\s*zh: \{\s*$/, end: /^\s*(('zh-TW')|zh-TW|en|ja): \{\s*$/ },
@@ -96,6 +98,9 @@ export const ALLOWLIST = [
   { path: 'skills/novel-characters/scripts/novel-characters.mjs', line: /\bzh: '|\bja: '/ },
   { path: 'skills/novel-characters/scripts/selftest.mjs', line: /'zh'|zh-TW/ },
   { path: '**', line: /\bja: '/ },
+  // 原文引文永遠保持原文語言——這是 repository 的硬規則，翻了就不是證據。
+  // JSON 沒辦法寫註解式的豁免標記，所以直接認欄位名。
+  { path: '**', line: /"evidence"\s*:|"quotes"\s*:/ },
 ];
 
 // 文件裡的反例表格（「別寫這個」那一欄）本來就要寫出簡體與大陸用詞，
