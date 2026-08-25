@@ -12,6 +12,7 @@ testdata/
 
 - [`corpora/classic-chinese-novels/`](corpora/classic-chinese-novels/)：五部中國古典小說的正規化純文字、來源、雜湊與授權說明。
 - [`benchmarks/novel-characters/classic-chinese-novels/`](benchmarks/novel-characters/classic-chinese-novels/)：`novel-characters` 的中國古典小說版本化品質基準。
+- [`benchmarks/novel-outline/classic-chinese-novels/`](benchmarks/novel-outline/classic-chinese-novels/)：`novel-outline` 的中國古典小說版本化品質基準；目前包含《紅樓夢》60 集短劇大綱。
 
 尚未執行的工作規劃不屬於測試資料，統一放在 [`docs/plans/classic-chinese-novels/`](../docs/plans/classic-chinese-novels/)。
 

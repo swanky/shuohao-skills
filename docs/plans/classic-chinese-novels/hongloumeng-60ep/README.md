@@ -1,8 +1,8 @@
-# 紅樓夢 60 集短劇大綱基準 · 待辦
+# 紅樓夢 60 集短劇大綱基準 · 完成記錄
 
-把古典小說品質基準從 `novel-characters` 延伸到 `novel-outline` 的第一件工作。**做到一半，Step 5 之前停下來的**，這份文件記錄已經完成什麼、接下來從哪裡接手。
+把古典小說品質基準從 `novel-characters` 延伸到 `novel-outline` 的第一件工作。60 集分集梗概、完整校驗、報告渲染與 benchmark 落地均已完成；這份文件保留參數、決策與分批覆蓋記錄，供後續更新時重驗。
 
-目標產物：`testdata/benchmarks/novel-outline/classic-chinese-novels/紅樓夢-60集短劇/`（`-outline.json`／`-outline.md`／`outline-report.html`）。
+正式產物：[`testdata/benchmarks/novel-outline/classic-chinese-novels/紅樓夢-60集短劇/`](../../../../testdata/benchmarks/novel-outline/classic-chinese-novels/紅樓夢-60集短劇/)（`紅樓夢-60集短劇-outline.json`／`紅樓夢-60集短劇-outline.md`）。HTML 報告已現場重新產生並人工檢查；依 repository 規範不進版本控制。
 
 ## 參數（已定案，使用者拍板過）
 
@@ -20,20 +20,21 @@
 
 - **Step 2 分卷摘要**：9 卷（123 回、90 萬字，未截斷），存在 [`volume-summaries/`](volume-summaries/)。九份共 **256 條 `evidence` 全部逐字對得上原文**。
 - **Step 3 骨架四塊**：[`outline-skeleton.json`](outline-skeleton.json)，24 個角色（4 lead／10 support／10 functional）、13 個場景（10 主場景）、8 件敘事道具、25 個爽點（11 個 major）。**已通過 `validate --stage beats`，6 條 `keep.evidence` 也通過原文比對。**
+- **Step 5 分集梗概**：6 批 × 10 集完成後合併為 1–60 連號；24 位角色、13 個場景與 8 件道具都有分集引用，沒有失業角色、空轉場景或零集道具。
+- **Step 6 完整校驗**：帶入《紅樓夢》原文後，14 道品質門與 6 條 `keep.evidence` 逐字比對全部通過。
+- **Step 7 輸出與人工檢查**：Markdown 報告已版本化；HTML 報告的 KPI 帶、爽點時間軸、分集卡與場景概覽均無溢位或錯位，品質門顯示 14／14。
+- **基準落地**：正式 JSON／Markdown 與驗收說明已放進 `testdata/benchmarks/novel-outline/classic-chinese-novels/`，並更新 `testdata/README.md` 的目錄分工。
 - **使用者拍板**（SKILL.md Step 3 的三件事，全部照方案）：
   1. 砍神話框架、官場線、大量詩詞與各支線，終點停在雪地一拜，不用原著後四十回的復官復產。
   2. 主角組四人：黛玉、寶玉、寶釵、鳳姐。
   3. 大爆點落點：掉包計 45 → 揭蓋頭同時黛玉氣絕 47 → 抄家 52 → 托孤 56 → 救巧姐 58 → 出家 60。
 
-## 待辦
+## 完成結果
 
-1. **Step 5 分集梗概**（最大的一塊）：6 批 × 10 集，每批一個子代理，讀 `skills/novel-outline/references/episode-pass.md` 與 `outline-skeleton.json`，產出 `eps-01.json` … `eps-06.json`。
-   - 每批要指派「這批必須用到的角色／場景／道具 id」，否則合併後 `refs` 門會抓到失業角色、空轉場景、零集道具。分配方式見下表。
-   - 硬規則：三欄必填、敘述體不得出現引號對白、`characterIds` ≥ 3 要寫 `crowdPlan`、生成難點進 `warnings`。
-2. **合併**：依 `ep` 排序拼進 `episodes`，順便查 1–60 連號無缺無重。
-3. **Step 6 校驗**：`validate <outline.json> testdata/corpora/classic-chinese-novels/紅樓夢.txt`（帶原文，14 道品質門 + `evidence` 比對），違規逐條修到全過。
-4. **Step 7 輸出**：`render --md` 與 `render --html`，人工看過報告版面。
-5. **落地**：產物放進 `testdata/benchmarks/novel-outline/classic-chinese-novels/紅樓夢-60集短劇/`，比照 `testdata/benchmarks/novel-characters/` 的 README 寫法補一份說明，並更新 `testdata/README.md` 的目錄分工。
+- 60 集 × 2 分鐘，總長 120 分鐘。
+- 25 個爽點中 11 個為 major，最大間隔 3 集。
+- 第 47 集以揭蓋頭與黛玉焚稿氣絕交叉剪接形成全劇最大爆點；第 52–60 集依序收束抄家、散盡、托孤、善報與出家。
+- 生成難點共標註 101 處，群戲、手部特寫、肢體接觸、雪景、火戲與幼童等都已進預警清單。
 
 ### 各批要覆蓋的 id
 
@@ -48,11 +49,17 @@
 
 被砍掉的人物（尤二姐、迎春、鴛鴦、王仁）不在人物表裡，戲要寫但只能用轉述，`characterIds` 不得填未登記的 id。
 
-## 接手方式
+## 更新與重驗
 
-Claude Code 與 codex 都能接（codex 從根目錄 `AGENTS.md` 進入，再讀 `CLAUDE.md`）。從上面的待辦第 1 項開始，做完第 5 項之後 **commit 並 push**，提交訊息用台灣正體。
+後續若修改骨架或分集，先更新正式 JSON，再以完整原文重跑校驗：
 
-一次不必做完六批——每批梗概寫完就能合併、跑一次 `validate`，過了再寫下一批。骨架已經拍板，不要回頭改骨架，除非品質門逼你改。
+```bash
+node skills/novel-outline/scripts/novel-outline.mjs validate \
+  "testdata/benchmarks/novel-outline/classic-chinese-novels/紅樓夢-60集短劇/紅樓夢-60集短劇-outline.json" \
+  "testdata/corpora/classic-chinese-novels/紅樓夢.txt"
+```
+
+Markdown 與 HTML 都由正式 JSON 重新渲染；渲染時加 `--lang zh` 選用本 fork 的台灣正體介面。HTML 只供人工驗收，不提交。
 
 ## 兩件必須留意的事
 
