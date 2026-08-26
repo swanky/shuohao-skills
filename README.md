@@ -1,5 +1,9 @@
 **中文** · [English](README.en.md)
 
+🎬 **[AI 影片工作台](https://reelbench.79px.com/)**
+
+[![ReelBench AI 短劇工作台首頁](assets/reelbench-first-screen.png)](https://reelbench.79px.com/)
+
 # shuohao-skills
 
 **AI 短劇製作的 skill 集合**：從一本小說到直接餵生成管線的製作素材——拆角色、排大綱、出場景與道具設定、寫劇本、切分鏡。給 AI coding agent 用，**Claude Code 和 codex 都能跑**。
@@ -26,6 +30,14 @@
 | [**upstream-sync**](skills/upstream-sync) | fork 專屬的維運 skill：把上游（簡體）的新提交合併進來，解衝突一律取正體，再把上游新增的內容整份轉成台灣正體與台灣用詞。用詞檢查由腳本確定性執行，`--lang zh` 的簡體語系表與日文語系表有白名單 |
 
 **五個製作 skill 的報告都支援中英雙語介面**：預設中文，`render --lang en` 出全英文報告（資料內容保持原文）。
+
+## AI 短劇交流社群
+
+這是作者獨立經營的付費交流群，討論 AI 短劇的工作流程、工具和實作。**交流群與上方 ReelBench AI 影片工作台是兩項獨立服務。**
+
+有興趣的話請加我：**微信 `hao_dev`**，加入時備註 **`github`**。
+
+<img src="assets/wechat.png" alt="爍皓微信 QR Code" width="180">
 
 ## 合成一張單頁
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## Fork 1.11.0 — 2026-08-26
+
+- 同步 upstream 至 `09c54e4`，整合 5 筆提交。
+- 跟進上游 README 的 ReelBench 宣傳內容：新增工作台首頁預覽圖，並將 AI 短劇交流社群拆成獨立章節，明確標示為兩項獨立服務。
+- 宣傳圖依上游由 JPG 更新為 PNG；新增的 README 文案全數轉為台灣正體與台灣用詞。
+- 保留 fork 的中英文入口、`zh-TW` 預設、`photoreal` 畫風、古典小說品質基準與 `upstream-sync` 維運流程。
+- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 256 項、`novel-script` 154 項、`novel-storyboard` 254 項、`upstream-sync` 101 項及單頁報告 92 項自測全部通過，共 1,414 項；全 repository 正體檢查掃描 125 個檔案，0 項待改、0 項待確認。
+
 ## Fork 1.10.0 — 2026-08-25
 
 - 新增 `upstream-sync` skill：fork 專屬的維運流程，把上游（簡體）的新提交合併進來、解衝突一律取正體、再把上游新增的內容整份轉成台灣正體與台灣用詞。
