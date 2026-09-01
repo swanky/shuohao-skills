@@ -1,5 +1,12 @@
 # Changelog
 
+## Fork 1.12.0 — 2026-09-01
+
+- 同步 upstream 至 `4322897`，整合 2 筆提交。
+- 跟進上游恢復 README 頁首中英文切換；fork 已有等價的正體內容，解衝突後保留台灣正體文案，沒有產生其他實質內容變更。
+- 保留 fork 的 `zh-TW` 預設、`photoreal` 畫風、古典小說品質基準與 `upstream-sync` 維運流程。
+- `novel-art` 158 項、`novel-characters` 399 項、`novel-outline` 256 項、`novel-script` 154 項、`novel-storyboard` 254 項、`upstream-sync` 101 項及單頁報告 92 項自測全部通過，共 1,414 項；全 repository 正體檢查 0 項待改、0 項待確認。
+
 ## Fork 1.11.0 — 2026-08-26
 
 - 同步 upstream 至 `09c54e4`，整合 5 筆提交。
