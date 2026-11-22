@@ -16,7 +16,7 @@ const REALISTIC = {
   id: 'realistic-photo',
   // 使用者輸入簡繁都收；実写是日文。 zh-tw-lint: allow
   names: ['realistic-photo', 'realistic', 'photo', '寫實', '寫實照片', '写实', '写实照片', '真人', '実写'], // zh-tw-lint: allow
-  label: { zh: '寫實照片', en: 'Realistic photo', ja: '寫実寫真' },
+  label: { zh: '寫實照片', en: 'Realistic photo', ja: '写実写真' },
   medium: 'photo',
   style: 'A real photograph, not a render: shot on a full-frame digital camera with an 85mm portrait lens at f/5.6, natural true-to-life ' +
     "colors and white balance. Natural skin texture with the pores and fine lines the person's age calls for, a no-makeup look, " +

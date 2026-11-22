@@ -20,15 +20,15 @@
 <table>
 <tr>
 <td width="180"><a href="https://go.apimart.ai/tw-shuohao-skills"><img src="assets/apimart-logo.png" alt="APIMart" width="150"></a></td>
-<td>感謝 <a href="https://go.apimart.ai/tw-shuohao-skills">APIMart</a> 贊助了本專案！APIMart 是專注 AI 圖片/影片生成的低價 API 平臺，GPT-Image-2 低至 $0.006/張，1 美元可生圖 160+ 張。圖片、影片一套非同步 API 通吃，提交任務拿 ID、回撥取結果，跑批萬張不超時、換模型不改程式碼。按量付費、無月費，透過<a href="https://go.apimart.ai/tw-shuohao-skills">此註冊連結</a>註冊即可開用。</td>
+<td>感謝 <a href="https://go.apimart.ai/tw-shuohao-skills">APIMart</a> 贊助了本專案！APIMart 是專注 AI 圖片/影片生成的低價 API 平臺，GPT-Image-2 低至 $0.006/張，1 美元可生圖 160+ 張。圖片、影片一套非同步 API 通吃，提交任務拿 ID、回呼取結果，跑批萬張不超時、換模型不改程式碼。按量付費、無月費，透過<a href="https://go.apimart.ai/tw-shuohao-skills">此註冊連結</a>註冊即可開用。</td>
 </tr>
 <tr>
 <td width="180"><a href="https://studio.reelbenchai.com"><img src="assets/reelbench-first-screen.png" alt="Reelbench Studio" width="150"></a></td>
 <td><a href="https://studio.reelbenchai.com">Reelbench Studio</a> 是本 skill 專案作者開發的付費 AI 影視工作臺，交付的是能離線執行的原始碼。本地 Codex 負責理解、拆解與編排，自部署 ComfyUI 負責影像與影片生成，素材和專案都留在你自己的裝置裡。</td>
 </tr>
 <tr>
-<td width="180"><img src="assets/reelref-miniapp-qr.png" alt="賽博班底小程式碼" width="150"></td>
-<td>「賽博班底」是本 skill 專案作者做的微信小程式，收集 AI 短影片用得上的角色、服裝、表情等參考圖，按類別和標籤交叉篩選。每張參考圖都配中文提示詞，一鍵複製；點開大圖長按就能儲存。微信掃左邊的小程式碼就能開啟。</td>
+<td width="180"><img src="assets/reelref-miniapp-qr.png" alt="賽博班底小程式 QR 碼" width="150"></td>
+<td>「賽博班底」是本 skill 專案作者做的微信小程式，收集 AI 短影片用得上的角色、服裝、表情等參考圖，按類別和標籤交叉篩選。每張參考圖都配中文提示詞，一鍵複製；點開大圖長按就能儲存。微信掃左邊的小程式 QR 碼就能開啟。</td>
 </tr>
 </table>
 

@@ -94,7 +94,7 @@ node {baseDir}/scripts/novel-storyboard.mjs seed <script.json> --eps 1-3 --aspec
 
 **每段寫一條 `h3Prompt`**，照 `{baseDir}/references/h3-prompt.md` 寫（官方方法論的內化版，**不依賴任何外部 skill**）。官方口徑預設英文（`promptLang` 可切中文），**每個鏡頭獨立一行**。要點：首行對齊指令和 `[Shot k]` 切點時刻**由分鏡秒數推導，一個字元都不許漂**（validate 逐字對賬）；認領臺詞**逐字**進 `<d>[Chinese] …</d>`；每切的運鏡詞寫進自己那一行；聲景與配樂分進後兩個欄位——**聲景也是動作指令，畫面改了聲景一起改**。
 
-**Seedance 提示詞不用寫**：`render` 報告的提示詞面板和 `export --protocol seedance` 都會從上面這些欄位現拼。視覺風格由呼叫方提交時附加，全域性約束用 `--constraints <檔案>` 給。
+**Seedance 提示詞不用寫**：`render` 報告的提示詞面板和 `export --protocol seedance` 都會從上面這些欄位現拼。視覺風格由呼叫方提交時附加，全域約束用 `--constraints <檔案>` 給。
 
 切完把 `seedScenes` 刪掉。
 

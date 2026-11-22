@@ -1,5 +1,5 @@
 // 生圖適配層：Qwen（遠端 ComfyUI）、GPT（本機 codex 內建 $imagegen）、OpenAI Images API（GPT Image 2）、自定義命令模板。
-// 每個介面卡只做一件事：給定 {text, negative, ratio, refs[檔案路徑], seed}，返回 PNG 位元組。
+// 每個轉接器只做一件事：給定 {text, negative, ratio, refs[檔案路徑], seed}，返回 PNG 位元組。
 // 憑據只從環境變數或配置裡指定的 .env 檔案讀，從不列印。
 
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';

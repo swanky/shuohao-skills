@@ -106,7 +106,7 @@ node scripts/novel-characters.mjs seed outline.json > seed.json
 { "source": "…", "lang": "zh", "summary": "…", "characters": [ … ] }
 ```
 
-所以外部工具改完可以**直接餵回 `render` 重新出報告**，也能過 `validate`。角色卡里的 `sheetImage` 一併帶出，拿得到哪張圖對應哪個人——圖由下游出，`render --images <目錄>` 指到圖所在的目錄就會撿起來（不給就找 cast.json 同級的 `images/`）。
+所以外部工具改完可以**直接餵回 `render` 重新出報告**，也能過 `validate`。角色卡裡的 `sheetImage` 一併帶出，拿得到哪張圖對應哪個人——圖由下游出，`render --images <目錄>` 指到圖所在的目錄就會撿起來（不給就找 cast.json 同級的 `images/`）。
 
 資料以 `<script type="application/json">` 內嵌在報告裡，點匯出只是把它包成 Blob 下載，**不發任何網路請求**。
 

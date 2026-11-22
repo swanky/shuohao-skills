@@ -192,8 +192,8 @@ export function stagingCore() {
   }
 
   /**
-   * 拖到平面上某一點鬆手，人落在哪：落在能坐能站的東西里面（最小的那件）就在它上面；否則落在
-   * 最近那件東西最近的一側、沿這一側多遠——松在桌面上就是桌子最近的那條邊。
+   * 拖到平面上某一點鬆手，人落在哪：落在能坐能站的東西裡面（最小的那件）就在它上面；否則落在
+   * 最近那件東西最近的一側、沿這一側多遠——鬆在桌面上就是桌子最近的那條邊。
    */
   function nearestPlace(pt, items) {
     const inside = (b) => pt.x >= b[0] && pt.x <= b[2] && pt.y >= b[1] && pt.y <= b[3];
@@ -222,7 +222,7 @@ export function stagingCore() {
         ['west', Math.hypot(pt.x - x0, pt.y - cy), clamp01((pt.y - y0) / (y1 - y0 || 1))],
         ['east', Math.hypot(pt.x - x1, pt.y - cy), clamp01((pt.y - y0) / (y1 - y0 || 1))],
       ];
-      // 點在某件東西里面就算它最近，不管哪條邊；兩件都罩著它時取小的那件
+      // 點在某件東西裡面就算它最近，不管哪條邊；兩件都罩著它時取小的那件
       const bias = inside(i.plan) ? -1 + area(i.plan) * 0.01 : 0;
       for (const [side, d, along] of sides) {
         if (!best || d + bias < best.d) best = { item: i.name, side, along, d: d + bias };
@@ -283,7 +283,7 @@ export function stagingCore() {
       }
       if (p.present !== true) continue;
       const it = things.get(p.item);
-      if (!it) add('place-valid', zh ? `${p.name} 站的「${p.item ?? ''}」不在這個地點認出來的東西里` : `${p.name}'s "${p.item ?? ''}" is not one of the things read off this place`);
+      if (!it) add('place-valid', zh ? `${p.name} 站的「${p.item ?? ''}」不在這個地點認出來的東西裡` : `${p.name}'s "${p.item ?? ''}" is not one of the things read off this place`);
       if (!SIDES.includes(p.side)) add('place-valid', zh ? `${p.name} 的 side 要是 north / east / south / west / on` : `${p.name}'s side must be north / east / south / west / on`);
       else if (p.side === 'on' && it && !it.on) add('place-valid', zh ? `${p.name} 寫了在「${p.item}」上，可它上面不能坐也不能站，寫它的哪一側` : `${p.name} is on the "${p.item}", which nobody can sit or stand on: say which side`);
       if (p.side !== 'on' && !(typeof p.along === 'number' && p.along >= 0 && p.along <= 1)) {
@@ -339,7 +339,7 @@ export const ITEM_RANGE = [4, 20];
 /* seed — 從劇本確定性預填骨架                                          */
 /* ------------------------------------------------------------------ */
 /*
- * 有哪幾場、每場在哪個地點、誰出場，劇本里都是現成的——這些不該讓模型重新想一遍。
+ * 有哪幾場、每場在哪個地點、誰出場，劇本裡都是現成的——這些不該讓模型重新想一遍。
  * seed 把它們搬進骨架；模型只做兩件事：認每個地點的圖，給每一場排開場站位。
  */
 
@@ -406,7 +406,7 @@ export function locationProblems(loc) {
   }
   const names = items.map((i) => String(i.name ?? '').trim());
   const twice = names.filter((n, i) => n && names.indexOf(n) !== i);
-  if (twice.length) out.push({ gate: 'item-shape', text: `「${loc.name}」里名字重複：${[...new Set(twice)].join('、')}` });
+  if (twice.length) out.push({ gate: 'item-shape', text: `「${loc.name}」裡名字重複：${[...new Set(twice)].join('、')}` });
   for (const i of items) {
     const n = String(i.name ?? '').trim();
     if (!n) out.push({ gate: 'item-shape', text: `「${loc.name}」裡有一件東西沒寫名字` });

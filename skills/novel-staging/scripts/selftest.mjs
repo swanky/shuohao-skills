@@ -80,11 +80,11 @@ const ROUND = { name: '紅木圓桌', alt: 'round table', plan: [0.3, 0.3, 0.7, 
   ok(pts.get('A').x !== pts.get('B').x, '兩個人在同一件東西上並排，不疊在一點');
 }
 {
-  eq(nearestPlace({ x: 0.5, y: 0.15 }, [TABLE, CHAIR]), { item: '主位太師椅', side: 'on', along: 0.5 }, '松在能坐的東西里面：坐在它上面');
+  eq(nearestPlace({ x: 0.5, y: 0.15 }, [TABLE, CHAIR]), { item: '主位太師椅', side: 'on', along: 0.5 }, '鬆在能坐的東西裡面：坐在它上面');
   const t = nearestPlace({ x: 0.75, y: 0.36 }, [TABLE, CHAIR]);
-  ok(t.item === '長餐桌' && t.side === 'east' && near(t.along, 0.2), '松在桌子東邊：東側，沿南北量出 along');
+  ok(t.item === '長餐桌' && t.side === 'east' && near(t.along, 0.2), '鬆在桌子東邊：東側，沿南北量出 along');
   const inside = nearestPlace({ x: 0.5, y: 0.32 }, [TABLE]);
-  ok(inside.item === '長餐桌' && inside.side === 'north', '松在桌面上：落到最近的那條邊');
+  ok(inside.item === '長餐桌' && inside.side === 'north', '鬆在桌面上：落到最近的那條邊');
   const r = nearestPlace({ x: 0.5, y: 0.8 }, [ROUND]);
   ok(r.item === '紅木圓桌' && r.side === 'south' && Math.abs(r.along - 0.5) < 0.01, '圓桌正下方：南側中段');
   eq(nearestPlace({ x: 0.5, y: 0.5 }, []), null, '沒有東西就沒有落點');

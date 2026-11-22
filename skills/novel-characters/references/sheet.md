@@ -36,7 +36,7 @@
 
 設定表要平光（摳圖、量比例），體積感要方向光。兩者矛盾，所以**分割槽解決**：左欄半身像給柔和
 方向主光 + 環境遮蔽，右側三檢視和細節條保持平光正交。提示詞裡是兩句獨立的
-`LIGHTING IN THE LEFT ZONE ONLY` / `LIGHTING IN THE RIGHT ZONES`，**不要合併成一句全域性光照**。
+`LIGHTING IN THE LEFT ZONE ONLY` / `LIGHTING IN THE RIGHT ZONES`，**不要合併成一句全域光照**。
 
 ## 比例 ⚠️
 

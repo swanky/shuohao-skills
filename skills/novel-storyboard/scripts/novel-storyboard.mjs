@@ -206,7 +206,7 @@ export const SEEDANCE_NO_TWINS = '影片全程禁止出現外形、著裝、配�
  * @param scene  expandScript 展開後的那一場（取臺詞原文）；沒有劇本時臺詞行寫 {}
  * @param names  { scene(id), char(id), prop(id) } → 顯示名
  * @param image  (kind, rel) → src|null，與報告同一個定位函式，判斷分鏡圖在不在
- * @param constraints 呼叫方的全域性約束，逐條拼進【約束】
+ * @param constraints 呼叫方的全域約束，逐條拼進【約束】
  * @returns {{ prompt: string, refs: {kind, label, file}[] }}
  */
 export function seedancePrompt(seg, { scene = null, names = {}, image = null, constraints = [] } = {}) {
@@ -554,7 +554,7 @@ export function gateReport(board, ctx = {}) {
   for (const ep of eps) {
     const label = `E${String(ep?.ep).padStart(2, '0')}`;
     const sEp = expanded?.get(ep?.ep);
-    if (expanded && !sEp) bad.refs.push(`${label} 在劇本里不存在`);
+    if (expanded && !sEp) bad.refs.push(`${label} 在劇本裡不存在`);
 
     // 段號紀律：格式、集號一致、連號
     (ep?.segments ?? []).forEach((seg, i) => {
@@ -829,7 +829,7 @@ export function validateStoryboard(board, ctx = {}) {
     for (const seg of ep.segments) {
       const sid = seg?.id ?? '?';
       if (typeof seg?.id !== 'string') p(`${label}有段缺 id`);
-      if (!Number.isInteger(seg?.sceneIndex) || seg.sceneIndex < 1) p(`${sid} 缺 sceneIndex（劇本里第幾場）`);
+      if (!Number.isInteger(seg?.sceneIndex) || seg.sceneIndex < 1) p(`${sid} 缺 sceneIndex（劇本裡第幾場）`);
       if (typeof seg?.h3Prompt !== 'string') p(`${sid} 缺 h3Prompt（H3 影片提示詞，寫法見 references/h3-prompt.md）`);
       if (!Array.isArray(seg?.cuts) || seg.cuts.length === 0) {
         p(`${sid} 沒有分鏡`);
@@ -902,7 +902,7 @@ export function seedFromScript(script, epRange = null, aspectRatio = '16:9') {
  * @param opts.protocol     'h3'（預設）| 'seedance'
  * @param opts.imageExists  包內相對路徑 → 是否已有（分鏡圖）
  * @param opts.sheetExists  設定圖檔名 → 是否找得到（Seedance 參考圖路徑用）
- * @param opts.names        { scene, char, prop } → 顯示名；opts.constraints 全域性約束
+ * @param opts.names        { scene, char, prop } → 顯示名；opts.constraints 全域約束
  */
 export function exportPack(
   board,
@@ -1286,7 +1286,7 @@ function embedDoc(doc) {
  *   2. 頂層 `_meta.orientation`——舊版下游應用寫入的資料，只作相容；
  *   3. 每切 frame 末尾的畫幅標籤，數多的那個——沒有後設資料的舊分鏡仍然可以識別；
  *   4. 都認不出就是 16:9。
- * 只管分鏡圖：批次卡里的場景設定圖（`.bimg`）一律按 16:9 出，不跟劇的畫幅走。
+ * 只管分鏡圖：批次卡裡的場景設定圖（`.bimg`）一律按 16:9 出，不跟劇的畫幅走。
  */
 const ASPECT_RATIOS = new Set(['16:9', '9:16']);
 
@@ -1858,14 +1858,14 @@ const USAGE = `novel-storyboard.mjs — novel-storyboard skill 的確定性工�
                                               兩個目錄都可以是任意路徑；報告裡的圖片路徑按「報告寫在當前目錄」計算
          [--lang zh|en]                       報告介面語言（預設 zh；未指定時讀取 JSON 頂層 lang 欄位）
          [--shots <卡片目錄>]                  報告的「配方」列顯示卡名並標註建議景別／運鏡的偏離
-         [--constraints <file>]               Seedance 全域性約束，一行一條（程式補上無字幕、多人禁雙胞胎）
+         [--constraints <file>]               Seedance 全域約束，一行一條（程式補上無字幕、多人禁雙胞胎）
   export <sb.json> --script <script.json>     匯出投產包，每段一個資料夾
          [--protocol h3|seedance]             h3（預設）：<段號>/prompt.md + f1..fN.png，根部 manifest.json
                                               seedance：<段號>/seedance.md + 附件，根部 seedance-manifest.json
          [--out .]                            輸出目錄
          [--frames <dir>]                     從這裡把 <段號>/f<切序>.png 拷進投產包；不給就只認包裡現成的圖
          [--images <dir>]                     Seedance 參考圖路徑的設定圖目錄（預設 ./images），找到就拷進包
-         [--outline] [--art] [--constraints]  名字與全域性約束，同 render
+         [--outline] [--art] [--constraints]  名字與全域約束，同 render
   stats                                       讀當前目錄的 .gates.jsonl，彙總哪道門最常響、
                                               哪道門從沒響過（validate/checkup 會自動累積）
   slug <name>                                 劇名轉安全檔名
@@ -1903,7 +1903,7 @@ function loadCtx(rest) {
     return path ? readJson(path) : null;
   };
   const shots = flag(rest, '--shots');
-  // Seedance 的全域性約束：一行一條，行首編號可有可無（程式會重新編號）
+  // Seedance 的全域約束：一行一條，行首編號可有可無（程式會重新編號）
   const cons = flag(rest, '--constraints');
   const constraints = cons
     ? readFileSync(resolve(cons), 'utf8').split('\n').map((l) => l.trim().replace(/^\d+\s*[.、)）]\s*/, '')).filter(Boolean)

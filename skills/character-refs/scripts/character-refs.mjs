@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // character-refs —— 角色參考圖：一張確認過的正面全身照為根，按檔位往上加圖。
-// 零依賴，node >= 18 直接跑。生圖走 models.mjs 的介面卡；其餘全部確定性。
+// 零依賴，node >= 18 直接跑。生圖走 models.mjs 的轉接器；其餘全部確定性。
 
 import { existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve, sep } from 'node:path';
@@ -64,7 +64,7 @@ export const INTAKE_TEMPLATE = {
     top: { en: 'a dark navy cotton student tunic with a plain white collar, slightly faded at the cuffs', text: '藏青棉布學生裝，白領', source: 'inferred' },
     bottom: { en: 'a dark mid-calf pleated skirt, white socks and black cloth shoes', text: '深色及膝百褶裙、白襪、黑布鞋', source: 'inferred' },
     details: [
-      { slot: 'hair', en: 'the tip of one of her long black braids, tied with faded red string', text: '辮梢系褪色紅繩', source: 'stated' },
+      { slot: 'hair', en: 'the tip of one of her long black braids, tied with faded red string', text: '辮梢繫褪色紅繩', source: 'stated' },
       { slot: 'neck', en: 'the plain white collar and the cloth-knot button of her dark navy cotton tunic', text: '白領口與盤扣', source: 'inferred' },
       { slot: 'sleeve', en: 'the dark navy cotton cuff, faded and slightly frayed at the edge', text: '洗舊的袖口', source: 'inferred' },
       { slot: 'feet', en: 'black cloth shoes with a single strap and white cotton socks', text: '一字帶黑布鞋、白棉襪', source: 'inferred' },

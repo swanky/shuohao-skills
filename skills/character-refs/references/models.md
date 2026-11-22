@@ -1,7 +1,7 @@
 # 生圖模型
 
 四種，在 `config` 裡選。主圖（錨點）和派生圖可以分開設，重出單張可以使用 `gen --model` 臨時換。
-介面卡都在 `scripts/models.mjs`，統一介面：給 `{text, negative, ratio, refs[檔案路徑], seed}`，返回 PNG 位元組。
+轉接器都在 `scripts/models.mjs`，統一介面：給 `{text, negative, ratio, refs[檔案路徑], seed}`，返回 PNG 位元組。
 
 尺寸三檔（四個模型通用，都滿足 gpt-image-2 的尺寸規則，也都落在影片模型參考圖的交集裡）：
 
