@@ -127,7 +127,7 @@ node scripts/novel-characters.mjs slug "胡二爺"                 # 安全檔�
 
 ```
 book.txt
-  │ chunk          切成 14k 字元、600 字元重疊的塊（重疊是為了讓卡在切口
+  │ chunk          切成 40k 字元、1,200 字元重疊的塊（重疊是為了讓卡在切口
   ↓                上的角色兩邊都看得到），上限 24 塊
 chunk-NN.txt
   │ 第一趟：每塊一個子代理，照 references/roster-pass.md 掃角色
@@ -162,7 +162,7 @@ cast.json ──→ validate ──→ render ──→ report.html（生圖在�
 
 樣式全部內聯在 `renderHtml()` 裡，**只改那一處**，不要另起模板。設計約定與「為什麼長這樣」在 `references/report-style.md`——改樣式前先讀，別把它改回通用卡片牆。
 
-尺寸有硬性連動：頁面上限 1800px、卡片 `minmax(460px)`、間距 28px，這三個數決定了「一排最多三個角色」，**改一個要重算另外兩個**，自測有斷言盯著。每個角色 8 個複製按鈕也有斷言盯著。
+版面是「左欄角色清單＋主區單一角色詳情」：主區上限 1500px，主區內分成內容與 500px 資訊卡兩欄，自測有斷言盯著。每個角色 6 個複製按鈕也有斷言盯著。
 
 ### `examples/` 同時是三種東西
 
@@ -191,7 +191,7 @@ git fetch upstream && git merge upstream/main
 
 **用 merge 不用 rebase**：這個 fork 的同步歷史本來就是 merge commit，而且已經推上 `origin`；rebase 會改寫已發布的歷史，逼出 force push。
 
-**上游是簡體專案，合併一定會有簡繁衝突。** 解衝突時一律取正體版本，並把上游新加的簡體內容一併轉成正體再提交。上游新增的功能（新語言、新畫風預設、新校驗規則）要照這份文件的規範補上正體。
+**上游是簡體專案，合併一定會有簡繁衝突。** 解衝突時一律取正體版本，並把上游新加的簡體內容一併轉成正體再提交。上游新增的功能（新語言、新校驗規則）要照這份文件的規範補上正體。
 
 漏改由腳本掃，不靠人眼：
 
@@ -201,4 +201,4 @@ node skills/upstream-sync/scripts/check-zh-tw.mjs --since $(git merge-base HEAD 
 
 `✗` 是漏改必須修到零，`·` 是待確認用詞。文件裡本來就要寫出反例的地方用 `zh-tw-lint: off` ／ `on` 標記豁免；`STRINGS.zh`、`ja` 語系表與驗證簡體輸出的斷言已在腳本的白名單裡。
 
-本 fork 相對上游的差異記在 `CHANGELOG.md` 的 1.5.0 條目。
+本 fork 相對上游的差異列在 `README.md` 的「這是 fork」區塊，各次同步的細節記在 `CHANGELOG.md` 的「Fork x.y.z」條目。
