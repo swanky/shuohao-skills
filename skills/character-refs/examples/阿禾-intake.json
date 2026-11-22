@@ -1,0 +1,72 @@
+{
+  "name": "阿禾",
+  "lang": "zh",
+  "source": "樣例 · 茶山",
+  "identity": {
+    "age": 16,
+    "gender": "female",
+    "en": "A small, slight sixteen-year-old Chinese girl, a tea picker on a hillside tea plantation in 1920s Jiangnan",
+    "text": "十六歲採茶姑娘，1920 年代江南茶山",
+    "source": "stated"
+  },
+  "face": {
+    "en": "Sun-tanned wheat-coloured skin tone, a round face with soft cheeks, gently curved eyes and eyebrows, a small nose, and a single dimple on her left cheek",
+    "text": "麥色的臉，圓臉，眉眼彎彎，左邊一個酒窩",
+    "source": "stated"
+  },
+  "hair": {
+    "en": "One thick black braid coiled at the back of her head, wrapped in a faded blue cotton headscarf knotted at the nape",
+    "text": "一條粗辮盤在腦後，包著洗褪色的藍布頭巾",
+    "source": "stated"
+  },
+  "build": {
+    "en": "Small and slight, with the sturdy, upright posture of someone who climbs hills every day",
+    "text": "個子小，常年爬山，站得結實挺直",
+    "source": "inferred"
+  },
+  "skin": {
+    "en": "Young, sun-tanned skin with faint pores and a few light freckles across the nose, no makeup",
+    "text": "年輕、曬黑的皮膚，鼻樑上幾粒淺雀斑，素顏",
+    "source": "inferred"
+  },
+  "outfit": {
+    "id": "default",
+    "label": "常態 · 採茶裝",
+    "top": {
+      "en": "a hand-woven indigo cotton jacket with a side-fastened diagonal front and cloth-knot buttons, sleeves rolled up to the forearms",
+      "text": "靛藍粗布斜襟短襖，佈扣，袖子挽到小臂",
+      "source": "stated"
+    },
+    "bottom": {
+      "en": "loose black cotton trousers tied at the ankles with cloth strips, and woven straw sandals",
+      "text": "黑布寬腿褲，褲腳用布條紮緊，草鞋",
+      "source": "inferred"
+    },
+    "details": [
+      {
+        "slot": "hair",
+        "en": "the knot of her faded blue cotton headscarf at the nape, with the coiled black braid showing beneath it",
+        "text": "腦後頭巾的結與露出的盤辮",
+        "source": "stated"
+      },
+      {
+        "slot": "neck",
+        "en": "the small standing collar of her hand-woven indigo cotton jacket and the single cloth-knot button at her throat",
+        "text": "小立領與喉下那一顆佈扣",
+        "source": "inferred"
+      },
+      {
+        "slot": "sleeve",
+        "en": "the indigo cotton sleeve rolled up above the wrist, with brownish tea stains on the rolled edge",
+        "text": "挽起的袖口，沾著茶汁的印子",
+        "source": "stated"
+      },
+      {
+        "slot": "feet",
+        "en": "woven straw sandals and the black cotton trouser hems tied at the ankles with cloth strips",
+        "text": "草鞋，布條紮緊的褲腳",
+        "source": "inferred"
+      }
+    ]
+  }
+}

@@ -97,6 +97,11 @@ export const ALLOWLIST = [
   },
   { path: 'skills/novel-characters/scripts/novel-characters.mjs', line: /\bzh: '|\bja: '/ },
   { path: 'skills/novel-characters/scripts/selftest.mjs', line: /'zh'|zh-TW/ },
+  // character-refs 的日文介面文案表（同樣是日文新字體），從 ja: { 到檔尾的 };
+  {
+    path: 'skills/character-refs/scripts/i18n.mjs',
+    block: { start: /^\s*ja: \{\s*$/, end: /^\};\s*$/ },
+  },
   { path: '**', line: /\bja: '/ },
   // 原文引文永遠保持原文語言——這是 repository 的硬規則，翻了就不是證據。
   // JSON 沒辦法寫註解式的豁免標記，所以直接認欄位名。

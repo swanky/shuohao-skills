@@ -93,7 +93,7 @@ git merge upstream/main
 
 1. **內容相同、只差字形** → 取這個 fork 的正體版本。
 2. **上游改了內容** → 以上游的新內容為準，但用台灣正體與台灣用詞重寫。
-3. **衝突落在 fork 專屬的擴充上**（`zh-TW` 預設、`photoreal` 畫風、古典小說品質基準、`upstream-sync` 本身）→ 保留 fork 版本，再把上游的新東西補進去。
+3. **衝突落在 fork 專屬的擴充上**（`zh-TW` 預設、古典小說品質基準、`upstream-sync` 本身）→ 保留 fork 版本，再把上游的新東西補進去。
 
 衝突解完先跑一次 `git diff --stat HEAD` 確認範圍，再進 Step 5。
 

@@ -19,6 +19,11 @@ node_modules/
 /storyboard-report.html
 /*-storyboard.json
 /*-storyboard.md
+/staging-report.html
+/staging.json
+/staging.md
+/*-staging.json
+/*-staging.md
 
 # 注意：skills/*/examples/ 下的樣例必須提交——它們同時是自測夾具。
 # 上面幾條都用 / 開頭限定在儲存庫根，不會誤傷 examples。
@@ -27,3 +32,6 @@ node_modules/
 
 # 門失敗累積日誌（使用者在自己的輸出目錄裡生成的）
 .gates.jsonl
+
+# 各 skill 的本機配置（character-refs 的生圖模型選擇等），每臺機器不同
+skills/*/config.local.json

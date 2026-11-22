@@ -1,0 +1,818 @@
+{
+  "source": "渡口",
+  "lang": "zh",
+  "locations": [
+    {
+      "sceneId": "S02",
+      "name": "渡口棧橋",
+      "readFrom": "prompt",
+      "items": [
+        {
+          "name": "靠岸的渡船",
+          "alt": "moored ferry",
+          "plan": [
+            0.12,
+            0.02,
+            0.38,
+            0.3
+          ],
+          "on": true
+        },
+        {
+          "name": "棧橋水端",
+          "alt": "water end of the pier",
+          "plan": [
+            0.42,
+            0.04,
+            0.58,
+            0.36
+          ],
+          "on": true
+        },
+        {
+          "name": "斷裂的第七塊橋板",
+          "alt": "broken seventh plank",
+          "plan": [
+            0.42,
+            0.38,
+            0.58,
+            0.44
+          ],
+          "on": true
+        },
+        {
+          "name": "棧橋岸端",
+          "alt": "shore end of the pier",
+          "plan": [
+            0.42,
+            0.46,
+            0.58,
+            0.8
+          ],
+          "on": true
+        },
+        {
+          "name": "挑燈木杆",
+          "alt": "lantern pole",
+          "plan": [
+            0.62,
+            0.5,
+            0.66,
+            0.56
+          ],
+          "on": false
+        },
+        {
+          "name": "繫纜石樁",
+          "alt": "mooring stone",
+          "plan": [
+            0.62,
+            0.74,
+            0.68,
+            0.8
+          ],
+          "on": false
+        },
+        {
+          "name": "岸端土坡",
+          "alt": "earth bank at the shore",
+          "plan": [
+            0.1,
+            0.84,
+            0.9,
+            0.98
+          ],
+          "on": true
+        }
+      ]
+    },
+    {
+      "sceneId": "S01",
+      "name": "渡船船艙",
+      "readFrom": "prompt",
+      "items": [
+        {
+          "name": "船頭撐篙臺",
+          "alt": "bow poling deck",
+          "plan": [
+            0.3,
+            0.02,
+            0.7,
+            0.1
+          ],
+          "on": true
+        },
+        {
+          "name": "船頭銅鈴",
+          "alt": "bow bronze bell",
+          "plan": [
+            0.74,
+            0.03,
+            0.8,
+            0.08
+          ],
+          "on": false
+        },
+        {
+          "name": "第一排坐板",
+          "alt": "first bench row",
+          "plan": [
+            0.16,
+            0.16,
+            0.84,
+            0.22
+          ],
+          "on": true
+        },
+        {
+          "name": "第二排磨白的坐板",
+          "alt": "worn second bench row",
+          "plan": [
+            0.16,
+            0.29,
+            0.84,
+            0.35
+          ],
+          "on": true
+        },
+        {
+          "name": "第三排坐板",
+          "alt": "third bench row",
+          "plan": [
+            0.16,
+            0.42,
+            0.84,
+            0.48
+          ],
+          "on": true
+        },
+        {
+          "name": "第四排坐板",
+          "alt": "fourth bench row",
+          "plan": [
+            0.16,
+            0.55,
+            0.84,
+            0.61
+          ],
+          "on": true
+        },
+        {
+          "name": "第五排坐板",
+          "alt": "fifth bench row",
+          "plan": [
+            0.16,
+            0.68,
+            0.84,
+            0.74
+          ],
+          "on": true
+        },
+        {
+          "name": "第六排坐板",
+          "alt": "sixth bench row",
+          "plan": [
+            0.16,
+            0.81,
+            0.84,
+            0.87
+          ],
+          "on": true
+        },
+        {
+          "name": "西側艙壁",
+          "alt": "west hull side",
+          "plan": [
+            0.04,
+            0.14,
+            0.1,
+            0.94
+          ],
+          "on": false
+        },
+        {
+          "name": "東側艙壁",
+          "alt": "east hull side",
+          "plan": [
+            0.9,
+            0.14,
+            0.96,
+            0.94
+          ],
+          "on": false
+        }
+      ]
+    },
+    {
+      "sceneId": "S03",
+      "name": "對岸蘆葦灘",
+      "readFrom": "prompt",
+      "items": [
+        {
+          "name": "蘆葦浪線",
+          "alt": "reed line",
+          "plan": [
+            0.0,
+            0.04,
+            1.0,
+            0.16
+          ],
+          "on": false
+        },
+        {
+          "name": "一線灘塗反光",
+          "alt": "glint on the mudflat",
+          "plan": [
+            0.04,
+            0.18,
+            0.52,
+            0.24
+          ],
+          "on": false
+        },
+        {
+          "name": "半沉的舊船骨",
+          "alt": "half-sunk boat ribs",
+          "plan": [
+            0.6,
+            0.18,
+            0.8,
+            0.28
+          ],
+          "on": false
+        },
+        {
+          "name": "河面",
+          "alt": "open river",
+          "plan": [
+            0.0,
+            0.3,
+            1.0,
+            0.74
+          ],
+          "on": false
+        },
+        {
+          "name": "船舷",
+          "alt": "gunwale",
+          "plan": [
+            0.08,
+            0.78,
+            0.8,
+            0.84
+          ],
+          "on": false
+        },
+        {
+          "name": "船尾撐篙臺",
+          "alt": "stern poling spot",
+          "plan": [
+            0.82,
+            0.78,
+            0.98,
+            0.96
+          ],
+          "on": true
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "ep": 1,
+      "scene": 1,
+      "sceneId": "S02",
+      "lighting": "濃霧清晨",
+      "cast": [
+        {
+          "id": "C01",
+          "name": "沈知微"
+        },
+        {
+          "id": "C03",
+          "name": "老周"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺"
+        }
+      ],
+      "places": [
+        {
+          "id": "C01",
+          "name": "沈知微",
+          "present": true,
+          "item": "岸端土坡",
+          "side": "on",
+          "along": 0.5,
+          "posture": "stand",
+          "facing": "north"
+        },
+        {
+          "id": "C03",
+          "name": "老周",
+          "present": true,
+          "item": "靠岸的渡船",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "south"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺",
+          "present": false,
+          "item": null,
+          "side": null,
+          "along": null,
+          "posture": null,
+          "facing": null
+        }
+      ],
+      "extras": 0,
+      "extrasWhere": null,
+      "why": "冷開場沈知微在岸邊土路上跑來，老周蹲在船頭抽旱菸；胡二爺挑著貨擔後趕到，開場不在。"
+    },
+    {
+      "ep": 1,
+      "scene": 2,
+      "sceneId": "S01",
+      "lighting": "晨霧",
+      "cast": [
+        {
+          "id": "C01",
+          "name": "沈知微"
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠"
+        },
+        {
+          "id": "C03",
+          "name": "老周"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺"
+        }
+      ],
+      "places": [
+        {
+          "id": "C01",
+          "name": "沈知微",
+          "present": false,
+          "item": null,
+          "side": null,
+          "along": null,
+          "posture": null,
+          "facing": null
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠",
+          "present": true,
+          "item": "第五排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "west"
+        },
+        {
+          "id": "C03",
+          "name": "老周",
+          "present": true,
+          "item": "船頭撐篙臺",
+          "side": "on",
+          "along": 0.5,
+          "posture": "stand",
+          "facing": "south"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺",
+          "present": true,
+          "item": "第三排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "north"
+        }
+      ],
+      "extras": 0,
+      "extrasWhere": null,
+      "why": "劇本開場「艙裡坐著兩個人」：胡二爺帶著貨擔坐第三排，陸行遠背靠東側艙壁望著西邊的霧；沈知微隨後進艙，開場不在。老周在船頭撐篙，看著艙裡。"
+    },
+    {
+      "ep": 2,
+      "scene": 1,
+      "sceneId": "S01",
+      "lighting": "晨霧",
+      "cast": [
+        {
+          "id": "C01",
+          "name": "沈知微"
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺"
+        }
+      ],
+      "places": [
+        {
+          "id": "C01",
+          "name": "沈知微",
+          "present": true,
+          "item": "第一排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "south"
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠",
+          "present": true,
+          "item": "第五排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "west"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺",
+          "present": true,
+          "item": "第三排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "north"
+        }
+      ],
+      "extras": 0,
+      "extrasWhere": null,
+      "why": "沈知微挑了離所有人最遠的第一排，面朝艙裡提防著；胡二爺隔兩排坐著，眼睛一直往她的箱子上看。"
+    },
+    {
+      "ep": 3,
+      "scene": 1,
+      "sceneId": "S01",
+      "lighting": "晨霧",
+      "cast": [
+        {
+          "id": "C01",
+          "name": "沈知微"
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠"
+        },
+        {
+          "id": "C03",
+          "name": "老周"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺"
+        }
+      ],
+      "places": [
+        {
+          "id": "C01",
+          "name": "沈知微",
+          "present": true,
+          "item": "第一排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "south"
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠",
+          "present": true,
+          "item": "第五排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "west"
+        },
+        {
+          "id": "C03",
+          "name": "老周",
+          "present": true,
+          "item": "船頭撐篙臺",
+          "side": "on",
+          "along": 0.5,
+          "posture": "stand",
+          "facing": "north"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺",
+          "present": true,
+          "item": "第三排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "north"
+        }
+      ],
+      "extras": 0,
+      "extrasWhere": null,
+      "why": "汽笛響時老週轉身往霧裡撐篙，背對艙裡；其餘三人照舊。"
+    },
+    {
+      "ep": 4,
+      "scene": 1,
+      "sceneId": "S01",
+      "lighting": "晨霧",
+      "cast": [
+        {
+          "id": "C01",
+          "name": "沈知微"
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺"
+        }
+      ],
+      "places": [
+        {
+          "id": "C01",
+          "name": "沈知微",
+          "present": true,
+          "item": "第一排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "south"
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠",
+          "present": true,
+          "item": "第五排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "north"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺",
+          "present": true,
+          "item": "第三排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "north"
+        }
+      ],
+      "extras": 0,
+      "extrasWhere": null,
+      "why": "陸行遠要壓低聲音對另外兩人開口，轉過來面朝船頭那邊的兩個人。"
+    },
+    {
+      "ep": 5,
+      "scene": 1,
+      "sceneId": "S03",
+      "lighting": "薄霧午前",
+      "cast": [
+        {
+          "id": "C01",
+          "name": "沈知微"
+        },
+        {
+          "id": "C03",
+          "name": "老周"
+        }
+      ],
+      "places": [
+        {
+          "id": "C01",
+          "name": "沈知微",
+          "present": true,
+          "item": "船舷",
+          "side": "south",
+          "along": 0.35,
+          "posture": "stand",
+          "facing": "north"
+        },
+        {
+          "id": "C03",
+          "name": "老周",
+          "present": true,
+          "item": "船尾撐篙臺",
+          "side": "on",
+          "along": 0.5,
+          "posture": "stand",
+          "facing": "northwest"
+        }
+      ],
+      "extras": 0,
+      "extrasWhere": null,
+      "why": "沈知微在船舷邊望著對岸出神，老周在船尾撐篙，轉頭看向她。"
+    },
+    {
+      "ep": 5,
+      "scene": 2,
+      "sceneId": "S01",
+      "lighting": "晨霧",
+      "cast": [
+        {
+          "id": "C01",
+          "name": "沈知微"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺"
+        }
+      ],
+      "places": [
+        {
+          "id": "C01",
+          "name": "沈知微",
+          "present": false,
+          "item": null,
+          "side": null,
+          "along": null,
+          "posture": null,
+          "facing": null
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺",
+          "present": true,
+          "item": "第三排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "north"
+        }
+      ],
+      "extras": 0,
+      "extrasWhere": null,
+      "why": "沈知微從船頭回到艙裡，開場不在；胡二爺還坐在原處。"
+    },
+    {
+      "ep": 6,
+      "scene": 1,
+      "sceneId": "S01",
+      "lighting": "霧散近岸",
+      "cast": [
+        {
+          "id": "C01",
+          "name": "沈知微"
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠"
+        },
+        {
+          "id": "C03",
+          "name": "老周"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺"
+        }
+      ],
+      "places": [
+        {
+          "id": "C01",
+          "name": "沈知微",
+          "present": true,
+          "item": "第一排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "south"
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠",
+          "present": true,
+          "item": "第五排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "north"
+        },
+        {
+          "id": "C03",
+          "name": "老周",
+          "present": true,
+          "item": "船頭撐篙臺",
+          "side": "on",
+          "along": 0.5,
+          "posture": "stand",
+          "facing": "south"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺",
+          "present": true,
+          "item": "第三排坐板",
+          "side": "on",
+          "along": 0.5,
+          "posture": "sit",
+          "facing": "north"
+        }
+      ],
+      "extras": 0,
+      "extrasWhere": null,
+      "why": "靠岸前的最後一場：三人坐在各自的位置上，老周在船頭報靠岸。"
+    },
+    {
+      "ep": 6,
+      "scene": 2,
+      "sceneId": "S02",
+      "cast": [
+        {
+          "id": "C01",
+          "name": "沈知微"
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠"
+        },
+        {
+          "id": "C03",
+          "name": "老周"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺"
+        },
+        {
+          "id": "C05",
+          "name": "岸上挑燈的更夫"
+        }
+      ],
+      "places": [
+        {
+          "id": "C01",
+          "name": "沈知微",
+          "present": true,
+          "item": "靠岸的渡船",
+          "side": "on",
+          "along": 0.5,
+          "posture": "stand",
+          "facing": "east"
+        },
+        {
+          "id": "C02",
+          "name": "陸行遠",
+          "present": true,
+          "item": "靠岸的渡船",
+          "side": "on",
+          "along": 0.5,
+          "posture": "stand",
+          "facing": "east"
+        },
+        {
+          "id": "C03",
+          "name": "老周",
+          "present": true,
+          "item": "靠岸的渡船",
+          "side": "on",
+          "along": 0.5,
+          "posture": "stand",
+          "facing": "south"
+        },
+        {
+          "id": "C04",
+          "name": "胡二爺",
+          "present": true,
+          "item": "靠岸的渡船",
+          "side": "on",
+          "along": 0.5,
+          "posture": "stand",
+          "facing": "east"
+        },
+        {
+          "id": "C05",
+          "name": "岸上挑燈的更夫",
+          "present": true,
+          "item": "棧橋岸端",
+          "side": "on",
+          "along": 0.5,
+          "posture": "stand",
+          "facing": "north"
+        }
+      ],
+      "extras": 0,
+      "extrasWhere": null,
+      "why": "船剛碰上棧橋：四人都還在船上，朝著棧橋那邊；更夫挑著燈籠站在橋頭，迎著船。"
+    }
+  ]
+}

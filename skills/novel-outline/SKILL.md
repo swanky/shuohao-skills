@@ -1,6 +1,6 @@
 ---
 name: novel-outline
-version: 1.2.0
+version: 2.0.0
 description: |
   把一本小說改編成短劇大綱五件套：改編說明、人物表、爽點表、分集梗概、資產清單，
   產出 outline.json + Markdown + 單頁評審報告（KPI 帶、關鍵決策、爽點時間軸、排程矩陣、場景概覽、品質門）。

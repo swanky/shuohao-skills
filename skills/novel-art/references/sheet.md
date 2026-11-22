@@ -1,6 +1,9 @@
-# 設定圖生圖（場景 + 道具）· codex `$imagegen`
+# 設定圖的版面規格（場景 + 道具）
 
-生圖走 codex 內建的 `$imagegen` 系統 skill，**不需要任何 API key**——使用本機 codex 的登入狀態。**沒有 codex 就跳過整個步驟**，只交提示詞，其餘產出照常。
+`image.sheet` 是**給生圖模型的完整版面指令**，本 skill 只負責把它寫對，**不負責生圖**。
+生圖在下游（要選模型、畫風、畫幅，這三件事在這一層一個都答不了）。
+
+下面這些約束必須逐條寫進 `image.sheet` 的英文正文。
 
 ## 每個場景、每件道具各一張圖
 
@@ -27,7 +30,8 @@
 
 同一套 L 形版面，差別三處：**純白背景**（每個面板都是，要方便去背）、主視角是主狀態的四分之三角度、底行放**其他狀態 + 側面正交檢視**。全圖**無人且無手**——拿著道具的手是最常見汙染，出現就重生成。尺度短語（handheld scale 等）必須在提示詞裡，否則皮箱會被畫成衣櫃。
 
-提示詞欄位 `image.sheet`，場景和道具都落到 `./images/<slug>-sheet.png`（`slug` 命令生成安全檔名）。
+提示詞欄位 `image.sheet`。`render` 預設去 art.json 同級的 `images/<slug>-sheet.png` 找圖（`slug` 命令生成安全檔名），
+圖在別處就用 `--images <目錄>` 指過去。本 skill 不產生這些檔案，下游出完圖重跑 `render` 就能撿起來。
 
 ## 三條硬要求
 
@@ -35,21 +39,15 @@
 2. **一張圖裡只能有一個空間。**角色設定圖最容易出現「一張圖兩個長相」，環境圖對應的失敗情況是**面板之間空間不一致**（左邊六排坐板、右上變成四排）。提示詞裡明確寫入 `THE SPACE MUST BE IDENTICAL ACROSS ALL PANELS`。取得圖片後先核對錨點：每個錨點在主視角裡都找得到嗎？
 3. **透視要穩。**環境圖最常見的失敗是幾何融化、透視歪斜。負向提示詞裡必須包含 `warped perspective, melted geometry`（預設已內建）。
 
-## 呼叫契約（與 novel-characters 相同）
+## 變體場景：提示詞裡要掛住母場景
 
-- **在 codex 中執行**：直接使用 `$imagegen`，不要再透過 shell 呼叫 `codex exec`
-- **在 Claude Code 中執行**：透過 shell 呼叫本機 codex，**先偵測版本最高的執行檔**（舊版會直接報錯）；偵測腳本沿用 `novel-characters/references/sheet.md` 的 `find_codex`
-- 所有呼叫都加上 `env -u NODE_OPTIONS`（codex 若繼承錯誤的 NODE_OPTIONS，啟動時就會失敗）
-- **一個場景一次呼叫，絕不批次**（PNG 位元組會讓 rollout 過大）
-- 使用 `-i/--image` 這類可變長度參數時，**prompt 必須走 stdin**
-- 提示詞裡明寫「copy to ./images/<slug>-sheet.png」，不要讓圖片留在 codex 預設目錄
-- 單個失敗跳過不阻斷，最後彙總說明
-- **不使用 CLI fallback**（需要 `OPENAI_API_KEY`）
+`variantOf` 的場景，`image.sheet` 寫的是**母場景主視角 + `changes` 的改動描述**，外加一句
+`keep the structure, materials and wear identical to the reference image`——那句是寫給下游的：
+出這張圖時要把母場景的成圖當參考圖掛上去。**變體機制的意義就在這**，從零生成一致不了。
 
-## 變體場景的生圖
+## 畫風不在這裡
 
-`variantOf` 場景應**使用母場景成圖作為參考圖**（codex 的 `-i` 參數）；提示詞 = 母場景主視角 + `changes` 的改動描述 + 一句 `keep the structure, materials and wear identical to the reference image`。這比從零生成更能維持一致——變體機制的意義就在這。
-
-## 畫風一致性
-
-同一部劇的所有場景應該像由同一個美術組製作。若風格仍不穩定，可使用第一個主場景的成圖，透過 `-i` + stdin 作為後續場景的風格參考。代價與角色 skill 相同：第一張會定下整體基調，效果不佳時就必須重做。
+同一部劇的所有場景應該像同一個美術組畫的。這靠兩件事，**兩件都不寫進單條提示詞**：
+表面處理句是寫死的一套（見 `scene-pass.md` 裡「要整段帶上的是表面處理」那一條），
+畫風則由下游在生圖時整批附加同一段指令。寫進這裡只會跟當時選的那一檔打架，
+而且換風格要逐條改。

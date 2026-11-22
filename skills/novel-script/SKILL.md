@@ -1,6 +1,6 @@
 ---
 name: novel-script
-version: 1.2.0
+version: 2.0.0
 description: |
   給 AI 短劇寫劇本：把 novel-outline 的分集梗概落成結構化的場次 + 節拍流（動作節拍與臺詞行交替），
   臺詞逐句帶說話人與語氣，時長逐集按語速確定性折算。產出 script.json + Markdown + 單頁評審報告

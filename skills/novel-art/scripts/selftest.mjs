@@ -9,14 +9,10 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   ANCHOR_RANGE,
-  DEFAULT_STYLE,
-  SCENE_STYLE_PRESETS,
-  SUPPORTED_STYLES,
   castNamesOf,
   gateReport,
   renderHtml,
   renderMarkdown,
-  scenePreset,
   seedFromOutline,
   slug,
   PROP_SCALES,
@@ -26,10 +22,10 @@ import {
 const here = dirname(fileURLToPath(import.meta.url));
 const FIXTURE = JSON.parse(readFileSync(join(here, '..', 'examples', '渡口-art.json'), 'utf8'));
 const OUTLINE = JSON.parse(
-  readFileSync(join(here, '..', '..', 'novel-outline', 'examples', '渡口-outline.json'), 'utf8'),
+  readFileSync(join(here, '..', 'references', 'test-fixtures', 'upstream', '渡口-outline.json'), 'utf8'),
 );
 const CAST = JSON.parse(
-  readFileSync(join(here, '..', '..', 'novel-characters', 'examples', '渡口-cast.json'), 'utf8'),
+  readFileSync(join(here, '..', 'references', 'test-fixtures', 'upstream', '渡口-cast.json'), 'utf8'),
 );
 
 let passed = 0;
@@ -44,16 +40,33 @@ function eq(actual, expected, msg) {
 const clone = () => JSON.parse(JSON.stringify(FIXTURE));
 const gate = (d, id, names = null) => gateReport(d, names).find((g) => g.id === id);
 
-/* ---------------- 畫風預設 ---------------- */
+/* ---------------- 畫風 ---------------- */
 
-eq(DEFAULT_STYLE, 'realistic', '預設半寫實');
-eq(SUPPORTED_STYLES.join(','), 'realistic,ghibli', '兩檔畫風與 novel-characters 同名對齊');
-ok(!/photorealistic/.test(SCENE_STYLE_PRESETS.realistic.negative), 'realistic 不禁 photorealistic');
-ok(/photorealistic/.test(SCENE_STYLE_PRESETS.ghibli.negative), 'ghibli 必須禁 photorealistic');
-ok(/people/.test(SCENE_STYLE_PRESETS.realistic.negative), 'realistic 預設自帶禁人');
-ok(/people/.test(SCENE_STYLE_PRESETS.ghibli.negative), 'ghibli 預設自帶禁人');
-ok(!/pore|skin|subsurface/i.test(SCENE_STYLE_PRESETS.realistic.surface), '環境預設不帶皮膚毛孔那套——那是角色的');
-eq(scenePreset('nope'), SCENE_STYLE_PRESETS.realistic, '未知風格退回預設');
+// 畫風是生圖那一刻才定的，整批共用一段風格指令由呼叫方附加。寫進單條提示詞，
+// 換風格就要逐條改，而且跟當時選的那一檔正面打架。
+{
+  const assets = [...FIXTURE.scenes, ...FIXTURE.props];
+  for (const k of [/semi-?realistic/i, /painterly/i, /concept art/i, /\bphotoreal/i]) {
+    ok(
+      assets.every((a) => !k.test(`${a.image.sheet} ${a.image.tags.join(' ')}`)),
+      `提示詞裡不寫畫風：${k.source}`,
+    );
+  }
+  // 負向提示詞禁的是「假」，不是某一檔畫風——生圖時選的可能正是它
+  ok(
+    assets.every((a) => !/photorealistic|3d render|\banime\b/i.test(a.image.negativePrompt)),
+    'negativePrompt 不禁畫風詞',
+  );
+  // 表面處理留著，但是兩檔二選一：它講的是這個空間被誰在用、保養到什麼程度，
+  // 是關於這個物件的事實，不是一句對誰都成立的常量。原來這裡釘死了 A 檔，於是
+  // 金鑾殿也拿到「漆面剝落、水漬」——跟「每條提示詞必須逐字包含同一句畫風」
+  // 是同一個錯誤，只是換了個詞。
+  ok(
+    assets.every((a) => /Weathered, lived-in materials|Well-kept, actively maintained materials/
+      .test(a.image.sheet)),
+    '表面處理句整段保留（日常使用 / 持續維護 二選一）',
+  );
+}
 
 /* ---------------- slug ---------------- */
 
@@ -65,7 +78,6 @@ eq(slug('a/b:c'), 'a-b-c', '危險字元替換');
 
 const seeded = seedFromOutline(OUTLINE);
 eq(seeded.source, '渡口', 'seed 帶書名');
-eq(seeded.style, 'realistic', 'seed 預設畫風');
 eq(seeded.scenes.length, 3, 'seed 搬全部場景');
 {
   const s01 = seeded.scenes.find((s) => s.id === 'S01');
@@ -119,7 +131,7 @@ ok(castNamesOf({ characters: [] }).length === 0, '空 cast 不炸');
 
 eq(validateArt(FIXTURE, NAMES).length, 0, '自帶樣例通過校驗（含角色名檢查）');
 ok(gateReport(FIXTURE, NAMES).every((g) => g.ok), '樣例全部品質門通過');
-eq(gateReport(FIXTURE).length, 11, '品質門共 11 道（場景 7 + 道具 4）');
+eq(gateReport(FIXTURE).length, 10, '品質門共 10 道（場景 6 + 道具 4）');
 
 /* ---------------- 品質門逐項擊穿 ---------------- */
 // 每一道門都要證明它真的會攔——不然就是永遠為真的假測試
@@ -196,28 +208,10 @@ eq(ANCHOR_RANGE.join('-'), '3-5', '錨點範圍 3–5');
   ok(!gate(d, 'variants').ok, '變體缺 changes 被攔——不說改了什麼等於沒說');
 }
 
-// G8 風格與反向詞匹配
-{
-  const d = clone();
-  d.scenes[0].image.negativePrompt += ', photorealistic, 3d render';
-  ok(!gate(d, 'style-match').ok, 'realistic 禁 photorealistic 被攔——自相矛盾');
-}
-{
-  const d = clone();
-  d.style = 'ghibli';
-  ok(!gate(d, 'style-match').ok, '切 ghibli 後沒禁 photorealistic 被攔');
-}
-{
-  const d = clone();
-  d.scenes[0].image.sheet = 'ONE 16:9 landscape canvas, three zones, no people';
-  ok(!gate(d, 'style-match').ok, 'sheet 缺渲染句被攔——畫風會飄');
-}
-
 /* ---------------- validate 結構檢查 ---------------- */
 
 ok(validateArt(null).length === 1, 'null 直接報');
 ok(validateArt({}).some((x) => x.includes('source')), '缺書名被攔');
-ok(validateArt({ source: 'x', style: '水墨' }).some((x) => x.includes('style')), '未知畫風被攔');
 {
   const d = clone();
   d.scenes[0].id = 'X1';
@@ -304,7 +298,7 @@ ok(/e\.key === 'Escape'/.test(html), 'Esc 關閉彈層');
   ok(withImg.includes('class="zoom" data-src="images/x-sheet.png"'), '生圖後圖片可點，彈層拿到地址');
   ok(withImg.includes('cursor:zoom-in'), '滑鼠提示可放大');
 }
-eq((html.match(/<li class="ok">/g) || []).length, 11, '11 道品質門全 ✓');
+eq((html.match(/<li class="ok">/g) || []).length, 10, '10 道品質門全 ✓');
 ok(html.includes('gatepill pass'), '頁首徽章通過態');
 ok(html.includes('未提供 cast.json'), '報告如實標註角色名檢查被跳過');
 

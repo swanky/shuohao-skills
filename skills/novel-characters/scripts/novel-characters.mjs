@@ -4,7 +4,7 @@
 // without an npm install. Node 18+ (stdlib only).
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
-import { basename, join, resolve } from 'node:path';
+import { basename, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /* ------------------------------------------------------------------ */
@@ -206,86 +206,6 @@ export const isChinese = (lang) => typeof lang === 'string' && /^zh(-|$)/i.test(
 export const isTraditionalChinese = (lang) =>
   typeof lang === 'string' && /^zh-(tw|hk|mo|hant)/i.test(lang);
 
-/* ------------------------------------------------------------------ */
-/* 畫風預設                                                             */
-/* ------------------------------------------------------------------ */
-/*
- * 換風格是整套換，不是隻換一句「畫風」。
- *
- * 最容易踩的坑：各預設的 negativePrompt 立場是相反的。寫實那套剛把
- * photorealistic 從反向詞裡刪掉，吉卜力恰恰要禁它。毛孔、皮下散射、
- * 順表情肌的皺紋在寫實裡是加分項，在吉卜力裡是反效果。
- * photoreal 又反過來：它跟 realistic 一樣絕不能禁 photorealistic，
- * 但必須禁 illustration / painting / anime——它要的是照片，不是畫。
- *
- * 所以每個預設自帶五塊：render / surface / lighting / negative / tags，
- * 生成角色卡時整塊取用，不要混搭。
- */
-
-export const DEFAULT_STYLE = 'realistic';
-
-export const STYLE_PRESETS = {
-  realistic: {
-    label: { zh: '半写实厚涂', 'zh-TW': '半寫實厚塗', en: 'Semi-realistic painterly', ja: '半写実・厚塗り' },
-    render:
-      'Semi-realistic character illustration, painterly rendering with soft blended edges and visible brush texture, anatomically grounded',
-    surface:
-      'Skin with visible pores and uneven tone, faint capillaries at the nostrils and ear rims, subtle subsurface scattering; eyes with a wet specular highlight, moist lower lid, visible iris fibres and a limbal ring; eyelids and eyebrows slightly asymmetric — no two sides identical; individual flyaway hair strands breaking the silhouette. Fabric with a visible weave, wear and shine at elbows, cuffs and knees, cloth falling with real weight and self-shadowing in the folds',
-    // 設定表要平光才好摳圖，寫實要方向光才有體積——分割槽解決
-    lighting:
-      'LIGHTING IN THE LEFT ZONE ONLY: a soft directional key light from the upper left with gentle falloff, subtle ambient occlusion under the chin, in the eye sockets and where the collar meets the neck, giving the head real volume. LIGHTING IN THE RIGHT ZONES: flat even orthographic lighting with no directional key and no cast shadows, so the figures stay measurable and cleanly cut out',
-    // 注意：這裡絕不能禁 photorealistic
-    negative:
-      'plastic or waxy skin, over-smoothed airbrushed complexion, poreless doll face, perfectly symmetrical face, dead flat eyes without specular highlight, helmet-like hair with no loose strands, flat untextured fabric with no weave or wear, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop',
-    tags: ['semi-realistic', 'painterly', 'character sheet', 'subsurface skin', 'directional key light'],
-  },
-
-  ghibli: {
-    label: { zh: '吉卜力动画', 'zh-TW': '吉卜力動畫', en: 'Ghibli-like animation', ja: 'ジブリ風アニメ' },
-    render:
-      'Hand-painted anime cel illustration in the manner of classic Studio Ghibli feature animation: clean confident ink linework of even weight, simple flat cel shading with a single soft shadow tone, gentle rounded forms, warm naturalistic palette, watercolour-like softness',
-    // 寫實那套的表面細節在這裡全是反效果，整塊換掉
-    surface:
-      'Skin as clean flat tone with one soft shadow shape and a warm blush at the cheeks and nose — no pores, no skin texture, no subsurface detail; large clear expressive eyes with a simple round highlight and flat iris colour; hair drawn as grouped strands and clumps with clean silhouettes rather than individual hairs; clothing in simple flat colour with a few decisive fold lines, no fabric weave and no micro-texture',
-    // 平光就是這個風格本身的一部分，不需要分割槽
-    lighting:
-      'Even, gentle daylight across the whole sheet with a single soft shadow tone; no dramatic key light, no ambient occlusion, no cast shadows — the flat lighting is part of the style and keeps the figures cleanly cut out',
-    // 這裡反過來，必須禁寫實
-    negative:
-      'photorealistic, 3d render, hyperrealistic skin texture, visible pores, subsurface scattering, harsh contrast, heavy painterly rendering, muddy or desaturated colours, gritty texture overlay, extra fingers, malformed hands, text, watermark, signature, busy or patterned background',
-    tags: ['ghibli-like', 'cel shading', 'hand-painted', 'character sheet', 'flat daylight'],
-  },
-
-  /*
-   * 擬真實拍。跟 realistic 的差別不是「更寫實一點」，是根本不同的東西：
-   * realistic 仍是畫出來的（painterly、筆觸、厚塗），photoreal 要的是
-   * 「劇組試裝定妝照」——真人、真相機、真鏡頭、真布料。
-   *
-   * 所以 negative 的重點從「別畫得太塑膠」變成「別畫」：illustration /
-   * painting / anime / CGI 全禁。但跟 realistic 一樣，photorealistic 與
-   * 3d render 裡的 photorealistic 絕不能禁——那是這個預設要的東西本身。
-   *
-   * 版面不變：16:9 三區、左半身像右三檢視，照樣分割槽打光。
-   */
-  photoreal: {
-    label: { zh: '拟真实拍', 'zh-TW': '擬真實拍', en: 'Live-action photography', ja: '実写風' },
-    render:
-      'Live-action photography, not illustration: a real wardrobe camera-test photograph of a real human being on a film production, shot on a full-frame cinema camera with a 50-85mm lens at a moderate aperture against a neutral warm-gray seamless studio backdrop, the finish and honesty of a costume-department test still',
-    surface:
-      'True photographic skin: real visible pores, fine vellus hair, uneven natural tone, faint capillaries at the nostrils and ear rims, genuine subsurface scattering, moles and freckles left in place, no beauty retouching and no skin smoothing; eyes with a real catchlight from the key light, moist lower lid, resolvable iris fibres and a limbal ring; eyebrows and eyelids honestly asymmetric; loose individual hair strands catching the light and breaking the silhouette. Real garments with true cloth weight, visible weave, stitched seams and hems, natural drape, self-shadowing folds and honest wear at cuffs, elbows and knees',
-    // 跟 realistic 同一套分割槽邏輯：左欄要體積，右側要能量比例、好摳圖
-    lighting:
-      'LIGHTING IN THE LEFT ZONE ONLY: a large soft-box key from the upper left with a gentle bounce fill on the shadow side, real ambient occlusion under the chin, in the eye sockets and where the collar meets the neck, so the head reads as an actually photographed head with volume. LIGHTING IN THE RIGHT ZONES: flat even frontal studio light with no directional key and no cast shadows on the backdrop, so the figures stay measurable and cleanly cut out',
-    // 這裡禁的是「畫出來的」，不是「真實的」——photorealistic 絕不能進這一串
-    negative:
-      'illustration, painting, drawing, sketch, anime, manga, cartoon, cel shading, digital painting brush strokes, CGI, 3d game render, plastic or waxy skin, doll skin, beauty-filter retouching, poreless airbrushed complexion, perfectly symmetrical face, dead flat eyes without a catchlight, wig-like helmet hair with no loose strands, flat untextured costume fabric, cheap cosplay-shop garment, stiff mannequin posing, extra fingers, malformed hands, text, watermark, signature, busy or patterned background, harsh cast shadows on the backdrop',
-    tags: ['live-action', 'photographic', 'wardrobe camera test', 'character sheet', 'real skin texture', '85mm lens'],
-  },
-};
-
-export const SUPPORTED_STYLES = Object.keys(STYLE_PRESETS);
-export const stylePreset = (id) => STYLE_PRESETS[id] ?? STYLE_PRESETS[DEFAULT_STYLE];
-
 const STRINGS = {
   zh: {
     kicker: '角色设定集',
@@ -302,7 +222,6 @@ const STRINGS = {
       arc: '人物弧光', relationships: '关系', evidence: '原文依据',
     },
     image: {
-      style: '画风',
       prompt: '出图提示词 · 喂出图模型用这条', promptLocal: '出图提示词（中文对照）',
       negative: '反向提示词', sheet: '角色设定图提示词 EN',
     },
@@ -410,7 +329,6 @@ const STRINGS = {
       arc: 'Arc', relationships: 'Relationships', evidence: 'From the text',
     },
     image: {
-      style: 'Style',
       prompt: 'Image prompt · feed this to the image model', promptLocal: 'Image prompt (local translation)',
       negative: 'Negative prompt', sheet: 'Model sheet prompt',
     },
@@ -462,7 +380,6 @@ const STRINGS = {
       arc: '人物の変化', relationships: '関係', evidence: '原文の根拠',
     },
     image: {
-      style: '画風',
       prompt: '画像プロンプト · 画像モデルにはこれを', promptLocal: '画像プロンプト（対訳）',
       negative: 'ネガティブプロンプト', sheet: 'キャラ設定画プロンプト EN',
     },
@@ -592,7 +509,7 @@ export function seedFromOutline(outline) {
         arc: c?.arc ?? '',
         relationships: [], evidence: [],
       },
-      image: { style: '', prompt: '', promptLocal: '', negativePrompt: '', tags: [], sheet: '' },
+      image: { prompt: '', promptLocal: '', negativePrompt: '', tags: [], sheet: '' },
       voice: { timbre: '', pitch: '', pace: '', accent: '', emotion: '', prompt: '', referenceHint: '' },
       ...(note ? { seedNote: note } : {}),
     };
@@ -600,7 +517,6 @@ export function seedFromOutline(outline) {
   return {
     source: outline?.source ?? '',
     lang: outline?.lang ?? DEFAULT_LANG,
-    style: DEFAULT_STYLE,
     summary: '',
     characters,
   };
@@ -629,37 +545,13 @@ const normalise = (s) => String(s).replace(/\s+/g, '');
  * @param sourceText 原文；null 則跳過逐字引文校驗
  * @param lang       報告語言，決定人類可讀欄位該是什麼語言
  */
-export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style = DEFAULT_STYLE) {
+export function validateCast(characters, sourceText, lang = DEFAULT_LANG) {
   const problems = [];
   const flatSource = sourceText === null ? null : normalise(sourceText);
   const at = (name, msg) => problems.push(`[${name}] ${msg}`);
 
   if (!Array.isArray(characters) || characters.length === 0) {
     return ['cast 為空或不是陣列'];
-  }
-
-  // --- 同劇角色畫風必須一致 ---
-  // 這是整批圖"像不像同一部片"的底線。每個角色的 image.style 給人讀的畫風
-  // 一句話，模型在第二趟出卡時可能按各自服裝/年齡自由發揮（藏青/冷灰/大地色
-  // 各寫一套），導致同框時像四個畫師畫的。預設只約束大類別（realistic/ghibli），
-  // 管不到劇內統一，所以用確定性檢查兜底：歸一化後多於一種值就報錯，並點名
-  // 哪些角色用了不同畫風。單角色（或未寫 image.style 的角色）不觸發。
-  const styleByChar = [];
-  for (const c of characters) {
-    const name = c?.name ?? '(無名)';
-    const style = c?.image?.style;
-    if (typeof style === 'string' && style.trim()) styleByChar.push([name, normalise(style)]);
-  }
-  if (styleByChar.length > 1) {
-    const seen = new Map();
-    for (const [name, norm] of styleByChar) {
-      if (!seen.has(norm)) seen.set(norm, []);
-      seen.get(norm).push(name);
-    }
-    if (seen.size > 1) {
-      const groups = [...seen.values()].map((names) => names.join('、')).join('  vs  ');
-      problems.push(`同劇角色畫風不一致（image.style 必須統一）：${groups}`);
-    }
   }
 
   // --- 同批角色的提示詞不許雷同 ---
@@ -726,7 +618,7 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
     if (!image || typeof image !== 'object') {
       at(name, '缺少 image');
     } else {
-      for (const f of ['style', 'prompt', 'negativePrompt']) {
+      for (const f of ['prompt', 'negativePrompt']) {
         if (typeof image[f] !== 'string' || !image[f].trim()) at(name, `image.${f} 缺失或為空`);
       }
       if (typeof image.sheet !== 'string' || !image.sheet.trim()) {
@@ -811,29 +703,6 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
         if (typeof t === 'string' && CJK.test(t)) at(name, `image.tags 必須英文，但「${t}」含中日韓字元`);
       }
     }
-    // --- 風格與提示詞必須匹配 ---
-    // 兩個預設的負向提示詞幾乎是相反的，搞反了整批圖都毀。
-    if (image && SUPPORTED_STYLES.includes(style)) {
-      const neg = typeof image.negativePrompt === 'string' ? image.negativePrompt : '';
-      const bansRealism = /photorealistic|3d render/i.test(neg);
-      const preset = stylePreset(style);
-      // 拿預設自己的立場當基準，新增預設不用回來改這裡
-      const presetBansRealism = /photorealistic|3d render/i.test(preset.negative);
-      if (!presetBansRealism && bansRealism) {
-        at(name, `style=${style} 卻在 negativePrompt 裡禁 photorealistic／3d render——自相矛盾`);
-      }
-      if (presetBansRealism && !bansRealism) {
-        at(name, `style=${style} 的 negativePrompt 必須禁 photorealistic／3d render`);
-      }
-      // 擬真實拍反過來要禁「畫出來的」，漏了模型很容易交一張插畫
-      if (style === 'photoreal' && !/illustration|painting|anime|cartoon/i.test(neg)) {
-        at(name, 'style=photoreal 的 negativePrompt 必須禁 illustration／painting／anime／cartoon');
-      }
-      if (typeof image.sheet === 'string' && !image.sheet.includes(preset.render)) {
-        at(name, `image.sheet 裡沒有 style=${style} 的渲染句，畫風會飄`);
-      }
-    }
-
     // 只有這三種能可靠自動判別，其他語言不猜、跳過——誤報比漏報更煩人。
     if (voice) {
       for (const f of HUMAN_VOICE_FIELDS) {
@@ -866,7 +735,7 @@ export function validateCast(characters, sourceText, lang = DEFAULT_LANG, style 
  * 順序）。不給 order 就保持傳入順序——CLI 按檔名讀卡，那是 slug
  * 字典序不是戲份序，所以報告要「按戲份排序」就必須給 order。
  */
-export function assembleCast(cards, { source, lang = DEFAULT_LANG, style = DEFAULT_STYLE, summary = '', ui = null, order = null } = {}) {
+export function assembleCast(cards, { source, lang = DEFAULT_LANG, summary = '', ui = null, order = null } = {}) {
   const rank = (c) => {
     const i = IMPORTANCE.indexOf(c?.importance);
     return i < 0 ? IMPORTANCE.length : i; // 越界的排最後，讓 validate 去報，這裡不崩
@@ -878,7 +747,7 @@ export function assembleCast(cards, { source, lang = DEFAULT_LANG, style = DEFAU
     .map((card, i) => [card, i])
     .sort((a, b) => rank(a[0]) - rank(b[0]) || byOrder(a[0]) - byOrder(b[0]) || a[1] - b[1])
     .map(([card]) => card);
-  const cast = { source, lang, style };
+  const cast = { source, lang };
   if (ui) cast.ui = ui;
   cast.summary = summary;
   cast.characters = characters;
@@ -924,7 +793,6 @@ export function renderMarkdown(characters, source, summary = '', lang = DEFAULT_
     }
 
     out.push(`### ${t.groups.image}`, '');
-    out.push(`**${t.image.style}**　${image.style}`, '');
     if (image.tags.length) out.push(`\`${image.tags.join('`, `')}\``, '');
     out.push(`**${t.image.prompt}**`, '', '```text', image.prompt, '```', '');
     if (image.promptLocal) out.push(`${image.promptLocal}`, '');
@@ -1076,11 +944,13 @@ function renderCharacter(c, index, t) {
         <dl>${HUMAN_VOICE_FIELDS.map((f) => kv(t.voice[f], voice[f])).join('')}</dl>
       </div>
 
-      <div class="card">
-        <h4>${esc(t.image.style)}</h4>
-        <p class="style">${esc(image.style)}</p>
-        ${image.tags.length ? `<ul class="tags">${image.tags.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
-      </div>
+      ${
+        image.tags.length
+          ? `<div class="card"><h4>${esc(t.groups.image)}</h4>
+               <ul class="tags">${image.tags.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+             </div>`
+          : ''
+      }
     </aside>
   </div>
 
@@ -1256,8 +1126,8 @@ function renderGraph(ordered, t) {
  * `<` 轉成 <：JSON 裡 `<` 只可能出現在字串值中，整體替換是安全的，
  * 而不轉的話正文裡一個 `</script` 就能把這個資料區塊提前截斷。
  */
-function embedCast(characters, source, summary, lang, ui, style) {
-  const data = { source, lang, style, summary, ...(ui ? { ui } : {}), characters };
+function embedCast(characters, source, summary, lang, ui) {
+  const data = { source, lang, summary, ...(ui ? { ui } : {}), characters };
   return JSON.stringify(data).replace(/</g, '\\u003c');
 }
 
@@ -1267,7 +1137,6 @@ export function renderHtml(
   summary = '',
   lang = DEFAULT_LANG,
   ui = null,
-  style = DEFAULT_STYLE,
 ) {
   const t = strings(lang, ui);
   // 正體中文要挑 TC 字型：Songti SC 那一串在台灣機器上多半沒裝，
@@ -1434,7 +1303,6 @@ button{font-family:inherit}
 .kv dt{color:var(--ink-3);flex:none;width:46px}
 .kv dd{margin:0;min-width:0}
 .rel-n{color:var(--ink)!important;width:auto!important;min-width:46px}
-.style{margin:0;font-size:12.5px;line-height:1.7;color:var(--ink-2)}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 0;padding:0;list-style:none}
 .tags li{font:400 11px/1.5 var(--mono);color:var(--ink-2);border:1px solid var(--rule-2);
   background:var(--paper);border-radius:2px;padding:1px 6px}
@@ -1586,7 +1454,7 @@ button{font-family:inherit}
   <img alt="">
 </div>
 
-<script type="application/json" id="cast-data">${embedCast(characters, source, summary, lang, ui, style)}</script>
+<script type="application/json" id="cast-data">${embedCast(characters, source, summary, lang, ui)}</script>
 
 <script>
 const L = ${JSON.stringify({ copied: t.copied, failed: t.copyFailed })};
@@ -1800,13 +1668,14 @@ const USAGE = `novel-characters.mjs — novel-characters skill 的確定性工�
   merge <workdir>                  歸併 roster-*.json，列印 {characters, mergeCandidates}
         [--apply merges.json]      落地複核後的合併決定：{"merges":[{"keep":…,"absorb":[…]}]}
   assemble <workdir> --source <書名>
-        [--lang] [--style] [--out] 把 card-*.json + summary.txt（+ ui.json）合成 cast.json
+        [--lang] [--out]           把 card-*.json + 故事摘要（+ 介面翻譯）合成 cast.json
+        [--summary <file>]         故事摘要檔案（預設 <workdir>/summary.txt）
+        [--ui <file>]              介面文案翻譯（預設 <workdir>/ui.json，內建語言不需要）
         [--order merged.json]      同檔角色的戲份順序（預設自動找 <workdir>/merged.json）
   validate <cast.json> <book.txt>  校驗；有違規逐條列印並 exit 1
   render <cast.json> [--html|--md] 渲染報告到 stdout（預設 --md）
   slug <name>                      角色名轉安全檔名
   ui-template [lang]               列印介面文案骨架，供翻譯成內建表沒有的語言
-  styles [id]                      列印畫風預設的完整內容
 
 通用選項：
   --lang <code>     報告語言，預設取 cast.json 的 lang，再預設 ${DEFAULT_LANG}
@@ -1814,8 +1683,8 @@ const USAGE = `novel-characters.mjs — novel-characters skill 的確定性工�
 
 render 選項：
   --source <name>   報告標題用的書名（預設取 cast.json 的 source 或檔名）
-  --images <dir>    圖片目錄名，預設 images
-                    會去找 <dir>/<slug>-sheet.png`;
+  --images <dir>    設定圖所在目錄，任意路徑（相對當前目錄解析）；預設 cast.json 同級的 images/
+                    會去找 <dir>/<slug>-sheet.png；報告裡的圖片路徑按「報告寫在 cast.json 旁邊」計算`;
 
 function readJson(path) {
   return JSON.parse(readFileSync(resolve(path), 'utf8'));
@@ -1838,7 +1707,6 @@ function loadCast(path) {
     summary: Array.isArray(raw) ? '' : (raw.summary ?? ''),
     lang: Array.isArray(raw) ? DEFAULT_LANG : (raw.lang ?? DEFAULT_LANG),
     ui: Array.isArray(raw) ? null : (raw.ui ?? null),
-    style: Array.isArray(raw) ? DEFAULT_STYLE : (raw.style ?? DEFAULT_STYLE),
   };
 }
 
@@ -1902,13 +1770,12 @@ function main(argv) {
   if (cmd === 'assemble') {
     const [workdir] = rest;
     if (!workdir || workdir.startsWith('--')) {
-      throw new Error('用法：assemble <workdir> --source <書名> [--lang zh] [--style realistic] [--out cast.json]');
+      throw new Error('用法：assemble <workdir> --source <書名> [--lang zh] [--out cast.json]');
     }
     const dir = resolve(workdir);
     const sourceName = flag(rest, '--source');
     if (!sourceName) throw new Error('assemble 需要 --source <書名>');
     const lang = flag(rest, '--lang', DEFAULT_LANG);
-    const style = flag(rest, '--style', DEFAULT_STYLE);
 
     const files = readdirSync(dir).filter((f) => /^card-.*\.json$/.test(f)).sort();
     if (!files.length) throw new Error(`${dir} 裡沒有 card-*.json`);
@@ -1937,14 +1804,15 @@ function main(argv) {
       cards.push(card);
     }
 
-    const summaryPath = join(dir, 'summary.txt');
+    // 三份附帶檔案都能單獨指定路徑；不給才去工作目錄裡找 skill 自己寫下的那份
+    const summaryPath = resolve(flag(rest, '--summary', join(dir, 'summary.txt')));
     const summary = existsSync(summaryPath) ? readFileSync(summaryPath, 'utf8').trim() : '';
-    if (!summary) problems.push(`缺 ${summaryPath}（故事摘要）——用報告語言寫 3–5 句進去`);
+    if (!summary) problems.push(`缺 ${summaryPath}（故事摘要）——用報告語言寫 3–5 句進去，或用 --summary 指定`);
 
-    const uiPath = join(dir, 'ui.json');
+    const uiPath = resolve(flag(rest, '--ui', join(dir, 'ui.json')));
     const ui = existsSync(uiPath) ? readJson(uiPath) : null;
     if (needsUiTranslation(lang) && !ui) {
-      problems.push(`lang=${lang} 不在內建介面語言裡，缺 ${uiPath}——用 ui-template 生成骨架翻譯後放進去`);
+      problems.push(`lang=${lang} 不在內建介面語言裡，缺 ${uiPath}——用 ui-template 生成骨架翻譯後放進去，或用 --ui 指定`);
     }
 
     // 同檔角色的戲份順序來自 merge 的輸出——卡按檔名讀入是 slug 字典序，
@@ -1965,7 +1833,7 @@ function main(argv) {
       process.exit(1);
     }
 
-    const cast = assembleCast(cards, { source: sourceName, lang, style, summary, ui, order });
+    const cast = assembleCast(cards, { source: sourceName, lang, summary, ui, order });
     const json = JSON.stringify(cast, null, 2) + '\n';
     const out = flag(rest, '--out');
     if (out) {
@@ -1980,15 +1848,11 @@ function main(argv) {
   if (cmd === 'validate') {
     const [castPath, bookPath] = rest;
     if (!castPath) throw new Error('用法：validate <cast.json> <book.txt>');
-    const { characters, summary, lang: castLang, ui, style: castStyle } = loadCast(castPath);
+    const { characters, summary, lang: castLang, ui } = loadCast(castPath);
     const lang = flag(rest, '--lang', castLang);
-    const style = flag(rest, '--style', castStyle);
     const source = bookPath ? readFileSync(resolve(bookPath), 'utf8') : null;
     if (!bookPath) console.error('⚠️ 沒給原文，跳過逐字引文校驗');
-    const problems = validateCast(characters, source, lang, style);
-    if (!SUPPORTED_STYLES.includes(style)) {
-      problems.unshift(`頂層 style=${style} 不是已知預設（${SUPPORTED_STYLES.join('/')}）`);
-    }
+    const problems = validateCast(characters, source, lang);
     // 頂層的故事摘要——報告要用，缺了就沒法在頂部交代背景
     if (typeof summary !== 'string' || !summary.trim()) {
       problems.unshift('頂層缺少 summary（故事摘要），報告頂部會空著');
@@ -2006,7 +1870,7 @@ function main(argv) {
       for (const p of problems) console.error('  ' + p);
       process.exit(1);
     }
-    console.log(`✓ ${characters.length} 個角色全部通過校驗（lang=${lang}, style=${style}）`);
+    console.log(`✓ ${characters.length} 個角色全部通過校驗（lang=${lang}）`);
     return;
   }
 
@@ -2014,23 +1878,26 @@ function main(argv) {
     const [castPath] = rest;
     if (!castPath) throw new Error('用法：render <cast.json> [--html|--md]');
     const html = rest.includes('--html');
-    const imagesDir = flag(rest, '--images', 'images');
+    const imagesFlag = flag(rest, '--images');
     const sourceFlag = flag(rest, '--source');
 
-    const { characters, source, summary, lang: castLang, ui, style } = loadCast(castPath);
+    const { characters, source, summary, lang: castLang, ui } = loadCast(castPath);
     const lang = flag(rest, '--lang', castLang);
     const title = sourceFlag ?? source ?? basename(castPath).replace(/\.[^.]+$/, '');
 
-    // 圖存在才掛上去；沒有就渲染成佔位，不影響其餘內容。
+    // 圖是使用者在下游出好的素材，放哪由使用者定：--images 按普通命令列路徑解析，
+    // 不給才退回 cast.json 同級的 images/。報告預設寫在 cast.json 旁邊，
+    // src 寫成相對那裡的路徑，整個目錄一起挪也不斷。圖不存在就渲染成佔位。
     const outDir = resolve(castPath, '..');
+    const imagesDir = imagesFlag ? resolve(imagesFlag) : join(outDir, 'images');
     for (const c of characters) {
-      const stem = `${imagesDir}/${slug(c.name)}`;
-      if (existsSync(join(outDir, `${stem}-sheet.png`))) c.sheetImage = `${stem}-sheet.png`;
+      const abs = join(imagesDir, `${slug(c.name)}-sheet.png`);
+      if (existsSync(abs)) c.sheetImage = relative(outDir, abs).split(sep).join('/');
     }
 
     process.stdout.write(
       (html
-        ? renderHtml(characters, title, summary, lang, ui, style)
+        ? renderHtml(characters, title, summary, lang, ui)
         : renderMarkdown(characters, title, summary, lang, ui)) + '\n',
     );
     return;
@@ -2041,26 +1908,6 @@ function main(argv) {
     console.log(
       JSON.stringify(
         { note: `把下面每個值翻譯成 ${lang}，整塊放進 cast.json 的頂層 "ui"`, ui: uiTemplate() },
-        null,
-        2,
-      ),
-    );
-    return;
-  }
-
-  if (cmd === 'styles') {
-    const only = rest[0];
-    if (only && !SUPPORTED_STYLES.includes(only)) {
-      throw new Error(`未知風格 ${only}（可用：${SUPPORTED_STYLES.join('/')}）`);
-    }
-    const ids = only ? [only] : SUPPORTED_STYLES;
-    console.log(
-      JSON.stringify(
-        {
-          default: DEFAULT_STYLE,
-          note: '整塊取用，不要混搭；各預設的 negative 立場相反，realistic／photoreal 絕不能禁 photorealistic，ghibli 必須禁，photoreal 另外要禁 illustration／painting／anime',
-          presets: Object.fromEntries(ids.map((id) => [id, STYLE_PRESETS[id]])),
-        },
         null,
         2,
       ),

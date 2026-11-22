@@ -21,14 +21,11 @@ import {
   renderMarkdown,
   seedFromOutline,
   TIER_TO_IMPORTANCE,
-  STYLE_PRESETS,
-  SUPPORTED_STYLES,
   needsUiTranslation,
   DEFAULT_LANG,
   isChinese,
   isTraditionalChinese,
   slug,
-  stylePreset,
   strings,
   uiTemplate,
   validateCast,
@@ -212,13 +209,12 @@ eq(
   // 拿真實的 outline 樣例當夾具。這個函式的契約就是「吃 novel-outline 的產出」，
   // 手捏一份假 outline 測不到真實的欄位形狀。novel-art 與 novel-script 的自測
   // 讀的是同一份檔案，同儲存庫上游樣例共享是既有做法。
-  const outlinePath = join(here, '..', '..', 'novel-outline', 'examples', '渡口-outline.json');
+  const outlinePath = join(here, '..', 'references', 'test-fixtures', 'upstream', '渡口-outline.json');
   const outline = JSON.parse(readFileSync(outlinePath, 'utf8'));
   const seeded = seedFromOutline(outline);
 
   ok(seeded.characters.length === outline.characters.length, 'seed 出的角色數跟大綱一致');
   ok(seeded.source === outline.source, 'source 從大綱繼承');
-  ok(seeded.style === 'realistic', '畫風取預設值，大綱裡沒有這個資訊');
   ok(seeded.summary === '', 'summary 留空——那是讀完原文才寫得出來的');
 
   // 分檔對映：大綱拍板的輕重，這一層不推翻
@@ -265,11 +261,10 @@ const asm = assembleCast(
     { name: 'C', importance: 'major' },
     { name: 'D', importance: 'major' },
   ],
-  { source: '書', lang: 'zh', style: 'ghibli', summary: '摘要' },
+  { source: '書', lang: 'zh', summary: '摘要' },
 );
 eq(asm.source, '書', 'assemble 帶書名');
 eq(asm.lang, 'zh', 'assemble 帶語言');
-eq(asm.style, 'ghibli', 'assemble 帶畫風');
 eq(asm.summary, '摘要', 'assemble 帶摘要');
 eq(asm.characters.map((c) => c.name).join(''), 'BCDA', '按 importance 排序，同檔保持傳入順序');
 ok(!('ui' in asm), '沒有 ui 就不寫這個鍵');
@@ -494,7 +489,7 @@ ok(/scrollHeight <= body\.clientHeight/.test(synHtml), '摘要短到不用摺疊
 /* ---------------- 匯出 JSON ---------------- */
 
 // 匯出的形狀就是 cast.json，編輯完要能直接餵回 render
-const expHtml = renderHtml(CAST, '渡口', DOC.summary, 'zh', null, 'ghibli');
+const expHtml = renderHtml(CAST, '渡口', DOC.summary, 'zh', null);
 ok(expHtml.includes('class="expo"'), '頂欄有匯出按鈕');
 ok(expHtml.includes('<script type="application/json" id="cast-data">'), '資料內嵌在報告裡');
 ok(expHtml.includes('data-name="渡口-cast.json"'), '下載檔名跟著書名走');
@@ -503,12 +498,10 @@ const embedded = expHtml.match(/<script type="application\/json" id="cast-data">
 const round = JSON.parse(embedded.replace(/\\u003c/g, '<'));
 eq(round.source, '渡口', '匯出帶書名');
 eq(round.lang, 'zh', '匯出帶語言');
-eq(round.style, 'ghibli', '匯出帶畫風');
 eq(round.summary, DOC.summary, '匯出帶故事摘要');
 eq(round.characters.length, CAST.length, '匯出帶全部角色');
 eq(JSON.stringify(round.characters), JSON.stringify(CAST), '角色卡原樣匯出，沒有丟欄位');
-eq(validateCast(round.characters, SOURCE, 'zh', 'realistic').length, 0, '匯出的資料能直接餵回 validate 並透過');
-ok(validateCast(round.characters, SOURCE, 'zh', 'ghibli').length > 0, '餵回去的確實是真資料——畫風說反了照樣報錯');
+eq(validateCast(round.characters, SOURCE, 'zh').length, 0, '匯出的資料能直接餵回 validate 並通過');
 
 // ⚠️ 正文裡一個 </script 就能把資料區塊提前截斷
 const xss = clone();
@@ -733,90 +726,13 @@ ok(
   '細節放不下可延伸到右側',
 );
 
-/* ---------------- 畫風預設 ---------------- */
-
-for (const id of ['realistic', 'ghibli', 'photoreal']) {
-  ok(SUPPORTED_STYLES.includes(id), `內建 ${id} 預設`);
-}
-eq(stylePreset('nope').render, STYLE_PRESETS.realistic.render, '未知風格退回預設');
-// 每個預設都要五塊齊全，缺一塊就會跟另一個預設混搭出四不像
-for (const [id, p] of Object.entries(STYLE_PRESETS)) {
-  for (const k of ['render', 'surface', 'lighting', 'negative', 'tags']) {
-    ok(p[k] && p[k].length, `${id} 預設有 ${k}`);
-  }
-  // 內建幾套介面文案，標籤就得給幾套，否則那個語言的報告會露出別的語言
-  for (const l of SUPPORTED_UI_LANGS) ok(p.label[l], `${id} 預設有 ${l} 標籤`);
-}
-// 這是整件事最容易搞反的地方：兩個預設的負向提示詞幾乎相反
-ok(!/photorealistic|3d render/i.test(STYLE_PRESETS.realistic.negative), 'realistic 不禁寫實');
-ok(/photorealistic/i.test(STYLE_PRESETS.ghibli.negative), 'ghibli 必須禁寫實');
-// 寫實的表面細節在吉卜力裡是反效果，兩邊不能是同一段
-ok(/visible pores/i.test(STYLE_PRESETS.realistic.surface), 'realistic 要毛孔');
-ok(/no pores/i.test(STYLE_PRESETS.ghibli.surface), 'ghibli 明確不要毛孔');
-ok(STYLE_PRESETS.realistic.surface !== STYLE_PRESETS.ghibli.surface, '兩個預設的表面處理不同');
-
-// photoreal 跟 realistic 站同一邊（都要真實感），但禁的東西相反：
-// realistic 仍是畫出來的，photoreal 恰恰要禁「畫出來的」
-ok(!/photorealistic|3d render/i.test(STYLE_PRESETS.photoreal.negative), 'photoreal 不禁寫實');
-ok(
-  /illustration/i.test(STYLE_PRESETS.photoreal.negative) &&
-    /painting/i.test(STYLE_PRESETS.photoreal.negative) &&
-    /anime/i.test(STYLE_PRESETS.photoreal.negative),
-  'photoreal 必須禁 illustration／painting／anime',
-);
-ok(!/illustration/i.test(STYLE_PRESETS.realistic.negative), 'realistic 不禁 illustration——它本來就是畫');
-ok(/visible pores/i.test(STYLE_PRESETS.photoreal.surface), 'photoreal 要毛孔');
-ok(
-  STYLE_PRESETS.photoreal.render !== STYLE_PRESETS.realistic.render &&
-    STYLE_PRESETS.photoreal.surface !== STYLE_PRESETS.realistic.surface,
-  'photoreal 與 realistic 是兩套，不是同一套',
-);
-// 版面規則不隨風格變：三個預設都得分割槽打光
-for (const id of SUPPORTED_STYLES) {
-  const p = STYLE_PRESETS[id];
-  const zoned = /LEFT ZONE/.test(p.lighting) && /RIGHT ZONE/.test(p.lighting);
-  const flat = /whole sheet/.test(p.lighting);
-  ok(zoned || flat, `${id} 的打光要麼分割槽要麼明確全圖平光`);
-}
-
-// 校驗器要能抓住風格與負向提示詞搞反
-const wrongStyle = clone();
-ok(
-  validateCast(wrongStyle, SOURCE, 'zh', 'ghibli').some((x) => x.includes('必須禁 photorealistic')),
-  '樣例是 realistic，按 ghibli 校驗會報錯',
-);
-const ghibliish = clone();
-for (const c of ghibliish) c.image.negativePrompt = STYLE_PRESETS.ghibli.negative;
-ok(
-  validateCast(ghibliish, SOURCE, 'zh', 'realistic').some((x) => x.includes('自相矛盾')),
-  'realistic 卻禁 photorealistic 會報錯',
-);
-eq(validateCast(CAST, SOURCE, 'zh', 'realistic').length, 0, '樣例按 realistic 校驗通過');
-
-// 同劇角色畫風必須一致——模型曾按各自服裝/年齡寫出四套畫風，同框像四個畫師
-// 樣例已統一，應通過；故意改掉一個角色的 image.style 必須報錯；僅空白差異不算不一致
-eq(validateCast(CAST, SOURCE, 'zh', 'realistic').length, 0, '樣例四個角色畫風統一，校驗通過');
-{
-  const split = clone();
-  split[1].image.style = '吉卜力動畫風，明快平塗';
-  ok(
-    validateCast(split, SOURCE, 'zh', 'realistic').some((x) => x.includes('畫風不一致')),
-    '同劇角色 image.style 不一致會報錯',
-  );
-}
-{
-  const ws = clone();
-  ws[0].image.style = '  半寫實厚塗插畫，冷調低飽和民國配色，晨霧柔光  ';
-  eq(validateCast(ws, SOURCE, 'zh', 'realistic').length, 0, 'image.style 僅空白差異不算不一致');
-}
-
 // 同批角色的提示詞不許雷同——模型套同一個模板，兩個年齡性別接近的角色會出成同一個人（issue #9）
-eq(validateCast(CAST, SOURCE, 'zh', 'realistic').length, 0, '樣例四個角色的提示詞差異夠大，不誤攔');
+eq(validateCast(CAST, SOURCE, 'zh').length, 0, '樣例四個角色的提示詞差異夠大，不誤攔');
 {
   const dup = clone();
   dup[1].image.prompt = dup[0].image.prompt;
   ok(
-    validateCast(dup, SOURCE, 'zh', 'realistic').some((x) => x.includes('生圖提示詞雷同')),
+    validateCast(dup, SOURCE, 'zh').some((x) => x.includes('生圖提示詞雷同')),
     '兩個角色的生圖提示詞完全相同會報錯',
   );
 }
@@ -827,7 +743,7 @@ eq(validateCast(CAST, SOURCE, 'zh', 'realistic').length, 0, '樣例四個角色�
     .replace(/nineteen-year-old/g, 'twenty-two-year-old')
     .replace(/navy-blue/g, 'dark green');
   ok(
-    validateCast(near, SOURCE, 'zh', 'realistic').some((x) => x.includes('生圖提示詞雷同')),
+    validateCast(near, SOURCE, 'zh').some((x) => x.includes('生圖提示詞雷同')),
     '只改幾個詞的生圖提示詞照樣被攔',
   );
 }
@@ -835,7 +751,7 @@ eq(validateCast(CAST, SOURCE, 'zh', 'realistic').length, 0, '樣例四個角色�
   const dupVoice = clone();
   dupVoice[1].voice.prompt = dupVoice[0].voice.prompt;
   ok(
-    validateCast(dupVoice, SOURCE, 'zh', 'realistic').some((x) => x.includes('音色提示詞雷同')),
+    validateCast(dupVoice, SOURCE, 'zh').some((x) => x.includes('音色提示詞雷同')),
     '兩個角色的音色提示詞相同也會報錯',
   );
 }
@@ -844,7 +760,7 @@ eq(validateCast(CAST, SOURCE, 'zh', 'realistic').length, 0, '樣例四個角色�
   const dupSheet = clone();
   dupSheet[1].image.sheet = dupSheet[0].image.sheet;
   ok(
-    !validateCast(dupSheet, SOURCE, 'zh', 'realistic').some((x) => x.includes('雷同')),
+    !validateCast(dupSheet, SOURCE, 'zh').some((x) => x.includes('雷同')),
     'image.sheet 相同不報錯——它的固定排版文字佔比太高，設門必然誤攔',
   );
 }
@@ -854,58 +770,55 @@ eq(validateCast(CAST, SOURCE, 'zh', 'realistic').length, 0, '樣例四個角色�
   tiny[0].image.prompt = 'a man';
   tiny[1].image.prompt = 'a man';
   ok(
-    !validateCast(tiny, SOURCE, 'zh', 'realistic').some((x) => x.includes('生圖提示詞雷同')),
+    !validateCast(tiny, SOURCE, 'zh').some((x) => x.includes('生圖提示詞雷同')),
     '詞數太少的提示詞不參與雷同判定',
   );
 }
-
-// photoreal：負向提示詞漏了「畫出來的」那幾個詞要報錯，否則模型交插畫
-const photorealCast = clone();
-for (const c of photorealCast) {
-  c.image.negativePrompt = STYLE_PRESETS.photoreal.negative;
-  c.image.sheet = `${STYLE_PRESETS.photoreal.render}. ${c.image.sheet}`;
-}
-eq(validateCast(photorealCast, SOURCE, 'zh-TW', 'photoreal').length, 0, 'photoreal 角色卡校驗通過');
-ok(
-  validateCast(clone(), SOURCE, 'zh', 'photoreal').some((x) => x.includes('必須禁 illustration')),
-  '樣例的負向提示詞沒禁 illustration，按 photoreal 校驗會報錯',
-);
-// photoreal 的 sheet 裡必須帶自己的渲染句，否則畫風會飄回插畫
-const photorealNoRender = clone();
-for (const c of photorealNoRender) c.image.negativePrompt = STYLE_PRESETS.photoreal.negative;
-ok(
-  validateCast(photorealNoRender, SOURCE, 'zh', 'photoreal').some((x) => x.includes('沒有 style=photoreal')),
-  'photoreal 的 sheet 缺渲染句會報錯',
-);
 
 /* ---------------- 真實感 ---------------- */
 
 // 一邊要真實感一邊在負向提示詞裡禁真實感，是自相矛盾的
 ok(
-  CAST.every((c) => !/photorealistic|3d render/i.test(c.image.negativePrompt)),
-  'negativePrompt 不再禁 photorealistic / 3d render',
+  CAST.every((c) => !/photorealistic|3d render|\banime\b/i.test(c.image.negativePrompt)),
+  'negativePrompt 不禁畫風詞——生圖時選的可能正是它',
 );
 ok(
   CAST.every((c) => /plastic or waxy skin|poreless doll face/i.test(c.image.negativePrompt)),
   'negativePrompt 改禁「假」而不是禁「真」',
 );
-// 「扁平向量卡通」跟寫實擰巴，會導致同一批角色畫風飄
-ok(
-  CAST.every((c) => !/flat vector cartoon/i.test(c.image.sheet + c.image.prompt)),
-  '不再用扁平向量卡通',
-);
-ok(
-  CAST.every((c) => /Semi-realistic character illustration, painterly rendering/.test(c.image.sheet)),
-  '畫風統一到半寫實厚塗',
-);
-// 真實感來自不完美
+// 畫風是生圖那一刻才定的，寫進提示詞就會跟當時選的風格打架
+for (const k of [
+  /flat vector cartoon/i,
+  /semi-?realistic/i,
+  /painterly/i,
+  /\bphotoreal/i,
+  /\banime style/i,
+]) {
+  ok(
+    CAST.every((c) => !k.test(`${c.image.sheet} ${c.image.prompt} ${c.image.tags.join(' ')}`)),
+    `提示詞裡不寫畫風：${k.source}`,
+  );
+}
+// 設定圖是全劇通用的參照，釘在某個場合上就只覆蓋了部分戲。形制已經排在句首，
+// 場合標籤跟在後面不增加畫面資訊，只增加一個「只在這個場合這樣穿」的承諾。
+for (const k of [/便裝/, /常服/, /朝服/, /公服/, /吉服/, /燕居/, /casual wear/i, /court dress/i]) {
+  ok(
+    CAST.every((c) => !k.test(`${c.image.sheet} ${c.image.prompt} ${c.image.promptLocal ?? ''}`)),
+    `提示詞裡不寫場合標籤：${k.source}`,
+  );
+}
+// 「架空」說的是這個設定跟真實歷史什麼關係，畫面裡沒有對應物；
+// 跟 `(inferred)` 一樣，是關於設定的話，不是設定本身。
+for (const k of [/架空/, /虛構/, /某朝/, /\bfictional\b/i, /alternate history/i]) {
+  ok(
+    CAST.every((c) => !k.test(`${c.image.sheet} ${c.image.prompt} ${c.image.promptLocal ?? ''}`)),
+    `提示詞裡不寫設定的元資訊：${k.source}`,
+  );
+}
+// 提示詞寫的是這個人獨有的東西——換任何畫風都成立
 for (const [k, label] of [
-  [/visible pores/i, '可見毛孔'],
-  [/wet specular highlight/i, '眼睛溼潤高光'],
   [/asymmetric/i, '左右不對稱'],
   [/flyaway hair strands/i, '碎髮破輪廓'],
-  [/visible weave/i, '布料織紋'],
-  [/self-shadow/i, '褶皺自陰影'],
 ]) {
   ok(CAST.every((c) => k.test(c.image.sheet)), `設定圖提示詞含${label}`);
 }

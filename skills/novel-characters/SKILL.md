@@ -1,12 +1,10 @@
 ---
 name: novel-characters
-version: 1.11.0
 description: |
   從小說或短故事裡拆出角色表、人物畫像、形象提示詞、音色提示詞，
-  並給每個角色出角色設定圖（左半身像 + 右全身三檢視 + 細節條），產出 JSON + Markdown + 可互動的 report.html。
-  報告語言可指定（--lang），預設台灣正體中文（zh-TW），任意語言都支援；
-  生圖風格可指定（--style），預設半寫實，也可以出吉卜力動畫風或擬真實拍。
-  零依賴、零 API key，用當前會話額度；生圖走 codex 內建 $imagegen（可選）。
+  其中形象提示詞含一張角色設定圖的完整版面指令（左半身像 + 右全身三檢視 + 細節條），
+  產出 JSON + Markdown + 可互動的 report.html。
+  報告語言可指定（--lang），預設台灣正體中文（zh-TW），任意語言都支援；零依賴、零 API key、不生圖。
   Use when asked to 拆小說角色、分析人物、生成角色卡、character sheets from a novel。
 allowed-tools:
   - Read
@@ -14,22 +12,21 @@ allowed-tools:
   - Bash
   - Task
   - Glob
-triggers:
-  - novel-characters
-  - 拆角色
-  - 拆書角色
-  - 小說角色
-  - 人物畫像
-  - 角色卡
-  - 三檢視
-  - character sheet from novel
 metadata:
+  version: 2.0.0
+  triggers:
+    - novel-characters
+    - 拆角色
+    - 拆書角色
+    - 小說角色
+    - 人物畫像
+    - 角色卡
+    - 三檢視
+    - character sheet from novel
   license: Apache-2.0
   requires:
     bins:
       - node          # >= 18，只用標準庫，無 npm 依賴
-    optional:
-      - codex         # 有才出三檢視；沒有就只交提示詞，其餘照常
   runtimes:
     - claude-code
     - codex
@@ -37,11 +34,13 @@ metadata:
 
 ## novel-characters
 
-輸入一篇小說/短故事，輸出每個角色的：人物畫像、形象提示詞、音色提示詞、角色設定圖。
+輸入一篇小說/短故事，輸出每個角色的：人物畫像、形象提示詞、音色提示詞、角色設定圖的版面指令。
+
+**本 skill 不生圖，只產提示詞。**生圖是下游的事——它要選模型、選畫風、選畫幅，那三件事在這裡一個都答不了。
 
 `{baseDir}` = 本檔案所在目錄。腳本 `{baseDir}/scripts/novel-characters.mjs`，零依賴，`node` 直接跑。
 
-**執行環境**：Claude Code 和 codex 都能跑。差別只在第 8 步生圖——見 `references/sheet.md`。
+**執行環境**：Claude Code 和 codex 都能跑，沒有差別——這條管線全是 node 腳本加模型讀寫，不碰任何本機可執行檔案。
 
 ---
 
@@ -104,32 +103,6 @@ metadata:
 **引號用「」『』**，不要 `""`。
 
 **不受影響的**：`image.prompt` / `image.negativePrompt` / `image.tags` / `image.sheet` / `voice.prompt` 這些機器欄位永遠是英文，`validate` 會攔中文字元。
-
-### Step 0.5 — 確定畫風
-
-使用者可以指定生圖風格，**預設 `realistic`**：
-
-| id | 說明 | 什麼時候用 |
-| --- | --- | --- |
-| `realistic` | 半寫實厚塗。預設 | 一般設定集 |
-| `ghibli` | 吉卜力式手繪賽璐璐 | 想要動畫質感 |
-| `photoreal` | 擬真實拍，劇組試裝定妝照 | 要真人選角感、歷史劇質感 |
-
-```bash
-node {baseDir}/scripts/novel-characters.mjs styles   # 列印預設的完整內容
-```
-
-讀 `{baseDir}/references/style-presets.md`。**換風格是整套換**——每個預設自帶 render / surface / lighting / negative / tags 五塊，整塊取用，不要混搭。
-
-最容易搞反的是負向提示詞，三個預設的立場兩兩不同：
-
-- `realistic` / `photoreal` **絕不能**禁 `photorealistic`
-- `ghibli` **必須**禁
-- `photoreal` 另外**必須**禁 `illustration` / `painting` / `anime` / `cartoon`——它要的是照片不是畫，漏了模型很容易交一張插畫
-
-`validate` 三條都會攔。
-
-版面規則（16:9 三區、比例、細節讓位）**不隨風格變**，變的只有渲染質感。
 
 ### Step 1 — 定位輸入
 
@@ -222,6 +195,8 @@ node {baseDir}/scripts/novel-characters.mjs merge <workdir> --apply merges.json 
 - 該角色歸併後的 `name` / `aliases` / `notes` / `quotes`
 - **同批其他角色的名字**（避免長相聲線撞車）
 
+按 `profile-pass.md` 完成身份—外觀語義自檢後再交卡：人物檔案、形象提示詞、本地譯文與設定圖主體不能各說一種身份。大綱決定名單和改編取捨，原文觀察補足外形依據；不要只給大綱而跳過 Step 2–4 的原文掃描。
+
 角色卡 JSON 寫到 `<workdir>/card-<slug>.json`。**斷點續跑**：`card-<slug>.json` 已存在的角色不必重跑。
 
 **同時寫一段故事摘要**：用 `lang` 指定的語言，3–5 句，交代時空背景、核心情境、這幾個人聚在一起的由頭。短篇直接從原文寫；長篇從各塊的 roster note 歸納。不劇透結局，不寫成推薦語。寫到 `<workdir>/summary.txt`。非內建語言的話，把 Step 0 翻好的 ui 整塊存成 `<workdir>/ui.json`。
@@ -230,7 +205,7 @@ node {baseDir}/scripts/novel-characters.mjs merge <workdir> --apply merges.json 
 
 ```bash
 node {baseDir}/scripts/novel-characters.mjs assemble <workdir> \
-  --source <書名> --lang <lang> --style <style> \
+  --source <書名> --lang <lang> \
   --out <輸出目錄>/<書名>-cast.json
 ```
 
@@ -248,32 +223,7 @@ node {baseDir}/scripts/novel-characters.mjs validate <cast.json> <book.txt>
 
 **有違規就按報錯逐條修，改完重跑，直到通過。** 這四類錯模型真的會犯——這套檢查就是被真實輸出打出來的。
 
-### Step 8 — 生圖（可選，每個角色都出）
-
-**每個角色一張**，用 `image.sheet`，落到 `./images/<slug>-sheet.png`。一張橫構圖內部左右分欄：
-
-```
-┌──────────┬────────────────────────────┐
-│  半身像   │   正視    側視    背視       │
-│ （證件照） ├────────────────────────────┤
-│  面部基準  │  細節 · 細節 · 細節 · 細節   │
-│   ~34%   │            16:9            │
-└──────────┴────────────────────────────┘
-```
-
-左欄半身像是面部設計基準，右上三檢視的臉照它畫，右下是關鍵細節的小特寫。**兩條硬要求**：三檢視的臉必須與半身像一致（否則一張圖兩個長相）；三個全身像的比例必須協調（模型會為了塞下細節把人壓扁）。
-
-讀 `{baseDir}/references/sheet.md`，照它的呼叫契約做。要點：
-
-- **沒有 codex 就整步跳過**，只交提示詞，後面照常走
-- 跑在 codex 裡就直接用 `$imagegen`；跑在別處就 shell 調 codex，先按那裡的腳本探測版本最高的 binary（舊版會直接報錯）
-- **一個角色一次呼叫，絕不批次**
-- 單個失敗就跳過，不阻斷；最後彙總說明
-- **斷點續跑**：`images/<slug>-sheet.png` 已存在就跳過，失敗重來時只補缺的
-
-**不按 `importance` 篩，選中的角色全都出。** 一個角色一次呼叫，30 個就是 30 次——這是整條管線裡最慢的一步，開始前跟使用者說一聲要出多少張。使用者想省就讓他給個數，或者明說只要 `protagonist` / `major`。
-
-### Step 9 — 輸出
+### Step 8 — 輸出
 
 ```bash
 cd <輸出目錄>
@@ -283,7 +233,8 @@ node {baseDir}/scripts/novel-characters.mjs render <cast.json> --html > report.h
 
 語言取 `cast.json` 裡的 `lang`，要臨時覆蓋就加 `--lang <code>`。
 
-`render` 會自動去 `images/<slug>-sheet.png` 找圖。所以**先生圖再 render**。
+`render` 預設去 cast.json 同級的 `images/<slug>-sheet.png` 找圖；圖在別處就用 `--images <目錄>`
+指過去（任意路徑）。**本 skill 不產生這些檔案**——下游出完圖，重跑一次 render 就能把圖嵌進報告。
 
 report.html 的樣式約定見 `{baseDir}/references/report-style.md`——要改樣式先讀它，別把它改回通用卡片牆。
 
@@ -294,13 +245,15 @@ report.html 的樣式約定見 `{baseDir}/references/report-style.md`——要�
 ├── <書名>-cast.json
 ├── <書名>-cast.md
 ├── report.html                    ← 雙擊就能開
-└── images/
-    └── <slug>-sheet.png           ← 有 codex 才有
+└── images/                        ← 本 skill 不寫這個目錄
+    └── <slug>-sheet.png           ← 下游出完圖放這兒，render 會撿起來
 ```
 
-### Step 10 — 彙報
+### Step 9 — 彙報
 
-一句話說清：角色數、生圖數、報告路徑。校驗一次沒過的話，說明修了什麼。有角色生圖失敗、被截斷、或因為沒有 codex 而沒生圖，明確說清楚。
+一句話說清：角色數、報告路徑。校驗一次沒過的話，說明修了什麼。原文被截斷要明確說清楚。
+
+**不要說「已生圖」或「已生成設定圖」**——這一步不存在了，交付的是提示詞。
 
 ---
 
@@ -308,8 +261,8 @@ report.html 的樣式約定見 `{baseDir}/references/report-style.md`——要�
 
 - 單次上限 24 塊（淨覆蓋約 93 萬字元），超了會明確報 `truncated`，不靜默截斷
 - 人類可讀欄位跟隨 `--lang`（預設中文）；生圖和 TTS 提示詞**永遠英文**，那些引擎吃英文最穩
-- 設定圖最容易出的兩個問題：**一張圖裡兩個長相**、**為了塞細節把人物壓扁**。拿到圖先掃一眼，見 `references/sheet.md`
-- 生圖只走 codex built-in `$imagegen`。**不用它的 CLI fallback**（要 `OPENAI_API_KEY`）
+- **本 skill 不生圖。**`image.sheet` 是給下游的版面指令，版面最容易崩的幾處（一張圖兩個長相、
+  為了塞細節把人物壓扁、左欄收口）靠提示詞裡寫死的幾句壓住，見 `references/sheet.md`
 - 想要能實時編輯、邊跑邊看的互動介面，那是另一個東西，不在這個 skill 裡
 
 ## 自測
@@ -318,7 +271,7 @@ report.html 的樣式約定見 `{baseDir}/references/report-style.md`——要�
 node {baseDir}/scripts/selftest.mjs
 ```
 
-399 項斷言，不調模型、不花額度，覆蓋分塊 / 歸併 / outline seed / 合成 / 多語言 / 畫風與提示詞一致性 / 校驗 / 渲染的全部確定性邏輯。改完腳本先跑這個。
+354 項斷言，不調模型、不花額度，覆蓋分塊 / 歸併 / 合成 / 多語言 / 校驗 / 渲染的全部確定性邏輯。改完腳本先跑這個。
 
 ## 自帶樣例
 

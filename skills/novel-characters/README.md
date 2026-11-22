@@ -1,4 +1,6 @@
-**中文** · [English](README.en.md)
+[![中文](https://img.shields.io/badge/%E4%B8%AD%E6%96%87-8b1a1a?style=for-the-badge)](README.md)
+[![English](https://img.shields.io/badge/English-f2e3e3?style=for-the-badge&labelColor=f2e3e3&color=b07070)](README.en.md)
+[![關注作者 X](https://img.shields.io/badge/%E5%85%B3%E6%B3%A8%E4%BD%9C%E8%80%85-%40eternityspring-b07070?style=for-the-badge&labelColor=8b1a1a&logo=x&logoColor=f2e3e3)](https://x.com/eternityspring)
 
 # novel-characters
 
@@ -6,9 +8,9 @@
 
 - **角色表** — 誰出場了，主角還是龍套，跨章節的不同稱呼歸併到同一個人
 - **人物畫像** — 性別、年齡、身份、外貌、性情、動機、人物弧光、關係網，每條附**原文逐字引文**
-- **形象提示詞** — 半寫實厚塗路線，雙語生圖 prompt + negative prompt + 風格標籤，直接餵 Midjourney / SD / GPT-Image
+- **形象提示詞** — 雙語生圖 prompt + negative prompt + 標籤，直接餵 Midjourney / SD / GPT-Image。畫風不寫進提示詞，由呼叫方在生圖時整批附加
 - **音色提示詞** — 音色、音高、語速、口音、情緒，雙語 voice-design prompt，直接餵 Qwen3-TTS / ElevenLabs Voice Design
-- **角色設定圖** — **每個角色一張**：16:9 分三區，左側約 34% 證件照式半身像（面部基準）、右上全身三檢視、右下關鍵細節特寫條。**畫風可選**：預設半寫實厚塗，也可以出吉卜力動畫風或擬真實拍。白底方便摳圖，走 codex 內建生圖（可選）
+- **角色設定圖的版面指令** — **每個角色一條**：16:9 分三區，左側約 34% 證件照式半身像（面部基準）、右上全身三檢視、右下關鍵細節特寫條，白底方便摳圖。**本 skill 不生圖**，交付的是這段指令
 - **關係圖譜** — 報告裡的一個全景檢視：誰跟誰有關係、是什麼關係，一眼看完。懸停一個人亮出他的全部關係，點一下跳到那個人的詳情
 
 產出 `cast.json` + Markdown + 一個雙擊就能開的 `report.html`。
@@ -82,30 +84,6 @@ node scripts/novel-characters.mjs seed outline.json > seed.json
 
 兩條不跟隨語言：**生圖和 TTS 提示詞永遠英文**（引擎吃英文最穩）；**原文引文永遠保持原文語言**（翻譯了就不是證據了）。
 
-### 生圖風格
-
-預設 `realistic`（半寫實厚塗）。想要動畫質感或真人選角感：
-
-```
-/novel-characters ./book.txt --style ghibli
-/novel-characters ./book.txt --style photoreal
-```
-
-| id | 說明 |
-| --- | --- |
-| `realistic` | 半寫實厚塗，皮膚有毛孔和肌理，布料有織紋磨損。預設 |
-| `ghibli` | 吉卜力式手繪賽璐璐，等寬墨線、單層柔和陰影、平塗色塊 |
-| `photoreal` | 擬真實拍，劇組試裝定妝照：真人、50–85mm 鏡頭、中性暖灰背景、不修圖的皮膚 |
-
-和語言可以組合：`--lang zh-TW --style photoreal`。
-
-```bash
-node scripts/novel-characters.mjs styles          # 看所有預設
-node scripts/novel-characters.mjs styles ghibli   # 看某一個的完整內容
-```
-
-**換風格是整套換**，不是隻換一句畫風——每個預設自帶渲染方式、表面處理、光照、負向提示詞、標籤五塊。詳見 [`references/style-presets.md`](references/style-presets.md)。
-
 ## 報告長什麼樣
 
 三欄工作臺：頂欄搜尋，左欄是故事摘要 + 按戲份排的角色列表，主區一次只看一個角色。
@@ -125,10 +103,10 @@ node scripts/novel-characters.mjs styles ghibli   # 看某一個的完整內容
 頂欄的「匯出 JSON」下載的**就是 `cast.json` 本身的形狀**，不是另一套匯出格式：
 
 ```json
-{ "source": "…", "lang": "zh", "style": "realistic", "summary": "…", "characters": [ … ] }
+{ "source": "…", "lang": "zh", "summary": "…", "characters": [ … ] }
 ```
 
-所以外部工具改完可以**直接餵回 `render` 重新出報告**，也能過 `validate`。角色卡里的 `sheetImage`（`images/<slug>-sheet.png`）一併帶出，拿得到哪張圖對應哪個人。
+所以外部工具改完可以**直接餵回 `render` 重新出報告**，也能過 `validate`。角色卡里的 `sheetImage` 一併帶出，拿得到哪張圖對應哪個人——圖由下游出，`render --images <目錄>` 指到圖所在的目錄就會撿起來（不給就找 cast.json 同級的 `images/`）。
 
 資料以 `<script type="application/json">` 內嵌在報告裡，點匯出只是把它包成 Blob 下載，**不發任何網路請求**。
 
@@ -146,17 +124,16 @@ node scripts/novel-characters.mjs styles ghibli   # 看某一個的完整內容
 只對戲份最重的 N 位（**預設 30**），把歸併後的全部描寫餵進去，一次生成完整角色卡。同批角色互相知道對方的名字，避免長相和聲線撞車。族裔、年代、地域從原文推斷後寫死進生圖提示詞——**不跟報告語言走**，報告出成日文不會把民國的老船伕畫成日本人。
 
 **校驗**（這步不能跳）
-四類硬規則，全部由腳本確定性檢查，不靠模型自覺：
+三類硬規則，全部由腳本確定性檢查，不靠模型自覺：
 
 | 規則 | 為什麼 |
 | --- | --- |
 | `evidence` 必須是原文**逐字連續**片段 | 防編造。被「他說」斷開的對白不許拼接 |
 | 生圖 prompt **不許出現人名** | 影像模型對人名偏見極重，會畫成它記憶裡的角色 |
 | 欄位**語言分工** | 人類欄位跟隨 `--lang`、生圖和 TTS 提示詞永遠英文，模型會漂 |
-| **風格與負向提示詞匹配** | `realistic` / `photoreal` 不能禁 `photorealistic`、`ghibli` 必須禁；`photoreal` 另外必須禁 `illustration`／`anime`。搞反整批圖就廢 |
 | 結構 + 列舉 | `importance` 只能是那四個值 |
 
-這四條不是拍腦袋定的——是模型輸出真的違反過、被校驗腳本當場抓住才立起來的。
+這三條不是拍腦袋定的——是模型輸出真的違反過、被校驗腳本當場抓住才立起來的。
 
 ## 命令列直接用
 
@@ -178,10 +155,8 @@ node scripts/novel-characters.mjs slug "胡二爺"                  # 安全檔�
 - 單次上限 24 塊（淨覆蓋約 93 萬字元）。超了會明確報 `truncated`，**不靜默截斷**
 - 人類可讀欄位跟隨 `--lang`；生圖和 TTS 提示詞**永遠英文**，那些引擎吃英文最穩，跟報告語言無關
 - **簡繁之分腳本判不了**。`validate` 只查「是不是中文」，寫成簡體它攔不住——靠 `SKILL.md` 的用語規範約束生成階段
-- 預設取戲份最重的 30 位角色，**每位都出設定圖**——一個角色一次呼叫，所以角色多的時候這步最花時間。想少出就直接給個數，或者說只要主要角色
-- **同一批角色的畫風可能有差異**——各自獨立生圖。早期用「扁平向量卡通」時漂得很厲害（同批出成動畫感／半寫實／水墨寫實三種），換成明確的風格預設後好了很多，但不能保證完全一致。在意的話拿第一張當參考圖壓一壓，見 `references/sheet.md`
-
-> ⚠️ **機器上裝了多個 codex 要注意版本。** 舊版本會直接報 `requires a newer version of Codex` 而不是降級。skill 裡帶了自動挑最高版本的探測邏輯，整體太舊就 `npm i -g @openai/codex`。
+- 預設取戲份最重的 30 位角色，每位一份完整角色卡。想少要就直接給個數，或者說只要主要角色
+- **畫風不進提示詞**：它是生圖那一刻由下游整批附加在提示詞前面的一層。早期把畫風寫死進每條提示詞能壓住一部分漂移，代價是換風格要逐條改，而且跟當時選的那一檔正面打架。同一批角色的一致性因此也歸下游管，見 `references/sheet.md`
 
 ## 檔案
 
@@ -189,14 +164,13 @@ node scripts/novel-characters.mjs slug "胡二爺"                  # 安全檔�
 SKILL.md                 給 agent 讀的工作流
 scripts/
   novel-characters.mjs   chunk / merge / assemble / validate / render / slug
-  selftest.mjs           399 項斷言，不調模型
+  selftest.mjs           354 項斷言，不調模型
 references/
   roster-pass.md         第一趟：掃描角色
   profile-pass.md        第二趟：生成角色卡（8 條硬規則）
   schema.md              角色卡結構 + 欄位語言歸屬
-  sheet.md               角色設定圖生圖的 codex 呼叫契約
+  sheet.md               角色設定圖的版面規格
   report-style.md        report.html 的設計約定
-  style-presets.md       生圖風格預設（realistic / ghibli / photoreal）
 examples/
   渡口.txt                自帶短故事，4 個角色
   渡口-cast.json          產出，同時是校驗自檢夾具
@@ -211,6 +185,6 @@ examples/
 node scripts/selftest.mjs
 ```
 
-399 項斷言，覆蓋分塊 / 別名歸併 / outline seed / 合成 / 多語言 / 畫風與提示詞一致性 / 校驗 / 渲染。不調模型、不花額度、1 秒跑完。改完腳本先跑這個。
+354 項斷言，覆蓋分塊 / 別名歸併 / 合成 / 多語言 / 校驗 / 渲染。不調模型、不花額度、1 秒跑完。改完腳本先跑這個。
 
 **只在 macOS + Node 24 上實測過。** 程式碼沒有平臺相關呼叫，Linux 和更低版本 Node 理論上沒問題，但**沒驗過**。

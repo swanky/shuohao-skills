@@ -69,7 +69,7 @@ This file provides guidance to Claude Code (claude.ai/code) and Codex when worki
 
 所有指令都零依賴，只要 `node` >= 18，沒有 npm 套件、沒有 build 步驟。
 
-從 repo 根目錄一次跑完六套 skill 自測與單頁報告自測：
+從 repo 根目錄一次跑完八套 skill 自測與單頁報告自測：
 
 ```bash
 for f in skills/*/scripts/selftest.mjs; do node "$f"; done
@@ -79,14 +79,13 @@ node scripts/report-selftest.mjs
 ```bash
 cd skills/novel-characters
 
-node scripts/selftest.mjs                              # 全部自測（399 項，不呼叫模型，約一秒）
+node scripts/selftest.mjs                              # 全部自測（354 項，不呼叫模型，約一秒）
 
 node scripts/novel-characters.mjs                      # 印出用法
 node scripts/novel-characters.mjs chunk book.txt /tmp/wk       # 切塊
 node scripts/novel-characters.mjs merge /tmp/wk                # 歸併 roster-*.json
 node scripts/novel-characters.mjs validate cast.json book.txt  # 校驗，有違規 exit 1
 node scripts/novel-characters.mjs render cast.json --html      # 輸出到 stdout
-node scripts/novel-characters.mjs styles [id]                  # 印出畫風預設完整內容
 node scripts/novel-characters.mjs ui-template <lang>           # 印出介面文案骨架
 node scripts/novel-characters.mjs slug "胡二爺"                 # 安全檔名
 ```
@@ -107,7 +106,9 @@ node scripts/novel-characters.mjs slug "胡二爺"                 # 安全檔�
 
 ### 這個 repo 是什麼
 
-一個 AI 短劇製作 skill 集合，目前包含 `novel-outline`、`novel-characters`、`novel-art`、`novel-script` 與 `novel-storyboard`。**Claude Code 和 codex 都能跑**；需要生圖的步驟由 codex 內建能力處理。
+一個 AI 短劇製作 skill 集合，目前包含六個製作階段 `novel-outline`、`novel-characters`、`novel-art`、`novel-script`、`novel-staging`、`novel-storyboard`，以及可獨立使用的角色參考圖生成 `character-refs`。**Claude Code 和 codex 都能跑**。
+
+自上游 2.0 起，六個製作階段**都不生圖，只交提示詞與結構化資料**；選模型、選畫風、選畫幅都是生圖那一刻的事，由下游決定。真正會呼叫生圖模型的只有 `character-refs`。
 
 另有一個維運型 skill `upstream-sync`：它不產出短劇資產，負責把上游的新提交合併進來並完成正體化，是這個 fork 專屬的（見下方「fork 關係」）。
 
@@ -120,7 +121,7 @@ node scripts/novel-characters.mjs slug "胡二爺"                 # 安全檔�
 - **`SKILL.md` + `references/*.md`** —— 給 agent 讀的工作流與提示詞。所有需要判斷的事（誰是角色、長什麼樣、聲音如何）都在這裡，由模型做
 - **`scripts/novel-characters.mjs`** —— 純確定性工具。切塊、歸併、校驗、渲染。**一次模型都不呼叫**
 
-所以「品質」不是靠模型自覺，是靠 `validate` 擋。四類硬規則（見 `SKILL.md` Step 7）都是模型真的違反過、被腳本當場抓住才立起來的。**加規則的正確位置是 `validate`，不是在提示詞裡多寫一句「請注意」。**
+所以「品質」不是靠模型自覺，是靠 `validate` 擋。三類硬規則（見 `SKILL.md` Step 7）都是模型真的違反過、被腳本當場抓住才立起來的。**加規則的正確位置是 `validate`，不是在提示詞裡多寫一句「請注意」。**
 
 ### 兩趟流程
 
@@ -137,14 +138,14 @@ roster-NN.json
 歸併後的 cast
   │ 第二趟：每個角色一個子代理，照 references/profile-pass.md + schema.md 出卡
   ↓
-cast.json ──→ validate ──→ 生圖（可選）──→ render ──→ report.html
+cast.json ──→ validate ──→ render ──→ report.html（生圖在下游，出完圖用 render --images 撿回來）
 ```
 
 `chunk` / `merge` / `validate` / `render` 是腳本；兩趟是模型。**Step 7 的 validate 不能跳**。
 
-### novel-characters 的三套互相牽制機制
+### novel-characters 的兩套互相牽制機制
 
-改任何一套之前先確認另外兩套：
+改任何一套之前先確認另一套：
 
 **1. 語言（`lang`）**
 
@@ -155,23 +156,9 @@ cast.json ──→ validate ──→ 生圖（可選）──→ render ──
 
 **簡繁之分腳本判不了**——`validate` 只查「是不是中文」。台灣用詞靠 `SKILL.md` 的用語規範約束生成階段。
 
-**2. 畫風預設（`style`）**
+**畫風不在 skill 裡**：上游 2.0 已刪除 `style` 欄位、`--style`、`styles` 指令、`style-presets.md` 與風格品質門，fork 原有的 `photoreal` 預設一併退場。提示詞只寫這個人獨有的東西，`negativePrompt` 只禁畫面缺陷、不禁畫風詞；畫風由下游生圖時整批附加。既有 JSON 殘留的 `style` 欄位不報錯，但不再生效。
 
-`STYLE_PRESETS` 有 `realistic`（預設）/ `ghibli` / `photoreal`，每個自帶 render / surface / lighting / negative / tags **五塊，整塊取用不混搭**。
-
-**最容易搞反的是負向提示詞，三個預設的立場兩兩不同**：
-
-| 預設 | 禁 `photorealistic`？ | 禁 `illustration`／`anime`？ |
-| --- | --- | --- |
-| `realistic` | 絕不能 | 不禁——它本來就是畫出來的 |
-| `ghibli` | 必須 | 不禁 |
-| `photoreal` | 絕不能 | 必須 |
-
-`validate` 判斷「該不該禁寫實」是拿**預設自己的 `negative`** 當基準，所以新增預設不用回頭改校驗邏輯——把立場寫進 `negative` 就行。
-
-**版面規則（16:9 三區、34%/66% 比例、細節讓位不是人物讓位）不隨風格變**，變的只有渲染質感。
-
-**3. 報告版面**
+**2. 報告版面**
 
 樣式全部內聯在 `renderHtml()` 裡，**只改那一處**，不要另起模板。設計約定與「為什麼長這樣」在 `references/report-style.md`——改樣式前先讀，別把它改回通用卡片牆。
 
@@ -182,6 +169,8 @@ cast.json ──→ validate ──→ 生圖（可選）──→ render ──
 `渡口.txt` / `渡口-cast.json` / `渡口-cast.md` 是範例、是品質基準、**也是自測夾具**。`selftest.mjs` 直接讀它們跑斷言。
 
 所以動 examples 要特別小心：`cast.json` 的 `persona.evidence` 必須是 `渡口.txt` 的**逐字連續**片段，`validate` 會逐條比對。改了原文就要同步改所有引文。
+
+另外，各 skill 的 `references/test-fixtures/upstream/渡口-*.json` 是兄弟 skill examples 的**逐位元組複本**（讓 skill 單獨複製也能跑自測）。改了任一份 examples，要同步覆蓋所有對應的夾具。
 
 ### Windows 注意
 

@@ -4,51 +4,8 @@
 // without an npm install. Node 18+ (stdlib only).
 
 import { existsSync, readFileSync, realpathSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-
-/* ------------------------------------------------------------------ */
-/* 畫風預設（環境版）                                                    */
-/* ------------------------------------------------------------------ */
-/*
- * 與 novel-characters 的兩檔畫風同名對齊（realistic / ghibli），
- * 但內容是環境的表面處理，不是皮膚毛孔——把角色那套帶進環境是錯的。
- * 換風格是整套換：render / surface / negative / tags 整塊取用，不混搭。
- *
- * 最容易踩的坑與角色 skill 相同：realistic 絕不能禁 photorealistic，
- * ghibli 必須禁。validate 會攔。
- */
-
-export const DEFAULT_STYLE = 'realistic';
-
-export const SCENE_STYLE_PRESETS = {
-  realistic: {
-    label: '半寫實厚塗',
-    render:
-      'Semi-realistic environment concept art, painterly rendering with visible brush texture, grounded architectural perspective, cinematic depth',
-    surface:
-      'Weathered, lived-in materials: chipped paint, water stains, patina on metal, worn wood grain, dust in corners and light shafts; fabric and paper props show creases and age; nothing looks factory-new. Atmospheric depth with haze or volumetric light where the space allows',
-    // 這裡絕不能禁 photorealistic——一邊要真實感一邊禁真實感是自相矛盾的
-    negative:
-      'people, human figures, characters, crowds, silhouettes of people, plastic CG look, oversaturated colours, sterile showroom cleanliness, warped perspective, melted geometry, floating objects, text, watermark, signature',
-    tags: ['semi-realistic', 'environment sheet', 'painterly', 'weathered materials', 'cinematic'],
-  },
-
-  ghibli: {
-    label: '吉卜力動畫',
-    render:
-      'Hand-painted anime background art in the manner of classic Studio Ghibli films: soft watercolour-and-gouache rendering, clean readable shapes, warm naturalistic palette, gentle painterly edges',
-    surface:
-      'Simplified but affectionate detail: flat colour planes with soft gradations, foliage and clutter grouped into readable clumps, warm light pooling on surfaces; textures suggested with a few brush strokes rather than rendered out; no photographic micro-detail',
-    // 這裡反過來，必須禁寫實
-    negative:
-      'people, human figures, characters, crowds, photorealistic, 3d render, hyperrealistic texture, harsh contrast, gritty grime, lens effects, text, watermark, signature',
-    tags: ['ghibli-like', 'background art', 'watercolour', 'environment sheet', 'warm palette'],
-  },
-};
-
-export const SUPPORTED_STYLES = Object.keys(SCENE_STYLE_PRESETS);
-export const scenePreset = (id) => SCENE_STYLE_PRESETS[id] ?? SCENE_STYLE_PRESETS[DEFAULT_STYLE];
 
 /* ------------------------------------------------------------------ */
 /* slug                                                                */
@@ -118,7 +75,7 @@ export function seedFromOutline(outline) {
     };
   });
 
-  return { source: outline?.source ?? '', style: DEFAULT_STYLE, scenes, props };
+  return { source: outline?.source ?? '', scenes, props };
 }
 
 /* ------------------------------------------------------------------ */
@@ -156,14 +113,12 @@ export function gateReport(doc, castNames = null) {
   const scenes = Array.isArray(doc?.scenes) ? doc.scenes : [];
   const props = Array.isArray(doc?.props) ? doc.props : [];
   const bad = {
-    anchors: [], lighting: [], people: [], english: [], names: [], variant: [], style: [],
+    anchors: [], lighting: [], people: [], english: [], names: [], variant: [],
     states: [], scale: [], hands: [], whitebg: [],
   };
   const ids = new Set(scenes.map((s) => s?.id));
-  const style = doc?.style ?? DEFAULT_STYLE;
-  const preset = scenePreset(style);
 
-  // 場景與道具共用的門：錨點 / 空景 / 英文 / 角色名 / 風格匹配
+  // 場景與道具共用的門：錨點 / 空景 / 英文 / 角色名
   for (const s of [...scenes, ...props]) {
     const label = s?.name ?? s?.id ?? '(無名)';
 
@@ -208,11 +163,6 @@ export function gateReport(doc, castNames = null) {
       else if (!thText(s?.changes)) bad.variant.push(`${label} 缺 changes`);
     }
 
-    // 風格與反向詞匹配 + sheet 帶渲染句
-    const bansRealism = /photorealistic|3d render/i.test(neg);
-    if (style === 'realistic' && bansRealism) bad.style.push(`${label} 禁了 photorealistic`);
-    if (style === 'ghibli' && !bansRealism) bad.style.push(`${label} 沒禁 photorealistic`);
-    if (thText(s?.image?.sheet) && !s.image.sheet.includes(preset.render)) bad.style.push(`${label} 的 sheet 缺渲染句`);
   }
 
   // 道具專屬的門
@@ -248,7 +198,6 @@ export function gateReport(doc, castNames = null) {
     castNames?.length ? bad.names.join('；') : '未提供 cast.json，本門跳過（視為通過）',
   );
   add('variants', '變體引用完整（variantOf 存在且帶 changes）', bad.variant.length === 0, bad.variant.join('；'));
-  add('style-match', '風格與負向提示詞匹配', bad.style.length === 0, bad.style.join('；'));
   add('prop-states', '道具狀態至少 1 個且落成提示詞', props.length === 0 || bad.states.length === 0, bad.states.join('；'));
   add('prop-scale', '道具尺度參照寫進提示詞', props.length === 0 || bad.scale.length === 0, bad.scale.join('；'));
   add('prop-hands', '道具參考圖無手：負向提示詞禁手', props.length === 0 || bad.hands.length === 0, bad.hands.join('；'));
@@ -267,7 +216,6 @@ export function validateArt(doc, castNames = null) {
   if (!doc || typeof doc !== 'object') return ['art.json 不是物件'];
 
   if (!thText(doc.source)) p('缺少 source（劇名/書名）');
-  if (!SUPPORTED_STYLES.includes(doc.style)) p(`style 必須是 ${SUPPORTED_STYLES.join('/')}，實際是 ${JSON.stringify(doc.style)}`);
 
   const scenes = doc.scenes;
   if (!Array.isArray(scenes) || scenes.length === 0) {
@@ -384,7 +332,6 @@ const GATE_LABELS_EN = {
   'english': 'All image prompts in English',
   'no-names': 'Prompts carry no character names',
   'variants': 'Variant references complete (variantOf exists and carries changes)',
-  'style-match': 'Style matches its negative prompt',
   'prop-states': 'At least one prop state, written out as a prompt',
   'prop-scale': 'Prop scale reference written into the prompt',
   'prop-hands': 'No hands in prop plates: negatives ban hands',
@@ -412,7 +359,6 @@ const I18N = {
     langCode: 'zh',
     kicker: '美術設定集',
     docTitle: (s) => `${s} · 美術設定集`,
-    styleLine: (id) => `畫風：${scenePreset(id).label}`,
     exportJson: '匯出 JSON',
     gates: '品質門',
     gatesPass: '全部通過',
@@ -464,7 +410,6 @@ const I18N = {
     langCode: 'en',
     kicker: 'Art Bible',
     docTitle: (s) => `${s} · Art Bible`,
-    styleLine: (id) => `Style: ${({ realistic: 'semi-realistic painterly', ghibli: 'Ghibli-style animation' })[id] ?? id}`,
     exportJson: 'Export JSON',
     gates: 'Quality gates',
     gatesPass: 'All passed',
@@ -536,7 +481,7 @@ const mdHead = (cols) => [mdRow(cols), mdRow(cols.map(() => '---'))].join('\n');
 export function renderMarkdown(doc, lang = null) {
   const t = tOf(lang ?? doc?.lang);
   const props = doc.props ?? [];
-  const out = [`# ${t.docTitle(doc.source)}`, '', `> ${t.styleLine(doc.style)}`, ''];
+  const out = [`# ${t.docTitle(doc.source)}`, ''];
 
   out.push(`## ${t.secList}`, '', mdHead(t.listCols));
   for (const s of doc.scenes) {
@@ -884,7 +829,7 @@ td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink-2);white-s
 
 <header class="hd">
   <h1>${esc(doc.source)}</h1>
-  <span class="sub">${esc(t.kicker)} · ${esc(t.styleLine(doc.style))}</span>
+  <span class="sub">${esc(t.kicker)}</span>
   <span class="right">
     <span class="gatepill ${failed.length ? 'fail' : 'pass'}">${failed.length ? '✗' : '✓'} ${esc(t.gatePill(gates.length - failed.length, gates.length))}</span>
     <button class="expo" data-name="${esc(slug(doc.source))}-art.json">${esc(t.exportJson)}</button>
@@ -993,13 +938,12 @@ const USAGE = `novel-art.mjs — novel-art skill 的確定性工具（場景 + �
   validate <art.json> [--cast c.json]    校驗；有違規逐條列印並 exit 1
                                          給了 cast.json 才查「提示詞不含角色名」
   checkup <art.json> [--cast c.json]     只列印品質門 ✓/✗，有未過項 exit 1
-  render <art.json> [--html|--md] [--lang zh|en]
-                                         渲染報告到 stdout（預設 --md）
-                                         介面語言優先順序：--lang > art.json 頂層 lang 欄位 > 中文
-  styles [id]                            列印畫風預設的完整內容
-  slug <name>                            場景名轉安全檔名
-
-render 會自動去 images/<slug>-sheet.png 找圖，找到就嵌進報告。`;
+  render <art.json> [--html|--md]        渲染報告到 stdout（預設 --md）
+        [--lang zh|en]                   介面語言優先順序：--lang > art.json 頂層 lang 欄位 > 中文
+        [--images <dir>]                 設定圖所在目錄，任意路徑（相對當前目錄解析）；
+                                         預設 art.json 同級的 images/。找 <dir>/<slug>-sheet.png，
+                                         找到就嵌進報告；圖片路徑按「報告寫在 art.json 旁邊」計算
+  slug <name>                            場景名轉安全檔名`;
 
 function readJson(path) {
   return JSON.parse(readFileSync(resolve(path), 'utf8'));
@@ -1048,36 +992,26 @@ function main(argv) {
       for (const x of problems) console.error('  ' + x);
       process.exit(1);
     }
-    console.log(`✓ ${doc.scenes.length} 個場景${(doc.props ?? []).length ? ` + ${doc.props.length} 件道具` : ''}全部通過校驗（style=${doc.style}）`);
+    console.log(`✓ ${doc.scenes.length} 個場景${(doc.props ?? []).length ? ` + ${doc.props.length} 件道具` : ''}全部通過校驗`);
     return;
   }
 
   if (cmd === 'render') {
     const [path] = rest;
-    if (!path) throw new Error('用法：render <art.json> [--html|--md] [--lang zh|en]');
+    if (!path) throw new Error('用法：render <art.json> [--html|--md] [--lang zh|en] [--images <dir>]');
     const doc = readJson(path);
     const lang = flag(rest, '--lang');
-    // 圖存在才掛上去；沒有就渲染成佔位，不影響其餘內容
+    // 圖是使用者在下游出好的素材，放哪由使用者定：--images 按普通命令列路徑解析，
+    // 不給才退回 art.json 同級的 images/。報告預設寫在 art.json 旁邊，
+    // src 寫成相對那裡的路徑，整個目錄一起挪也不斷。圖不存在就渲染成佔位。
     const outDir = resolve(path, '..');
+    const imagesFlag = flag(rest, '--images');
+    const imagesDir = imagesFlag ? resolve(imagesFlag) : join(outDir, 'images');
     for (const item of [...doc.scenes, ...(doc.props ?? [])]) {
-      const rel = `images/${slug(item.name)}-sheet.png`;
-      if (existsSync(resolve(outDir, rel))) item.sheetImage = rel;
+      const abs = join(imagesDir, `${slug(item.name)}-sheet.png`);
+      if (existsSync(abs)) item.sheetImage = relative(outDir, abs).split(sep).join('/');
     }
     process.stdout.write((rest.includes('--html') ? renderHtml(doc, lang) : renderMarkdown(doc, lang)) + '\n');
-    return;
-  }
-
-  if (cmd === 'styles') {
-    const only = rest[0];
-    if (only && !SUPPORTED_STYLES.includes(only)) {
-      throw new Error(`未知風格 ${only}（可用：${SUPPORTED_STYLES.join('/')}）`);
-    }
-    const ids = only ? [only] : SUPPORTED_STYLES;
-    console.log(JSON.stringify({
-      default: DEFAULT_STYLE,
-      note: '整塊取用不混搭；環境預設與 novel-characters 的角色預設同名對齊但內容不同',
-      presets: Object.fromEntries(ids.map((id) => [id, SCENE_STYLE_PRESETS[id]])),
-    }, null, 2));
     return;
   }
 
