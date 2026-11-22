@@ -11,7 +11,11 @@
 - 各 skill 的 `test-fixtures/upstream/渡口-*.json` 一律由 fork 的正體 examples 逐位元組複製，與上游做法一致（上游的夾具也是 examples 的複本）；`CLAUDE.md` 記下這條同步規則。
 - 修正《渡口》範例的轉換錯字：「麵皮」→「面皮」、「幹脆」→「乾脆」、引號改為「」；`渡口-cast.md` 改由 `render --md` 重新產生，與 `cast.json` 一致。
 - 已知問題（合併前即存在）：五份古典小說角色品質基準以現行 `validate` 檢查仍有違規（`voice.prompt` 超過 400 字元、同批生圖提示詞雷同超過 75%），舊版 `validate` 下違規數相同或更多，本次未處理。
-- `character-refs` 234 項、`novel-art` 151 項、`novel-characters` 354 項、`novel-outline` 256 項、`novel-script` 154 項、`novel-staging` 99 項、`novel-storyboard` 336 項、`upstream-sync` 101 項及單頁報告 92 項自測全部通過，共 1,777 項；全 repository 正體檢查掃描 170 個檔案，0 項待改、0 項待確認。
+<!-- zh-tw-lint: off -->
+- `check-zh-tw.mjs` 新增 s2twp 固定誤轉規則：「指令碼」「影象」「全屏」「全域性」「擴充套件」為 error，「區域性」「介面卡」「回撥」「倉庫」為 warn（語境上偶爾成立），自測補上正反例；`install.sh` 的「本倉庫」順帶改為「本儲存庫」。
+- 同步時另修正一簡對多繁與術語誤轉（「里」→「裡」、「辮梢系」→「辮梢繫」、「區域性」→「局部」等），並還原 `character-refs` 被誤轉的日文標籤「写実写真」。
+<!-- zh-tw-lint: on -->
+- `character-refs` 234 項、`novel-art` 151 項、`novel-characters` 354 項、`novel-outline` 256 項、`novel-script` 154 項、`novel-staging` 99 項、`novel-storyboard` 336 項、`upstream-sync` 116 項及單頁報告 92 項自測全部通過，共 1,792 項；全 repository 正體檢查掃描 170 個檔案，0 項待改、0 項待確認。
 
 ## 2.2.1 — novel-staging 預設交付 HTML 工具報告 — 2026-10-15
 

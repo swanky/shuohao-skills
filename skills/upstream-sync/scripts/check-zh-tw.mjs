@@ -55,12 +55,22 @@ export const TERM_RULES = [
   { bad: '水准', good: '水準', level: 'error' },
   { bad: '出圖', good: '生圖', level: 'error' },
   { bad: '反向提示詞', good: '負向提示詞', level: 'error' },
+  // OpenCC s2twp 的固定誤轉：腳本→指令碼、影像→影象、局部→區域性……同步上游時實際踩到。
+  { bad: '指令碼', good: '腳本', level: 'error' },
+  { bad: '影象', good: '影像', level: 'error' },
+  { bad: '全屏', good: '全螢幕', level: 'error' },
+  { bad: '全域性', good: '全域', level: 'error' },
+  { bad: '擴充套件', good: '擴展', level: 'error' },
   { bad: '文本', good: '文字', level: 'warn' },
   { bad: '程序', good: '程式', level: 'warn' },
   { bad: '支持', good: '支援', level: 'warn' },
   { bad: '性格', good: '個性', level: 'warn' },
   { bad: '計劃', good: '計畫', level: 'warn' },
   { bad: '搜索', good: '搜尋', level: 'warn' },
+  { bad: '區域性', good: '局部（「區域性組織」這類 regional 才保留）', level: 'warn' },
+  { bad: '介面卡', good: '轉接器（adapter）', level: 'warn' },
+  { bad: '回撥', good: '回呼（callback）', level: 'warn' },
+  { bad: '倉庫', good: '儲存庫（repository）', level: 'warn' },
   // 「通过」最容易一律換成「透過」。能換成「經由」才是「透過」，
   // 能換成「合格」就是「通過」——品質門、校驗、測試講的都是後者。
   {

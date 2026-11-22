@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 把本倉庫的 skill 軟連結到 Claude Code 和/或 codex 的 skills 目錄。
+# 把本儲存庫的 skill 軟連結到 Claude Code 和/或 codex 的 skills 目錄。
 # 軟連結而不是複製：git pull 之後立刻生效。
 #
 #   ./scripts/install.sh              裝全部，裝到檢測到的所有 agent

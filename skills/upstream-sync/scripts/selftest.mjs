@@ -64,6 +64,19 @@ function eq(actual, expected, msg) {
   ok(term.every((h) => h.kind === 'term' && h.level === 'error'), '定案用詞都是 error 級');
   ok(term.some((h) => h.hint.includes('軟體')), '提示直接給出正確用詞');
 
+  // s2twp 的固定誤轉也要抓：同步上游時實際踩到的幾種
+  for (const bad of ['改完指令碼先跑', '影象模型', '放大到全屏', '全域性約束', '擴充套件成']) {
+    const hit = scanText('docs/x.md', bad);
+    ok(hit.length === 1 && hit[0].level === 'error', `「${bad}」是 s2twp 誤轉，抓得到`);
+  }
+  for (const bad of ['區域性磨損', '生圖介面卡', '回撥取結果', '本倉庫']) {
+    const hit = scanText('docs/x.md', bad);
+    ok(hit.length === 1 && hit[0].level === 'warn', `「${bad}」語境上偶爾成立，列為待確認`);
+  }
+  for (const good of ['改完腳本先跑', '影像模型', '全螢幕', '全域約束', '局部磨損', '本儲存庫']) {
+    eq(scanText('docs/x.md', good).length, 0, `「${good}」用法正確，不誤判`);
+  }
+
   const warn = scanText('docs/x.md', '這個功能支持自訂搜索條件。');
   ok(warn.length === 2 && warn.every((h) => h.level === 'warn'), '待確認用詞是 warn 級');
 
